@@ -58,4 +58,6 @@ homepage:
       url: https://cloud.netapp.com/kubernetes-hub
     - title: 取得協助的地方
       url: "/support/get-help.html"
-product-family: {}
+product-family:
+  name: Astra
+  repo: astra-family
