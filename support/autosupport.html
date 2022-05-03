@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>自動支援監控</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="自動支援監控" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/support/autosupport.html" />
+	<meta property="og:description" content="NetApp以多種方式支援Astra Data Store預覽。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store預覽帳戶可透過網路票務取得遠端技術支援。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="NetApp以多種方式支援Astra Data Store預覽。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store預覽帳戶可透過網路票務取得遠端技術支援。">
+  <meta name="keywords" content=" how to use autosupport, autosupport, asup, logs, asup bundle, support ticket, support bundle"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/astra-data-store/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/astra-data-store/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/astra-data-store/js/na-search.js'></script><script src='/zh-tw/astra-data-store/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/astra-data-store/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/astra-data-store/js/na-utility.js'></script>
+  <script src='/zh-tw/astra-data-store/js/clouddocs.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/astra-data-store/js/toc.js'></script>
+  <script src='/zh-tw/astra-data-store/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/astra-data-store/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/astra-data-store/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jszip.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[自動支援監控](https://docs.netapp.com/zh-tw/astra-data-store/support/autosupport.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/support/autosupport.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/astra-data-store/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">繁體中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/support/autosupport.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/support/autosupport.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/support/autosupport.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/support/autosupport.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/support/autosupport.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/astra-data-store/pdfs/fullsite-sidebar/Astra_Data_Store預覽文件.pdf" >
+          <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/使用Astra資料儲存區.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            使用Astra資料儲存區
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/support/autosupport.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/astra-data-store/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/index.html">
+        Astra Data Store文件
+      </a></li><li class="subfolders "><a href="/zh-tw/astra-data-store/release-notes/rn_overview.html">
+        <div class="na-navbar-padding"> 版本資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/whats-new.html">
+        本版Astra Data Store的新功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/known-issues.html">
+        已知問題
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/known-limitations.html">
+        已知限制
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 概念</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/intro.html">
+        Astra Data Store簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/architecture.html">
+        部署模式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/expansion.html">
+        叢集擴充
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/storage-efficiency.html">
+        儲存效率
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/security.html">
+        安全性
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
+        Astra Data Store預覽需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+        Astra Data Store預覽快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
+        安裝Astra Data Store預覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/setup-ads.html">
+        設定Astra Data Store預覽元件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/capabilities.html">
+        Astra Data Store預覽限制
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/faq-ads.html">
+        常見問題集
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 使用Astra資料儲存區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/kubectl-commands-ads.html">
+        管理Astra Data Store資產
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/deploy-apps.html">
+        部署測試應用程式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/maintain-cluster.html">
+        管理叢集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-cloud-insights.html">
+        利用功能表監控指標Cloud Insights
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-prometheus-grafana.html">
+        使用Prometheus和Grafana監控指標
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/configure-endpoints.html">
+        設定及監控事件記錄
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/ads-acc-ui.html">
+        Astra Control Center整合
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads.html">
+        使用指令碼自動解除安裝Astra Data Store預覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads-manual.html">
+        無需指令碼、即可手動解除安裝Astra Data Store預覽
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 知識與支援</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/troubleshooting-ads.html">
+        疑難排解
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/get-help-ads.html">
+        取得協助
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/autosupport.html">
+        自動支援監控
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/astra-data-store/">Astra&nbsp;Data&nbsp;Store</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">自動支援監控</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-05-03 15:17:19 +0000">05/03/2022</time>
+    
+  
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>此功能可監控Astra Data Store預覽系統的執行時間和資訊、並將訊息傳送給NetApp支援部門。AutoSupport視您的組態而定、您可以監控這些系統元件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>控制面</p>
+</li>
+<li>
+<p>儲存設備</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>在期間預設啟用支援AutoSupport <a href="../get-started/install-ads.html#install-the-astra-data-store-cluster">"Astra Data Store預覽叢集安裝"</a> 或者AutoSupport 在叢集套用了某個來源自訂資源（CR）之後。啟用後AutoSupport 、即可自動將S還原（ASUP）套裝組合上傳至 <a href="https://mysupport.netapp.com/site/" target="_blank" rel="noopener">"NetApp支援網站（NSS）"</a> 或可供手動下載。</p>
+</div>
+<div class="ulist">
+<div class="title">選項</div>
+<ul>
+<li>
+<p><a href="#AutoSupport triggers and scenarios">[AutoSupport triggers and scenarios]</a></p>
+</li>
+<li>
+<p><a href="#Configure custom control plane AutoSupport collection">[Configure custom control plane AutoSupport collection]</a></p>
+</li>
+<li>
+<p><a href="#Configure custom storage AutoSupport collection">[Configure custom storage AutoSupport collection]</a></p>
+</li>
+<li>
+<p><a href="#List ASUPs in the system">[List ASUPs in the system]</a></p>
+</li>
+<li>
+<p><a href="#Download an ASUP Bundle">[Download an ASUP Bundle]</a></p>
+</li>
+<li>
+<p><a href="#Upload a core file">[Upload a core file]</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="可觸發及情境autosupport">可觸發及情境AutoSupport</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列方式觸發了各種套裝組合：AutoSupport</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>定期</strong>：ASUP套裝組合是以在CR中定義的時間間隔建立。</p>
+</li>
+<li>
+<p><strong>使用者觸發</strong>：您可以手動建立自己的ASUP來查看記錄。</p>
+</li>
+<li>
+<p>* Coredump *：如果節點上有核心傾印、則會產生ASUP、核心會傳送至NetApp以供進一步調查。</p>
+</li>
+<li>
+<p><strong>基於呼叫首頁事件</strong>：ASUP是由作業系統的特定呼叫首頁事件所產生。</p>
+</li>
+<li>
+<p>* Kubernetes事件為基礎*：ASUP是由控制面板中的特定Kubernetes事件所產生。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>這些觸發案例產生下列AutoSupport 其中一種功能類型：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* ControlPlane AutoSupport Section*：Astra Data Store預覽控制平面記錄和CRS的集合。</p>
+</li>
+<li>
+<p><strong>儲存AutoSupport 功能</strong>：儲存報告與效能資料的集合。</p>
+</li>
+<li>
+<p><strong>核心傾印AutoSupport 功能</strong>：系統核心傾印的集合。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="設定自訂控制面板autosupport-的資料收集">設定自訂控制面板AutoSupport 的資料收集</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以建立可AutoSupport 報告控制面板事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 <a href="../get-started/install-ads.html#install-the-astra-data-store-cluster">"Astra Data Store預覽叢集安裝"</a>。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>自訂下列命令以建立控制面板集合CR：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astasds asup collect -c controlplane --namespace=astrads-system</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>定義自訂參數：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'&lt;myASUPname&gt;'：AutoSupport 要產生的Setcr名稱。</p>
+</li>
+<li>
+<p>「-e &lt;事件名稱&gt;」：觸發集合的事件名稱。事件名稱應預先定義在component.yaml（安裝於支援控制器）中。</p>
+<div class="paragraph">
+<p>範例：</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrasds asup collect -c controlplane custom-asup-name -e debug --namespace=astrads-system</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>視系統需求新增其他參數：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>「叢集」：在多叢集環境中需要此旗標。</p>
+</li>
+<li>
+<p>「-localCollection」：啟用本機收藏。預設值為「假」。</p>
+</li>
+<li>
+<p>「-forceupload」：啟用強制上傳。預設值為「假」。</p>
+</li>
+<li>
+<p>「-retry」：啟用重試。預設值為「假」。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="設定自訂儲存autosupport-功能的收藏">設定自訂儲存AutoSupport 功能的收藏</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以建立AutoSupport 可報告儲存元件事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 <a href="../get-started/install-ads.html#install-the-astra-data-store-cluster">"Astra Data Store預覽叢集安裝"</a>。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>自訂下列命令以建立儲存集合CR：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrasds asup collect -c storage --namespace=astrads-system</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>定義自訂參數：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'&lt;myASUPname&gt;'：AutoSupport 要產生的Setcr名稱。</p>
+</li>
+<li>
+<p>「-e &lt;事件名稱&gt;」：觸發集合的事件名稱。事件名稱應預先定義在component.yaml（安裝於支援控制器）中。</p>
+<div class="paragraph">
+<p>效能事件範例：</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl-astrads asup collect -c storage -e performance example-perf-storage-asup</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>t &lt;ISO_format&gt;-d &lt;hides&gt;'：在指定的時間內、為所有節點收集儲存ASUP。使用標準ISO日期時間格式（「-t」）、以小時為單位的持續時間（「d」）。例如：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrads asup collect -c storage -t 2021-01-01T15:00:00Z -d 24</pre>
+</div>
+</div>
+</li>
+<li>
+<p>-nodes&lt;nodename&gt;'：收集指定節點的儲存ASUP。例如：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrads asup collect -c storage --nodes example1</pre>
+</div>
+</div>
+</li>
+<li>
+<p>-nodes nodename1、nodename2、nodename3：收集指定節點的儲存ASUP：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrads asup collect -c storage --nodes example1,example2,example3</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>視系統需求新增其他參數：</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>「叢集」：在多叢集環境中需要此旗標。</p>
+</li>
+<li>
+<p>「-localCollection」：啟用本機收藏。預設值為「假」。</p>
+</li>
+<li>
+<p>「-forceupload」：啟用強制上傳。預設值為「假」。</p>
+</li>
+<li>
+<p>「-retry」：啟用重試。預設值為「假」。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="列出系統中的asup">列出系統中的ASUP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>使用下列命令、依名稱列出系統中的ASUP：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrasds asup list --namespace=astrads-system</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回應範例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAMESPACE      NAME                                  SEQUENCE NUMBER EVENT                      SIZE  STATE       LOCAL COLLECTION
+astrads-system  storage-callhome.reboot.unknown-...  1               callhome.reboot.unknown    0     uploaded    astrads-ds-support-tdl2h:
+astrads-system  storage-callhome.reboot.unknown-...  2               callhome.reboot.unknown    0     uploaded    astrads-ds-support-xx6n8:
+astrads-system  storage-callhome.reboot.unknown-...  3               callhome.reboot.unknown    0     uploaded    astrads-ds-support-qghnx:</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="下載asup產品組合">下載ASUP產品組合</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以使用此命令下載本機收集的ASUP套裝組合。使用「-o」指定目前工作目錄以外的位置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>./kubectl-astrasds asup download &lt;ASUP_bundle_name&gt; -o &lt;location&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="上傳核心檔案">上傳核心檔案</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果服務當機、AutoSupport 系統會在當機時建立一個包含相關記憶體內容的資訊（ASUP）訊息（稱為核心檔案）。Astra Data Store Preview會自動將ASUP訊息上傳至NetApp Support、但您需要手動上傳核心檔案、使其與ASUP訊息相關聯。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>使用下列「kubecll」命令來檢視ASUP訊息：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrasds asup list --namespace=astrads-system</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>您應該會看到類似下列的輸出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAMESPACE       NAME                      SEQUENCE NUMBER  EVENT     SIZE       STATE       LOCAL COLLECTION
+
+astrads-system  storage-coredump-2021...  1                coredump  197848373  compressed  astrads-ds-support-sxxn7:/var/...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>使用下列「kubecll」命令、從ASUP訊息下載核心檔案。使用「-o'」選項來指定下載檔案的目的地目錄。</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl astrads asup download storage-coredump-20211216t140851311961680 -o &lt;absolute_path_to_destination_directory&gt;</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+在極少數情況下、您可能無法下載核心檔案、因為其他核心檔案已經取代。發生這種情況時、命令會傳回「無法stat：無此類檔案或目錄」錯誤。如果看到此錯誤、您可以 <a href="get-help-ads.html">"取得協助"</a>。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>開啟網頁瀏覽器並瀏覽至 <a href="https://upload.netapp.com/sg" target="_blank" rel="noopener">"NetApp驗證檔案上傳工具"</a>、如果您尚未登入、請輸入您的NetApp支援認證資料。</p>
+</li>
+<li>
+<p>選取「<strong>我沒有個案編號</strong>」核取方塊。</p>
+</li>
+<li>
+<p>在*最近的地區*功能表中、選取最靠近您的區域。</p>
+</li>
+<li>
+<p>選取*上傳*按鈕。</p>
+</li>
+<li>
+<p>瀏覽並選取您先前下載的核心檔案。</p>
+<div class="paragraph">
+<p>隨即開始上傳。上傳完成時、會出現一則成功訊息。</p>
+</div>
+</li>
+</ol>
+</div>
+<h2 id="如需詳細資訊請參閱" class="discrete">如需詳細資訊、請參閱</h2>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kb.netapp.com/Advice_and_Troubleshooting/Miscellaneous/How_to_upload_a_file_to_NetApp" target="_blank" rel="noopener">"如何將檔案上傳至NetApp（需要登入）"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">cookie-settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/astra-data-store/js/www-ntap.js'></script>
+    <script src='/zh-tw/astra-data-store/js/tabbed-blocks.js'></script>
+  </body></html>

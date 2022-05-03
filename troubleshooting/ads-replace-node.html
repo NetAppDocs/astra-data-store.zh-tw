@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>更換節點</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="更換節點" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/troubleshooting/ads-replace-node.html" />
+	<meta property="og:description" content="使用KECBECVL命令搭配Astra Data Store來取代節點。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="使用KECBECVL命令搭配Astra Data Store來取代節點。">
+  <meta name="keywords" content=" astra, astra data store, astra datastore, kubectl, replace node"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/astra-data-store/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/astra-data-store/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/astra-data-store/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/astra-data-store/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/astra-data-store/js/na-search.js'></script><script src='/zh-tw/astra-data-store/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/astra-data-store/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/astra-data-store/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/astra-data-store/js/na-utility.js'></script>
+  <script src='/zh-tw/astra-data-store/js/clouddocs.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/astra-data-store/js/toc.js'></script>
+  <script src='/zh-tw/astra-data-store/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/astra-data-store/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/astra-data-store/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/jszip.min.js'></script>
+  <script src='/zh-tw/astra-data-store/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[更換節點](https://docs.netapp.com/zh-tw/astra-data-store/troubleshooting/ads-replace-node.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/troubleshooting/ads-replace-node.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/astra-data-store/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">繁體中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/troubleshooting/ads-replace-node.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/troubleshooting/ads-replace-node.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/troubleshooting/ads-replace-node.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/troubleshooting/ads-replace-node.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/troubleshooting/ads-replace-node.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/astra-data-store/pdfs/fullsite-sidebar/Astra_Data_Store預覽文件.pdf" >
+          <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/使用Astra資料儲存區.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            使用Astra資料儲存區
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/astra-data-store/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/index.html">
+        Astra Data Store文件
+      </a></li><li class="subfolders "><a href="/zh-tw/astra-data-store/release-notes/rn_overview.html">
+        <div class="na-navbar-padding"> 版本資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/whats-new.html">
+        本版Astra Data Store的新功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/known-issues.html">
+        已知問題
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/release-notes/known-limitations.html">
+        已知限制
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 概念</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/intro.html">
+        Astra Data Store簡介
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/architecture.html">
+        部署模式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/expansion.html">
+        叢集擴充
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/storage-efficiency.html">
+        儲存效率
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/security.html">
+        安全性
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
+        Astra Data Store預覽需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+        Astra Data Store預覽快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
+        安裝Astra Data Store預覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/setup-ads.html">
+        設定Astra Data Store預覽元件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/capabilities.html">
+        Astra Data Store預覽限制
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/faq-ads.html">
+        常見問題集
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 使用Astra資料儲存區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/kubectl-commands-ads.html">
+        管理Astra Data Store資產
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/deploy-apps.html">
+        部署測試應用程式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/maintain-cluster.html">
+        管理叢集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-cloud-insights.html">
+        利用功能表監控指標Cloud Insights
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-prometheus-grafana.html">
+        使用Prometheus和Grafana監控指標
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/configure-endpoints.html">
+        設定及監控事件記錄
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/ads-acc-ui.html">
+        Astra Control Center整合
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads.html">
+        使用指令碼自動解除安裝Astra Data Store預覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads-manual.html">
+        無需指令碼、即可手動解除安裝Astra Data Store預覽
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 知識與支援</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/troubleshooting-ads.html">
+        疑難排解
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/get-help-ads.html">
+        取得協助
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/autosupport.html">
+        自動支援監控
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/astra-data-store/">Astra&nbsp;Data&nbsp;Store</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">更換節點</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-05-03 15:17:19 +0000">05/03/2022</time>
+    
+  
+
+
+</p>
+
+<div class="paragraph">
+<p>將KECBECVL命令搭配Astra Data Store使用、以取代叢集中故障的節點。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>在「astrads系統」命名空間中列出Pod（我們的範例使用1x5組態、叢集中有4個節點）：</p>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl get pods -n astrads-system
+NAME                                 READY  STATUS    RESTARTS   AGE
+astrads-cluster-controller...        1/1    Running   1          20h
+astrads-deployment-support...        3/3    Running   0          20h
+astrads-ds-cluster-multinodes-21209.  /1    Running   0          20h</pre>
+</div>
+</div>
+</li>
+<li>
+<p>列出所有節點：</p>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl astrads nodes list
+NODE NAME           NODE STATUS    CLUSTER NAME
+sti-rx2540-534d..   Added       cluster-multinodes-21209
+sti-rx2540-535d...  Added       cluster-multinodes-21209
+...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>描述叢集：</p>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl astrads clusters list
+CLUSTER NAME               CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209   created         4</pre>
+</div>
+</div>
+</li>
+<li>
+<p>驗證故障節點上的節點HA是否標記為「假」：</p>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl describe astradscluster -n astrads-system
+Name:         cluster-multinodes-21209
+Namespace:    astrads-system
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"astrads.netapp.io/v1alpha1","kind":"AstraDSCluster","metadata":{"annotations":{},"name":"cluster-multinodes-21209","namespa...
+API Version:  astrads.netapp.io/v1alpha1
+Kind:         AstraDSCluster
+Metadata:
+  Creation Timestamp:  2021-10-19T09:12:03Z
+  Finalizers:
+    astrads.netapp.io/astradscluster-finalizer
+  Generation:  1
+  Managed Fields:
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+        ...
+
+    Manager:      autosupport-controller
+    Operation:    Update
+    Time:         2021-10-19T09:12:36Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          ...
+
+    Manager:      operator
+    Operation:    Update
+    Time:         2021-10-19T09:13:18Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+
+    Manager:      cluster-controller
+    Operation:    Update
+    Time:         2021-10-20T09:46:31Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+
+    Manager:         license-controller
+    Operation:       Update
+    Time:            2021-10-20T09:46:52Z
+  Resource Version:  217898
+  UID:               97ae6f6f-004d-4490-8a90-2dcdc01b9d8f
+Spec:
+  Ads Data Networks:
+    Addresses:  ...
+    Netmask:    255.255.252.0
+  Ads Network Interfaces:
+    Cluster Interface:     data
+    Management Interface:  mgmt
+    Storage Interface:     data
+  Ads Node Config:
+    Capacity:       600
+    Cpu:            9
+    Drives Filter:  .*
+    Memory:         34
+  Ads Node Count:   4
+  Auto Support Config:
+    Auto Upload:              true
+    Coredump Upload:          false
+    Destination URL:          ...
+    Enabled:                  true
+    History Retention Count:  25
+    Periodic:
+      Periodicconfig:
+        Component:
+          Event:           dailyMonitoring
+          Name:            storage
+        Force Upload:      false
+        Local Collection:  false
+        Nodes:             all
+        Priority:          notice
+        Retry:             false
+        User Message:      Daily Monitoring Storage AutoSupport bundle
+        Component:
+          Event:           daily
+          Name:            controlplane
+        Force Upload:      false
+        Local Collection:  false
+        Priority:          notice
+        Retry:             false
+        User Message:      Daily Control Plane AutoSupport bundle
+      Schedule:            0 0 * * *
+  Monitoring Config:
+    Namespace:  netapp-monitoring
+    Repo:       docker.repo.eng.netapp.com/global/astra
+  Mvip:         172.21.192.236
+Status:
+  Ads Data Addresses:
+    Address:       ...
+    Current Node:  1
+    Uuid:          ...
+...
+  Autosupport:
+    Periodicmap:
+      Autosupport - Zieyo:
+        Periodicconfig:
+          Component:
+            Event:           dailyMonitoring
+            Name:            storage
+          Force Upload:      false
+          Local Collection:  false
+          Nodes:             all
+          Priority:          notice
+          Retry:             false
+          User Message:      Daily Monitoring Storage AutoSupport bundle
+          Component:
+            Event:           daily
+            Name:            controlplane
+          Force Upload:      false
+          Local Collection:  false
+          Priority:          notice
+          Retry:             false
+          User Message:      Daily Control Plane AutoSupport bundle
+        Schedule:            0 0 * * *
+  Cluster Status:            created
+  Cluster UUID:              cd7c9a27-74b2-4c74-b565-cb816fe55fdd
+  Conditions:
+    Last Transition Time:  2021-10-19T09:12:04Z
+    Last Update Time:      2021-10-19T09:12:04Z
+    Message:               ADS Cluster configured properly for license
+    Reason:                LicenseNormal
+    Status:                False
+    Type:                  LicenseExceeded
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Message:               License has no restrictions present
+    Status:                False
+    Type:                  RestrictedLicense
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Message:               License Valid
+    Status:                True
+    Type:                  ValidLicense
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Status:                True
+    Type:                  LastLicenseTransitionAttemptSuccessful
+    Last Transition Time:  2021-10-20T09:27:35Z
+    Last Update Time:      2021-10-20T09:45:32Z
+    Message:               Firetap Cluster is unhealthy
+    Reason:                ClusterFaults
+    Status:                False
+    Type:                  FiretapClusterHealthy
+  Desired Versions:
+    Ads:      2021.10.0
+    Firetap:  12.75.0.6167444
+  Ft Cluster Health:
+    Details:
+      Cluster Faults:
+        Code:             NodeOffline
+        Details:          The Distributed Block Store Application cannot communicate with Storage node having node ID 4.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:26:43Z
+        Code:             UnresponsiveService
+        Details:          A master service is not responding.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:28:06Z
+        Code:             UnresponsiveService
+        Details:          A firefly service is not responding.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:28:11Z
+      Syncing:            false
+    Healthy:              false
+  Ft Node Count:          4
+  License Serial Number:  d900000011
+  Node Statuses:
+    Maintenance Status:
+      State:             Disabled
+      Variant:           None
+    Node HA:             true
+    Node ID:             1
+    Node Is Reachable:   true
+    Node Management IP:  172.21.192.251
+    Node Name:           sti-rx2540-534d.ctl.gdl.englab.netapp.com
+    Node Role:           Storage
+    Node UUID:           f0f6d1af-cc71-5613-a4dd-d24456feafaa
+    Node Version:        12.75.0.6167444
+    Status:              Added
+ ...
+
+  Resources:
+    Capacity Deployed:  2400
+    Cpu Deployed:       36
+  Versions:
+    Ads:      2021.10.0
+    Firetap:  12.75.0.6167444
+Events:
+  Type     Reason                      Age                     From         Message
+  ----     ------                      ----                    ----         -------
+  Warning  MonitoringConfigSetupError  4m32s (x7390 over 24h)  ADSOperator  Unable to setup monitoring agent for ADS cluster: monitoring CRD not found</pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改叢集CR以移除故障節點。節點數減至3：</p>
+<div class="listingblock">
+<div class="content">
+<pre> # rvi nate_hosts/netappsdscluster.yaml
+ # cat nate_hosts/netappsdscluster.yaml t
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system
+spec:
+  # ADS Node Configuration per node settings
+  adsNodeConfig:
+    # Specify CPU limit for ADS components
+    # Supported value: 9
+    cpu: 9
+    # Specify Memory Limit in GiB for ADS Components.
+    # Your kubernetes worker nodes need to have at least this much RAM free
+    # for ADS to function correctly
+    # Supported value: 34
+    memory: 34
+    # [Optional] Specify raw storage consumption limit. The operator will only select drives for a node up to this limit
+    capacity: 600
+    # [Optional] Set a cache device if you do not want auto detection e.g. /dev/sdb
+    # cacheDevice: ""
+    # Set this regex filter to select drives for ADS cluster
+    # drivesFilter: ".*"
+
+  # [Optional] Specify node selector labels to select the nodes for creating ADS cluster
+  # adsNodeSelector:
+  #   matchLabels:
+  #     customLabelKey: customLabelValue
+
+  # Specify the number of nodes that should be used for creating ADS cluster
+  adsNodeCount: 3
+
+  # Specify the IP address of a floating management IP routable from any worker node in the cluster
+  mvip: "172..."
+
+  # Comma separated list of floating IP addresses routable from any host where you intend to mount a NetApp Volume
+  # at least one per node must be specified
+  # addresses: 10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
+  # netmask: 255.255.255.0
+  adsDataNetworks:
+    - addresses: "172..."
+      netmask: 255.255.252.0
+
+  # [Optional] Specify the network interface names for either all or none
+  adsNetworkInterfaces:
+    managementInterface: "mgmt"
+    clusterInterface: "data"
+    storageInterface: "data"
+
+  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to
+  # adsProtectionDomainKey: ""
+
+  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
+  monitoringConfig:
+   namespace: "netapp-monitoring"
+   repo: "docker.repo.eng.netapp.com/global/astra"
+
+  autoSupportConfig:
+    # AutoUpload defines the flag to enable or disable AutoSupport upload in the cluster (true/false)
+    autoUpload: true
+    # Enabled defines the flag to enable or disable automatic AutoSupport collection.
+    # When set to false, periodic and event driven AutoSupport collection would be disabled.
+    # It is still possible to trigger an AutoSupport manually while AutoSupport is disabled
+    # enabled: true
+    # CoredumpUpload defines the flag to enable or disable the upload of coredumps for this ADS Cluster
+    # coredumpUpload: false
+    # HistoryRetentionCount defines the number of local (not uploaded) AutoSupport Custom Resources to retain in the cluster before deletion
+    historyRetentionCount: 25
+    # DestinationURL defines the endpoint to transfer the AutoSupport bundle collection
+    destinationURL: "https://testbed.netapp.com/put/AsupPut"
+    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
+    # proxyURL:
+    # Periodic defines the config for periodic/scheduled AutoSupport objects
+    periodic:
+      # Schedule defines the Kubernetes Cronjob schedule
+      - schedule: "0 0 * * *"
+        # PeriodicConfig defines the fields needed to create the Periodic AutoSupports
+        periodicconfig:
+        - component:
+            name: storage
+            event: dailyMonitoring
+          userMessage: Daily Monitoring Storage AutoSupport bundle
+          nodes: all
+        - component:
+            name: controlplane
+            event: daily
+          userMessage: Daily Control Plane AutoSupport bundle
+cat: t: No such file or directory
+[root@scspr2409016001 42733317_42952507_1x5Node_Astra_DAS-002]# cat nate_hosts/netappsdscluster.yaml
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system
+spec:
+  # ADS Node Configuration per node settings
+  adsNodeConfig:
+    # Specify CPU limit for ADS components
+    # Supported value: 9
+    cpu: 9
+    # Specify Memory Limit in GiB for ADS Components.
+    # Your kubernetes worker nodes need to have at least this much RAM free
+    # for ADS to function correctly
+    # Supported value: 34
+    memory: 34
+    # [Optional] Specify raw storage consumption limit. The operator will only select drives for a node up to this limit
+    capacity: 600
+    # [Optional] Set a cache device if you do not want auto detection e.g. /dev/sdb
+    # cacheDevice: ""
+    # Set this regex filter to select drives for ADS cluster
+    # drivesFilter: ".*"
+
+  # [Optional] Specify node selector labels to select the nodes for creating ADS cluster
+  # adsNodeSelector:
+  #   matchLabels:
+  #     customLabelKey: customLabelValue
+
+  # Specify the number of nodes that should be used for creating ADS cluster
+  adsNodeCount: 3
+
+  # Specify the IP address of a floating management IP routable from any worker node in the cluster
+  mvip: "172..."
+
+  # Comma separated list of floating IP addresses routable from any host where you intend to mount a NetApp Volume
+  # at least one per node must be specified
+  # addresses: 10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
+  # netmask: 255.255.255.0
+  adsDataNetworks:
+    - addresses: "172..."
+      netmask: 255.255.252.0
+
+  # [Optional] Specify the network interface names for either all or none
+  adsNetworkInterfaces:
+    managementInterface: "mgmt"
+    clusterInterface: "data"
+    storageInterface: "data"
+
+  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to
+  # adsProtectionDomainKey: ""
+
+  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
+  monitoringConfig:
+   namespace: "netapp-monitoring"
+   repo: "docker.repo.eng.netapp.com/global/astra"
+
+  autoSupportConfig:
+    # AutoUpload defines the flag to enable or disable AutoSupport upload in the cluster (true/false)
+    autoUpload: true
+    # Enabled defines the flag to enable or disable automatic AutoSupport collection.
+    # When set to false, periodic and event driven AutoSupport collection would be disabled.
+    # It is still possible to trigger an AutoSupport manually while AutoSupport is disabled
+    # enabled: true
+    # CoredumpUpload defines the flag to enable or disable the upload of coredumps for this ADS Cluster
+    # coredumpUpload: false
+    # HistoryRetentionCount defines the number of local (not uploaded) AutoSupport Custom Resources to retain in the cluster before deletion
+    historyRetentionCount: 25
+    # DestinationURL defines the endpoint to transfer the AutoSupport bundle collection
+    destinationURL: "https://testbed.netapp.com/put/AsupPut"
+    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
+    # proxyURL:
+
+    # Periodic defines the config for periodic/scheduled AutoSupport objects
+    periodic:
+      # Schedule defines the Kubernetes Cronjob schedule
+      - schedule: "0 0 * * *"
+        # PeriodicConfig defines the fields needed to create the Periodic AutoSupports
+        periodicconfig:
+        - component:
+            name: storage
+            event: dailyMonitoring
+          userMessage: Daily Monitoring Storage AutoSupport bundle
+          nodes: all
+        - component:
+            name: controlplane
+            event: daily
+          userMessage: Daily Control Plane AutoSupport bundle
+ kubectl apply -f nate_hosts/netappsdscluster.yaml
+astradscluster.astrads.netapp.io/cluster-multinodes-21209 configured</pre>
+</div>
+</div>
+</li>
+<li>
+<p>驗證節點是否已從叢集移除：</p>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl get nodes --show-labels
+NAME                                            STATUS   ROLES                 AGE   VERSION   LABELS
+sti-astramaster-237   Ready control-plane,master   24h   v1.20.0
+sti-rx2540-532d       Ready  &lt;none&gt;                24h   v1.20.0
+sti-rx2540-533d       Ready  &lt;none&gt;                24h
+
+ kubectl get nodes --show-labels
+NAME                  STATUS   ROLES                  AGE   VERSION   LABELS
+sti-astramaster-237 Ready    control-plane,master   24h
+sti-rx2540-532d     Ready    &lt;none&gt;                 24h
+
+ kubectl astrads nodes list
+NODE NAME         NODE STATUS     CLUSTER NAME
+sti-rx2540-534d   Added           cluster-multinodes-21209
+sti-rx2540-535d   Added           cluster-multinodes-21209
+sti-rx2540-536d   Added           cluster-multinodes-21209
+
+ kubectl astrads clusters list
+CLUSTER NAME              CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209  created         3
+
+ kubectl astrads drives list
+DRIVE NAME   DRIVE ID    DRIVE STATUS  NODE NAME    CLUSTER NAME
+scsi-36000c  c3e197f2... Active        rx2540...    cluster-multinodes-21209
+
+ kubectl describe astradscluster -n astrads-system
+Name:         cluster-multinodes-21209
+Namespace:    astrads-system
+Labels:       &lt;none&gt;
+Kind:         AstraDSCluster
+Metadata:
+...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改叢集CR、將節點新增至叢集以進行更換。節點數會遞增至4。確認已挑選新節點進行新增。</p>
+<div class="listingblock">
+<div class="content">
+<pre> rvi nate_hosts/netappsdscluster.yaml
+ cat nate_hosts/netappsdscluster.yaml
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> kubectl apply -f nate_hosts/netappsdscluster.yaml
+astradscluster.astrads.netapp.io/cluster-multinodes-21209 configured
+
+ kubectl get pods -n astrads-system
+NAME                                READY   STATUS    RESTARTS   AGE
+astrads-cluster-controller...       1/1     Running   1          24h
+astrads-deployment-support...       3/3     Running   0          24h
+astrads-ds-cluster-multinodes-21209 1/1     Running
+
+ kubectl astrads nodes list
+NODE NAME                NODE STATUS     CLUSTER NAME
+sti-rx2540-534d...       Added           cluster-multinodes-21209
+sti-rx2540-535d...       Added           cluster-multinodes-21209
+
+ kubectl astrads clusters list
+CLUSTER NAME                    CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209        created         4
+
+ kubectl astrads drives list
+DRIVE NAME    DRIVE ID    DRIVE STATUS   NODE NAME     CLUSTER NAME
+scsi-36000..  c3e197f2... Active         sti-rx2540... cluster-multinodes-21209</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">cookie-settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/astra-data-store/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/astra-data-store/js/www-ntap.js'></script>
+    <script src='/zh-tw/astra-data-store/js/tabbed-blocks.js'></script>
+  </body></html>
