@@ -1019,4 +1019,5 @@
   <block id="fd18465573ec21a6218982055981f6b1" category="sidebar">儲存效率</block>
   <block id="2fae32629d4ef4fc6341f1751b405e45" category="sidebar">安全性</block>
   <block id="1b828e66f98e1084d2ec48e088373a14" category="sidebar">本版Astra Data Store的新功能</block>
+  <block id="a44aabf523591d454f3c29d4f0b04192" category="paragraph">在設定監控之前、您需要在「astrads系統」命名空間中使用作用中的Astra資料儲存叢集。</block>
 </blocks>
