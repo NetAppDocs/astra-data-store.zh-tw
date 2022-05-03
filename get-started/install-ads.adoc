@@ -1,0 +1,690 @@
+---
+sidebar: sidebar 
+permalink: get-started/install-ads.html 
+keywords: astra, astra data store, install, deploy, download, openshift, red hat, ocp 
+summary: 若要在解決某些環境先決條件之後安裝Astra Data Store、您必須下載套裝軟組、並依照步驟安裝。如何在OpenShift上安裝Astra Data Store 
+---
+= 安裝Astra Data Store預覽
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+若要安裝Astra Data Store預覽、請從下載安裝套件 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^] 並完成本程序中所述的安裝步驟。
+
+video::jz6EuryqYps[youtube, ]
+.您需要的是 #8217 ；需要的是什麼
+* link:requirements.html["開始安裝之前、請先準備好環境以進行Astra Data Store預覽部署"]。
+* 存取 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^]。 https://www.netapp.com/cloud-services/astra/data-store-form/["註冊"^] 如果您尚未擁有完整存取權限的NetApp支援網站帳戶、請預覽。
+* 答 link:../get-started/requirements.html#licensing["NetApp授權檔案（NLF）"] 適用於Astra Data Store預覽。下載授權的指示將會在您完成後寄送給您 https://www.netapp.com/cloud-services/astra/data-store-form["註冊"^]。
+* 具有作用中內容叢集管理權限的作用中Kbeconfig。
+* 瞭解 link:../get-started/faq-ads.html#installation-and-use-of-astra-data-store-preview-on-a-kubernetes-cluster["角色與權限"] 由Astra Data Store預覽使用。
+* 網際網路連線：Astra Data Store預覽不支援無線環境。需要網際網路連線、才能直接或透過Proxy連線至support.netapp.com。
+
+
+Astra Data Store預覽安裝程序會引導您完成下列高層級步驟。
+
+* <<Download the Astra Data Store preview bundle and extract the images>>
+* <<Copy the binary and push images to your local registry>>
+* <<OpenShift procedure>>
+* <<Install the Astra Data Store preview operator>>
+* <<Deploy the Astra Data Store preview version YAML>>
+* <<Apply the Astra Data Store preview license>>
+* <<Install the Astra Data Store preview cluster>>
+* <<Understand deployment-related events>>
+* <<Configure Astra Data Store preview monitoring>>
+
+
+如果您想要啟用Astra Data Store預覽、以便使用含有機密的影像登錄、請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/How_to_enable_Astra_Data_Store_preview_to_work_with_image_registries_with_secret["此KB"]。
+
+
+
+== 下載Astra Data Store預覽套裝組合並擷取影像
+
+. 登入 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^] 並下載Astra Data Store預覽套裝組合（「2021.12.01_ads.tar」）。
+. （可選）使用以下命令驗證套件的簽名：
++
+[listing]
+----
+openssl dgst -sha256 -verify 2021.12_ads.pub -signature 2021.12_ads.sig 2021.12.01_ads.tar
+----
+. 擷取影像：
++
+[listing]
+----
+tar -xvf 2021.12.01_ads.tar
+----
+
+
+
+
+== 複製二進位檔並將映像推送至本機登錄
+
+. 從您用來擷取映像的目錄複製kbecl-astra二進位檔到安裝k8s kkbecl二進位檔的標準路徑、例如：「usr/bin/」。Kustbecl-astrads是自訂的Kvecll擴充功能、可安裝及管理Astra Data Store預覽叢集。
++
+[listing]
+----
+cp -p ./bin/kubectl-astrads /usr/bin/.
+----
+. 將Astra Data Store預覽影像目錄中的檔案新增至本機登錄。
++
+
+NOTE: 請參閱以下自動載入影像的範例指令碼。
+
++
+.. 登入您的登錄：
++
+[listing]
+----
+docker login [your_registry_path]
+----
+.. 將環境變數設為您要推送Astra Data Store預覽映像的登錄路徑、例如「po.company.com`」。
++
+[listing]
+----
+export REGISTRY=repo.company.com/astrads
+----
+.. 執行指令碼、將影像載入Docker、標記影像、然後[Subforte_image_local_register_pip]將影像推送到本機登錄：
+
+
++
+[listing]
+----
+for astraImageFile in $(ls images/*.tar) ; do
+   astraImage=$(docker load --input ${astraImageFile} | sed 's~Loaded image: ~~')
+   astraImageShort=`echo $astraImage | sed 's~.*/~~'`
+   docker tag ${astraImage} ${REGISTRY}/${astraImageShort}
+   docker push ${REGISTRY}/${astraImageShort}
+done
+sed -i 's~\[YOUR REGISTRY\]~'${REGISTRY}'~' ./manifests/*.yaml
+----
+
+
+
+
+== OpenShift程序
+
+下列程序僅適用於Red Hat OpenShift Container Platform（OCP）上的部署。在非OCP Kubernetes叢集上部署時、可略過此程序。
+
+.詳細資料
+====
+建立名稱空間「astrads系統」、以便安裝所有Astra Data Store預覽元件。
+
+只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。
+
+. 建立命名空間：
++
+[listing]
+----
+kubectl create -f ads_namespace.yaml
+----
++
+範例：ads_names.yaml
+
++
+[listing]
+----
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    control-plane: operator
+  name: astrads-system
+----
+
+
+OpenShift使用安全內容限制（SCC）來控制Pod可以執行的動作。根據預設、任何容器的執行都會被授予受限的SCC、而且只會授予該SCC所定義的功能。
+
+受限的SCC不提供Astra Data Store預覽叢集Pod所需的權限。使用此程序提供Astra Data Store預覽所需的權限（列於範例中）。
+
+將自訂SCC指派給Astra Data Store預覽命名空間的預設服務帳戶。
+
+只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。
+
+. 建立自訂SCC：
++
+[listing]
+----
+kubectl create -f ads_privileged_scc.yaml
+----
++
+範例：ads_特權_scc.yaml
+
++
+[listing]
+----
+allowHostDirVolumePlugin: true
+allowHostIPC: true
+allowHostNetwork: true
+allowHostPID: true
+allowHostPorts: true
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+- '*'
+allowedUnsafeSysctls:
+- '*'
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups: []
+kind: SecurityContextConstraints
+metadata:
+  annotations:
+    kubernetes.io/description: 'ADS privileged. Grant with caution.'
+    release.openshift.io/create-only: "true"
+  name: ads-privileged
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+seccompProfiles:
+- '*'
+supplementalGroups:
+  type: RunAsAny
+users:
+- system:serviceaccount:astrads-system:default
+volumes:
+- '*'
+----
+. 使用「occ Get SCC」命令顯示新增的SCC：
++
+[listing]
+----
+# oc get scc/ads-privileged
+NAME             PRIV   CAPS    SELINUX    RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
+ads-privileged   true   ["*"]   RunAsAny   RunAsAny    RunAsAny   RunAsAny   <no value>   false            ["*"]
+#
+----
+
+
+建立Astra Data Store預覽預設服務帳戶所需的角色和角色繫結。
+
+下列yaml定義會指派「astrads.netapp.io` API」群組中Astra Data Store預覽資源所需的各種角色（透過角色繫結）。
+
+只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。
+
+. 建立定義的角色和角色繫結：
++
+[listing]
+----
+kubectl create -f oc_role_bindings.yaml
+----
++
+範例：oc_roue_binings。yaml
+
++
+[listing]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: privcrole
+rules:
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - ads-privileged
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: default-scc-rolebinding
+  namespace: astrads-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: privcrole
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: astrads-system
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ownerref
+  namespace: astrads-system
+rules:
+- apiGroups:
+  - astrads.netapp.io
+  resources:
+  - '*/finalizers'
+  verbs:
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: or-rb
+  namespace: astrads-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ownerref
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: astrads-system
+----
+
+
+====
+
+
+== 安裝Astra Data Store預覽作業者
+
+. 列出Astra Data Store預覽清單：
++
+[listing]
+----
+ls manifests/*yaml
+----
++
+回應：
+
++
+[listing]
+----
+manifests/astradscluster.yaml
+manifests/astradsoperator.yaml
+manifests/astradsversion.yaml
+manifests/monitoring_operator.yaml
+----
+. 使用KECBECLL套用部署營運者：
++
+[listing]
+----
+kubectl apply -f ./manifests/astradsoperator.yaml
+----
++
+回應：
+
++
+
+NOTE: 命名空間回應可能會因執行標準安裝或OCP安裝而有所不同。
+
++
+[listing]
+----
+namespace/astrads-system created
+customresourcedefinition.apiextensions.k8s.io/astradsautosupports.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradscloudsnapshots.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsclusters.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsdeployments.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsexportpolicies.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsfaileddrives.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradslicenses.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsnfsoptions.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsnodeinfoes.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsqospolicies.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsvolumefiles.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsvolumes.astrads.netapp.io created
+customresourcedefinition.apiextensions.k8s.io/astradsvolumesnapshots.astrads.netapp.io created
+role.rbac.authorization.k8s.io/astrads-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradscloudsnapshot-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradscloudsnapshot-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradscluster-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradscluster-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradslicense-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradslicense-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradsvolume-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-astradsvolume-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-autosupport-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-autosupport-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-manager-role created
+clusterrole.rbac.authorization.k8s.io/astrads-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/astrads-netappexportpolicy-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappexportpolicy-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsdeployment-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsdeployment-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsnfsoption-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsnfsoption-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsnodeinfo-editor-role created
+clusterrole.rbac.authorization.k8s.io/astrads-netappsdsnodeinfo-viewer-role created
+clusterrole.rbac.authorization.k8s.io/astrads-proxy-role created
+rolebinding.rbac.authorization.k8s.io/astrads-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/astrads-manager-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/astrads-proxy-rolebinding created
+configmap/astrads-autosupport-cm created
+configmap/astrads-firetap-cm created
+configmap/astrads-fluent-bit-cm created
+configmap/astrads-kevents-asup created
+configmap/astrads-metrics-cm created
+service/astrads-operator-metrics-service created
+deployment.apps/astrads-operator created
+----
+. 確認Astra Data Store營運者Pod已啟動且正在執行：
++
+[listing]
+----
+kubectl get pods -n astrads-system
+----
++
+回應：
+
++
+[listing]
+----
+NAME                                READY   STATUS    RESTARTS   AGE
+astrads-operator-5ffb94fbf-7ln4h    1/1     Running   0          17m
+----
+
+
+
+
+== 部署Astra Data Store預覽版本Yaml
+
+. 使用KECBECVL套用部署：
++
+[listing]
+----
+kubectl apply -f ./manifests/astradsversion.yaml
+----
+. 確認Pod正在執行：
++
+[listing]
+----
+kubectl get pods -n astrads-system
+----
++
+回應：
+
++
+[listing]
+----
+NAME                                          READY   STATUS    RESTARTS   AGE
+astrads-cluster-controller-7f6f884645-xxf2n   1/1     Running   0          117s
+astrads-ds-nodeinfo-astradsversion-2jqnk      1/1     Running   0          2m7s
+astrads-ds-nodeinfo-astradsversion-dbk7v      1/1     Running   0          2m7s
+astrads-ds-nodeinfo-astradsversion-rn9tt      1/1     Running   0          2m7s
+astrads-ds-nodeinfo-astradsversion-vsmhv      1/1     Running   0          2m7s
+astrads-license-controller-fb8fd56bc-bxq7j    1/1     Running   0          2m2s
+astrads-operator-5ffb94fbf-7ln4h              1/1     Running   0          2m10s
+----
+
+
+
+
+== 套用Astra Data Store預覽授權
+
+. 請套用您在註冊預覽時取得的NetApp授權檔案（NLF）。執行命令之前、請輸入您所在的叢集名稱（「<Astra Data-Store-cluster名稱>」） <<Install the Astra Data Store preview cluster,即將部署>> 或已部署及授權檔案路徑（「<file_path/file.txt>`）：
++
+[listing]
+----
+kubectl astrads license add --license-file-path <file_path/file.txt> --ads-cluster-name <Astra-Data-Store-cluster-name> -n astrads-system
+----
+. 確認已新增授權：
++
+[listing]
+----
+kubectl astrads license list
+----
++
+回應：
+
++
+[listing]
+----
+NAME        ADSCLUSTER                 VALID   PRODUCT                     EVALUATION  ENDDATE     VALIDATED
+p100000006  astrads-example-cluster    true    Astra Data Store Preview    true        2022-01-23  2021-11-04T14:38:54Z
+----
+
+
+
+
+== 安裝Astra Data Store預覽叢集
+
+. 開啟Yaml檔案：
++
+[listing]
+----
+vim ./manifests/astradscluster.yaml
+----
+. 在Yaml檔案中編輯下列值。
++
+
+NOTE: 以下步驟為Yaml檔案的簡化範例。
+
++
+.. （必填）*中繼資料*：在「metadata」中、將「name」字串變更為叢集名稱。這必須與您在使用時使用的叢集名稱相同 <<Apply the Astra Data Store preview license,套用授權>>。
+.. （必填）*規格*：在「show」中變更下列必要值：
++
+*** 將「mVIP」字串變更為可從叢集中任何工作節點路由傳送之浮動管理IP的IP位址。
+*** 在「adsDataNetworks」中、新增一個以逗號分隔的浮動IP位址清單（「Addresses」）、這些位址可從您要掛載NetApp Volume的任何主機路由傳送。每個節點使用一個浮動IP位址。資料網路IP位址應至少與Astra Data Store預覽節點一樣多。對於Astra Data Store預覽、這表示至少4個位址、或5個（如果您打算稍後將叢集擴充至5個節點）。
+*** 在「adsDataNetworks」中、指定資料網路使用的網路遮罩。
+*** 在「adsNetworks介面」中、將「<mgmt_interface_name>'」和「<cluster與_storage介面名稱>'值取代為您要用於管理、叢集與儲存的網路介面名稱。如果未指定名稱、則節點的主要介面將用於管理、叢集和儲存網路。
++
+
+NOTE: 叢集和儲存網路必須位於相同的介面上。Astra Data Store預覽管理介面應與Kubernetes節點的管理介面相同。
+
+
+
+.. （選用）*監控組態*：如果您要設定 <<Install the monitoring operator,監控營運者>> （若您未使用Astra Control Center進行監控、則為選用）、從區段移除註解、新增套用代理程式CR（監控操作員資源）的命名空間（預設為「NetApp-Monitoring」（NetApp監控）、並新增您在先前步驟中使用的登錄（「您的登錄路徑」）的repo路徑。
+.. （可選）* autosupSupportConfig*：保留 link:../support/autosupport.html["AutoSupport"] 除非您需要設定Proxy、否則預設值為：
++
+*** 對於「proxyURL」、請使用連接埠來設定Proxy的URL、以便AutoSupport 進行套裝組合傳輸。
+
+
++
+
+NOTE: 大部分的意見已從下列Yaml範例中移除。
+
+
+
++
+[listing, subs="+quotes"]
+----
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+*metadata:*
+  *name: astrads-cluster-name*
+  namespace: astrads-system
+*spec:*
+  adsNodeConfig:
+    cpu: 9
+    memory: 34
+  adsNodeCount: 4
+  *mvip: ""*
+  *adsDataNetworks:*
+    *- addresses: ""*
+      *netmask:*
+  # Specify the network interface names to use for management, cluster and storage networks.
+  # If none are specified, the node's primary interface will be used for management, cluster and storage networking.
+  # To move the cluster and storage networks to a different interface than management, specify all three interfaces to use here.
+  # NOTE: The cluster and storage networks need to be on the same interface.
+  *adsNetworkInterfaces:*
+    *managementInterface: "<mgmt_interface_name>"*
+    *clusterInterface: "<cluster_and_storage_interface_name>"*
+    *storageInterface: "<cluster_and_storage_interface_name>"*
+  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to.
+    # adsProtectionDomainKey: ""
+  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
+ *# monitoringConfig:*
+   *# namespace: "netapp-monitoring"*
+   *# repo: "[YOUR REGISTRY]"*
+  autoSupportConfig:
+    autoUpload: true
+    enabled: true
+    coredumpUpload: false
+    historyRetentionCount: 25
+    destinationURL: "https://support.netapp.com/put/AsupPut"
+    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
+    *# proxyURL:*
+    periodic:
+      - schedule: "0 0 * * *"
+        periodicconfig:
+        - component:
+            name: storage
+            event: dailyMonitoring
+          userMessage: Daily Monitoring Storage AutoSupport bundle
+          nodes: all
+        - component:
+            name: controlplane
+            event: daily
+          userMessage: Daily Control Plane AutoSupport bundle
+----
+. 使用「kubecll apply」部署叢集：
++
+[listing]
+----
+kubectl apply -f ./manifests/astradscluster.yaml
+----
+. （僅適用於OCP）如果已啟用SELinux、請在Astra Data Store預覽叢集中的節點上、重新標示下列目錄的「Linux」內容。
++
+[listing]
+----
+sudo chcon -R -t container_file_t /var/opt/netapp/firetap/rootfs/var/asup/notification/firetap/
+----
++
+[listing]
+----
+sudo chcon -R -t container_file_t /var/netapp/firetap/firegen/persist/
+----
++
+
+NOTE: 這是因為「Linux」可防止這些目錄可寫入、導致支援Pod進入「CrashLooper（CrashLooper）」狀態、所以需要執行此步驟。此步驟需要在Astra Data Store預覽叢集中的所有節點上執行。
+
+. 等待幾分鐘、讓叢集建立作業完成、然後確認Pod正在執行：
++
+[listing]
+----
+kubectl get pods -n astrads-system
+----
++
+回應範例：
+
++
+[listing]
+----
+NAME                     READY     STATUS    RESTARTS    AGE
+astrads-cluster-controller-7c67cc7f7b-2jww2 1/1 Running 0 7h31m
+astrads-deployment-support-788b859c65-2qjkn 3/3 Running 19 12d
+astrads-ds-astrads-cluster-1ab0dbc-j9jzc 1/1 Running 0 5d2h
+astrads-ds-astrads-cluster-1ab0dbc-k9wp8 1/1 Running 0 5d1h
+astrads-ds-astrads-cluster-1ab0dbc-pwk42 1/1 Running 0 5d2h
+astrads-ds-astrads-cluster-1ab0dbc-qhvc6 1/1 Running 0 8h
+astrads-ds-nodeinfo-astradsversion-gcmj8 1/1 Running 1 12d
+astrads-ds-nodeinfo-astradsversion-j826x 1/1 Running 3 12d
+astrads-ds-nodeinfo-astradsversion-vdthh 1/1 Running 3 12d
+astrads-ds-nodeinfo-astradsversion-xwgsf 1/1 Running 0 12d
+astrads-ds-support-828vw 2/2 Running 2 5d2h
+astrads-ds-support-cfzts 2/2 Running 0 8h
+astrads-ds-support-nzkkr 2/2 Running 15 7h49m
+astrads-ds-support-xxbnp 2/2 Running 1 5d2h
+astrads-license-controller-86c69f76bb-s6fb7 1/1 Running 0 8h
+astrads-operator-79ff8fbb6d-vpz9m 1/1 Running 0 8h
+----
+. 驗證叢集部署進度：
++
+[listing]
+----
+kubectl get astradscluster -n astrads-system
+----
++
+回應範例：
+
++
+[listing]
+----
+NAME                        STATUS    VERSION    SERIAL NUMBER    MVIP       AGE
+
+astrads-example-cluster   created   2021.10.0   p100000006       10.x.x.x   10m
+----
+
+
+
+
+== 瞭解與部署相關的事件
+
+在叢集部署期間、作業狀態應從「空白」變更為「進行中」、改為「已建立」。叢集部署將持續約8至10分鐘。若要在部署期間監控叢集事件、您可以執行下列任一命令：
+
+[listing]
+----
+kubectl get events --field-selector involvedObject.kind=AstraDSCluster -n astrads-system
+----
+[listing]
+----
+kubectl describe astradscluster <cluster name> -n astrads-system
+----
+以下是部署期間的重要事件：
+
+|===
+| 事件訊息 | 意義 
+
+
+| 成功選取4個控制面板節點以加入ADS叢集 | Astra Data Store預覽操作員識別出足夠的節點、包括CPU、記憶體、儲存設備和網路、以建立Astra Data Store預覽叢集。 
+
+
+| 正在建立ADS叢集 | Astra Data Store預覽叢集控制器已啟動叢集建立作業。 
+
+
+| 已建立ADS叢集 | 已成功建立叢集。 
+|===
+如果叢集的狀態並未變更為「進行中」、請查看操作員記錄、以取得節點選擇的詳細資料：
+
+[listing]
+----
+kubectl logs -n astrads-system <astrads operator pod name>
+----
+如果叢集的狀態卡在「In Progress（進行中）」、請檢查叢集控制器的記錄：
+
+[listing]
+----
+kubectl logs -n astrads-system <astrads cluster controller pod name>
+----
+
+
+== 設定Astra Data Store預覽監控
+
+您可以設定Astra Data Store預覽以進行Astra Control Center監控或由其他遙測服務進行監控。
+
+
+
+=== 設定Astra Control Center預覽的監控功能
+
+只有在Astra資料儲存區預覽在Astra Control Center中以後端管理之後、才執行下列步驟。
+
+. 設定Astra Data Store預覽、以供Astra Control Center監控：
++
+[listing]
+----
+kubectl astrads monitoring -n netapp-monitoring -r [YOUR REGISTRY] setup
+----
+
+
+
+
+=== 安裝監控操作員
+
+（選用）如果Astra Data Store預覽無法匯入Astra Control Center、建議使用監控操作員。如果您的Astra Data Store預覽執行個體是獨立部署、使用Cloud Insights 支援功能來監控遙測、或是將記錄串流至第三方端點（例如Elastic）、您可以安裝監控操作員。
+
+. 執行此安裝命令：
++
+[listing]
+----
+kubectl apply -f ./manifests/monitoring_operator.yaml
+----
+. 設定Astra Data Store預覽以監控：
++
+[listing]
+----
+kubectl astrads monitoring -n netapp-monitoring -r [YOUR REGISTRY] setup
+----
+
+
+
+
+== 下一步
+
+執行以完成部署 link:setup-ads.html["設定工作"]。

@@ -1,0 +1,502 @@
+---
+sidebar: sidebar 
+permalink: get-started/setup-ads.html 
+keywords: astra, astra data store, setup, trident, backend 
+summary: 安裝Astra Data Store並解決一些環境先決條件之後、您將安裝或更新Astra Trident、設定K8s快照功能、設定儲存後端、以及建立預設儲存類別。 
+---
+= 設定Astra Data Store預覽元件
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+安裝Astra Data Store預覽並解決一些環境先決條件之後、您將安裝Astra Trident、設定Kubernetes快照功能、設定儲存後端、以及建立預設儲存類別：
+
+* <<Install Astra Trident>>
+* <<Install Kubernetes snapshot CRDs and Controller>>
+* <<Set up Astra Data Store as storage backend>>
+* <<Create a default Astra Data Store storage class>>
+
+
+
+
+== 安裝Astra Trident
+
+若要進行Astra Data Store預覽、您需要安裝Astra Trident 21.10.1。您可以使用下列其中一個選項來安裝Astra Trident：
+
+* https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-tridentctl.html["使用tridentctl安裝Astra Trident"^]。
+* https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-operator.html["使用Trident操作員安裝Astra Trident"^]。
++
+
+NOTE: 您可以手動或使用Helm來部署Trident運算子。
+
+
+
+
+
+== 安裝Kubernetes Snapshot客戶需求日和控制器
+
+需要Kubernetes快照CRD和控制器才能建立持續磁碟區宣告（PVR）快照。如果您的環境尚未安裝CRD和控制器、請執行下列命令來安裝。
+
+
+NOTE: 以下命令範例假設為目錄「/trident」、但您使用的目錄可以是任何您用來下載Yaml檔案的目錄。
+
+.您需要的是 #8217 ；需要的是什麼
+* link:requirements.html["開始安裝之前、請先準備好環境以進行Astra Data Store預覽部署"]。
+* 下載 link:https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/snapshot-controller["Kubernetes快照控制器Yaml檔案"^]：
++
+** 設定快照控制器.yaml
+** RBAC快照控制器.yaml
+
+
+* 下載 link:https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/config/crd["Y反 洗錢客戶需求日"^]：
++
+** Snapshot.storage。k8s.io_volumesnapshotclasses.yaml
+** Snapshot.storage。k8s.io_volumesnapshotcontents。yaml
+** Snapshot.storage：k8s.io_volumesnapshots.yaml
+
+
+
+
+.步驟
+. 套用snapshot.storage。k8s.io_volumesnapshotclasses.yaml：
++
+[listing]
+----
+kubectl apply -f trident/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+----
++
+回應：
+
++
+[listing]
+----
+customresourcedefinition.apiextensions.k8s.io/volumesnapshotclasses.snapshot.storage.k8s.io configured
+----
+. 套用snapshot.storage。k8s.io_volumesnapshotcontents。yaml：
++
+[listing]
+----
+kubectl apply -f trident/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+----
++
+回應：
+
++
+[listing]
+----
+customresourcedefinition.apiextensions.k8s.io/volumesnapshotcontents.snapshot.storage.k8s.io configured
+----
+. 套用snapshot.storage。k8s.io_volumesnapshots.yaml：
++
+[listing]
+----
+kubectl apply -f trident/snapshot.storage.k8s.io_volumesnapshots.yaml
+----
++
+回應：
+
++
+[listing]
+----
+customresourcedefinition.apiextensions.k8s.io/volumesnapshots.snapshot.storage.k8s.io configured
+----
+. 套用setup-snapshot控制器.yaml：
++
+[listing]
+----
+kubectl apply -f trident/setup-snapshot-controller.yaml
+----
++
+回應：
+
++
+[listing]
+----
+deployment.apps/snapshot-controller configured
+----
+. 套用RBAC快照控制器.yaml：
++
+[listing]
+----
+kubectl apply -f trident/rbac-snapshot-controller.yaml
+----
++
+回應：
+
++
+[listing]
+----
+serviceaccount/snapshot-controller configured
+clusterrole.rbac.authorization.k8s.io/snapshot-controller-runner configured
+clusterrolebinding.rbac.authorization.k8s.io/snapshot-controller-role configured
+role.rbac.authorization.k8s.io/snapshot-controller-leaderelection configured
+rolebinding.rbac.authorization.k8s.io/snapshot-controller-leaderelection configured
+----
+. 確認已套用CRD Y反 洗錢檔案：
++
+[listing]
+----
+kubectl get crd | grep volumesnapshot
+----
++
+回應範例：
+
++
+[listing]
+----
+astradsvolumesnapshots.astrads.netapp.io              2021-08-04T17:48:21Z
+volumesnapshotclasses.snapshot.storage.k8s.io         2021-08-04T22:05:49Z
+volumesnapshotcontents.snapshot.storage.k8s.io        2021-08-04T22:05:59Z
+volumesnapshots.snapshot.storage.k8s.io               2021-08-04T22:06:17Z
+----
+. 確認已套用快照控制器檔案：
++
+[listing]
+----
+kubectl get pods -n kube-system | grep snapshot
+----
++
+回應範例：
+
++
+[listing]
+----
+snapshot-controller-7f58886ff4-cdh78                                    1/1     Running   0          13s
+snapshot-controller-7f58886ff4-tmrd9                                    1/1     Running   0          32s
+----
+
+
+
+
+== 將Astra Data Store設定為儲存後端
+
+在ads_backend.json檔案中設定儲存後端參數、然後建立Astra Data Store儲存後端。
+
+.步驟
+. 使用安全終端建立「ads_backend.json」：
++
+[listing]
+----
+vi ads_backend.json
+----
+. 設定Json檔案：
++
+.. 將「叢集」值變更為Astra Data Store叢集的叢集名稱。
+.. 將「命名空間」值變更為您要用於建立磁碟區的命名空間。
+.. 除非您針對此後端設定匯出原則CR,否則請將「AutoExpportPolicy」值變更為「true」。
+.. 將您要授予存取權的IP位址填入「AutoExportCIDR」清單。使用「0.00.0.0/0」允許所有人。
+.. 如需「kubeconfig」值、請執行下列動作：
++
+... 將.kube /組態Yaml檔案轉換為Json格式、並將其最小化、不含空格：
++
+轉換範例：
+
++
+[listing]
+----
+python3 -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=None)' < ~/.kube/config > kubeconf.json
+----
+... 將編碼為基64、並使用基64輸出作為「kubeconfig」值：
++
+編碼範例：
+
++
+[listing]
+----
+cat kubeconf.json | base64 | tr -d '\n'
+----
+
+
+
+
++
+[listing, subs="+quotes"]
+----
+{
+    "version": 1,
+    "storageDriverName": "astrads-nas",
+    "storagePrefix": "",
+    *"cluster": "example-1234584",*
+    *"namespace": "astrads-system",*
+    *"autoExportPolicy": true,*
+    *"autoExportCIDRs": ["0.0.0.0/0"],*
+    *"kubeconfig": "<base64_output_of_kubeconf_json>",*
+    "debugTraceFlags": {"method": true, "api": true},
+    "labels": {"cloud": "on-prem", "creator": "trident-dev"},
+    "defaults": {
+        "qosPolicy": "bronze"
+    },
+    "storage": [
+        {
+            "labels": {
+                "performance": "extreme"
+            },
+            "defaults": {
+                "qosPolicy": "bronze"
+            }
+        },
+        {
+            "labels": {
+                "performance": "premium"
+            },
+            "defaults": {
+                "qosPolicy": "bronze"
+            }
+        },
+        {
+            "labels": {
+                "performance": "standard"
+            },
+            "defaults": {
+                "qosPolicy": "bronze"
+            }
+        }
+    ]
+}
+----
+. 切換到您下載Trident安裝程式的目錄：
++
+[listing]
+----
+cd <trident-installer or path to folder containing tridentctl>
+----
+. 建立儲存後端：
++
+[listing]
+----
+./tridentctl create backend -f ads_backend.json -n trident
+----
++
+回應範例：
+
++
+[listing]
+----
++------------------+----------------+--------------------------------------+--------+---------+
+|       NAME       | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
++------------------+----------------+--------------------------------------+--------+---------+
+| example-1234584  | astrads-nas    | 2125fa7a-730e-43c8-873b-6012fcc3b527 | online |       0 |
++------------------+----------------+--------------------------------------+--------+---------+
+----
+
+
+
+
+== 建立預設的Astra Data Store儲存類別
+
+建立Astra Trident預設儲存類別、並將其套用至儲存後端。
+
+.步驟
+. 建立Trident - csi儲存類別：
++
+.. 建立ads_sc_example.yaml：
++
+[listing]
+----
+vi ads_sc_example.yaml
+----
++
+範例：
+
++
+[listing]
+----
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: trident-csi
+provisioner: csi.trident.netapp.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - vers=4.1
+----
+.. 建立Trident - csi：
++
+[listing]
+----
+kubectl create -f ads_sc_example.yaml
+----
++
+回應：
+
++
+[listing]
+----
+storageclass.storage.k8s.io/trident-csi created
+----
+
+
+. 確認已新增儲存類別：
++
+[listing]
+----
+kubectl get storageclass -A
+----
++
+回應：
+
++
+[listing]
+----
+NAME          PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+trident-csi   csi.trident.netapp.io   Delete          Immediate           true                   6h29m
+----
+. 切換到您下載Trident安裝程式的目錄：
++
+[listing]
+----
+cd <trident-installer or path to folder containing tridentctl>
+----
+. 確認Astra Trident後端已使用預設的儲存類別參數更新：
++
+[listing]
+----
+./tridentctl get backend -n trident -o yaml
+----
++
+回應範例：
+
++
+[listing, subs="+quotes"]
+----
+items:
+- backendUUID: 2125fa7a-730e-43c8-873b-6012fcc3b527
+  config:
+    autoExportCIDRs:
+    - 0.0.0.0/0
+    autoExportPolicy: true
+    backendName: ""
+    cluster: example-1234584
+    credentials: null
+    debug: false
+    debugTraceFlags:
+      api: true
+      method: true
+    defaults:
+      exportPolicy: default
+      qosPolicy: bronze
+      size: 1G
+      snapshotDir: "false"
+      snapshotPolicy: none
+    disableDelete: false
+    kubeconfig: <ID>
+    labels:
+      cloud: on-prem
+      creator: trident-dev
+    limitVolumeSize: ""
+    namespace: astrads-system
+    nfsMountOptions: ""
+    region: ""
+    serialNumbers: null
+    storage:
+    - defaults:
+        exportPolicy: ""
+        qosPolicy: bronze
+        size: ""
+        snapshotDir: ""
+        snapshotPolicy: ""
+      labels:
+        performance: extreme
+      region: ""
+      supportedTopologies: null
+      zone: ""
+    - defaults:
+        exportPolicy: ""
+        qosPolicy: bronze
+        size: ""
+        snapshotDir: ""
+        snapshotPolicy: ""
+      labels:
+        performance: premium
+      region: ""
+      supportedTopologies: null
+      zone: ""
+    - defaults:
+        exportPolicy: ""
+        qosPolicy: bronze
+        size: ""
+        snapshotDir: ""
+        snapshotPolicy: ""
+      labels:
+        performance: standard
+      region: ""
+      supportedTopologies: null
+      zone: ""
+    storageDriverName: astrads-nas
+    storagePrefix: ""
+    supportedTopologies: null
+    version: 1
+    zone: ""
+  configRef: ""
+  name: example-1234584
+  online: true
+  protocol: file
+  state: online
+  storage:
+    example-1234584_pool_0:
+      name: example-1234584_pool_0
+      storageAttributes:
+        backendType:
+          offer:
+          - astrads-nas
+        clones:
+          offer: true
+        encryption:
+          offer: false
+        labels:
+          offer:
+            cloud: on-prem
+            creator: trident-dev
+            performance: extreme
+        snapshots:
+          offer: true
+      storageClasses:
+      - trident-csi
+      supportedTopologies: null
+    example-1234584_pool_1:
+      name: example-1234584_pool_1
+      storageAttributes:
+        backendType:
+          offer:
+          - astrads-nas
+        clones:
+          offer: true
+        encryption:
+          offer: false
+        labels:
+          offer:
+            cloud: on-prem
+            creator: trident-dev
+            performance: premium
+        snapshots:
+          offer: true
+      storageClasses:
+      - trident-csi
+      supportedTopologies: null
+    example-1234584_pool_2:
+      name: example-1234584_pool_2
+      storageAttributes:
+        backendType:
+          offer:
+          - astrads-nas
+        clones:
+          offer: true
+        encryption:
+          offer: false
+        labels:
+          offer:
+            cloud: on-prem
+            creator: trident-dev
+            performance: standard
+        snapshots:
+          offer: true
+      storageClasses:
+      *- trident-csi*
+      supportedTopologies: null
+  volumes: []
+----
+

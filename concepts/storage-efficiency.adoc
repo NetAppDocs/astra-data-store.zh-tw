@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: concepts/storage-efficiency.html 
+keywords: how astra works, how Astra works, what Astra is, astra data store, 
+summary: Astra Data Store採用精簡配置、零區塊消除、壓縮及重複資料刪除等儲存效率技術。 
+---
+= Astra Data Store預覽的儲存效率
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+Astra Data Store預覽採用以NetApp ONTAP 技術為基礎的儲存效率技術、SolidFire 包括：
+
+* *精簡配置*：精簡配置的磁碟區是指未預先保留儲存設備的磁碟區。而是根據需要動態分配儲存設備。刪除磁碟區或LUN中的資料時、可用空間會釋出回儲存系統。
+* *零區塊偵測與消除*：ONTAP 採用精簡配置的支援功能、可偵測已清零磁碟區的區域、以便回收該空間並在其他地方使用。
+* *壓縮*：壓縮可將資料區塊合併到壓縮群組中、以減少磁碟區所需的實體儲存容量、每個區塊都儲存為單一區塊。壓縮資料的讀取速度比傳統的壓縮方法快、因為ONTAP 只有包含所要求資料的壓縮群組才能解壓縮、而非整個檔案。
+* *重複資料刪除*：重複資料刪除技術AFF 會捨棄重複區塊、並以單一共用區塊的參考資料來取代、藉此減少磁碟區（或是整個集合體中的所有磁碟區）所需的儲存容量。讀取已刪除重複資料通常不會收取效能費用。除了在過載節點上、寫入作業所產生的費用可忽略不計。
+
+
+所有這些功能預設都會啟用。
+
+請參閱 https://docs.netapp.com/ontap-9/index.jsp["儲存效率詳細資料"^]。
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra/index.html["Astra Control Service文件"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/trident/index.html["Astra Trident文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["使用Astra Control API"^]
+* https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^]
+

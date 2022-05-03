@@ -1,0 +1,506 @@
+---
+sidebar: sidebar 
+permalink: troubleshooting/ads-replace-node.html 
+keywords: astra, astra data store, astra datastore, kubectl, replace node 
+summary: 使用KECBECVL命令搭配Astra Data Store來取代節點。 
+---
+= 更換節點
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/troubleshooting/
+
+
+將KECBECVL命令搭配Astra Data Store使用、以取代叢集中故障的節點。
+
+.步驟
+. 在「astrads系統」命名空間中列出Pod（我們的範例使用1x5組態、叢集中有4個節點）：
++
+[listing]
+----
+ kubectl get pods -n astrads-system
+NAME                                 READY  STATUS    RESTARTS   AGE
+astrads-cluster-controller...        1/1    Running   1          20h
+astrads-deployment-support...        3/3    Running   0          20h
+astrads-ds-cluster-multinodes-21209.  /1    Running   0          20h
+----
+. 列出所有節點：
++
+[listing]
+----
+ kubectl astrads nodes list
+NODE NAME           NODE STATUS    CLUSTER NAME
+sti-rx2540-534d..   Added       cluster-multinodes-21209
+sti-rx2540-535d...  Added       cluster-multinodes-21209
+...
+----
+. 描述叢集：
++
+[listing]
+----
+ kubectl astrads clusters list
+CLUSTER NAME               CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209   created         4
+----
+. 驗證故障節點上的節點HA是否標記為「假」：
++
+[listing]
+----
+ kubectl describe astradscluster -n astrads-system
+Name:         cluster-multinodes-21209
+Namespace:    astrads-system
+Labels:       <none>
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"astrads.netapp.io/v1alpha1","kind":"AstraDSCluster","metadata":{"annotations":{},"name":"cluster-multinodes-21209","namespa...
+API Version:  astrads.netapp.io/v1alpha1
+Kind:         AstraDSCluster
+Metadata:
+  Creation Timestamp:  2021-10-19T09:12:03Z
+  Finalizers:
+    astrads.netapp.io/astradscluster-finalizer
+  Generation:  1
+  Managed Fields:
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+        ...
+
+    Manager:      autosupport-controller
+    Operation:    Update
+    Time:         2021-10-19T09:12:36Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          ...
+
+    Manager:      operator
+    Operation:    Update
+    Time:         2021-10-19T09:13:18Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+
+    Manager:      cluster-controller
+    Operation:    Update
+    Time:         2021-10-20T09:46:31Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+
+    Manager:         license-controller
+    Operation:       Update
+    Time:            2021-10-20T09:46:52Z
+  Resource Version:  217898
+  UID:               97ae6f6f-004d-4490-8a90-2dcdc01b9d8f
+Spec:
+  Ads Data Networks:
+    Addresses:  ...
+    Netmask:    255.255.252.0
+  Ads Network Interfaces:
+    Cluster Interface:     data
+    Management Interface:  mgmt
+    Storage Interface:     data
+  Ads Node Config:
+    Capacity:       600
+    Cpu:            9
+    Drives Filter:  .*
+    Memory:         34
+  Ads Node Count:   4
+  Auto Support Config:
+    Auto Upload:              true
+    Coredump Upload:          false
+    Destination URL:          ...
+    Enabled:                  true
+    History Retention Count:  25
+    Periodic:
+      Periodicconfig:
+        Component:
+          Event:           dailyMonitoring
+          Name:            storage
+        Force Upload:      false
+        Local Collection:  false
+        Nodes:             all
+        Priority:          notice
+        Retry:             false
+        User Message:      Daily Monitoring Storage AutoSupport bundle
+        Component:
+          Event:           daily
+          Name:            controlplane
+        Force Upload:      false
+        Local Collection:  false
+        Priority:          notice
+        Retry:             false
+        User Message:      Daily Control Plane AutoSupport bundle
+      Schedule:            0 0 * * *
+  Monitoring Config:
+    Namespace:  netapp-monitoring
+    Repo:       docker.repo.eng.netapp.com/global/astra
+  Mvip:         172.21.192.236
+Status:
+  Ads Data Addresses:
+    Address:       ...
+    Current Node:  1
+    Uuid:          ...
+...
+  Autosupport:
+    Periodicmap:
+      Autosupport - Zieyo:
+        Periodicconfig:
+          Component:
+            Event:           dailyMonitoring
+            Name:            storage
+          Force Upload:      false
+          Local Collection:  false
+          Nodes:             all
+          Priority:          notice
+          Retry:             false
+          User Message:      Daily Monitoring Storage AutoSupport bundle
+          Component:
+            Event:           daily
+            Name:            controlplane
+          Force Upload:      false
+          Local Collection:  false
+          Priority:          notice
+          Retry:             false
+          User Message:      Daily Control Plane AutoSupport bundle
+        Schedule:            0 0 * * *
+  Cluster Status:            created
+  Cluster UUID:              cd7c9a27-74b2-4c74-b565-cb816fe55fdd
+  Conditions:
+    Last Transition Time:  2021-10-19T09:12:04Z
+    Last Update Time:      2021-10-19T09:12:04Z
+    Message:               ADS Cluster configured properly for license
+    Reason:                LicenseNormal
+    Status:                False
+    Type:                  LicenseExceeded
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Message:               License has no restrictions present
+    Status:                False
+    Type:                  RestrictedLicense
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Message:               License Valid
+    Status:                True
+    Type:                  ValidLicense
+    Last Transition Time:  2021-10-19T09:12:10Z
+    Last Update Time:      2021-10-20T09:46:52Z
+    Status:                True
+    Type:                  LastLicenseTransitionAttemptSuccessful
+    Last Transition Time:  2021-10-20T09:27:35Z
+    Last Update Time:      2021-10-20T09:45:32Z
+    Message:               Firetap Cluster is unhealthy
+    Reason:                ClusterFaults
+    Status:                False
+    Type:                  FiretapClusterHealthy
+  Desired Versions:
+    Ads:      2021.10.0
+    Firetap:  12.75.0.6167444
+  Ft Cluster Health:
+    Details:
+      Cluster Faults:
+        Code:             NodeOffline
+        Details:          The Distributed Block Store Application cannot communicate with Storage node having node ID 4.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:26:43Z
+        Code:             UnresponsiveService
+        Details:          A master service is not responding.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:28:06Z
+        Code:             UnresponsiveService
+        Details:          A firefly service is not responding.
+        Node Id:          4
+        Timestamp:        2021-10-20T09:28:11Z
+      Syncing:            false
+    Healthy:              false
+  Ft Node Count:          4
+  License Serial Number:  d900000011
+  Node Statuses:
+    Maintenance Status:
+      State:             Disabled
+      Variant:           None
+    Node HA:             true
+    Node ID:             1
+    Node Is Reachable:   true
+    Node Management IP:  172.21.192.251
+    Node Name:           sti-rx2540-534d.ctl.gdl.englab.netapp.com
+    Node Role:           Storage
+    Node UUID:           f0f6d1af-cc71-5613-a4dd-d24456feafaa
+    Node Version:        12.75.0.6167444
+    Status:              Added
+ ...
+
+  Resources:
+    Capacity Deployed:  2400
+    Cpu Deployed:       36
+  Versions:
+    Ads:      2021.10.0
+    Firetap:  12.75.0.6167444
+Events:
+  Type     Reason                      Age                     From         Message
+  ----     ------                      ----                    ----         -------
+  Warning  MonitoringConfigSetupError  4m32s (x7390 over 24h)  ADSOperator  Unable to setup monitoring agent for ADS cluster: monitoring CRD not found
+----
+. 修改叢集CR以移除故障節點。節點數減至3：
++
+[listing]
+----
+ # rvi nate_hosts/netappsdscluster.yaml
+ # cat nate_hosts/netappsdscluster.yaml t
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system
+spec:
+  # ADS Node Configuration per node settings
+  adsNodeConfig:
+    # Specify CPU limit for ADS components
+    # Supported value: 9
+    cpu: 9
+    # Specify Memory Limit in GiB for ADS Components.
+    # Your kubernetes worker nodes need to have at least this much RAM free
+    # for ADS to function correctly
+    # Supported value: 34
+    memory: 34
+    # [Optional] Specify raw storage consumption limit. The operator will only select drives for a node up to this limit
+    capacity: 600
+    # [Optional] Set a cache device if you do not want auto detection e.g. /dev/sdb
+    # cacheDevice: ""
+    # Set this regex filter to select drives for ADS cluster
+    # drivesFilter: ".*"
+
+  # [Optional] Specify node selector labels to select the nodes for creating ADS cluster
+  # adsNodeSelector:
+  #   matchLabels:
+  #     customLabelKey: customLabelValue
+
+  # Specify the number of nodes that should be used for creating ADS cluster
+  adsNodeCount: 3
+
+  # Specify the IP address of a floating management IP routable from any worker node in the cluster
+  mvip: "172..."
+
+  # Comma separated list of floating IP addresses routable from any host where you intend to mount a NetApp Volume
+  # at least one per node must be specified
+  # addresses: 10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
+  # netmask: 255.255.255.0
+  adsDataNetworks:
+    - addresses: "172..."
+      netmask: 255.255.252.0
+
+  # [Optional] Specify the network interface names for either all or none
+  adsNetworkInterfaces:
+    managementInterface: "mgmt"
+    clusterInterface: "data"
+    storageInterface: "data"
+
+  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to
+  # adsProtectionDomainKey: ""
+
+  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
+  monitoringConfig:
+   namespace: "netapp-monitoring"
+   repo: "docker.repo.eng.netapp.com/global/astra"
+
+  autoSupportConfig:
+    # AutoUpload defines the flag to enable or disable AutoSupport upload in the cluster (true/false)
+    autoUpload: true
+    # Enabled defines the flag to enable or disable automatic AutoSupport collection.
+    # When set to false, periodic and event driven AutoSupport collection would be disabled.
+    # It is still possible to trigger an AutoSupport manually while AutoSupport is disabled
+    # enabled: true
+    # CoredumpUpload defines the flag to enable or disable the upload of coredumps for this ADS Cluster
+    # coredumpUpload: false
+    # HistoryRetentionCount defines the number of local (not uploaded) AutoSupport Custom Resources to retain in the cluster before deletion
+    historyRetentionCount: 25
+    # DestinationURL defines the endpoint to transfer the AutoSupport bundle collection
+    destinationURL: "https://testbed.netapp.com/put/AsupPut"
+    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
+    # proxyURL:
+    # Periodic defines the config for periodic/scheduled AutoSupport objects
+    periodic:
+      # Schedule defines the Kubernetes Cronjob schedule
+      - schedule: "0 0 * * *"
+        # PeriodicConfig defines the fields needed to create the Periodic AutoSupports
+        periodicconfig:
+        - component:
+            name: storage
+            event: dailyMonitoring
+          userMessage: Daily Monitoring Storage AutoSupport bundle
+          nodes: all
+        - component:
+            name: controlplane
+            event: daily
+          userMessage: Daily Control Plane AutoSupport bundle
+cat: t: No such file or directory
+[root@scspr2409016001 42733317_42952507_1x5Node_Astra_DAS-002]# cat nate_hosts/netappsdscluster.yaml
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system
+spec:
+  # ADS Node Configuration per node settings
+  adsNodeConfig:
+    # Specify CPU limit for ADS components
+    # Supported value: 9
+    cpu: 9
+    # Specify Memory Limit in GiB for ADS Components.
+    # Your kubernetes worker nodes need to have at least this much RAM free
+    # for ADS to function correctly
+    # Supported value: 34
+    memory: 34
+    # [Optional] Specify raw storage consumption limit. The operator will only select drives for a node up to this limit
+    capacity: 600
+    # [Optional] Set a cache device if you do not want auto detection e.g. /dev/sdb
+    # cacheDevice: ""
+    # Set this regex filter to select drives for ADS cluster
+    # drivesFilter: ".*"
+
+  # [Optional] Specify node selector labels to select the nodes for creating ADS cluster
+  # adsNodeSelector:
+  #   matchLabels:
+  #     customLabelKey: customLabelValue
+
+  # Specify the number of nodes that should be used for creating ADS cluster
+  adsNodeCount: 3
+
+  # Specify the IP address of a floating management IP routable from any worker node in the cluster
+  mvip: "172..."
+
+  # Comma separated list of floating IP addresses routable from any host where you intend to mount a NetApp Volume
+  # at least one per node must be specified
+  # addresses: 10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
+  # netmask: 255.255.255.0
+  adsDataNetworks:
+    - addresses: "172..."
+      netmask: 255.255.252.0
+
+  # [Optional] Specify the network interface names for either all or none
+  adsNetworkInterfaces:
+    managementInterface: "mgmt"
+    clusterInterface: "data"
+    storageInterface: "data"
+
+  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to
+  # adsProtectionDomainKey: ""
+
+  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
+  monitoringConfig:
+   namespace: "netapp-monitoring"
+   repo: "docker.repo.eng.netapp.com/global/astra"
+
+  autoSupportConfig:
+    # AutoUpload defines the flag to enable or disable AutoSupport upload in the cluster (true/false)
+    autoUpload: true
+    # Enabled defines the flag to enable or disable automatic AutoSupport collection.
+    # When set to false, periodic and event driven AutoSupport collection would be disabled.
+    # It is still possible to trigger an AutoSupport manually while AutoSupport is disabled
+    # enabled: true
+    # CoredumpUpload defines the flag to enable or disable the upload of coredumps for this ADS Cluster
+    # coredumpUpload: false
+    # HistoryRetentionCount defines the number of local (not uploaded) AutoSupport Custom Resources to retain in the cluster before deletion
+    historyRetentionCount: 25
+    # DestinationURL defines the endpoint to transfer the AutoSupport bundle collection
+    destinationURL: "https://testbed.netapp.com/put/AsupPut"
+    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
+    # proxyURL:
+
+    # Periodic defines the config for periodic/scheduled AutoSupport objects
+    periodic:
+      # Schedule defines the Kubernetes Cronjob schedule
+      - schedule: "0 0 * * *"
+        # PeriodicConfig defines the fields needed to create the Periodic AutoSupports
+        periodicconfig:
+        - component:
+            name: storage
+            event: dailyMonitoring
+          userMessage: Daily Monitoring Storage AutoSupport bundle
+          nodes: all
+        - component:
+            name: controlplane
+            event: daily
+          userMessage: Daily Control Plane AutoSupport bundle
+ kubectl apply -f nate_hosts/netappsdscluster.yaml
+astradscluster.astrads.netapp.io/cluster-multinodes-21209 configured
+----
+. 驗證節點是否已從叢集移除：
++
+[listing]
+----
+ kubectl get nodes --show-labels
+NAME                                            STATUS   ROLES                 AGE   VERSION   LABELS
+sti-astramaster-237   Ready control-plane,master   24h   v1.20.0
+sti-rx2540-532d       Ready  <none>                24h   v1.20.0
+sti-rx2540-533d       Ready  <none>                24h
+
+ kubectl get nodes --show-labels
+NAME                  STATUS   ROLES                  AGE   VERSION   LABELS
+sti-astramaster-237 Ready    control-plane,master   24h
+sti-rx2540-532d     Ready    <none>                 24h
+
+ kubectl astrads nodes list
+NODE NAME         NODE STATUS     CLUSTER NAME
+sti-rx2540-534d   Added           cluster-multinodes-21209
+sti-rx2540-535d   Added           cluster-multinodes-21209
+sti-rx2540-536d   Added           cluster-multinodes-21209
+
+ kubectl astrads clusters list
+CLUSTER NAME              CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209  created         3
+
+ kubectl astrads drives list
+DRIVE NAME   DRIVE ID    DRIVE STATUS  NODE NAME    CLUSTER NAME
+scsi-36000c  c3e197f2... Active        rx2540...    cluster-multinodes-21209
+
+ kubectl describe astradscluster -n astrads-system
+Name:         cluster-multinodes-21209
+Namespace:    astrads-system
+Labels:       <none>
+Kind:         AstraDSCluster
+Metadata:
+...
+----
+. 修改叢集CR、將節點新增至叢集以進行更換。節點數會遞增至4。確認已挑選新節點進行新增。
++
+[listing]
+----
+ rvi nate_hosts/netappsdscluster.yaml
+ cat nate_hosts/netappsdscluster.yaml
+apiVersion: astrads.netapp.io/v1alpha1
+kind: AstraDSCluster
+metadata:
+  name: cluster-multinodes-21209
+  namespace: astrads-system
+----
++
+[listing]
+----
+ kubectl apply -f nate_hosts/netappsdscluster.yaml
+astradscluster.astrads.netapp.io/cluster-multinodes-21209 configured
+
+ kubectl get pods -n astrads-system
+NAME                                READY   STATUS    RESTARTS   AGE
+astrads-cluster-controller...       1/1     Running   1          24h
+astrads-deployment-support...       3/3     Running   0          24h
+astrads-ds-cluster-multinodes-21209 1/1     Running
+
+ kubectl astrads nodes list
+NODE NAME                NODE STATUS     CLUSTER NAME
+sti-rx2540-534d...       Added           cluster-multinodes-21209
+sti-rx2540-535d...       Added           cluster-multinodes-21209
+
+ kubectl astrads clusters list
+CLUSTER NAME                    CLUSTER STATUS  NODE COUNT
+cluster-multinodes-21209        created         4
+
+ kubectl astrads drives list
+DRIVE NAME    DRIVE ID    DRIVE STATUS   NODE NAME     CLUSTER NAME
+scsi-36000..  c3e197f2... Active         sti-rx2540... cluster-multinodes-21209
+----
+

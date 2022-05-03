@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: release-notes/rn_overview.html 
+keywords: 'what"s new, bugs, bug fixes, new features, enhancements' 
+summary: NetApp會定期更新Astra Data Store、為您帶來新功能、增強功能和錯誤修復。 
+---
+= 版本資訊
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+我們很高興宣布推出Astra Data Store預覽版本的21.12。
+
+* link:../release-notes/whats-new.html["本版Astra Data Store預覽的新功能"]
+* link:../release-notes/known-issues.html["已知問題"]
+* link:../release-notes/known-limitations.html["已知限制"]
+
+
+歡迎前往Twitter @NetAppDoc追蹤我們的動態。請透過成為來傳送有關文件的意見反應 link:https://docs.netapp.com/us-en/contribute/["GitHub貢獻者"^] 或傳送電子郵件至doccomments@netapp.com。

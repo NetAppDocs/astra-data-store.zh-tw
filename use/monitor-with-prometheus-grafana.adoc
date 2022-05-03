@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: use/monitor-with-prometheus-grafana.html 
+keywords: astra, astra data store, kubectl, endpoints, prometheus, grafana, visualization 
+summary: 您可以使用Prometheus和Grafana來監控Astra Data Store資產。 
+---
+= 使用Prometheus和Grafana監控指標
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+您可以使用Prometheus和Grafana監控Astra Data Store預覽指標。您可以設定Prometheus、從Astra Data Store預覽Kubernetes叢集度量端點收集度量、也可以使用Grafana來視覺化度量資料。
+
+.您需要的是 #8217 ；需要的是什麼
+* 請確定您已在Astra Data Store預覽叢集或其他可與Astra Data Store預覽叢集通訊的叢集上下載並安裝Prometheus和Grafana套件。請依照正式文件中的指示安裝每個工具：
++
+** https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/How_to_deploy_Prometheus_with_Astra_Data_Store["安裝Prometheus"^]
+** https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/How_to_set_up_Grafana_for_monitoring_Astra_Data_Store_cluster["安裝Grafana"^]
+
+
+* Prometheus和Grafana需要能夠與Astra Data Store預覽Kubernetes叢集通訊。如果未在Astra Data Store預覽叢集上安裝Prometheus和Grafana、您必須確保它們能與Astra Data Store預覽叢集上執行的度量服務通訊。
+
+
+
+
+== 設定Prometheus
+
+Astra Data Store預覽會在Kubernetes叢集中的TCP連接埠9341上公開度量服務。您必須設定Prometheus、才能從此服務收集指標。
+
+.步驟
+. 編輯Prometheus安裝的「Prometheus.yml」組態檔案。
+. 新增指向Astra Data Store預覽服務名稱及其連接埠的服務目標。例如：
++
+[listing]
+----
+scrape_configs:
+static_configs:
+- targets: ['astrads-metrics-service.astrads-system:9341']
+----
+. 啟動Prometheus服務。
+
+
+
+
+== 設定Grafana
+
+您可以設定Grafana以顯示Prometheus收集的指標。
+
+.步驟
+. 編輯Grafana安裝的「datasourses.yaml」組態檔。
+. 將Prometheus新增為資料來源。例如：
++
+[listing]
+----
+apiVersion: 1
+
+datasources:
+  - name: astradatastore-prometheus
+    type: prometheus
+    access: proxy
+    url: http://localhost:9090
+    jsonData:
+      manageAlerts: false
+----
+. 啟動Grafana服務。
+. 請依照Grafana文件中的指示進行 https://grafana.com/docs/grafana/latest/getting-started/getting-started/["開始使用"^]。
+
+
+
+
+== 匯入Grafana儀表板範本
+
+您下載以安裝Astra Data Store預覽的套裝組合檔案包含Grafana儀表板範本檔案、可從Grafana匯入。這些儀表板範本可協助您查看Astra Data Store預覽中可用的度量類型、以及如何檢視這些資料。
+
+.步驟
+. 開啟Astra Data Store preview ".tar.gz"套裝組合。
+. 開啟「manifest」目錄。
+. 擷取「grafana_cluster．json」和「grafana_volume．json」檔案。
+. 使用Grafana網路UI、 https://grafana.com/docs/grafana/latest/dashboards/export-import/["將儀表板範本檔案匯入至Grafana"^]。
+

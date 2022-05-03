@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: get-started/quick-start.html 
+keywords: get started, quick start, astra, astra data store, deploy, deployment, kubernetes 
+summary: 只要幾個步驟、就能開始使用Astra Data Store。 
+---
+= Astra Data Store預覽快速入門
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+本頁提供Astra Data Store預覽入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。
+
+歡迎試用！如果您想要嘗試Astra Data Store預覽、可以使用90天的預覽授權。
+
+https://www.netapp.com/cloud-services/astra/data-store-form/["請在此註冊"^] 取得Astra Data Store預覽授權。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"[] alt="1"></span>檢閱Kubernetes叢集需求
+* 叢集必須以正常狀態執行、且至少有四個或更多個工作節點。
+* Astra Data Store預覽部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store預覽叢集的相同磁碟機數量。
+* 每個SSD都應有一個唯一的序號。
+
+
+[role="quick-margin-para"]
+深入瞭解 link:../get-started/requirements.html["Astra Data Store預覽需求"]。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"[] Alt="2"></span>下載並安裝Astra Data Store預覽
+* 從下載Astra Data Store預覽 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^]。
+* 在您的本機環境中安裝Astra Data Store預覽。
+* 套用Astra Data Store預覽授權。
+* 安裝Astra Data Store預覽叢集。
+* 設定Astra Data Store預覽監控。
+* 如果您使用Red Hat OpenShift、請在Red Hat OpenShift Container Platform（OCP）上安裝Astra Data Store預覽。
+
+
+[role="quick-margin-para"]
+深入瞭解 link:../get-started/install-ads.html["安裝Astra Data Store預覽"]。
+
+.span class="image"><imgrc="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"[] alt="there"></span>完成一些初始設定工作
+* 安裝Astra Trident。
+* 安裝Kubernetes快照自訂資源定義（CRD）和控制器。
+* 將Astra Data Store預覽設定為儲存後端。
+* 建立預設的Astra Data Store預覽儲存類別。
+
+
+[role="quick-margin-para"]
+深入瞭解 link:../get-started/setup-ads.html["初始設定程序"]。
+
+[role="quick-margin-para"]
+完成Astra Data Store預覽設定之後、接下來您可以：
+
+* 使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 link:../use/kubectl-commands-ads.html["如何搭配Astra Data Store預覽使用kubecl命令"]。
+* 設定監控端點。深入瞭解 link:../use/configure-endpoints.html["設定監控端點"]。
+
+
+[role="quick-margin-para"]
+link:../get-started/install-ads.html["安裝Astra Data Store預覽"]。

@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: get-started/capabilities.html 
+keywords: kubernetes cluster, cluster requirements, version requirements, supported versions, apps, supported apps, mariadb, mysql, postgres, kubernetes version, ubuntu, image type, networking 
+summary: 立即開始驗證您環境的支援。 
+---
+= Astra Data Store預覽限制
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+Astra Data Store是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。
+
+Astra Data Store預覽版本具有下列資源限制。
+
+|===
+| 資源 | 最低 | 最大值 
+
+
+| Astra Data Store預覽叢集中的節點數 | 4. | 5. 
+
+
+| 每個節點的持續磁碟區數目 | 不適用 | 10. 
+
+
+| 每個節點的持續磁碟區已配置總容量 | 不適用 | 1TiB 
+
+
+| Volume大小 | 20億 | 1TiB 
+
+
+| 每個Volume的快照 | 0 | 256 
+
+
+| 每個Volume的複本 | 0 | 9. 
+|===
+
+NOTE: Astra Data Store預覽不支援VM工作負載。VMware vVol工作負載支援將於未來的版本中提供。
+
+
+NOTE: Astra Data Store預覽的效能受到限制、不應用於效能特性分析。

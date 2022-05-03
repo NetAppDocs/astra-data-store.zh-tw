@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: rest-api/api-intro.html 
+keywords: introduction, astra control, api, rest api, astra, kubernetes 
+summary: Astra Control有REST API、可讓您使用程式語言或程式（例如Curl）直接存取Astra Control功能。 
+---
+= 使用Astra Control REST API實現自動化
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/rest-api/
+
+
+Astra Control有REST API、可讓您使用程式語言或程式（例如Curl）直接存取Astra Control功能。您也可以使用Ansible和其他自動化技術來管理Astra Control部署。
+
+若要設定及管理Kubernetes應用程式、您可以使用Astra Control UI或Astra Control API。
+
+若要深入瞭解、請前往 https://docs.netapp.com/us-en/astra-automation/["Astra Control自動化文件"^]。

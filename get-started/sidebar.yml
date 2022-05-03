@@ -1,0 +1,16 @@
+---
+section: get-started
+title: 開始使用
+entries:
+- title: Astra Data Store預覽需求
+  url: "/get-started/requirements.html"
+- title: Astra Data Store預覽快速入門
+  url: "/get-started/quick-start.html"
+- title: 安裝Astra Data Store預覽
+  url: "/get-started/install-ads.html"
+- title: 設定Astra Data Store預覽元件
+  url: "/get-started/setup-ads.html"
+- title: Astra Data Store預覽限制
+  url: "/get-started/capabilities.html"
+- title: 常見問題集
+  url: "/get-started/faq-ads.html"

@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: concepts/intro.html 
+keywords: introduction, how astra works, how Astra works, what Astra is, astra data store, datastore, kubernetes 
+summary: Astra Data Store是Kubernetes原生共享檔案服務、適用於容器和VM工作負載、可提供企業資料管理功能。 
+---
+= Astra Data Store預覽簡介
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+Astra Data Store預覽是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。Astra Data Store為Container和VM工作負載提供原生共享檔案服務、並提供NetApp企業資料管理功能。
+
+有了Astra Data Store預覽、您可以執行下列動作：
+
+* *支援Kubernetes容器化工作負載*：搭配您常用的企業資料管理服務與工具。
+* *使用Kubernetes的「應用程式即服務」平台進行DevOps *：建立彈性、軟體定義的自助式平台、提供自動化、可重複執行的服務、免除開發人員的複雜性
+
+
+
+
+== Astra產品系列
+
+Astra系列產品提供Kubernetes應用程式資料生命週期管理功能、可簡化狀態應用程式的作業。輕鬆保護、備份及移轉Kubernetes工作負載、並立即建立可運作的應用程式複本。
+
+Astra產品包括：
+
+* * Astra Control *：使用應用程式感知的資料管理工具、在公有雲和內部部署環境中管理、保護及移動Kubernetes工作負載
++
+** * Astra Control Service*：使用NetApp管理的服務來管理公有雲中的Kubernetes工作負載。
+** * Astra Control Center*：使用自我管理的軟體來管理內部部署Kubernetes工作負載的資料。
+
+
+* * Astra Data Store preview *：使用Kubernetes原生的共享檔案服務來處理容器和VM工作負載、以進行企業資料管理。
+* * Astra Trident *：使用容器儲存介面（Container Storage Interface、簡稱csi）相容的儲存設備資源配置與管理功能、來處理Kubernetes工作負載、並與NetApp儲存供應商合作。
+
+
+請參閱 https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]。
+
+image:astra-product-family.png["Astra產品系列"]
+
+
+
+== Astra Data Store預覽功能
+
+Astra Data Store預覽提供端點對端點Kubernetes原生儲存與資料管理功能、適用於雲端原生應用程式。這些功能包括：
+
+* * Kubernetes原生共享檔案服務*：提供Kubernetes原生的共享檔案服務、使用標準NFS用戶端做為容器和VM的統一化資料儲存區
+* *雲端擴充*：在相同資源池上提供Kubernetes原生的多重平行檔案系統、以達到類似雲端的擴充與使用率、免除管理儲存設備與叢集的需求。
+* * API第一方法*：以程式碼形式提供基礎架構、以供自動化叢集與工作負載管理之用。
+* *企業級資料管理*：提供自動化的應用程式感知資料保護與災難恢復：
++
+** * NetApp技術*：運用NetApp資料管理技術進行快照、備份、複寫及複製、讓使用者能夠在Kubernetes中建置及部署企業應用程式。 ​
+** *恢復能力*：為Kubernetes原生工作負載使用複寫與銷毀編碼技術、以提升恢復能力。
+** *資料效率*：透過即時重複資料刪除與壓縮功能、在擴充時控制成本。
+
+
+* *適合您現有的環境*：支援以微服務為基礎的傳統工作負載、提供Kubernetes主要發佈產品、提供檔案儲存功能、並可在您選擇的硬體上執行。
+* *整合NetApp Cloud Insights Setc*：提供觀察、分析及監控功能、以持續最佳化。 ​
+
+
+
+
+== Astra Data Store預覽入門
+
+首先、 link:../get-started/requirements.html["深入瞭解Astra Data Store需求"]。
+
+然後、 link:../get-started/quick-start.html["開始使用"]。
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra/index.html["Astra Control Service文件"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/trident/index.html["Astra Trident文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["使用Astra Control API"^]
+* https://docs.netapp.com/us-en/cloudinsights/["本文檔 Cloud Insights"^]
+* https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^]
+

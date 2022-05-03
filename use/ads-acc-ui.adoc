@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: use/ads-acc-ui.html 
+keywords: astra, astra data store, astra control center 
+summary: 您可以使用Astra Control Center使用者介面（UI）來執行Astra Data Store工作。 
+---
+= 使用Astra Control Center搭配Astra Data Store預覽
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+您可以使用Astra Control Center使用者介面（UI）來執行Astra Data Store預覽工作。
+
+
+
+== 設定Astra Control Center進行Astra Data Store預覽
+
+若要使用Astra Control Center UI進行Astra Data Store預覽、您必須完成下列工作：
+
+* https://docs.netapp.com/us-en/astra-control-center/get-started/setup_overview.html#add-cluster["將執行Astra Data Store的基礎Kubernetes叢集新增至Astra Control Center"]。
+* https://docs.netapp.com/us-en/astra-control-center/get-started/setup_overview.html#add-a-storage-backend["將Astra Data Store預覽新增為Astra Control Center的儲存後端"]。
++
+
+NOTE: 如果您新增儲存後端、但沒有具備Astra Data Store預覽功能的Kubernetes叢集、則必須先新增叢集。
+
+
+
+
+
+== 您可以在Astra控制中心做什麼
+
+設定Astra Control Center for Astra Data Store預覽之後、您就可以使用Astra Control Center UI來完成下列工作：
+
+* https://docs.netapp.com/us-en/astra-control-center/use/monitor-protect.html["使用Astra Control Center監控Astra Data Store預覽資產的健全狀況"^]。
+* https://docs.netapp.com/us-en/astra-control-center/use/manage-backend.html["管理Astra Data Store預覽後端儲存設備"^]。
+* https://docs.netapp.com/us-en/astra-control-center/use/view-dashboard.html["監控節點、磁碟和持續磁碟區宣告（PVCS）"^]。
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["Astra Control API"^]
+

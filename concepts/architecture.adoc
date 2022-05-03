@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: concepts/architecture.html 
+keywords: astra, astra datastore, architecture, deployment, astra data store, kubernetes, netapp, clusters, trident 
+summary: Astra Data Store可部署在獨立的Kubernetes叢集上、為Kubernetes應用程式提供持續的磁碟區、這些應用程式可在獨立的叢集內執行、Kubernetes叢集也可在同一個節點集區上裝載其他應用程式、或是在Kubernetes叢集上裝載應用程式。 
+---
+= Astra Data Store預覽部署模式
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+Astra Data Store預覽會使用與Kubernetes部署及協調的應用程式、直接在主機上管理儲存磁碟機。
+
+您可以使用下列其中一個選項、在裸機或虛擬伺服器上安裝Astra Data Store預覽：
+
+* 部署在獨立的Kubernetes專屬叢集上、為Kubernetes應用程式提供持續磁碟區服務、並在獨立的叢集（獨立叢集）中執行。
+* 在Kubernetes叢集上部署、也會在同一個節點集區（融合式叢集）上裝載其他工作負載應用程式。
+* 在Kubernetes叢集上部署、也會在不同的節點集區（分離式叢集）上裝載其他工作負載應用程式。
+
+
+link:../get-started/requirements.html["深入瞭解Astra Data Store硬體需求"]。
+
+Astra Data Store預覽是Astra產品系列的一部分。若要深入瞭解整個Astra系列、請參閱 https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]。
+
+
+
+== Astra Data Store預覽生態系統
+
+Astra Data Store預覽可搭配下列功能使用：
+
+* * Astra Control Center*：使用Astra Control Center軟體、在內部部署環境中、對Kubernetes叢集進行應用程式感知資料管理。輕鬆備份Kubernetes應用程式、將資料移轉至不同的叢集、並即時建立可運作的應用程式複本。
++
+Astra Control Center支援OpenShift Kubernetes叢集、搭配Astra Trident儲存後端ONTAP 、搭配使用支援的功能包括：NetApp或Astra Data Store預覽儲存後端。
+
+* * Astra Trident *：Astra Trident *是完全受支援的開放原始碼儲存資源配置程式、由NetApp維護、可讓您為Docker和Kubernetes所管理的容器化應用程式建立儲存磁碟區。
++
+您可以使用Astra Trident在Astra Data Store預覽上建立磁碟區。
+
+* *《NetApp雲端基礎架構監控工具》《支援》、可讓您監控由Astra Control管理的Kubernetes叢集的效能與使用率。Cloud Insights Cloud Insights可將儲存使用量與工作負載建立關聯。Cloud Insights
++
+當您在Cloud Insights Astra Control中啟用「支援」功能時、遙測資訊會顯示在Astra Control UI頁面中。顯示Astra Data Store預覽中所管理資源的相關資訊。Cloud Insights
+
+
+
+
+
+== Astra Data Store預覽介面
+
+您可以使用不同的介面來完成工作：
+
+* *網路使用者介面（UI）*：Astra Control Service和Astra Control Center使用相同的網路型UI、您可以在其中管理、移轉及保護應用程式。此UI也會顯示Astra Data Store預覽Volume的相關資訊。
+* * API*：Astra Control Service和Astra Control Center使用相同的Astra Control API。使用API、您可以執行與使用UI相同的工作。您也可以使用Astra Control API擷取Astra Data Store預覽的相關資訊。
+* * kubectl命令*：若要使用Astra Data Store預覽、您可以直接使用kubecl命令。
+* * Kubernetes副檔名*：此外、您也可以使用Astra Data Store預覽Kubernetes API副檔名。
++
+自訂資源定義（CRD）是Kubernetes REST API的延伸、是在部署Astra Data Store預覽運算子時所建立的API。外部實體透過呼叫Kubernetes API伺服器來與客戶需求日互動。Astra Data Store會預覽特定客戶需求日的更新、然後呼叫內部REST API。
+
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra/index.html["Astra Control Service文件"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/trident/index.html["Astra Trident文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["使用Astra Control API"^]
+* https://docs.netapp.com/us-en/cloudinsights/["本文檔 Cloud Insights"^]
+* https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^]
+

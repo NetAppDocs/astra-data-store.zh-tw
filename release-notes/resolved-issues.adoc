@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: release-notes/resolved-issues.html 
+keywords: astra, data store, fixed bugs, fixes, resolved issues 
+summary: 已解決此版本中可能導致您無法成功使用產品的問題。 
+---
+= 已解決的問題
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+本產品版本已修正下列問題。
+
+
+
+== Astra Data Store預覽無法辨識採用VXLAN組態和Calico CNI的網路介面名稱
+
+此錯誤導致Pod當機。
+
+此版本的Astra Data Store預覽支援採用Calico CNI的VXLAN組態。

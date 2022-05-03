@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: troubleshooting/ads-maintenance-mode.html 
+keywords: astra, astra data store, astra datastore, kubectl, maintenance mode 
+summary: 當您需要執行主機維護或套件升級時、應將節點置於維護模式。 
+---
+= 將節點置於維護模式
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/troubleshooting/
+
+
+當您需要執行主機維護或套件升級時、應將節點置於維護模式。
+
+
+NOTE: 節點必須是Astra Data Store叢集的一部分。
+
+當節點處於維護模式時、您無法新增節點。
+
+.步驟
+. 顯示節點詳細資料。
++
+[listing]
+----
+ kubectl get nodes
+----
+. 取得磁碟區詳細資料：
++
+[listing]
+----
+ kubectl get astradsvolumes -n astrads-system -o wide
+NAME      SIZE  IP              CLUSTER          EXPORTPOLICY     CREATED
+nfsvol1   102Gi 10.111.111.111  ftap-astra-012   exppol1    true
+nfsvol10  102Gi 10.111.111.112  ftap-astra-012   exppol10   true
+nfsvol11  102Gi 10.111.111.113  ftap-astra-012   exppol11   true
+----
+. 啟用維護模式：
++
+[listing]
+----
+ kubectl astrads maintenance list
+NAME    NODE NAME       IN MAINTENANCE  MAINTENANCE STATE       MAINTENANCE VARIANT
+
+ kubectl astrads maintenance create node4 --node-name="nhcitjj1525" --variant=Node
+Maintenance mode astrads-system/node4 created
+
+ kubectl astrads nodes list
+NODE NAME       NODE STATUS     CLUSTER NAME
+nhcitjj1525     Added           ftap-astra-012
+nhcitjj1527     Added           ftap-astra-012
+nhcitjj1526     Added           ftap-astra-012
+nhcitjj1528     Added           ftap-astra-012
+...
+
+ kubectl astrads maintenance list
+NAME    NODE NAME       IN MAINTENANCE  MAINTENANCE STATE       MAINTENANCE VARIANT
+node4   nhcitjj1525     true            ReadyForMaintenance     Node
+----
++
+「維護中」模式會啟動為「假」、並變更為「真」、而「維護」狀態則會從「準備維護」變更為「準備維護」。
+
+
+
+
+
+== 以取得更多資訊
+
+另請參閱此資訊。* link:../use/kubectl-commands-ads.html["使用KECBECVL命令管理Astra Data Store資產"]。

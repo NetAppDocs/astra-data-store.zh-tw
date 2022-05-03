@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: concepts/security.html 
+keywords: how astra works, how Astra security works, what Astra is, astra data store, kubernetes 
+summary: Astra Data Store使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。 
+---
+= Astra Data Store預覽的安全性
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+Astra Data Store預覽使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。
+
+Astra Data Store預覽使用下列安全方法：
+
+* 使用相互傳輸層安全性（MTLS）進行通訊加密
+* 角色型存取控制、可控制功能的存取
+* 部署安全性
+* 憑證管理
+* 閒置的軟體加密、包括內部金鑰管理
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra/index.html["Astra Control Service文件"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/trident/index.html["Astra Trident文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["使用Astra Control API"^]
+* https://docs.netapp.com/us-en/cloudinsights/["本文檔 Cloud Insights"^]
+* https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^]
+

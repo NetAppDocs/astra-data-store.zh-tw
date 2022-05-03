@@ -1,0 +1,237 @@
+---
+sidebar: sidebar 
+permalink: troubleshooting/ads-replace-drive.html 
+keywords: astra, astra data store, astra datastore, kubectl, replace drive 
+summary: 使用KECBECVL命令搭配Astra Data Store來取代磁碟機。 
+---
+= 更換磁碟機
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/troubleshooting/
+
+
+以下概述更換叢集中故障磁碟機所需的步驟。
+
+* 在節點上執行SSH
++
+** 取得使用中磁碟機的清單。
+** 取得連結至節點的所有磁碟機清單。
+
+
+* 識別可用的磁碟機。
+* 取得磁碟機自訂資源（CR）故障通知。
+* 更換磁碟機。
+* 驗證叢集CR中的磁碟機是否已成功更換及啟用。
+
+
+.步驟
+. 取得叢集詳細資料：
++
+[listing]
+----
+ kubectl describe <cluster_ID> -n
+----
++
+範例：
+
++
+[listing]
+----
+ kubectl describe adscl -n astrads-system
+----
+. SSH至節點：
++
+[listing]
+----
+ ssh root@<ip_address>
+----
+. 列出該節點上的所有作用中磁碟機：
++
+[listing]
+----
+ runc exec -t firetap /sf/packages/netapp-photon/cmd_firestorm.py -c 'disk show'
+----
++
+回應：
+
++
+[listing]
+----
+ DISK   OWNER        POOL   SERIAL  HOME        DR HOME
+ -----  ----------   -----  ------  ---------   -------
+ v0.0   fires-9(09)  Pool0  1234   fires-9(09)
+ v0.1   fires-9(09)  Pool0  5678   fires-9(09)
+ v0.2   fires-9(09)  Pool0  9101   fires-9(09)
+ v0.3   fires-9(09)  Pool0  1213   fires-9(09)
+----
+. 列出該節點上的所有磁碟機：
++
+[listing]
+----
+ lsblk -o NAME,SERIAL,SIZE
+kubectl describe adscl -n astrads-system
+----
+. SSH至節點：
++
+[listing]
+----
+ssh root@<ip_address>
+----
+. 列出該節點上的所有作用中磁碟機：
++
+[listing]
+----
+runc exec -t firetap /sf/packages/netapp-photon/cmd_firestorm.py -c 'disk show'
+----
++
+回應：
+
++
+[listing]
+----
+ DISK    OWNER        POOL   SERIAL  HOME        DR HOME
+ ------  ----------   -----  ------  ---------   -------
+ v0.0    fires-9(09)  Pool0  1234   fires-9(09)
+ v0.1    fires-9(09)  Pool0  5678   fires-9(09)
+ v0.2    fires-9(09)  Pool0  9101   fires-9(09)
+ v0.3    fires-9(09)  Pool0  1213   fires-9(09)
+----
+. 列出該節點上的所有磁碟機：
++
+[listing]
+----
+- lsblk -o NAME,SERIAL,SIZE
+----
+. 建立故障磁碟機CR:
++
+[listing]
+----
+ kubectl get adsfd -n astrads-system
+----
++
+回應：
+
++
+[listing]
+----
+ NAME                                   AGE
+ 158c66c5-3e84-5530-8ede-d8e3cbbf67af   37s
+----
+. 取得故障磁碟機詳細資料：
++
+[listing]
+----
+ Name:         158c66c5-3e84-5530-8ede-d8e3cbbf67af
+Namespace:    astrads-system
+Labels:       <none>
+Annotations:  <none>
+API Version:  astrads.netapp.io/v1alpha1
+Kind:         AstraDSFailedDrive
+Metadata:
+ Creation Timestamp:  2021-10-26T06:36:12Z
+ Generation:          1
+ Managed Fields:
+   API Version:  astrads.netapp.io/v1alpha1
+   Fields Type:  FieldsV1
+   fieldsV1:
+     f:spec:
+       .:
+       f:executeReplace:
+       f:replaceWith:
+     f:status:
+       .:
+       f:cluster:
+       f:failedDriveInfo:
+         .:
+         f:failureReason:
+         f:firetapUUID:
+         f:inUse:
+         f:name:
+         f:node:
+         f:path:
+         f:present:
+         f:serial:
+         f:sizeBytes:
+       f:state:
+   Manager:         cluster-controller
+   Operation:       Update
+   Time:            2021-10-26T06:36:12Z
+ Resource Version:  4110227
+ UID:               14a2c23b-fcd8-4b04-ae25-48c75abc0682
+Spec:
+ Execute Replace:  false
+ Replace With:
+Status:
+ Cluster:  astrads-cluster-493a7f8
+ Failed Drive Info:
+   Failure Reason:  AdminFailed
+   Firetap UUID:    158c66c5-3e84-5530-8ede-d8e3cbbf67af
+   In Use:          false
+   Name:            scsi-36000c29abd71fd0dad31270af16bb1bc
+   Node:            sti-b200-0214b.ctl.gdl.englab.netapp.com
+   Path:            /dev/disk/by-id/scsi-36000c29abd71fd0dad31270af16bb1bc
+   Present:         false
+   Serial:          6000c29abd71fd0dad31270af16bb1bc
+   Size Bytes:      107374182400
+ State:             ReadyToReplace
+Events:              <none>
+----
+. 編輯故障磁碟機CR、並以可用磁碟機取代。
++
+[listing]
+----
+ kubectl edit adsfd -n astrads-system
+----
++
+回應：
+
++
+[listing]
+----
+ astradsfaileddrive.astrads.netapp.io/158c66c5-3e84-5530-8ede-d8e3cbbf67af edited
+...
+Spec:
+  Execute Replace:  true
+  Replace With:     6000c2949046697ae1c738208ffc6620
+...
+----
+. 確認磁碟機在叢集CR和節點中處於作用中狀態。
+
+
+[listing]
+----
+ kubectl describe adscl -n astrads-system
+ ...
+ Status:              Added
+    Drive Statuses:
+      Drive ID:       d6a4383b-305f-54d9-8264-990ff2964c15
+      Drive Name:     scsi-36000c2949046697ae1c738208ffc6620
+      Drive Serial:   6000c2949046697ae1c738208ffc6620
+      Drives Status:  Available
+      Drive ID:       55389866-fb73-57fd-9db8-96d5c78ea650
+      Drive Name:     scsi-36000c29e16433c39e4d888b1dbbab6cf
+      Drive Serial:   6000c29e16433c39e4d888b1dbbab6cf
+      Drives Status:  Active
+      Drive ID:       fc9b555d-0752-5497-ac79-a6e79d9a9ad0
+      Drive Name:     scsi-36000c29fdafda4ab8852cc636c86b3c4
+      Drive Serial:   6000c29fdafda4ab8852cc636c86b3c4
+      Drives Status:  Active
+      Drive ID:       a8bfd69b-c234-508b-882a-947508416d4f
+      Drive Name:     scsi-36000c29339215b755d777ae20593e23b
+      Drive Serial:   6000c29339215b755d777ae20593e23b
+      Drives Status:  Active
+    Maintenance Status:
+      State:             Disabled
+      Variant:           None
+    Node HA:             true
+    Node ID:             4
+    Node Is Reachable:   true
+    Node Management IP:  10.224.8.75
+    Node Name:           sti-b200-0214b.ctl.gdl.englab.netapp.com
+    Node Role:           Storage
+    Node UUID:           29998974-a619-5269-86e2-f2aaaaaae107
+    Node Version:        12.75.0.6169843
+    Status:              Added
+...
+----

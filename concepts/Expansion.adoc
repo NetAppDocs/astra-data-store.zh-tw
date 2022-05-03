@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: concepts/expansion.html 
+keywords: how astra works, how Astra expansion works, what Astra is, astra data store, kubernetes 
+summary: 您可以擴充Astra Data Store叢集。 
+---
+= 叢集擴充
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+Astra Data Store預覽可支援叢集中不同類型和功能的節點。如果您要擴充叢集、Astra Data Store預覽可支援新增具有任何效能功能的節點、只要它們不低於叢集中效能最低的節點即可。新節點的儲存容量必須與現有節點相同。所有節點、包括擴充期間的新節點、都必須至少符合中的最低需求 link:../get-started/requirements.html["Astra Data Store預覽需求"]。
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* https://docs.netapp.com/us-en/astra/index.html["Astra Control Service文件"^]
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/trident/index.html["Astra Trident文件"^]
+* https://docs.netapp.com/us-en/astra-automation/index.html["使用Astra API"^]
+* https://docs.netapp.com/us-en/cloudinsights/["本文檔 Cloud Insights"^]
+* https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^]
+

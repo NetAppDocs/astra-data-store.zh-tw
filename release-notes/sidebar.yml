@@ -1,0 +1,11 @@
+---
+section: release-notes
+title: 版本資訊
+url: "/release-notes/rn_overview.html"
+entries:
+- title: 本版Astra Data Store的新功能
+  url: "/release-notes/whats-new.html"
+- title: 已知問題
+  url: "/release-notes/known-issues.html"
+- title: 已知限制
+  url: "/release-notes/known-limitations.html"

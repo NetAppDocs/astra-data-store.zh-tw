@@ -1,0 +1,225 @@
+---
+sidebar: sidebar 
+permalink: support/autosupport.html 
+keywords: how to use autosupport, autosupport, asup, logs, asup bundle, support ticket, support bundle 
+summary: NetApp以多種方式支援Astra Data Store預覽。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store預覽帳戶可透過網路票務取得遠端技術支援。 
+---
+= 自動支援監控
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/support/
+
+
+此功能可監控Astra Data Store預覽系統的執行時間和資訊、並將訊息傳送給NetApp支援部門。AutoSupport視您的組態而定、您可以監控這些系統元件：
+
+* 控制面
+* 儲存設備
+
+
+在期間預設啟用支援AutoSupport link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"] 或者AutoSupport 在叢集套用了某個來源自訂資源（CR）之後。啟用後AutoSupport 、即可自動將S還原（ASUP）套裝組合上傳至 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 或可供手動下載。
+
+.選項
+* <<AutoSupport triggers and scenarios>>
+* <<Configure custom control plane AutoSupport collection>>
+* <<Configure custom storage AutoSupport collection>>
+* <<List ASUPs in the system>>
+* <<Download an ASUP Bundle>>
+* <<Upload a core file>>
+
+
+
+
+== 可觸發及情境AutoSupport
+
+下列方式觸發了各種套裝組合：AutoSupport
+
+* *定期*：ASUP套裝組合是以在CR中定義的時間間隔建立。
+* *使用者觸發*：您可以手動建立自己的ASUP來查看記錄。
+* * Coredump *：如果節點上有核心傾印、則會產生ASUP、核心會傳送至NetApp以供進一步調查。
+* *基於呼叫首頁事件*：ASUP是由作業系統的特定呼叫首頁事件所產生。
+* * Kubernetes事件為基礎*：ASUP是由控制面板中的特定Kubernetes事件所產生。
+
+
+這些觸發案例產生下列AutoSupport 其中一種功能類型：
+
+* * ControlPlane AutoSupport Section*：Astra Data Store預覽控制平面記錄和CRS的集合。
+* *儲存AutoSupport 功能*：儲存報告與效能資料的集合。
+* *核心傾印AutoSupport 功能*：系統核心傾印的集合。
+
+
+
+
+== 設定自訂控制面板AutoSupport 的資料收集
+
+您可以建立可AutoSupport 報告控制面板事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
+
+.步驟
+. 自訂下列命令以建立控制面板集合CR：
++
+[listing]
+----
+kubectl astasds asup collect -c controlplane --namespace=astrads-system
+----
++
+.. 定義自訂參數：
++
+*** '<myASUPname>'：AutoSupport 要產生的Setcr名稱。
+*** 「-e <事件名稱>」：觸發集合的事件名稱。事件名稱應預先定義在component.yaml（安裝於支援控制器）中。
++
+範例：
+
++
+[listing]
+----
+kubectl astrasds asup collect -c controlplane custom-asup-name -e debug --namespace=astrads-system
+----
+
+
+.. 視系統需求新增其他參數：
++
+*** 「叢集」：在多叢集環境中需要此旗標。
+*** 「-localCollection」：啟用本機收藏。預設值為「假」。
+*** 「-forceupload」：啟用強制上傳。預設值為「假」。
+*** 「-retry」：啟用重試。預設值為「假」。
+
+
+
+
+
+
+
+
+== 設定自訂儲存AutoSupport 功能的收藏
+
+您可以建立AutoSupport 可報告儲存元件事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
+
+.步驟
+. 自訂下列命令以建立儲存集合CR：
++
+[listing]
+----
+kubectl astrasds asup collect -c storage --namespace=astrads-system
+----
++
+.. 定義自訂參數：
++
+*** '<myASUPname>'：AutoSupport 要產生的Setcr名稱。
+*** 「-e <事件名稱>」：觸發集合的事件名稱。事件名稱應預先定義在component.yaml（安裝於支援控制器）中。
++
+效能事件範例：
+
++
+[listing]
+----
+kubectl-astrads asup collect -c storage -e performance example-perf-storage-asup
+----
+*** t <ISO_format>-d <hides>'：在指定的時間內、為所有節點收集儲存ASUP。使用標準ISO日期時間格式（「-t」）、以小時為單位的持續時間（「d」）。例如：
++
+[listing]
+----
+kubectl astrads asup collect -c storage -t 2021-01-01T15:00:00Z -d 24
+----
+*** -nodes<nodename>'：收集指定節點的儲存ASUP。例如：
++
+[listing]
+----
+kubectl astrads asup collect -c storage --nodes example1
+----
+*** -nodes nodename1、nodename2、nodename3：收集指定節點的儲存ASUP：
++
+[listing]
+----
+kubectl astrads asup collect -c storage --nodes example1,example2,example3
+----
+
+
+.. 視系統需求新增其他參數：
++
+*** 「叢集」：在多叢集環境中需要此旗標。
+*** 「-localCollection」：啟用本機收藏。預設值為「假」。
+*** 「-forceupload」：啟用強制上傳。預設值為「假」。
+*** 「-retry」：啟用重試。預設值為「假」。
+
+
+
+
+
+
+
+
+== 列出系統中的ASUP
+
+使用下列命令、依名稱列出系統中的ASUP：
+
+[listing]
+----
+kubectl astrasds asup list --namespace=astrads-system
+----
+回應範例：
+
+[listing]
+----
+NAMESPACE      NAME                                  SEQUENCE NUMBER EVENT                      SIZE  STATE       LOCAL COLLECTION
+astrads-system  storage-callhome.reboot.unknown-...  1               callhome.reboot.unknown    0     uploaded    astrads-ds-support-tdl2h:
+astrads-system  storage-callhome.reboot.unknown-...  2               callhome.reboot.unknown    0     uploaded    astrads-ds-support-xx6n8:
+astrads-system  storage-callhome.reboot.unknown-...  3               callhome.reboot.unknown    0     uploaded    astrads-ds-support-qghnx:
+----
+
+
+== 下載ASUP產品組合
+
+您可以使用此命令下載本機收集的ASUP套裝組合。使用「-o」指定目前工作目錄以外的位置：
+
+[listing]
+----
+./kubectl-astrasds asup download <ASUP_bundle_name> -o <location>
+----
+
+
+== 上傳核心檔案
+
+如果服務當機、AutoSupport 系統會在當機時建立一個包含相關記憶體內容的資訊（ASUP）訊息（稱為核心檔案）。Astra Data Store Preview會自動將ASUP訊息上傳至NetApp Support、但您需要手動上傳核心檔案、使其與ASUP訊息相關聯。
+
+.步驟
+. 使用下列「kubecll」命令來檢視ASUP訊息：
++
+[listing]
+----
+kubectl astrasds asup list --namespace=astrads-system
+----
++
+您應該會看到類似下列的輸出：
+
++
+[listing]
+----
+NAMESPACE       NAME                      SEQUENCE NUMBER  EVENT     SIZE       STATE       LOCAL COLLECTION
+
+astrads-system  storage-coredump-2021...  1                coredump  197848373  compressed  astrads-ds-support-sxxn7:/var/...
+----
+. 使用下列「kubecll」命令、從ASUP訊息下載核心檔案。使用「-o'」選項來指定下載檔案的目的地目錄。
++
+[listing]
+----
+kubectl astrads asup download storage-coredump-20211216t140851311961680 -o <absolute_path_to_destination_directory>
+----
++
+
+NOTE: 在極少數情況下、您可能無法下載核心檔案、因為其他核心檔案已經取代。發生這種情況時、命令會傳回「無法stat：無此類檔案或目錄」錯誤。如果看到此錯誤、您可以 link:get-help-ads.html["取得協助"]。
+
+. 開啟網頁瀏覽器並瀏覽至 https://upload.netapp.com/sg["NetApp驗證檔案上傳工具"^]、如果您尚未登入、請輸入您的NetApp支援認證資料。
+. 選取「*我沒有個案編號*」核取方塊。
+. 在*最近的地區*功能表中、選取最靠近您的區域。
+. 選取*上傳*按鈕。
+. 瀏覽並選取您先前下載的核心檔案。
++
+隨即開始上傳。上傳完成時、會出現一則成功訊息。
+
+
+
+[discrete]
+== 如需詳細資訊、請參閱
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Miscellaneous/How_to_upload_a_file_to_NetApp["如何將檔案上傳至NetApp（需要登入）"^]
+

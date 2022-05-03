@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: support/get-help-ads.html 
+keywords: get help, get support, knowledgebase, slack, phone, web, ticket, contact support, support ticket, support bundle 
+summary: NetApp以多種方式支援Astra Data Store。全年無休提供免費的自助支援選項、例如知識庫（KB）文章和Slack通路。 
+---
+= 取得協助
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/support/
+
+
+NetApp以多種方式支援Astra Data Store預覽。全年無休提供免費的自助服務支援選項、例如知識庫（KB）文章和Slack通路。
+
+
+IMPORTANT: 您可以取得Astra Data Store預覽的社群技術支援。使用建立案例 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 無法用於預覽版本。您可以透過意見反應選項與支援部門聯絡、或使用Slack通路進行自助服務。
+
+
+
+== 自助服務支援選項
+
+這些選項全年無休免費提供：
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["知識庫（需要登入）"^]
++
+搜尋與Astra Data Store預覽相關的文章、常見問題集或中斷修復資訊。
+
+* 文件
++
+這是您目前正在檢視的文件網站。
+
+* https://netapp.io/slack["NetApp「Container」Slack通路"^]
++
+前往「Container」通路、與同儕和專家交流。
+
+* 意見反應電子郵件
++
+傳送電子郵件至astra.feedback@netapp.com、讓我們知道您的想法、想法或疑慮。
+
+
+
+[discrete]
+== 如需詳細資訊、請參閱
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Miscellaneous/How_to_upload_a_file_to_NetApp["如何將檔案上傳至NetApp（需要登入）"^]
+* https://kb.netapp.com/Special:Search?qid=&fpid=230&fpth=&query=netapp+data+store&type=wiki["NetApp知識庫文章"^]
+

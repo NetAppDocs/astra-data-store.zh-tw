@@ -1,0 +1,199 @@
+---
+sidebar: sidebar 
+permalink: use/deploy-apps.html 
+keywords: astra, astra data store, kubectl 
+summary: 以下是部署可搭配Astra Data Store使用的測試應用程式的步驟。 
+---
+= 部署測試應用程式
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+以下是部署可搭配Astra Data Store預覽使用的測試應用程式的步驟。
+
+在此範例中、我們使用Helm儲存庫部署Bitnami的MongoDB圖表。
+
+.您需要的是 #8217 ；需要的是什麼
+* Astra Data Store預覽叢集已部署及設定
+* Trident安裝完成
+
+
+.步驟
+. 從Bitnami新增Helm repo：
++
+[listing]
+----
+helm repo add bitnami https://charts.bitnami.com/bitnami
+----
+. 部署MongoDB：
++
+[listing]
+----
+helm install mongohelm4 --set persistence.storageClass=trident-csi bitnami/mongodb --namespace=ns-mongodb --create-namespace
+----
+. 檢查MongoDB Pod的狀態：
++
+[listing]
+----
+~% kubectl get pods -n ns-mongodb
+NAME                      READY   STATUS    RESTARTS   AGE
+mongodb-9846ff8b7-rfr4r   1/1     Running   0          67s
+----
+. 驗證MongoDB使用的持續磁碟區宣告（PVc）：
++
+[listing]
+----
+~% kubectl get pvc -n ns-mongodb
+NAME      STATUS   VOLUME                  CAPACITY   ACCESS MODES STORAGECLASS   AGE
+mongodb   Bound    pvc-1133453a-e2f5-48a5  8Gi        RWO          trident-csi    97s
+----
+. 使用kubecl命令「Get astradsvolume」列出磁碟區：
++
+[listing]
+----
+~% kubectl get astradsvolume pvc-1133453a-e2f5-48a5 -n astrads-system
+NAME                     SIZE        IP            CLUSTER      CREATED
+pvc-1133453a-e2f5-48a5   8830116Ki   10.192.2.192   jai-ads      true
+----
+. 使用kubecl命令「desscribe astradsvolume」來描述磁碟區：
++
+[listing]
+----
+~% kubectl describe astradsvolume pvc-1133453a-e2f5-48a5 -n astrads-system
+Name:         pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+Namespace:    astrads-system
+Labels:       astrads.netapp.io/cluster=jai-ads
+              astrads.netapp.io/mip=10.192.1.39
+              astrads.netapp.io/volumeUUID=cf33fd38-a451-596c-b656-61b8270d2b5e
+              trident.netapp.io/cloud=on-prem
+              trident.netapp.io/creator=trident-dev
+             trident.netapp.io/performance=premium
+Annotations:  provisioning: {"provisioning":{"cloud":"on-prem","creator":"trident-dev","performance":"premium"}}
+              trident:
+                {"trident":{"version":"21.10.0-test.jenkins-trident-stable-v21.10-2+e03219ce37294d9ba54ec476bbe788c1a7772548","backendUUID":"","platform":...
+API Version:  astrads.netapp.io/v1alpha1
+Kind:         AstraDSVolume
+Metadata:
+  Creation Timestamp:  2021-12-08T19:35:26Z
+  Finalizers:
+    trident.netapp.io/astradsvolume-finalizer
+    astrads.netapp.io/astradsvolume-finalizer
+  Generation:  1
+  Managed Fields:
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          f:astrads.netapp.io/cluster:
+          f:astrads.netapp.io/mip:
+          f:astrads.netapp.io/volumeUUID:
+      f:status:
+        .:
+        f:cluster:
+        f:conditions:
+        f:created:
+        f:displayName:
+        f:exportAddress:
+        f:internalName:
+        f:mip:
+        f:permissions:
+        f:qosPolicy:
+        f:requestedSize:
+        f:restoreCacheSize:
+        f:size:
+        f:snapshotReservePercent:
+        f:state:
+        f:volumePath:
+        f:volumeUUID:
+    Manager:      cluster-controller
+    Operation:    Update
+    Time:         2021-12-08T19:35:32Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:status:
+        f:exportPolicy:
+    Manager:      dms-controller
+    Operation:    Update
+    Subresource:  status
+    Time:         2021-12-08T19:35:32Z
+    API Version:  astrads.netapp.io/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:provisioning:
+          f:trident:
+        f:finalizers:
+          v:"trident.netapp.io/astradsvolume-finalizer":
+        f:labels:
+          .:
+          f:trident.netapp.io/cloud:
+          f:trident.netapp.io/creator:
+          f:trident.netapp.io/performance:
+      f:spec:
+        .:
+        f:cluster:
+        f:displayName:
+        f:exportPolicy:
+        f:noSnapDir:
+        f:permissions:
+        f:qosPolicy:
+        f:size:
+        f:snapshotReservePercent:
+        f:type:
+        f:volumePath:
+    Manager:         trident_orchestrator
+    Operation:       Update
+    Time:            2021-12-08T19:35:34Z
+  Resource Version:  12007115
+  UID:               d522ae4f-e793-49ed-bbe0-9112d7f9167b
+Spec:
+  Cluster:                   jai-ads
+  Display Name:              pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+  Export Policy:             pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+  No Snap Dir:               true
+  Permissions:               0777
+  Qos Policy:                silver
+  Size:                      9042036412
+  Snapshot Reserve Percent:  5
+  Type:                      ReadWrite
+  Volume Path:               /pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+Status:
+  Cluster:  jai-ads
+  Conditions:
+    Last Transition Time:    2021-12-08T19:35:32Z
+    Message:                 Volume is online
+    Reason:                  VolumeOnline
+    Status:                  True
+    Type:                    AstraDSVolumeOnline
+    Last Transition Time:    2021-12-08T19:35:32Z
+    Message:                 Volume creation request was successful
+    Reason:                  VolumeCreated
+    Status:                  True
+    Type:                    AstraDSVolumeCreated
+  Created:                   true
+  Display Name:              pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+  Export Address:            10.192.2.192
+  Export Policy:             pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+  Internal Name:             pvc_1133453a_e2f5_48a5_a06c_d14b8aa7be07
+  Mip:                       10.192.1.192
+  Permissions:               777
+  Qos Policy:                silver
+  Requested Size:            9042036412
+  Restore Cache Size:        0
+  Size:                      8830116Ki
+  Snapshot Reserve Percent:  5
+  State:                     online
+  Volume Path:               /pvc-1133453a-e2f5-48a5-a06c-d14b8aa7be07
+  Volume UUID:               cf33fd38-a451-596c-b656-61b8270d2b5e
+Events:
+  Type    Reason         Age   From                  Message
+  ----    ------         ----  ----                  -------
+  Normal  VolumeCreated  3m9s  ADSClusterController  Volume creation request was successful
+----
+

@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-issues.html 
+keywords: astra, control center, bugs, known issues, problems 
+summary: 已知問題可識別可能導致您無法成功使用本產品版本的問題。 
+---
+= 已知問題
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+已知問題可識別可能導致您無法成功使用此產品預覽版本的問題。
+
+
+
+== 使用預設的活動力探針值進行MongoDB部署時、Pod會在當機迴圈中失敗
+
+因應措施是在MongoDB部署規格中將LIF探針初始延遲時間設為600秒。
+
+
+
+== Astra Data Store預覽解除安裝程序可能會導致Pod處於終止狀態
+
+Kubernetes v1.20中的Astra Data Store預覽解除安裝程序、偶爾會導致Pod處於終止狀態。
+
+請參閱 link:../use/uninstall-ads-manual.html["無需指令碼、即可手動解除安裝Astra Data Store預覽"] 或link:../use/uninstall-ads.html["使用指令碼自動解除安裝Astra Data Store預覽"]。
+
+
+
+== 如需詳細資訊、請參閱
+
+* link:../release-notes/known-limitations.html["已知限制"]
+

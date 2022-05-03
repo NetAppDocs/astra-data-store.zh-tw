@@ -1,0 +1,22 @@
+---
+section: use
+title: 使用Astra資料儲存區
+entries:
+- title: 管理Astra Data Store資產
+  url: "/use/kubectl-commands-ads.html"
+- title: 部署測試應用程式
+  url: "/use/deploy-apps.html"
+- title: 管理叢集
+  url: "/use/maintain-cluster.html"
+- title: 利用功能表監控指標Cloud Insights
+  url: "/use/monitor-with-cloud-insights.html"
+- title: 使用Prometheus和Grafana監控指標
+  url: "/use/monitor-with-prometheus-grafana.html"
+- title: 設定及監控事件記錄
+  url: "/use/configure-endpoints.html"
+- title: Astra Control Center整合
+  url: "/use/ads-acc-ui.html"
+- title: 使用指令碼自動解除安裝Astra Data Store預覽
+  url: "/use/uninstall-ads.html"
+- title: 無需指令碼、即可手動解除安裝Astra Data Store預覽
+  url: "/use/uninstall-ads-manual.html"

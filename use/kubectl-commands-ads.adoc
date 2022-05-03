@@ -1,0 +1,249 @@
+---
+sidebar: sidebar 
+permalink: use/kubectl-commands-ads.html 
+keywords: astra, astra data store, astra datastore, kubectl 
+summary: 您可以直接使用kubectl命令與Astra Data Store搭配使用。 
+---
+= 使用kvecll命令管理Astra Data Store預覽資產
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+您可以使用kubectl命令和Kubernetes API擴充功能來管理Astra Data Store預覽資產。
+
+若要瞭解如何部署範例應用程式、請參閱 link:../use/deploy-apps.html["部署測試應用程式"]。
+
+如需下列叢集維護資訊、請參閱 link:../use/maintain-cluster.html["管理叢集"]：
+
+* 將節點置於維護模式
+* 更換磁碟機
+* 新增節點
+* 更換節點
+
+
+.您需要的是 #8217 ；需要的是什麼
+* 您安裝的Astra Data Store預覽KECBECVL外掛程式 link:../get-started/install-ads.html["安裝Astra Data Store預覽"]
+
+
+
+
+== 列出用於Astra Data Store預覽的Kubernetes自訂API資源
+
+您可以使用Kubernetes內部的kubectl命令、與Astra Data Store預覽叢集互動並觀察其狀態。
+
+「API-resources'」命令中列出的每個項目都代表Kubernetes自訂資源定義（CRD）、Astra Data Store預覽可在內部用於管理叢集。
+
+此清單特別有助於取得每個Astra Data Store預覽物件的快取名稱、以減少您的輸入、如稍後所示。
+
+. 顯示用於Astra Data Store預覽的Kubernetes自訂API資源清單：
++
+[listing]
+----
+kubectl api-resources --api-group astrads.netapp.io
+----
++
+回應：
+
++
+[listing]
+----
+NAME                   SHORTNAMES  APIGROUP           NAMESPACED  KIND
+astradsversions         adsve      astrads.netapp.io  true        AstraDSVersion
+astradsclusters         adscl      astrads.netapp.io  true        AstraDSCluster
+astradslicenses         adsli      astrads.netapp.io  true        AstraDSLicense
+astradsnodeinfoes       adsni      astrads.netapp.io  true        AstraDSNodeInfo
+astradsvolumes          adsvo      astrads.netapp.io  true        AstraDSVolume
+astradsqospolicies      adsqp      astrads.netapp.io  true        AstraDSQosPolicy
+astradsexportpolicies   adsep      astrads.netapp.io  true        AstraDSExportPolicy
+astradsvolumesnapshots  adsvs      astrads.netapp.io  true        AstraDSVolumeSnapshot
+astradsvolumefiles      adsvf      astrads.netapp.io  true        AstraDSVolumeFiles
+astradsautosupports     adsas      astrads.netapp.io  true        AstraDSAutoSupport
+astradsfaileddrives     adsfd      astrads.netapp.io  true        AstraDSFailedDrive
+astradsnodemanagements  adsnm      astrads.netapp.io  true        AstraDSNodeManagement
+----
+. 若要在Kubernetes叢集中取得所有目前的Astra Data Store預覽物件、請使用「kubectl Get ads -As」命令：
++
+[listing]
+----
+kubectl get ads -A
+----
++
+回應：
+
++
+[listing]
+----
+NAMESPACE        NAME                                        AGE
+astrads-system   astradsqospolicy.astrads.netapp.io/bronze   45h
+astrads-system   astradsqospolicy.astrads.netapp.io/gold     45h
+astrads-system   astradsqospolicy.astrads.netapp.io/silver   45h
+
+NAMESPACE        NAME                                                   STATUS    VERSION       SERIAL NUMBER   MVIP           AGE
+astrads-system   astradscluster.astrads.netapp.io/astrads-cluster-9f1   created   arda-9.11.1   e000000009      10.224.8.146   46h
+
+NAMESPACE        NAME                                                  AGE
+astrads-system   astradsnodeinfo.astrads.netapp.io/englab.netapp.com   46h
+astrads-system   astradsnodeinfo.astrads.netapp.io/englab.netapp.com   46h
+astrads-system   astradsnodeinfo.astrads.netapp.io/englab.netapp.com   46h
+astrads-system   astradsnodeinfo.astrads.netapp.io/englab.netapp.com   46h
+
+NAMESPACE        NAME                                              AGE
+astrads-system   astradsversion.astrads.netapp.io/astradsversion   46h
+
+NAMESPACE        NAME                                            AGE
+astrads-system   astradsvolumefiles.astrads.netapp.io/test23     27h
+astrads-system   astradsvolumefiles.astrads.netapp.io/test234    27h
+astrads-system   astradsvolumefiles.astrads.netapp.io/test2345   4h22m
+
+NAMESPACE        NAME                                       SIZE   IP               CLUSTER             CREATED
+astrads-system   astradsvolume.astrads.netapp.io/test234    21Gi   172.25.123.123   astrads-cluster-9f1  true
+astrads-system   astradsvolume.astrads.netapp.io/test2345   21Gi   172.25.123.123   astrads-cluster-9f1  true
+
+NAMESPACE        NAME                                                                                SEQUENCE COMPONENT      EVENT                   TRIGGER   PRIORITY  SIZE   STATE
+astrads-system   astradsautosupport.astrads.netapp.io/controlplane-adsclustercreatesuccess-20211214t 9        controlplane   adsclustercreatesuccess k8sEvent  notice    0      uploaded
+astrads-system   astradsautosupport.astrads.netapp.io/controlplane-daily-20211215t0                  15       controlplane   daily                   periodic  notice    0      uploaded
+astrads-system   astradsautosupport.astrads.netapp.io/controlplane-daily-20211216t0                  20       controlplane   daily                   periodic  notice    0      uploaded
+astrads-system   astradsautosupport.astrads.netapp.io/storage-callhome.dbs.cluster.cannot.sync.blocks 10      storage        callhome.dbs.cluster.cannot.sync.blocks   firetapEvent   emergency   0      uploaded
+
+NAMESPACE        NAME                                  ADSCLUSTER          VALID PRODUCT          EVALUATION ENDDATE    VALIDATED
+astrads-system   astradslicense.astrads.netapp.io/e0   astrads-cluster-9f1 true  Astra Data Store true       2022-02-07 2021-12-16T20:43:23Z
+----
+. 使用其中一個簡短名稱來顯示叢集中磁碟區的目前狀態：
++
+[listing]
+----
+kubectl get adsvo -A
+----
++
+回應：
+
++
+[listing]
+----
+NAMESPACE        NAME       SIZE   IP               CLUSTER                   CREATED
+astrads-system   test234    21Gi   172.25.138.109   astrads-cluster-9f1c99f   true
+astrads-system   test2345   21Gi   172.25.138.111   astrads-cluster-9f1c99f   true
+----
+
+
+
+
+== 使用KECBECVL副檔名上的說明選項
+
+「kubectl astrads」命令包含一個「-h」交換器、可提供使用方法和標記文件、方便您使用。
+
+. 顯示Astra Data Store preview kubecll副檔名中所有命令的說明：
++
+[listing]
+----
+kubectl astrads -h
+----
++
+回應：
+
++
+[listing]
+----
+A kubectl plugin for inspecting your AstraDS deployment
+
+Usage:
+  astrads [command]
+
+Available Commands:
+  asup        Manage AutoSupport
+  clusters    Manage clusters
+  drives      Manage drives in a cluster
+  faileddrive Manage drive replacement in a cluster
+  help        Help about any command
+  license     Manage license in the astrads cluster
+  maintenance Manage maintenance status of a node
+  monitoring  Manage Monitoring Output
+  nodes       Manage nodes in a cluster
+
+Flags:
+      --as string                      Username to impersonate for the operation
+      --as-group stringArray           Group to impersonate for the operation, this flag can be
+                                         repeated to specify multiple groups.
+      --cache-dir string               Default HTTP cache directory
+                                         (default "/u/arda/.kube/http-cache")
+      --certificate-authority string   Path to a cert file for the certificate authority
+      --client-certificate string      Path to a client certificate file for TLS
+      --client-key string              Path to a client key file for TLS
+      --cluster string                 The name of the kubeconfig cluster to use
+      --context string                 The name of the kubeconfig context to use
+  -h, --help                           help for astrads
+        --insecure-skip-tls-verify       If true, the server's certificate will not be checked
+                                         for validity. This will make your HTTPS connections insecure
+        --kubeconfig string              Path to the kubeconfig file to use for CLI requests.
+    -n, --namespace string               If present, the namespace scope for this CLI request
+        --request-timeout string         The length of time to wait before giving up on a single
+                                         server request. Non-zero values should contain a
+                                         corresponding time unit (e.g. 1s, 2m, 3h).
+                                         A value of zero means don't timeout requests.
+                                         (default "0")
+    -s, --server string                  The address and port of the Kubernetes API server
+        --token string                   Bearer token for authentication to the API server
+        --user string                    The name of the kubeconfig user to use
+----
+. 如需命令的詳細資訊、請使用「astrads [command]-help]。
++
+[listing]
+----
+kubectl astrads asup collect --help
+----
++
+回應：
+
++
+[listing]
+----
+  Collect the autosupport bundle by specifying the component to collect. It will default to manual event.
+
+  Usage:
+    astrads asup collect [flags]
+
+  Examples:
+    # Control plane collection
+      kubectl astrads collect --component controlplane example1
+
+      # Storage collection for single node
+      kubectl astrads collect --component storage --nodes node1 example2
+
+      # Storage collection for all nodes
+      kubectl astrads collect --component storage --nodes all example3
+
+      # Collect but don't upload to support
+      kubectl astrads collect --component controlplane --local example4
+
+      NOTE:
+      --component storage and --nodes <name> are mutually inclusive.
+      --component controlplane and --nodes <name> are mutually exclusive.
+
+    Flags:
+      -c, --component string     Specify the component to collect: [storage , controlplane , vasaprovider, all]
+      -d, --duration int         Duration is the duration in hours from the startTime for collection
+                                   of AutoSupport.
+                                   This should be a positive integer
+      -e, --event string         Specify the callhome event to trigger. (default "manual")
+      -f, --forceUpload          Configure an AutoSupport to upload if it is in the compressed state
+                                   and not
+                                   uploading because it was created with the 'local' option or if
+                                   automatic uploads of AutoSupports is disabled
+                                   at the cluster level.
+      -h, --help                 help for collect
+      -l, --local                Only collect and compress the autosupport bundle. Do not upload
+                                   to support.
+                                   Use 'download' to copy the collected bundle after it is in
+                                   the 'compressed' state
+           --nodes string          Specify nodes to collect for storage component. (default "all")
+      -t, --startTime string     StartTime is the starting time for collection of AutoSupport.
+                                   This should be in the ISO 8601 date time format.
+                                   Example format accepted:
+                                   2021-01-01T15:20:25Z, 2021-01-01T15:20:25-05:00
+      -u, --usermessage string   UserMessage is the additional message to include in the
+                                   AutoSupport subject.
+                                   (default "Manual event trigger from CLI")
+----
+

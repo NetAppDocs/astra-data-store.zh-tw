@@ -1,0 +1,1022 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="e53566a3d4b03bb3bb38c32ee32acedb" category="summary">NetApp以多種方式支援Astra Data Store預覽。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store預覽帳戶可透過網路票務取得遠端技術支援。</block>
+  <block id="f5291aae1c11df631ccc337d79334351" category="doc">自動支援監控</block>
+  <block id="d3002c3c5bd6594f90c9f3ba7b8c6c09" category="paragraph">此功能可監控Astra Data Store預覽系統的執行時間和資訊、並將訊息傳送給NetApp支援部門。AutoSupport視您的組態而定、您可以監控這些系統元件：</block>
+  <block id="650717c72d7a99e6505592f83821e4ed" category="list-text">控制面</block>
+  <block id="8c4aa541ee911e8d80451ef8cc304806" category="list-text">儲存設備</block>
+  <block id="9028632a1ad8f69c5f424ba9224a7bcd" category="inline-link-macro">Astra Data Store預覽叢集安裝</block>
+  <block id="0c6bf31289bc5bf0b95228b0d2a8ec60" category="inline-link">NetApp支援網站（NSS）</block>
+  <block id="34b3129a0cc4bfe6d36482f72fbceee9" category="paragraph">在期間預設啟用支援AutoSupport <block ref="b8d0fecdbb366e350e2e6df61e978231" category="inline-link-macro-rx"></block> 或者AutoSupport 在叢集套用了某個來源自訂資源（CR）之後。啟用後AutoSupport 、即可自動將S還原（ASUP）套裝組合上傳至<block ref="6030415907234973f3f8d5646d406ab7" category="inline-link-rx"></block> 或可供手動下載。</block>
+  <block id="dae8ace18bdcbcc6ae5aece263e14fe8" category="list-title">選項</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="inline-xref"></block>
+  <block id="023abf142a3991d559ced0ca57282d6a" category="list-text"><block ref="73e64b817c03e14fe2277fa69c7e863e" category="inline-xref-macro-rx"></block></block>
+  <block id="0e670f718cb5e0f313f7a5754b53af80" category="list-text"><block ref="fd89cb1e95c5a94c74489125cde6510b" category="inline-xref-macro-rx"></block></block>
+  <block id="12086876b40161f34ebcda9b4141c63d" category="list-text"><block ref="e2db2b0a425a63f84b57e5abb9f20b22" category="inline-xref-macro-rx"></block></block>
+  <block id="314287d647e9716574bbc7c100fb9867" category="list-text"><block ref="def4bcae3ecda655c7b733ea3980c265" category="inline-xref-macro-rx"></block></block>
+  <block id="1263660ba67e88caf8eb2431d28c44d1" category="list-text"><block ref="c812ac4d7fb1d494d99e57543c82a134" category="inline-xref-macro-rx"></block></block>
+  <block id="5a880b8c445a800acadf32c4ad7af071" category="list-text"><block ref="a71874fb50b79b81cbba98e9c1dfefdf" category="inline-xref-macro-rx"></block></block>
+  <block id="c8259bf35a2bdc9b87f057557d330e25" category="section-title">可觸發及情境AutoSupport</block>
+  <block id="b23b84a773fe2431825b44f4b9bc0ddb" category="paragraph">下列方式觸發了各種套裝組合：AutoSupport</block>
+  <block id="efcf6fe8760b2393a176eae5edd579ed" category="list-text">*定期*：ASUP套裝組合是以在CR中定義的時間間隔建立。</block>
+  <block id="6dddcaa90ae5efda3acfa80c5ea3d08b" category="list-text">*使用者觸發*：您可以手動建立自己的ASUP來查看記錄。</block>
+  <block id="ab453bb9b40d04efb13294adfa92d853" category="list-text">* Coredump *：如果節點上有核心傾印、則會產生ASUP、核心會傳送至NetApp以供進一步調查。</block>
+  <block id="bf0399c5eb2b0f5f3eb0cd0ba5f1130a" category="list-text">*基於呼叫首頁事件*：ASUP是由作業系統的特定呼叫首頁事件所產生。</block>
+  <block id="3302ab6f089dba6c4edfb1215d444440" category="list-text">* Kubernetes事件為基礎*：ASUP是由控制面板中的特定Kubernetes事件所產生。</block>
+  <block id="372fb9362736f0e8d582ec96df84fb6a" category="paragraph">這些觸發案例產生下列AutoSupport 其中一種功能類型：</block>
+  <block id="a1b9b3ffe4b26cb4a38e4dbca38671a7" category="list-text">* ControlPlane AutoSupport Section*：Astra Data Store預覽控制平面記錄和CRS的集合。</block>
+  <block id="b31894ec7a83e74505e86d91ddc53dd0" category="list-text">*儲存AutoSupport 功能*：儲存報告與效能資料的集合。</block>
+  <block id="e50b54ace80e3ce4ca4ed367489ffcbc" category="list-text">*核心傾印AutoSupport 功能*：系統核心傾印的集合。</block>
+  <block id="4d58342c8fbe7548f0680da50eadd915" category="section-title">設定自訂控制面板AutoSupport 的資料收集</block>
+  <block id="63ef41700dec8384fe67a00749f8ca7d" category="paragraph">您可以建立可AutoSupport 報告控制面板事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 <block ref="b8d0fecdbb366e350e2e6df61e978231" category="inline-link-macro-rx"></block>。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步驟</block>
+  <block id="704170cc11bda8cddca282c117836b3a" category="list-text">自訂下列命令以建立控制面板集合CR：</block>
+  <block id="0e06b0da9f80219a18d8739f0120abbd" category="list-text">定義自訂參數：</block>
+  <block id="b29d2ef49a96707c2d8b5968d23c62a8" category="list-text">'&lt;myASUPname&gt;'：AutoSupport 要產生的Setcr名稱。</block>
+  <block id="4eec994b5541d8211d5fe63ef587bf8b" category="list-text">「-e &lt;事件名稱&gt;」：觸發集合的事件名稱。事件名稱應預先定義在component.yaml（安裝於支援控制器）中。</block>
+  <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">範例：</block>
+  <block id="c9fcbda668b713374776401ef822c1e8" category="list-text">視系統需求新增其他參數：</block>
+  <block id="92a4815b61cd107e54a5baa926431efe" category="list-text">「叢集」：在多叢集環境中需要此旗標。</block>
+  <block id="cee7078672c2b41aee5273a73b2b27f2" category="list-text">「-localCollection」：啟用本機收藏。預設值為「假」。</block>
+  <block id="36f3b10b6a20048e99e47d216f11571a" category="list-text">「-forceupload」：啟用強制上傳。預設值為「假」。</block>
+  <block id="3af5eea542f5f2a1367599696b0d68c1" category="list-text">「-retry」：啟用重試。預設值為「假」。</block>
+  <block id="c7e88254029f9cd1420ef53afd3e08fe" category="section-title">設定自訂儲存AutoSupport 功能的收藏</block>
+  <block id="3fb0de2e8be52ea08e0f98a5ce31ab07" category="paragraph">您可以建立AutoSupport 可報告儲存元件事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 <block ref="b8d0fecdbb366e350e2e6df61e978231" category="inline-link-macro-rx"></block>。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：</block>
+  <block id="aa1f065e1e83bd408811c0d6b5def6ad" category="list-text">自訂下列命令以建立儲存集合CR：</block>
+  <block id="685637f8394db77947ca4501d806f8a0" category="paragraph">效能事件範例：</block>
+  <block id="72bb3d88e5af1a36a5333ae707bc5a35" category="list-text">t &lt;ISO_format&gt;-d &lt;hides&gt;'：在指定的時間內、為所有節點收集儲存ASUP。使用標準ISO日期時間格式（「-t」）、以小時為單位的持續時間（「d」）。例如：</block>
+  <block id="46fb87c66087faf2d690569c0074fb91" category="list-text">-nodes&lt;nodename&gt;'：收集指定節點的儲存ASUP。例如：</block>
+  <block id="79b4eb1f989dedc89bda6deb12b79b34" category="list-text">-nodes nodename1、nodename2、nodename3：收集指定節點的儲存ASUP：</block>
+  <block id="7023c4aeddebc994995578d8b53dd967" category="section-title">列出系統中的ASUP</block>
+  <block id="94369fb85acb6fa2be47fe3361d265c9" category="paragraph">使用下列命令、依名稱列出系統中的ASUP：</block>
+  <block id="6d55356ca8cb9b27cfa6e2bb46ebb089" category="paragraph">回應範例：</block>
+  <block id="e5c24e1b7c0879d053fead5eeda95740" category="section-title">下載ASUP產品組合</block>
+  <block id="af20eab0ce8bde78126bef44b877ca8c" category="paragraph">您可以使用此命令下載本機收集的ASUP套裝組合。使用「-o」指定目前工作目錄以外的位置：</block>
+  <block id="e569dc044792d2bf4595c7af9541daed" category="section-title">上傳核心檔案</block>
+  <block id="2fa417be1459dc86d7a81f0505693461" category="paragraph">如果服務當機、AutoSupport 系統會在當機時建立一個包含相關記憶體內容的資訊（ASUP）訊息（稱為核心檔案）。Astra Data Store Preview會自動將ASUP訊息上傳至NetApp Support、但您需要手動上傳核心檔案、使其與ASUP訊息相關聯。</block>
+  <block id="1861872a87cd1bd45477d1bd8bde8fbc" category="list-text">使用下列「kubecll」命令來檢視ASUP訊息：</block>
+  <block id="d0848afd8553c34945705222a97a4553" category="paragraph">您應該會看到類似下列的輸出：</block>
+  <block id="e3e003fbe97f56e5da7b9836f13e40cd" category="list-text">使用下列「kubecll」命令、從ASUP訊息下載核心檔案。使用「-o'」選項來指定下載檔案的目的地目錄。</block>
+  <block id="aef336662f3dd955f1ffe1b4d962e8dd" category="inline-link-macro">取得協助</block>
+  <block id="8bcac861b17be24df6709af819869bde" category="admonition">在極少數情況下、您可能無法下載核心檔案、因為其他核心檔案已經取代。發生這種情況時、命令會傳回「無法stat：無此類檔案或目錄」錯誤。如果看到此錯誤、您可以 <block ref="3739596c2aaab59aab39ba4eae26a099" category="inline-link-macro-rx"></block>。</block>
+  <block id="cdc3fa95d906838557c8a847620eb81b" category="inline-link">NetApp驗證檔案上傳工具</block>
+  <block id="a439a006232750ae691d05d0261a0055" category="list-text">開啟網頁瀏覽器並瀏覽至<block ref="7a5a649adac8f34c2a7fd32a7967050a" category="inline-link-rx"></block>、如果您尚未登入、請輸入您的NetApp支援認證資料。</block>
+  <block id="c22afea75269fa3da9fbdc9995d18a90" category="list-text">選取「*我沒有個案編號*」核取方塊。</block>
+  <block id="acb4ffaf34e8909b437a59a61a13b49b" category="list-text">在*最近的地區*功能表中、選取最靠近您的區域。</block>
+  <block id="ccdb41b7a646fbb51f839a4e474a81cb" category="list-text">選取*上傳*按鈕。</block>
+  <block id="aeb709613322d29961877072452bfe23" category="list-text">瀏覽並選取您先前下載的核心檔案。</block>
+  <block id="d3b3561d6d067e8ee0dccc1a1af988d9" category="paragraph">隨即開始上傳。上傳完成時、會出現一則成功訊息。</block>
+  <block id="9c83e144e5481ac6766f4055e566594d" category="floating-title">如需詳細資訊、請參閱</block>
+  <block id="4be9b50faf5ab46a9d28ac23f7713bec" category="inline-link">如何將檔案上傳至NetApp（需要登入）</block>
+  <block id="3b6bf15bbdfc90c8dc6d6778808539e1" category="list-text"><block ref="3b6bf15bbdfc90c8dc6d6778808539e1" category="inline-link-rx"></block></block>
+  <block id="62270328bca14e3c5f465539f788f727" category="summary">NetApp以多種方式支援Astra Data Store。全年無休提供免費的自助支援選項、例如知識庫（KB）文章和Slack通路。</block>
+  <block id="fabfc25ef8996fd90836e58a4c0b26b6" category="doc">取得協助</block>
+  <block id="d552a345b3d00c6f71959b92aa25ca1b" category="paragraph">NetApp以多種方式支援Astra Data Store預覽。全年無休提供免費的自助服務支援選項、例如知識庫（KB）文章和Slack通路。</block>
+  <block id="30f6976fd56ced2f4cf61b05186ff1c1" category="admonition">您可以取得Astra Data Store預覽的社群技術支援。使用建立案例<block ref="6030415907234973f3f8d5646d406ab7" category="inline-link-rx"></block> 無法用於預覽版本。您可以透過意見反應選項與支援部門聯絡、或使用Slack通路進行自助服務。</block>
+  <block id="975b87a5b34ee0b24e625810de1f893e" category="section-title">自助服務支援選項</block>
+  <block id="6b9b3535d917a5890db4ef00a3718361" category="paragraph">這些選項全年無休免費提供：</block>
+  <block id="51ad2162ed9916cdcbfc1328306dae36" category="inline-link">知識庫（需要登入）</block>
+  <block id="ad73b9e5ef9788348d09f760c02c490b" category="list-text"><block ref="ad73b9e5ef9788348d09f760c02c490b" category="inline-link-rx"></block></block>
+  <block id="8eed336b7ebd92f099ff152efa62f5f1" category="paragraph">搜尋與Astra Data Store預覽相關的文章、常見問題集或中斷修復資訊。</block>
+  <block id="5b6cf869265c13af8566f192b4ab3d2a" category="list-text">文件</block>
+  <block id="9a4d3fdb6af496c18bc70f14153f8c4f" category="paragraph">這是您目前正在檢視的文件網站。</block>
+  <block id="d848bab8e653fc20f34b1c1978752770" category="inline-link">NetApp「Container」Slack通路</block>
+  <block id="2a78d6757f0c5e50314bbac0fd7b7197" category="list-text"><block ref="2a78d6757f0c5e50314bbac0fd7b7197" category="inline-link-rx"></block></block>
+  <block id="43af2a6a35a58993fd484dd742044607" category="paragraph">前往「Container」通路、與同儕和專家交流。</block>
+  <block id="9945b7c9f8a0452d5794aa8f1b4132db" category="list-text">意見反應電子郵件</block>
+  <block id="ddcadc1ed2a47b8718aecd096c744e15" category="paragraph">傳送電子郵件至astra.feedback@netapp.com、讓我們知道您的想法、想法或疑慮。</block>
+  <block id="c5384541d9e6cac27f9cab2bc075e08e" category="inline-link">NetApp知識庫文章</block>
+  <block id="915175f508b5f3177445a98b51f0097f" category="list-text"><block ref="4bd40507b5d2224d965f5d4747d374a9" category="inline-link-rx"></block></block>
+  <block id="36e2bd9e7950f46d3ea6d2bca4c50ba1" category="summary">瞭解如何解決您可能遇到的一些常見問題。</block>
+  <block id="231cf4c70d866b616c21baddaeed0696" category="doc">疑難排解</block>
+  <block id="79c5785e2761673e59d8eea6f1277fe2" category="paragraph"><block ref="79c5785e2761673e59d8eea6f1277fe2" category="inline-link-rx"></block></block>
+  <block id="9cce7a0f3945aa56f21e3dc73f7b5c53" category="summary">您可以使用Astra Control Center使用者介面（UI）來執行Astra Data Store工作。</block>
+  <block id="9d008b99518fac45f7d187af6cdf7b49" category="doc">使用Astra Control Center搭配Astra Data Store預覽</block>
+  <block id="5c44ae2c3fecaf90b28c9365e2a18f93" category="paragraph">您可以使用Astra Control Center使用者介面（UI）來執行Astra Data Store預覽工作。</block>
+  <block id="c74d76591828afc252e7610bdae71ca9" category="section-title">設定Astra Control Center進行Astra Data Store預覽</block>
+  <block id="04141f6e6895167b5976a22e32f00290" category="paragraph">若要使用Astra Control Center UI進行Astra Data Store預覽、您必須完成下列工作：</block>
+  <block id="ae5562b31c4323f309fb889a9b093cdf" category="inline-link">將執行Astra Data Store的基礎Kubernetes叢集新增至Astra Control Center</block>
+  <block id="fc8f50043a90344f7ed3abf976a2c2bf" category="list-text"><block ref="4c0801f62183e0e2f60f1c6b67702af3" category="inline-link-rx"></block>。</block>
+  <block id="75dda14e63e81d459a63d119ddf1df01" category="inline-link">將Astra Data Store預覽新增為Astra Control Center的儲存後端</block>
+  <block id="463b550d7836a6234ad681f2c2eb84f6" category="list-text"><block ref="6ba69dca5449a718fd2d8fff37a9e3af" category="inline-link-rx"></block>。</block>
+  <block id="4e649e66878b3f3b5aec5f752e57b985" category="admonition">如果您新增儲存後端、但沒有具備Astra Data Store預覽功能的Kubernetes叢集、則必須先新增叢集。</block>
+  <block id="2e94174c851b8d4d2427c96e0af4821c" category="section-title">您可以在Astra控制中心做什麼</block>
+  <block id="eb243fd6f95dd4bfb1d1ccb0cca34d9f" category="paragraph">設定Astra Control Center for Astra Data Store預覽之後、您就可以使用Astra Control Center UI來完成下列工作：</block>
+  <block id="882a9f885522357b173d285f48508e0a" category="inline-link">使用Astra Control Center監控Astra Data Store預覽資產的健全狀況</block>
+  <block id="20a4a00ee22fc4ed42dc6dde7ca930a2" category="list-text"><block ref="8cc2b5fb4f2b8a99de3d80d9680561a7" category="inline-link-rx"></block>。</block>
+  <block id="b3566e6d807a064421758708ff05ddc5" category="inline-link">管理Astra Data Store預覽後端儲存設備</block>
+  <block id="c0d07d3b128a5a7d6f60b9e86bf4f804" category="list-text"><block ref="7c89f9f798010106cb6d616702f15231" category="inline-link-rx"></block>。</block>
+  <block id="fb1b2d57a629a279f6ff0d53a5227a85" category="inline-link">監控節點、磁碟和持續磁碟區宣告（PVCS）</block>
+  <block id="13c2044ccdb84b5f13a75cb4056babe7" category="list-text"><block ref="77a980d120eceb0ef7837945f6cac4d0" category="inline-link-rx"></block>。</block>
+  <block id="d13de4a83d7b44c2e65495def8ef1c7b" category="section-title">以取得更多資訊</block>
+  <block id="4b7a1134c870f779c0b8eecedfde4cbf" category="inline-link">Astra系列簡介</block>
+  <block id="c2cc3948cdbda6ce71e4b9eb57f2cb63" category="list-text"><block ref="c2cc3948cdbda6ce71e4b9eb57f2cb63" category="inline-link-rx"></block></block>
+  <block id="3a4b2c66d4bdac6ce0e3340c71a39eda" category="inline-link">Astra Control Center文件</block>
+  <block id="281db70ca8dfcac9ebe6166029058548" category="list-text"><block ref="281db70ca8dfcac9ebe6166029058548" category="inline-link-rx"></block></block>
+  <block id="d2345544e5b85f26908fbbfcea4178f8" category="inline-link">Astra Control API</block>
+  <block id="e84bb7e947a5b25481546110f575734a" category="list-text"><block ref="e84bb7e947a5b25481546110f575734a" category="inline-link-rx"></block></block>
+  <block id="3af93db73b99aaf3e341694343e7f989" category="summary">您可以使用搭配Astra Data Store的kubecl命令來維護叢集。</block>
+  <block id="12ca355b0c012fc5e428b77818d39316" category="doc">管理叢集</block>
+  <block id="dccfc7385a8459db3905293ca31d8c1d" category="paragraph">您可以透過Astra Data Store預覽使用kubecl命令來管理叢集。</block>
+  <block id="27ec3c702a92a11dcf758cfea1abd08f" category="list-text"><block ref="63b70cc1a1cc1ef2d48b82d0f99fbd99" category="inline-xref-macro-rx"></block></block>
+  <block id="3ab6bb8b4346e7149828a717be5f5138" category="list-text"><block ref="1e29c863bc7525a154916f08787ad250" category="inline-xref-macro-rx"></block></block>
+  <block id="26eacaaf63559bf861e3022ecb6de84a" category="list-text"><block ref="df0e18c8da4815d4cb1f63aa721a5430" category="inline-xref-macro-rx"></block></block>
+  <block id="df1c8140731b102d7eda9ae07adf0d06" category="list-text"><block ref="e337a3bd799ea0d3465602eaa898ac0b" category="inline-xref-macro-rx"></block></block>
+  <block id="a711863513c11f3a6d86294acc7be0ba" category="list-title">您需要的是 #8217 ；需要的是什麼</block>
+  <block id="f425bc9b9a4cd4b2207bc5a3ff7a2f1e" category="inline-link-macro">安裝Astra Data Store預覽</block>
+  <block id="320f561fe46d717efd6bede4ccf31772" category="list-text">安裝了kubectl和kubecl-astrads外掛程式的系統。請參閱 <block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block>。</block>
+  <block id="179c07bdb3db1669e2d4e1a337247468" category="section-title">新增節點</block>
+  <block id="9a39cfe3410df3b493ee309248b9a863" category="paragraph">您要新增的節點應該是Kubernetes叢集的一部分、而且其組態應該類似於叢集中的其他節點。</block>
+  <block id="d284e8ebe75ed39c496430b2e6213263" category="list-text">如果新節點的dataIP尚未納入ADSCluster CR、請執行下列步驟：</block>
+  <block id="dcc8b731e63482e766610e7c44274b50" category="list-text">編輯astradscluster CR、並在「ads Data Networks Addresses（廣告資料網路位址）」欄位中新增額外的dataIP：</block>
+  <block id="54472d1da4b0c6eadf8684e846b25dcc" category="paragraph">回應：</block>
+  <block id="034057e29f8eb1feedd93c2bb1f3c021" category="list-text">儲存CR。</block>
+  <block id="bf024c9e7bfc344f7b2e8beaba8eb53f" category="list-text">將節點新增至Astra Data Store預覽叢集：</block>
+  <block id="653c040f4e29a0c02bb862820aea4503" category="list-text">否則、只要新增節點即可：</block>
+  <block id="16e457b8846355beaf7788602b579a97" category="list-text">確認已新增節點：</block>
+  <block id="0b8dd151b58b6bf3c7360c3a78b26e04" category="section-title">將節點置於維護模式</block>
+  <block id="d527387e5ececcd43839b7eb86a061bf" category="paragraph">當您需要執行主機維護或套件升級時、應將節點置於維護模式。</block>
+  <block id="3791a6ae58ebb531548b4b5a1906c3fa" category="admonition">節點必須已是Astra Data Store預覽叢集的一部分。</block>
+  <block id="9ba2170cb6011ac2e6866d48eeee7d09" category="paragraph">當節點處於維護模式時、您無法將節點新增至叢集。在此範例中、我們會將節點「nhcitj1525」置於維護模式。</block>
+  <block id="96ae38b31ba3daa2e5358239c685687b" category="list-text">顯示節點詳細資料：</block>
+  <block id="892cf5da18b48d5c81fecbbacebc26d1" category="list-text">確保節點尚未處於維護模式：</block>
+  <block id="8faad7b19aae28c8f1562134a463288e" category="paragraph">回應（維護模式中沒有節點）：</block>
+  <block id="407875538f0a5a391fa066b78db80f35" category="list-text">啟用維護模式。</block>
+  <block id="f0f5fac9602d88bc27f0edf960dda8b8" category="paragraph">範例：</block>
+  <block id="20ffff966b6d15e3131eac8732b5d367" category="list-text">列出節點。</block>
+  <block id="115e5b2861ab6ca4176365b8e50c0e9f" category="list-text">檢查維護模式的狀態：</block>
+  <block id="a04cd32c3c3950df1d0f802d45f11f13" category="paragraph">在「維護中」模式的開頭是「假」、並變更為「真」。「維護狀態」從「準備維護」改為「就緒維護」。</block>
+  <block id="b058dc0e7d56297138ea75a1af7eb2e8" category="list-text">節點維護完成後、請停用維護模式：</block>
+  <block id="7970cfd813155c614358a18b3df1afd0" category="list-text">確保節點不再處於維護模式：</block>
+  <block id="eb5f70a21af0a4657d2e1ba9f24d1234" category="section-title">更換節點</block>
+  <block id="dd7423a16788f2363740161a60d6ab15" category="paragraph">使用KECBECVL命令搭配Astra Data Store預覽、以取代叢集中故障的節點。</block>
+  <block id="b1e1294486624403d0533e5b77f81b1f" category="list-text">列出所有節點：</block>
+  <block id="4dc1585b3b71bcdfd423771772b26a73" category="list-text">描述叢集：</block>
+  <block id="10c511218ded550813462a399c378e7f" category="list-text">驗證故障節點上的「Node HA（節點HA）」是否標記為「假」：</block>
+  <block id="232d8ee1cd935c222b96ad089509e138" category="list-text">修改astradscluster cr,將「AdsNode Count」的值減至3、以移除故障節點：</block>
+  <block id="89f09133b136e91c07cf22c261722f17" category="list-text">驗證節點是否已從叢集移除：</block>
+  <block id="59dc031f69b69e9710c74b6b626b9484" category="list-text">修改叢集CR、將節點新增至叢集以進行更換。節點數會遞增至4。確認已挑選新節點進行新增。</block>
+  <block id="bbbd86c2ee5337914a858400c6fdb7a2" category="section-title">更換磁碟機</block>
+  <block id="f7f731ad8fc3e94f259d6032d191fe26" category="paragraph">當叢集中的磁碟機故障時、必須儘快更換磁碟機、以確保資料完整性。當磁碟機故障時、您會在叢集CR節點狀態、叢集健全狀況資訊和度量端點中看到故障磁碟機資訊。</block>
+  <block id="9e3dc57f54f2d644be8ac48fe53921a9" category="listing-title">顯示nodeStatuses.driveStatuses中故障磁碟機的叢集範例</block>
+  <block id="3b7be6cf23b8894b5b7543d0892eae78" category="paragraph">故障磁碟機CR會在叢集中自動建立、名稱對應於故障磁碟機的UUID。</block>
+  <block id="8a3067d20951ac8d217fa22953c683f9" category="list-text">使用「kubectl astrads show-replacement」命令列出可能的更換磁碟機、該命令可篩選符合更換限制的磁碟機（未在叢集內使用、未掛載、無分割區、等於或大於故障磁碟機）。</block>
+  <block id="ca6aaabf5c74238b64f1f77fc1078fb1" category="paragraph">若要列出所有磁碟機而不篩選可能的更換磁碟機、請在「show -replacement」命令中新增「-all」。</block>
+  <block id="d2a07928ef8038414bb8906cf0d69aeb" category="list-text">使用「放置」命令、以通過的序號取代磁碟機。命令會完成替換、如果經過「-wait」時間、則會失敗。</block>
+  <block id="125f85ae4d1ff2dd68b6b65a8b46611f" category="admonition">如果使用不適當的「-replaceWith」序號來執行「kubectl astrads故障磁碟機更換」、則會出現類似以下的錯誤：</block>
+  <block id="7be56609286fef3cd86d55bb4e0e047f" category="list-text">若要重新執行磁碟機更換、請使用之前的命令「-force」：</block>
+  <block id="4d03b54a999c73a25dbaddde7e9c292f" category="inline-link-macro">使用kvecll命令管理Astra Data Store預覽資產</block>
+  <block id="54e8c6340515075dc435dcf858c58b51" category="list-text"><block ref="54e8c6340515075dc435dcf858c58b51" category="inline-link-macro-rx"></block></block>
+  <block id="cf12ebbc6fe7b3e21046a7d8c5b3dd5f" category="summary">若要解除安裝Astra Data Store、您必須移除工作負載、繫結、磁碟區、匯出原則、叢集、 授權、部署環境及命名空間。</block>
+  <block id="349659e7f762d959632a5f5df41d5229" category="doc">使用自動指令碼解除安裝Astra Data Store預覽</block>
+  <block id="937f64044c15c693fee5e345b823c82a" category="paragraph">若要解除安裝Astra Data Store預覽和控制面板、您必須移除工作負載、繫結、磁碟區、匯出原則、Astra Data Store叢集、授權、部署環境、以及Astra Data Store預覽命名空間。</block>
+  <block id="beb97c9f432337b4e23df3290f3b8309" category="inline-link-macro">無需指令碼即可解除安裝Astra Data Store預覽</block>
+  <block id="5c47adf11d9827e88343a4bdff0bac3d" category="paragraph">或者、您也可以 <block ref="706dcbdb4a2486772e8b2c9892b534ee" category="inline-link-macro-rx"></block>。</block>
+  <block id="1af4d14d7adc73a0cf26c741f9acf9df" category="list-text">root系統管理權限</block>
+  <block id="e88f686261fc285399abfcc5575efcee" category="paragraph">Astra Data Store預覽解除安裝程序會引導您完成下列高層級步驟：</block>
+  <block id="05424633f0bd5eefeaa3629e5c4d1ae1" category="list-text"><block ref="cab67cc4c69f00a37ed4ae97c08b5a2c" category="inline-xref-macro-rx"></block></block>
+  <block id="0280ad96110683ba834751f8caae2449" category="list-text"><block ref="beebbaa837c0d8f0102332e76a141522" category="inline-xref-macro-rx"></block></block>
+  <block id="334982a7418a341303b6f2204ca1e0fe" category="list-text"><block ref="621e8ae438ccf9d5bd1e2f424bbe8b78" category="inline-xref-macro-rx"></block></block>
+  <block id="85e4b847a7452c3cb60874d0fbf806b3" category="list-text"><block ref="9ae241411ebdbe5b7431af3f015cef5e" category="inline-xref-macro-rx"></block></block>
+  <block id="24bea87dd5f03c9343f832d514436b14" category="list-text"><block ref="116c093341ed114bc7b46f219680ab08" category="inline-xref-macro-rx"></block></block>
+  <block id="27467ea82f97476b92fc774a658ab09e" category="list-text"><block ref="697a537b02595eaae32733e664d168f5" category="inline-xref-macro-rx"></block></block>
+  <block id="701ee8f26f3e562b59500c03be25b586" category="section-title">移除現有的工作負載和繫結</block>
+  <block id="7b657a06e01fc8d3bacd2994dde0affd" category="paragraph">在解除安裝Astra Data Store預覽之前、您必須先移除下列項目</block>
+  <block id="7a5d6c83503f246649c3952c68522edf" category="list-text">所有使用Astra Data Store預覽做為儲存後端的應用程式工作負載</block>
+  <block id="6d1bd33ff6421dfef67de0310c86b001" category="list-text">Trident繫結使用Astra Data Store預覽做為後端</block>
+  <block id="713b0c98704e3691534fea10f986b89a" category="paragraph">如此可確保Kubernetes環境保持乾淨狀態、這在重新安裝時非常重要。</block>
+  <block id="e086eb1f9d8ebe5afe55cc047525fc41" category="section-title">解除安裝Astra Data Store叢集</block>
+  <block id="9528274a95ae00c713f7ba810614b9d9" category="paragraph">若要解除安裝Astra Data Store預覽、您可以使用從NetApp支援網站下載的Astra Data Store tar檔案中的「uninstall.sh」指令碼。</block>
+  <block id="6d3ae875fc703d9d98a6ac916046e2ce" category="list-text">在「manifest」目錄中找到「uninstall.sh」。</block>
+  <block id="dd48706656a492ee3c3d8405bf558d38" category="list-text">執行下列「shed（已執行）”命令：</block>
+  <block id="450614a3dcd37aa64dd16358c06d694c" category="list-text">執行下列指令碼、指出您要解除安裝的項目：</block>
+  <block id="69ff5b52aae09b4aaf83249ef2547012" category="list-text">如果您只想卸載叢集、請輸入「uninstall.sh &lt;cluster &gt;」</block>
+  <block id="c7f603430bf030fb2e62840f2f04800f" category="paragraph">否則、如果您想要解除安裝所有項目、請輸入「uninstall.sh」</block>
+  <block id="d83aa4400bb8ceb7d02f04215363b8fa" category="admonition">在大多數情況下、您都會將所有項目解除安裝。如果您想在之後重新部署叢集、可能只想要解除安裝叢集。</block>
+  <block id="15388dda568bd0771380969281e3fb4d" category="list-text">出現提示時、請確認您要繼續、然後輸入「eraseDDATA」</block>
+  <block id="a9bcd8b892d07fc3f59e83751bb61630" category="section-title">驗證刪除astrad-system命名空間</block>
+  <block id="df660d992b6a3c556d9a2c4e04a32d00" category="paragraph">請確定下列命令沒有傳回任何結果：</block>
+  <block id="742a4dc582c34fb3bbb34a9f3cbeebe6" category="section-title">確保容器未在工作節點上執行</block>
+  <block id="1c04122c814ac034ca14e14adb8c12af" category="paragraph">驗證「fifetap」或「netwd」等容器是否未在工作節點上執行。在每個節點上執行下列項目。</block>
+  <block id="92e02155816dfb43131e8093bd99081a" category="section-title">刪除OpenShift Container Platform資源</block>
+  <block id="e1252e9238ffdc665337569f9a3d15ac" category="paragraph">如果您在Red Hat OpenShift Container Platform（OCP）上安裝Astra Data Store預覽、則可以解除安裝OCP安全內容限制（SCC）和角色繫結資源。</block>
+  <block id="ee9ff707f9f8b22acbf949454f477868" category="paragraph">OpenShift使用安全內容限制（SCC）來控制Pod可以執行的動作。</block>
+  <block id="7e6e334737be518763a54980c076bd52" category="paragraph">完成標準的解除安裝程序之後、請完成下列步驟。</block>
+  <block id="ea3636dddb52a396bae27bd0e6aed06e" category="list-text">移除SCC資源：</block>
+  <block id="fd617944a08113e478bdc0aa81855d1e" category="list-text">移除角色繫結資源：</block>
+  <block id="f40621c004c5b23c3485a800fe73c8df" category="admonition">請忽略這些步驟中的「找不到資源」錯誤。 </block>
+  <block id="2d2b3d157d3e998229a25a7e0b312343" category="list-text">從所有Kubernetes節點移除「/var/lib/kubelet/config.yaml」。 </block>
+  <block id="23f386330fd2090f3c6e9816f5db1c72" category="section-title">Astra Data Store預覽解除安裝程序疑難排解</block>
+  <block id="c18987560174df439a894c56864d83c2" category="paragraph">Kubernetes v1.20中的Astra Data Store預覽解除安裝程序、偶爾會導致Pod處於終止狀態。</block>
+  <block id="8b1fa32151850024119fafb21ccb3d78" category="paragraph">如果發生此問題、請執行下列命令、強制刪除「astrad-system」命名空間中的所有Pod：</block>
+  <block id="81b61a86df10dc2cb308e96040fb3001" category="summary">例如、您可以搭配Astra Data Store使用kubecl命令來設定端點以搭配Conflent使用。</block>
+  <block id="d273de2a7e6e6a63f6353f5a40dccab4" category="doc">設定及監控事件記錄</block>
+  <block id="e1e4be2e0e9d34430d4dead51a9b0d00" category="paragraph">若要監控事件管理系統（EMS）記錄、您可以執行下列高層級工作：</block>
+  <block id="0de641807620f6884634e5c2be424935" category="list-text"><block ref="81fcee92e269c16204175cb82e012cfb" category="inline-xref-macro-rx"></block></block>
+  <block id="58c63f3edc4f001668005eb15ebea250" category="list-text"><block ref="d225a94a27cd5322a26847f79953016b" category="inline-xref-macro-rx"></block></block>
+  <block id="d54ee8ea5a6436047b24aa6453cd273d" category="list-text"><block ref="0f415edabe024849c5f59aa6603d2415" category="inline-xref-macro-rx"></block>。</block>
+  <block id="adb1a7214aa7125992d5a44a62de94d5" category="section-title">在Astra Data Store預覽叢集自訂資源（CR）中設定監控</block>
+  <block id="9d72b006a6d605a65b501b1b03349829" category="paragraph">如果尚未在Astra Data Store預覽叢集CR上設定監控選項、您可以使用「astrads」擴充功能來設定。</block>
+  <block id="90bd1d70191335d705a79fedb6c343b1" category="paragraph">輸入：</block>
+  <block id="5976be1a3647c1d1d6df4ce77cd4c6de" category="paragraph">其中：</block>
+  <block id="592559968efa9408ca73078a0281426c" category="list-text">安裝代理程式的命名空間：輸入監控代理程式的命名空間、這是監控操作員監控NetApp CR的預設名稱。</block>
+  <block id="2c823bca43aea2d1d1f31e9983e361b7" category="list-text">您可以選擇在Docker登錄中設定Fluent或Telegraf影像所在的位置。根據預設、路徑會設為「docker.repo.eng.netapp.com/global/astra`」、您可以變更此路徑。</block>
+  <block id="55d4dcfd496ed26612f1ed4e159ccc06" category="section-title">設定Cloud Insights 功能</block>
+  <block id="0a4b147ab38de7df220f6ee52041f91b" category="inline-link-macro">如何設定NetApp Cloud Insights 解決方案</block>
+  <block id="aeb979a8c81ef5b2987fb3c032221352" category="paragraph">若要檢視記錄、Cloud Insights 可選用設定功能不需使用；不過、使用Cloud Insights 畫面來檢視資料是很有幫助的。請參閱 <block ref="d6cf67ce476502ac807e2e588f6f029e" category="inline-link-macro-rx"></block> 用於Astra Data Store預覽。</block>
+  <block id="a0c8187b710dd8d0521c6fc63ed20869" category="section-title">串流事件記錄至Elastic</block>
+  <block id="d9d6ed14c600162e996a2b655fe76a5b" category="paragraph">若要將EMS事件和其他Pod記錄串流至第三方端點（例如Elastic）、請使用「astrads」延伸功能。</block>
+  <block id="4af77be2edf71f87d3321c846afd5117" category="admonition">彈性主機名稱可以是IP位址。</block>
+  <block id="eef59217310b72030be060a13a0bc33a" category="summary">以下是部署可搭配Astra Data Store使用的測試應用程式的步驟。</block>
+  <block id="6f8b987c31a2eded2819babafcfa74aa" category="doc">部署測試應用程式</block>
+  <block id="6287ae11a59823f19dbadd6558fc6297" category="paragraph">以下是部署可搭配Astra Data Store預覽使用的測試應用程式的步驟。</block>
+  <block id="c3a80e48f1fb8205acab156248cbc507" category="paragraph">在此範例中、我們使用Helm儲存庫部署Bitnami的MongoDB圖表。</block>
+  <block id="d2b286733c622d3734be88246d4edcd2" category="list-text">Astra Data Store預覽叢集已部署及設定</block>
+  <block id="d9e5235644553d4cc003fe80e853e3d9" category="list-text">Trident安裝完成</block>
+  <block id="bf3f82feed370a6a3c6201a53bb8bbbc" category="list-text">從Bitnami新增Helm repo：</block>
+  <block id="8df29821dfcdcec588d7bdf64a0c7f33" category="list-text">部署MongoDB：</block>
+  <block id="7ea5c1d0e18468e3cd2a62ff24d97d28" category="list-text">檢查MongoDB Pod的狀態：</block>
+  <block id="93e7f0a6f24d71ade0739043509173b9" category="list-text">驗證MongoDB使用的持續磁碟區宣告（PVc）：</block>
+  <block id="43be430aa45a396e22bd22a2b6621ff9" category="list-text">使用kubecl命令「Get astradsvolume」列出磁碟區：</block>
+  <block id="8967ae8bc51f2fd95d1b63331e33ac4b" category="list-text">使用kubecl命令「desscribe astradsvolume」來描述磁碟區：</block>
+  <block id="211e9e8a4cf9ff3c00e04155da6f31d9" category="summary">您可以使用Prometheus和Grafana來監控Astra Data Store資產。</block>
+  <block id="00e0d60d6c6845e2c5c19961e437a70c" category="doc">使用Prometheus和Grafana監控指標</block>
+  <block id="7b132651c6be946cb45ebbc5729d0fae" category="paragraph">您可以使用Prometheus和Grafana監控Astra Data Store預覽指標。您可以設定Prometheus、從Astra Data Store預覽Kubernetes叢集度量端點收集度量、也可以使用Grafana來視覺化度量資料。</block>
+  <block id="90895f68c3d61650306b9827ff7c6324" category="list-text">請確定您已在Astra Data Store預覽叢集或其他可與Astra Data Store預覽叢集通訊的叢集上下載並安裝Prometheus和Grafana套件。請依照正式文件中的指示安裝每個工具：</block>
+  <block id="88b8613d339947a37e41b1f514dcc42c" category="inline-link">安裝Prometheus</block>
+  <block id="9f656569b5b0db7993b62a5b0072ded3" category="list-text"><block ref="9f656569b5b0db7993b62a5b0072ded3" category="inline-link-rx"></block></block>
+  <block id="3de41522a35f102d48905bc53fd5c383" category="inline-link">安裝Grafana</block>
+  <block id="0e21520e616fa6a17ae2ececc6c27419" category="list-text"><block ref="0e21520e616fa6a17ae2ececc6c27419" category="inline-link-rx"></block></block>
+  <block id="a78f5549cd86895c64aa29975a576b48" category="list-text">Prometheus和Grafana需要能夠與Astra Data Store預覽Kubernetes叢集通訊。如果未在Astra Data Store預覽叢集上安裝Prometheus和Grafana、您必須確保它們能與Astra Data Store預覽叢集上執行的度量服務通訊。</block>
+  <block id="7119175e2ec3286002664b430cbc1c19" category="section-title">設定Prometheus</block>
+  <block id="cd93c151a525dff780b53bdf1dee4c20" category="paragraph">Astra Data Store預覽會在Kubernetes叢集中的TCP連接埠9341上公開度量服務。您必須設定Prometheus、才能從此服務收集指標。</block>
+  <block id="262824fa21333665f816f40f8094f64e" category="list-text">編輯Prometheus安裝的「Prometheus.yml」組態檔案。</block>
+  <block id="73df1fcf9d0ed4ea97560857f6173bd5" category="list-text">新增指向Astra Data Store預覽服務名稱及其連接埠的服務目標。例如：</block>
+  <block id="4ce6645d84fcfdc26a06bbcb3cb2200e" category="list-text">啟動Prometheus服務。</block>
+  <block id="e91d9af5ad925c5de9147c893effa4d4" category="section-title">設定Grafana</block>
+  <block id="fd629abff45ee23c6bdc73d9d91a66a4" category="paragraph">您可以設定Grafana以顯示Prometheus收集的指標。</block>
+  <block id="51b365774144e20a83d88f3a9cd021ae" category="list-text">編輯Grafana安裝的「datasourses.yaml」組態檔。</block>
+  <block id="c3aa2019ef2104794c22ebca3d9699af" category="list-text">將Prometheus新增為資料來源。例如：</block>
+  <block id="72d2326d0f93988ea6c944cc1f71e4d7" category="list-text">啟動Grafana服務。</block>
+  <block id="5b1afbcfd691161f9517b45cd0d4faee" category="inline-link">開始使用</block>
+  <block id="d59dfb8e877e5af488f89204ccb03248" category="list-text">請依照Grafana文件中的指示進行<block ref="1cf3392e814c31461defe80ff0d63d38" category="inline-link-rx"></block>。</block>
+  <block id="9ef9f6e92b5af42394c5f060e5252493" category="section-title">匯入Grafana儀表板範本</block>
+  <block id="b7941e6fc2c5f63e8515ed63676c7d70" category="paragraph">您下載以安裝Astra Data Store預覽的套裝組合檔案包含Grafana儀表板範本檔案、可從Grafana匯入。這些儀表板範本可協助您查看Astra Data Store預覽中可用的度量類型、以及如何檢視這些資料。</block>
+  <block id="1783d559dc171f13beba29b4df9ac9d9" category="list-text">開啟Astra Data Store preview ".tar.gz"套裝組合。</block>
+  <block id="7aa7363407fe50db6732fda1c3546635" category="list-text">開啟「manifest」目錄。</block>
+  <block id="3da799470552bc99d72c76674914bc47" category="list-text">擷取「grafana_cluster．json」和「grafana_volume．json」檔案。</block>
+  <block id="7b2ccb49d7bc87351cf57d3e0c234471" category="inline-link">將儀表板範本檔案匯入至Grafana</block>
+  <block id="2d44692dc4e76f18d1b4df631a84302e" category="list-text">使用Grafana網路UI、<block ref="2cc34fe35a733f5131c1ab2d18b17aaf" category="inline-link-rx"></block>。</block>
+  <block id="3241ac56c7ab3234f3b6520c215096f2" category="summary">您可以直接使用kubectl命令與Astra Data Store搭配使用。</block>
+  <block id="a330f305f7c30e2f8e3640e572a7e00f" category="paragraph">您可以使用kubectl命令和Kubernetes API擴充功能來管理Astra Data Store預覽資產。</block>
+  <block id="01697c467d432c8756175875af6f7862" category="paragraph">若要瞭解如何部署範例應用程式、請參閱 <block ref="643aaff8c958edf6a7fa070276276697" category="inline-link-macro-rx"></block>。</block>
+  <block id="b48b2370de15bd20dd54023e2a0a1442" category="paragraph">如需下列叢集維護資訊、請參閱 <block ref="dd990211a19c702186be77590654645f" category="inline-link-macro-rx"></block>：</block>
+  <block id="e7ae093d60604d8075bb28b03b76a133" category="list-text">您安裝的Astra Data Store預覽KECBECVL外掛程式 <block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block></block>
+  <block id="c793b48779942190a7f434d7b11faf53" category="section-title">列出用於Astra Data Store預覽的Kubernetes自訂API資源</block>
+  <block id="ca0efae80c84ccf77b3a141422f85bbb" category="paragraph">您可以使用Kubernetes內部的kubectl命令、與Astra Data Store預覽叢集互動並觀察其狀態。</block>
+  <block id="41dda97ca4546c6156bdecc752fdf8fa" category="paragraph">「API-resources'」命令中列出的每個項目都代表Kubernetes自訂資源定義（CRD）、Astra Data Store預覽可在內部用於管理叢集。</block>
+  <block id="ac50ab0e5a87902e1394b248458e29ae" category="paragraph">此清單特別有助於取得每個Astra Data Store預覽物件的快取名稱、以減少您的輸入、如稍後所示。</block>
+  <block id="1dec7ecfdf428406458e7f0ea393e97b" category="list-text">顯示用於Astra Data Store預覽的Kubernetes自訂API資源清單：</block>
+  <block id="1c112875da75de7896516e2619bd9694" category="list-text">若要在Kubernetes叢集中取得所有目前的Astra Data Store預覽物件、請使用「kubectl Get ads -As」命令：</block>
+  <block id="4291d7cb1313fc7e7a2bdee4b3e37b8f" category="list-text">使用其中一個簡短名稱來顯示叢集中磁碟區的目前狀態：</block>
+  <block id="b10460ccd4dab92425e3899834cff4ba" category="section-title">使用KECBECVL副檔名上的說明選項</block>
+  <block id="4db582654bba3ae1263983cc7355e3dc" category="paragraph">「kubectl astrads」命令包含一個「-h」交換器、可提供使用方法和標記文件、方便您使用。</block>
+  <block id="60044b26f73be94c6598603c14ab55d4" category="list-text">顯示Astra Data Store preview kubecll副檔名中所有命令的說明：</block>
+  <block id="3962691e8a7c8b7a00673c9035950515" category="list-text">如需命令的詳細資訊、請使用「astrads [command]-help]。</block>
+  <block id="468558a9981278b44ae6cb6ec9f51a45" category="doc">無需指令碼即可解除安裝Astra Data Store預覽</block>
+  <block id="9f72a703d568eb4188aacd99d7e14ab3" category="paragraph">若要在不使用自動指令碼的情況下手動解除安裝Astra Data Store預覽、您將會移除工作負載、繫結、磁碟區、匯出原則、叢集、 授權、部署環境及Astra Data Store預覽命名空間。</block>
+  <block id="dda8e2faeb675dbd55f4dc4333ca9101" category="inline-link-macro">使用指令碼解除安裝Astra Data Store預覽</block>
+  <block id="4d4331643a6c4cdb1d3cff4333651acf" category="paragraph">或者、您也可以 <block ref="10f20f8f0c8029fb16615ac874dc8e91" category="inline-link-macro-rx"></block>。</block>
+  <block id="74c7f82da4ac975c826c5ae87e571b3e" category="list-text"><block ref="0aa963d1fa0308215678c4fc347a4f29" category="inline-xref-macro-rx"></block></block>
+  <block id="cacd3064543c7be5a9b55ffd25a40141" category="list-text"><block ref="d494c9949a6c752fae5f375dcac6bb64" category="inline-xref-macro-rx"></block></block>
+  <block id="4b41569e5e1165e5cfb321225dc3ea12" category="list-text"><block ref="35d6f1edf9ca8898423c009341c23fb1" category="inline-xref-macro-rx"></block></block>
+  <block id="563b0034df7b9c29d189cfa04d6244d4" category="section-title">解除安裝Astra Data Store預覽叢集和控制面板</block>
+  <block id="9f5b1d3ae9147b57f79e1ece23b92700" category="paragraph">請依照下列步驟手動解除安裝Astra Data Store預覽。</block>
+  <block id="18f297cd2cf5f61e0d2e236b72408d65" category="section-title">刪除磁碟區並匯出原則</block>
+  <block id="be76d934b781f3ee17c195e53deaa2ed" category="paragraph">刪除叢集之前、您應該刪除Astra Data Store預覽磁碟區和匯出原則。</block>
+  <block id="aab34a85b3bc4cdb35a9e59425861289" category="admonition">如果您未先刪除磁碟區和匯出原則、叢集刪除程序會暫停、直到Astra Data Store預覽磁碟區物件遭到刪除為止。在開始刪除叢集之前移除這些項目會更有效率。</block>
+  <block id="54b956b8b0644f1e413223dc1aee2b0e" category="list-text">刪除磁碟區：</block>
+  <block id="c93baa78349985fc4b5eeeffc09a33f8" category="list-text">刪除匯出原則：</block>
+  <block id="7563aa62543c07a40f533dd0e0ae2014" category="section-title">刪除Astra Data Store預覽叢集</block>
+  <block id="d7c0a4c83a2044822dabefb932c42b79" category="paragraph">刪除叢集只會刪除Astra Data Store預覽叢集物件自訂資源（CR）以及叢集範圍的資源。</block>
+  <block id="8dbff560b4fb498559cc825c3ba8de41" category="admonition">即使刪除叢集、運算子、nodeinfo Pod和叢集控制器（即Kubernetes範圍內的資源）仍會保留。</block>
+  <block id="b3178373b149d14e46085126525f79d6" category="paragraph">刪除叢集也會從節點解除安裝基礎作業系統、這會停止「fifetap」和「netwd」服務。</block>
+  <block id="ed4aa92f77103f4b2c27a6ee04599f0e" category="paragraph">卸載程式需要大約一分鐘的時間才能完成。然後、Astra Data Store預覽叢集範圍內的資源便會開始移除。</block>
+  <block id="cca5f52fa80eb378d8e9e4499d5a49f7" category="list-text">刪除叢集：</block>
+  <block id="224bb9d3e58164d87f1e7b1480ff3195" category="section-title">刪除授權</block>
+  <block id="8c26fafc2eb158f8e1dbc5b78f67860a" category="list-text">對叢集中的每個工作節點執行SSH、並驗證「fifetap」或「netwd」未在工作節點中執行。</block>
+  <block id="922f0882e69507614b86bbe67722122a" category="list-text">刪除Astra Data Store預覽授權：</block>
+  <block id="9524d1588970b8601d9a6c11fbff86d2" category="section-title">刪除Astra Data Store預覽安裝</block>
+  <block id="89471d1ad77aea625df3d06c6b912a6f" category="paragraph">刪除叢集中的控制器、運算子、命名空間和支援Pod。</block>
+  <block id="b1449c85674b9416a7aad84e20c0bc41" category="list-text">刪除Astra Data Store預覽安裝物件：</block>
+  <block id="172b5b6fca79ce433371dc5198dee6b3" category="list-text">刪除資料儲存示範與所有Astra Data Store預覽控制器資源：</block>
+  <block id="a7285e1a3509c614618f679da04ecd63" category="list-text">刪除剩餘成品和運算子yaml檔案：</block>
+  <block id="c4bc5ab0b4775b4a9c0dc56e5a147ad0" category="admonition">請忽略這些步驟中的「找不到資源錯誤」。 </block>
+  <block id="9a92a0354fa775cc894dda9e1e38f27b" category="section-title">手動刪除範例</block>
+  <block id="b6e1c19fae1f4cf0d8f94a34c5986b69" category="paragraph">以下是執行手動解除安裝指令碼的範例。</block>
+  <block id="4d8d4f4d8e18c7039f1e4975914b919f" category="summary">您可以使用Cloud Insights 不實的數據資料來監控Astra Data Store資產。</block>
+  <block id="9006a134fd1870aca1877d5e1e68dae9" category="doc">利用功能表監控指標Cloud Insights</block>
+  <block id="611bcab913954802c9283b2b3ed655ea" category="paragraph">您可以使用Cloud Insights 支援功能來監控Astra Data Store預覽指標。</block>
+  <block id="7c95cb60c145e1daaa8e09345449040e" category="list-text"><block ref="eeb4d4245ab5067a874c0b6b31a63735" category="inline-xref-macro-rx"></block></block>
+  <block id="b4c14db8eec92ee84594deeb518a4976" category="list-text"><block ref="2d483405481d39b9a6c7adc5f6fbf7e7" category="inline-xref-macro-rx"></block></block>
+  <block id="ecb31804db885e53cbb56c093d6c0d23" category="list-text"><block ref="3db1750a737cabf57020a57538c06b10" category="inline-xref-macro-rx"></block></block>
+  <block id="4efd15a2c3c529389df09953218abde1" category="list-text"><block ref="be7c6a43d5af7285cc473ab6ceb17a78" category="inline-xref-macro-rx"></block></block>
+  <block id="c5b465091c9b07cf9c61a8e84e738e0b" category="list-text"><block ref="d2580e21da8a2e295d08a3fb642259f0" category="inline-xref-macro-rx"></block></block>
+  <block id="76a54526b50db93a67991b9df579b40e" category="inline-image-macro">顯示Astra Data Store指標Cloud Insights</block>
+  <block id="74cf95137df35241bf62c4cf6aaa0a33" category="paragraph">以下是顯示在畫面上的Astra Data Store預覽指標範例Cloud Insights ：<block ref="b65cc9dd5d7dd9b89d038ad2252a3b1c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="712f099047cda3cd74ff8f01de43d978" category="paragraph">您也可以使用、顯示Astra Data Store預覽中產生的度量清單 <block ref="00ffaabd9466e38e21fd83d76092ff60" category="inline-xref-macro-rx"></block>。</block>
+  <block id="4b132e0e0c60c6487aaf1e8a8b4b4daf" category="section-title">完成Cloud Insights 連線先決條件工作</block>
+  <block id="3f87463fbb506d4f0516867e384903e8" category="paragraph">在將Astra Data Store與Cloud Insights 支援功能整線之前、您必須先完成下列工作：</block>
+  <block id="7b67f0c7b487cbbd9d0de335853f47bc" category="inline-link-macro">安裝Astra Data Store監控操作員</block>
+  <block id="6dedadcf69af735efd40c0adf449157c" category="list-text"><block ref="c369dcf4e21885768bae8a032bc23010" category="inline-link-macro-rx"></block> 這是Astra Data Store預覽安裝說明的一部分。</block>
+  <block id="5885997e518dde2f5740ce73f16e6ad5" category="inline-link-macro">安裝kubecl-astrads二進位檔</block>
+  <block id="45c6d9e32db908ddd56d04c07d49c401" category="list-text"><block ref="bfb34ca8335b0b73a54237f9edc747d4" category="inline-link-macro-rx"></block> 這是Astra Data Store預覽安裝說明的一部分。</block>
+  <block id="e6ba49b0d11a72603e691022f17a15ab" category="inline-link">建立Cloud Insights 一個不一樣的帳戶</block>
+  <block id="de6bf4315ca097a0bda1ff06c7c49a20" category="list-text"><block ref="e1e29d7386d2d73bd3f1ef7e80229929" category="inline-link-rx"></block>。</block>
+  <block id="1dad80a4e0ed05870800cf83e046f731" category="list-text">請確認下列命令可用：「awk、curl、grep」和「jq」</block>
+  <block id="284dc6d1de61ec5c2a96db8bc40dd3ab" category="paragraph">收集下列資訊：</block>
+  <block id="24437864eef7531173e2d2270e155f21" category="list-text">* Cloud Insights 具備類別讀寫權限的API存取權杖*：擷取單元、資料收集、資料擷取和記錄擷取。這將用於讀取/寫入作業、設定擷取單位、以及設定資料擷取程序。</block>
+  <block id="665fae15e5d8b77388e1f6f3894519c3" category="list-text">* Kubernetes API伺服器IP位址和連接埠*。這是用來監控Astra Data Store預覽叢集。</block>
+  <block id="9d04fb2bf64ae7e0296e32806229a724" category="list-text">* Kubernetes API權杖*。這是用來呼叫Kubernetes API。</block>
+  <block id="935cc921263d28418fb73a354cd41efd" category="list-text">*持續磁碟區組態*。有關如何配置持續磁碟區的資訊。</block>
+  <block id="99e77960ebd5aad3286059bfbd0615c5" category="section-title">擷取單元儲存</block>
+  <block id="8ebcaa8a2aa9767eae1ff42756477e57" category="paragraph">擷取單元需要三個持續磁碟區來儲存安裝檔案、組態資料和記錄。監控操作員使用預設儲存類別來建立持續的Volume宣告。您可以在執行安裝程式指令碼時、使用「-s」選項來指定不同的儲存類別名稱。</block>
+  <block id="2d71aa866fd6e440cf6290ebb9f988be" category="paragraph">如果您的Kubernetes叢集沒有儲存資源配置程式（例如NetApp Trident）、您可以在執行安裝程式指令碼時、使用「-r」選項來提供本機檔案系統路徑。設定「-r」選項時、安裝程式指令碼會在所提供的目錄內建立三個持續磁碟區。此目錄需要至少150 GB的可用空間。</block>
+  <block id="3d3a08f39e79301ab5c0cdfa66b5b7ff" category="section-title">下載並執行安裝指令碼</block>
+  <block id="ce434fffb15ebd4de5a7b6cd1a60eecb" category="paragraph">提供Bash指令碼、可透過監控操作員啟用Astra Data Store預覽監控功能。Cloud Insights安裝指令碼會安裝擷取單元、其中含有Astra Data Store Collector、Telegraf代理程式及Fluent位元代理程式。</block>
+  <block id="c36a5ac3e36a3f3614c8e101f10af370" category="paragraph">下載時、將會在安裝程式指令碼中內嵌選定的「更新網域名稱」和「選定的更新API存取權杖」Cloud Insights Cloud Insights 。</block>
+  <block id="9d4660ed840630e640b31ec3c061e7bc" category="paragraph">然後、會以下列方式傳送指標：</block>
+  <block id="3adb3d8a32b42a2857ad4c4b8a9003a6" category="list-text">Telegraf會將指標傳送到Cloud Insights 這個數據湖。</block>
+  <block id="40c73fe92317526aa4df3d36fd3ad73d" category="list-text">Fluent位元會將記錄傳送至記錄擷取服務。</block>
+  <block id="2c6bbc18ee7837963ff00fc80383b96e" category="section-title">顯示安裝程式指令碼說明</block>
+  <block id="062a54c44bdfd9858c8054292864b1a5" category="paragraph">安裝程式指令碼的完整說明文字如下所示：</block>
+  <block id="1f381d1e7d5352848c4005ed024d0548" category="paragraph">顯示安裝程式指令碼說明文字：</block>
+  <block id="544bfaab1cf7bfdf8d87b2a8985db6fd" category="section-title">執行安裝指令碼</block>
+  <block id="62e3ff407f1c5be1f52dc2ff6bf6ea49" category="list-text">如果Cloud Insights 您還沒有這個帳戶、請建立一個這個帳戶。</block>
+  <block id="f5f5c23c1738f3c9d968460a7922f3de" category="list-text">登入Cloud Insights 到</block>
+  <block id="94c971acbf0b49c19d73a3f5dbe825f8" category="list-text">在「支援資料」功能表中、按一下「*管理*」&gt;「*資料收集器*」Cloud Insights 。</block>
+  <block id="2270d720d24e785df27898c7da44a849" category="list-text">按一下「*+資料收集器*」以新增收集器。</block>
+  <block id="b3cf4c5680f339b50263248f2dc48379" category="inline-image-macro">顯示Astra Data Store方塊Cloud Insights</block>
+  <block id="866756ca1b4623d0fb04ca4b14daa435" category="paragraph"><block ref="866756ca1b4623d0fb04ca4b14daa435" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0064fffa49fa46977bec11c251364b0a" category="list-text">按一下「* Astra Data Store*」方塊。</block>
+  <block id="fc09f2223645935b2fa19867a3a7d89f" category="list-text">選取正確Cloud Insights 的「循環API」存取權杖、或建立新的權杖。</block>
+  <block id="70830da013f2c90eadbbf13f0eea52ad" category="list-text">請依照指示下載安裝程式指令碼、更新權限、然後執行指令碼。</block>
+  <block id="f98f8e73d564dde8a48c2ec342a8f9cc" category="paragraph">此指令碼包含Cloud Insights 您的URL、以及所選Cloud Insights 的循環API存取權杖。</block>
+  <block id="e9cb0fa56b60ddf0f40cb6d55732a359" category="inline-image-macro">顯示Astra Data Store安裝頁面Cloud Insights</block>
+  <block id="7b0669fbc22af2b3bf66ea2884c43b85" category="paragraph"><block ref="7b0669fbc22af2b3bf66ea2884c43b85" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e9b4c864cce989f3d20b0b6aeb60895a" category="list-text">指令碼完成後、按一下*完成設定*。</block>
+  <block id="5b2bcd3ee1bf241ef578bd747aaa2275" category="paragraph">安裝指令碼完成後、Astra Data Store收集器會出現在資料集區清單中。</block>
+  <block id="60afd5a6ed383f75d7a48ec9267857a4" category="admonition">如果指令碼因為錯誤而結束、您可以在錯誤解決之後再次執行。如果您的環境未使用預設設定、指令碼可支援其他參數、例如監控操作員命名空間和Kubernetes API伺服器連接埠。請使用「./cloudinsights-ads-monitoring.sh -h」中的「-h」選項查看使用量和說明文字。</block>
+  <block id="ce088431d95196ba5e34a00a7b33a554" category="paragraph">安裝指令碼會在組態成功時產生類似的輸出：</block>
+  <block id="20d6c8958970fb1a2ce1a95613e7665b" category="section-title">代理程式CR範例</block>
+  <block id="445c2dfab85f0763a057d90aef225a43" category="paragraph">以下是執行安裝程式指令碼後、「monitoring NetApp」代理程式CR的外觀範例。</block>
+  <block id="23dd88d71d7767914d0ba74ce09182b0" category="section-title">編輯Cloud Insights 此鏈接</block>
+  <block id="4dce790e0705b733aeab27193373f151" category="paragraph">您稍後可以編輯Kubernetes API權杖或Cloud Insights 是使用此功能的循環API存取權杖：</block>
+  <block id="94c3a6521fc4a57866841e68413f5f21" category="list-text">如果您想要更新Kubernetes API權杖、您應該從Cloud Insights 這個UI編輯Astra Data Store收集器。</block>
+  <block id="bd07b3393af79a48c0a0b1e42df77832" category="list-text">如果您想要更新Cloud Insights 遙測和記錄所用的循環API存取權杖、您應該使用kubectl命令來編輯監控操作員CR。</block>
+  <block id="38c3b25ebad55273cd701d86d7c5674d" category="section-title">更新Kubernetes API權杖</block>
+  <block id="27322a77dff94e81f835410f4584b839" category="list-text">選取*管理*&gt;*資料收集器*以存取「資料收集器」頁面。</block>
+  <block id="9e23ceb78a6420f20917e3be85d18084" category="list-text">尋找Astra Data Store叢集的項目。</block>
+  <block id="2a3e436e3df2f6c013a096178e37bd12" category="list-text">按一下頁面右側的功能表、然後選取*編輯*。</block>
+  <block id="cf39a76494d7973b947bf14137f64a6a" category="list-text">使用新值更新Kubernetes API Token欄位。</block>
+  <block id="5716a76c5b22d46dd556b4d306c3d0a4" category="list-text">選取*儲存Collector *。</block>
+  <block id="dad6a897e4f52efceaed582e77ec0445" category="section-title">更新Cloud Insights 程式：更新程式碼</block>
+  <block id="95626f976ae18ae94a4188b238d2f44f" category="list-text">選取「*管理*&gt;* API存取*」、然後按一下「*+ API存取權杖*」、即可建立新Cloud Insights 的「循環API存取權杖」。</block>
+  <block id="83400e61f62d567ac8c59eb422c53296" category="list-text">編輯Agent CR:</block>
+  <block id="fb2035a56f9eb3ca2f926e8e51229894" category="list-text">找到"output-sink（輸出接收器）"區段、找到名稱為"CI"的項目。</block>
+  <block id="492f23e1dbe929adf7f122a925bd064b" category="list-text">如需標籤「API-金鑰」、請將目前值改為全新Cloud Insights 的REAPI存取權杖。</block>
+  <block id="48d5af6637803a576ddb9b4b5335594f" category="paragraph">此區段如下所示：</block>
+  <block id="08b6b5aaedb7004643c0c9f98ad82005" category="list-text">儲存並結束編輯器視窗。</block>
+  <block id="e6e7891e2154effc45ae14b20c8ad639" category="paragraph">監控營運者將更新Telegraf和Fluent位元、以使用新Cloud Insights 的版的更新版的BIOS API存取權杖。</block>
+  <block id="3186f8d18929c5ad50382958c1069796" category="section-title">中斷Cloud Insights 與該功能的連線</block>
+  <block id="dd3afc6527618de50ab808c19960d8e5" category="paragraph">若要中斷Cloud Insights 與功能表的連線、您必須Cloud Insights 先從功能表上刪除Astra Data Store收集器。完成後、您可以從監控操作員移除擷取單元、Telegraf和Fluent位元組態。</block>
+  <block id="b953bddbf540c3b2684fb1378b42b55a" category="section-title">移除Astra Data Store預覽收集器</block>
+  <block id="69c14c6dd63bad8df8635c6ebbd47642" category="list-text">選取畫面右側的功能表、然後選取*刪除*。</block>
+  <block id="4a4676a685d60e6b1f5813c3907f9ab6" category="list-text">按一下確認頁面上的*刪除*。</block>
+  <block id="c65fb1125fbf2f9e2e44e32e61b62a02" category="section-title">移除擷取單元、Telegraf和Fluent位元</block>
+  <block id="fb3d4d58b3608fb49919890d83965595" category="list-text">找到「au」區段、並將「isEnabled」設為「假」</block>
+  <block id="7fb94990d3a57c8bbff9d9a146085077" category="list-text">找到「Fluent位元」區段、然後移除名為「ads tail-CI」的外掛程式。如果沒有其他外掛程式、您可以移除「Fluent位元」區段。</block>
+  <block id="28a0e32efc6733e78be34afe16b6461c" category="list-text">找到「Telewraf」區段、移除名為「ads開放式指標」的外掛程式。如果沒有其他外掛程式、您可以移除「Telewraf」區段。</block>
+  <block id="c19be73a533496804bd908db8efca532" category="list-text">找到「output-sink（輸出接收器）」區段、然後移除名為「CI」的接收器。</block>
+  <block id="0b8e607bb970ba8b1809c142f6ee9d2c" category="paragraph">監控操作員將更新Telegraf和Fluent位元組態、並刪除擷取單元Pod。</block>
+  <block id="79e2afd2ba4ca7ab8246defff43d1c68" category="list-text">如果您將本機目錄用於擷取單元PV、而非儲存資源配置程式、請刪除PV：</block>
+  <block id="fbe0315ffcbe25b549dae9be4cd9c17a" category="paragraph">然後、刪除正在執行擷取單元的節點上的實際目錄。</block>
+  <block id="c1943291194b3d4796fcf7f9eff18d27" category="list-text">在擷取單元Pod刪除之後、您可以從Cloud Insights 功能表中刪除擷取單元。</block>
+  <block id="e7b273b59c7a2201eeccd5ba9337bd87" category="list-text">在「支援資料」功能表中、選取*管理*&gt;*資料收集器*。Cloud Insights</block>
+  <block id="6e4c4ac7964722923536e1f01d80dab2" category="list-text">按一下「*擷取單位*」標籤。</block>
+  <block id="2fa6aa4ecba5f4acf3de663c21cc69ea" category="list-text">按一下擷取設備Pod旁的功能表。</block>
+  <block id="0f024621e0673f1f4e657983682d6e72" category="list-text">選擇*刪除*。</block>
+  <block id="f5ef604e5c1749fb34d2f40f286b77cb" category="paragraph">監控操作員會更新Telegraf和Fluent位元組態、並移除擷取單元。</block>
+  <block id="6b40eaae8ec9ab8ff4f2fcec876f582d" category="section-title">Open Metrics API說明</block>
+  <block id="6f04ea05bd96c0439a8a2cd32768b309" category="paragraph">以下是可用來從Astra Data Store預覽收集度量的API清單。</block>
+  <block id="d6e7985c9eb9d0b51b91b2cb937d7335" category="list-text">「說明」行說明指標。</block>
+  <block id="626ded8565b78fc3552661d6afa5cae0" category="list-text">「類型」行指出度量是量表還是計數器。</block>
+  <block id="09d2d3af569490e66174ce93301cd0b0" category="summary">Astra Data Store為Kubernetes原生容器化應用程式提供持續的儲存與資料管理服務。Astra Data Store是Astra系列產品的一部分。</block>
+  <block id="0033a0be965b04e889c13f8699fa52ca" category="doc">Astra Data Store預覽文件</block>
+  <block id="a9066c7b36f74393f45392470bdf22d8" category="summary">只要幾個步驟、就能開始使用Astra Data Store。</block>
+  <block id="3551ec406ac2e45ff0f50e87c946ab31" category="doc">Astra Data Store預覽快速入門</block>
+  <block id="aa9dba12e956af910d79b88fd258601d" category="paragraph">本頁提供Astra Data Store預覽入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。</block>
+  <block id="2778cb9b46b47b6f77215d7a65f475b1" category="paragraph">歡迎試用！如果您想要嘗試Astra Data Store預覽、可以使用90天的預覽授權。</block>
+  <block id="e48fa26d86f93c0095683fa3998fe381" category="inline-link">請在此註冊</block>
+  <block id="b2d8407a2a6a35cada2688cd35c7c330" category="paragraph"><block ref="0bcb35f051e8c1238923547e4a123c09" category="inline-link-rx"></block> 取得Astra Data Store預覽授權。</block>
+  <block id="4854d4c0301c6f34c76f1cb78057e09e" category="list-title">span class="image"&gt;&lt;imgrc=<block ref="0c3becc25d95e48b9ca863002a042824" category="inline-link-rx"></block> alt="1"&gt;&lt;/span&gt;檢閱Kubernetes叢集需求</block>
+  <block id="847bcba6596dcd74ce49891aa01b04cb" category="list-text">叢集必須以正常狀態執行、且至少有四個或更多個工作節點。</block>
+  <block id="769e7d2e2b3a8a07afb7dfcd707bb4dd" category="list-text">Astra Data Store預覽部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store預覽叢集的相同磁碟機數量。</block>
+  <block id="0cffa0eb91d9096c1bc69da95e5e4e35" category="list-text">每個SSD都應有一個唯一的序號。</block>
+  <block id="0525f08bcf3badaa43b64e062226d0f6" category="inline-link-macro">Astra Data Store預覽需求</block>
+  <block id="97b110e14cbf7a5f05af63a6d2f1ec76" category="paragraph">深入瞭解 <block ref="a69191794982bdd23bf166d7d80bad2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="c75fe5e2b8c64cfb74d30735f622c966" category="list-title">span class="image"&gt;&lt;imgrc=<block ref="c9bdd0fd7d7224adcf67691b15f15281" category="inline-link-rx"></block> Alt="2"&gt;&lt;/span&gt;下載並安裝Astra Data Store預覽</block>
+  <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="inline-link">NetApp 支援網站</block>
+  <block id="50fd5d93fc155f6d8daa37d2a86a363d" category="list-text">從下載Astra Data Store預覽<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block>。</block>
+  <block id="a50bc7927766c9f208535b680609be39" category="list-text">在您的本機環境中安裝Astra Data Store預覽。</block>
+  <block id="299e2872cc229c70439dcff6baedd974" category="list-text">套用Astra Data Store預覽授權。</block>
+  <block id="f13260ded33a92f7c0c7a01b10c9be66" category="list-text">安裝Astra Data Store預覽叢集。</block>
+  <block id="b9d6af3a248ddac19c1574ec0ea3368f" category="list-text">設定Astra Data Store預覽監控。</block>
+  <block id="68ae8bfef44263c7568e9225825a9511" category="list-text">如果您使用Red Hat OpenShift、請在Red Hat OpenShift Container Platform（OCP）上安裝Astra Data Store預覽。</block>
+  <block id="75eb2d08fc375034ffa9f42146096a73" category="inline-link-macro">安裝Astra Data Store預覽</block>
+  <block id="cdc734518e1995b54180cc5fe07f8eb5" category="paragraph">深入瞭解 <block ref="500d9e2c6a6986fe091f6d5e600c02a9" category="inline-link-macro-rx"></block>。</block>
+  <block id="80de081c75779cda8e2db1de0f292684" category="list-title">span class="image"&gt;&lt;imgrc=<block ref="ddd753dc2858fe3a5582f20b300a0541" category="inline-link-rx"></block> alt="there"&gt;&lt;/span&gt;完成一些初始設定工作</block>
+  <block id="9e2a7f44aa27cc7ead915762de91e605" category="list-text">安裝Astra Trident。</block>
+  <block id="7d39093ae7a79f74883015012f6ca82f" category="list-text">安裝Kubernetes快照自訂資源定義（CRD）和控制器。</block>
+  <block id="a157bce7fd181617f4e5fb414c8a59a7" category="list-text">將Astra Data Store預覽設定為儲存後端。</block>
+  <block id="15daf8b029674b0b28ec44dbd2615e14" category="list-text">建立預設的Astra Data Store預覽儲存類別。</block>
+  <block id="696638e6fb97f6a54feea5bca820df2e" category="inline-link-macro">初始設定程序</block>
+  <block id="dbffc0609c7e1e112b54784b54f5396d" category="paragraph">深入瞭解 <block ref="914fa5bd06e3aa494df742959ef37adf" category="inline-link-macro-rx"></block>。</block>
+  <block id="fb7ba360472b1fbabfd9c8edf6be6bf9" category="paragraph">完成Astra Data Store預覽設定之後、接下來您可以：</block>
+  <block id="089dffadf86859c7db5c2d11bd7d5ce9" category="inline-link-macro">如何搭配Astra Data Store預覽使用kubecl命令</block>
+  <block id="f4df40e87733e72d4e70e4074a33d1b8" category="list-text">使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 <block ref="a57a67e965644a2724266f2a8472546a" category="inline-link-macro-rx"></block>。</block>
+  <block id="9600e68b6bd25a2f0f71b411cd63bd34" category="inline-link-macro">設定監控端點</block>
+  <block id="e4bfa660b2212414c8cf9ec372400ea6" category="list-text">設定監控端點。深入瞭解 <block ref="1659657294c28fe6854339fca8e6e794" category="inline-link-macro-rx"></block>。</block>
+  <block id="a21c1805fc71477a920c14ffd054ae28" category="paragraph"><block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block>。</block>
+  <block id="e81551a1c637af1bdd2cf807058cc5e3" category="summary">立即開始驗證您環境的支援。</block>
+  <block id="5a71d91e06ad8ead9ee7b71fb1d1cf81" category="paragraph">開始驗證您的環境是否符合Astra Data Store預覽要求。</block>
+  <block id="9ef739b1112178ce6a4527f4417e5049" category="paragraph">Astra Data Store預覽支援裸機和VM型部署。Astra Data Store預覽叢集可在具有四個以上工作節點的Kubernetes叢集上執行。Astra Data Store預覽軟體可與在相同Kubernetes叢集上執行的其他應用程式共存。</block>
+  <block id="27b2095d4c4a51ea18abc6e7e9be1b55" category="paragraph">Astra Data Store預覽僅支援使用Astra Trident SCSI驅動程式、為Kubernetes工作負載配置持續磁碟區。Astra Data Store未來版本將支援VM工作負載。</block>
+  <block id="d6de7af55cd34df4b1343663f9fa47a7" category="inline-link">將由Astra Control Center管理的叢集需求</block>
+  <block id="9cca478435cbf9a301f081bd39778626" category="admonition">如果您打算從Astra Control Center管理Astra Data Store預覽叢集、請確定您的Astra Data Store預覽叢集符合<block ref="83b31cb7736faa6a9df5c1f9a84caa88" category="inline-link-rx"></block> 除了此處概述的要求之外、</block>
+  <block id="9bd63000c2af4d83a8dd902ab86c7a9d" category="section-title">Kubernetes工作節點資源需求</block>
+  <block id="0d71a730864cd53147806ecb677e4679" category="paragraph">以下是在Kubernetes叢集中的每個工作節點上、指派給Astra Data Store預覽軟體所需的資源：</block>
+  <block id="be8545ae7ab0276e15898aae7acfbd7a" category="cell">資源</block>
+  <block id="a1d0ec6d56f8833a078b5a7ac4caf2d4" category="cell">最低</block>
+  <block id="8321e79c278ec510f63675c040594892" category="cell">最大值</block>
+  <block id="543ea7e6e8e3c3a36c4ab738b89a60dd" category="cell">資料磁碟機數量</block>
+  <block id="cadcb5c15abfc9c0b86d5a704e2447b0" category="list-text">3（存在獨立的快取裝置）</block>
+  <block id="8598b116a85f931030ddcb21423c1f99" category="list-text">4（如果沒有快取裝置）</block>
+  <block id="aab3238922bcc25a6f606eb525ffdc56" category="cell">14</block>
+  <block id="5dcae1a0f82e51f56f8a80fa3ba302b3" category="cell">資料磁碟機大小</block>
+  <block id="0ded0ce1dd3c7f144d40f6562739e768" category="cell">100GiB</block>
+  <block id="c0fb54db4c34b6ee67c36a485d24a499" category="cell">4TiB</block>
+  <block id="35ae311217c943858bd083552df9cdf0" category="cell">選用快取裝置的數量</block>
+  <block id="2f40c66dc5287c36ac7043a57079206d" category="cell">1（8GiB或更大）</block>
+  <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">不適用</block>
+  <block id="81665fcb678cc0680902f66f3be020c4" category="cell">vCPU數量</block>
+  <block id="d3d9446802a44259755d38e6d163e820" category="cell">10.</block>
+  <block id="e53619c1fe611a51eeeb8d148ba6e532" category="cell">RAM</block>
+  <block id="4471592d544ec3b277df3be14efdb667" category="cell">35GiB</block>
+  <block id="06bdc266ef961962430b8fc45fbe6b6c" category="admonition">若要獲得最佳寫入效能、您應該設定專屬的高耐用度、低延遲、低容量快取裝置。</block>
+  <block id="e87c8f6d1c135adc9868a1a25397c000" category="paragraph">每個工作節點都有下列額外需求：</block>
+  <block id="402a4bd631dc016fa807e263fbf090e1" category="list-text">主機磁碟（開機）上的100GiB或更大可用空間、用於儲存Astra Data Store預覽記錄檔。</block>
+  <block id="a4ca32328536a651e07fc9b06697e84b" category="list-text">至少一個10GbE或更快的網路介面、適用於叢集、資料和管理流量。此外、也可以使用額外的1GbE或更快介面來分隔管理流量。</block>
+  <block id="630e5660de352108f57840f67c4ce73b" category="section-title">硬體與軟體需求</block>
+  <block id="a305f5d0a6acf6a2da171a4f1b666e48" category="inline-link-macro">NetApp社群支援</block>
+  <block id="de91f7f5684c6f3e8a57330d26f57452" category="paragraph">Astra Data Store預覽軟體已在下列硬體平台、軟體和儲存組態上通過驗證。請造訪 <block ref="4245b61ee966e939cf6bf2ddb806f6be" category="inline-link-macro-rx"></block> 如果Kubernetes叢集組態不同、</block>
+  <block id="ee6328bc3c21dc27320191d56135aa72" category="list-title">硬體平台</block>
+  <block id="d9254f66df3568a13577635eecc90e21" category="list-text">HPE 360</block>
+  <block id="46cc405d71094428b9035eada2442cd4" category="list-text">HPE DL380</block>
+  <block id="f19b045d12ab371aab144f89dcc13406" category="list-text">Dell R640</block>
+  <block id="5036b658f8a53c4fae6b137bbbda7cdb" category="list-text">Dell R740</block>
+  <block id="e17640313f77daf8929e4ba5e5d691a6" category="paragraph">Astra Data Store預覽已通過下列磁碟機類型的驗證：</block>
+  <block id="e1e135fb56845d917b3148da7cfeb1ee" category="list-text">*裸機部署*：Astra Data Store預覽安裝在Kubernetes叢集上、直接安裝在Linux叢集上、不需要任何Hypervisor</block>
+  <block id="1caa3cf5a72fc35e939157dc1f96280a" category="list-text">SATA或NVMe TLC SSD</block>
+  <block id="9b457c92683a310dc6efb6123d814fa6" category="list-text">*虛擬機器型部署*：Astra Data Store預覽安裝在ESXi叢集所裝載的Linux VM上的Kubernetes叢集上</block>
+  <block id="e90425f62a91773b5d2173b487308075" category="list-text">SATA、SAS或NVMe TLC SSD型資料存放區</block>
+  <block id="09195210bb32cb68478488870fe3d637" category="list-text">以虛擬磁碟或通道磁碟機呈現的磁碟機</block>
+  <block id="003c6ca2750566a4e0ac19207c3b49c1" category="admonition">如果您的主機在硬體RAID控制器後方使用SSD、請將硬體RAID控制器設定為使用「PassthThrough」模式。</block>
+  <block id="0b3dea0c3d33c00792e5cd4182c9c9ad" category="admonition">每個磁碟機都應該有唯一的序號。在虛擬機器建立虛擬機器期間、將屬性「dick.enableuid=true」新增至虛擬機器的進階設定。</block>
+  <block id="719d067b229178f03bcfa1da4ac4dede" category="list-title">軟體</block>
+  <block id="fa9b3e0c25801e6c5b183b7fb6d76601" category="list-text">Hypervisor：Astra Data Store預覽已通過VMware VM部署與ESXi 7.0的驗證。Astra Data Store預覽不支援KVM型部署。</block>
+  <block id="c0a90441fa1d53cd1d4d17a37f82e16e" category="list-text">Astra Data Store預覽已在下列主機作業系統上通過驗證：</block>
+  <block id="e394890e871b97833bb8a8e0b5404dc4" category="list-text">Red Hat Enterprise Linux 8.4</block>
+  <block id="bdc427e5a3608a3f6e387f1e0ff10e8d" category="list-text">Red Hat Enterprise Linux 8.2</block>
+  <block id="efdefb5589146725b584d2c0c715c9b3" category="list-text">Red Hat Enterprise Linux 7.9</block>
+  <block id="30acbaba7ce639c1b276cbc35a0fe207" category="list-text">Red Hat Enterprise Linux CoreOS（RMCOS）</block>
+  <block id="0460305b9f6d43c9d7668d990a229d26" category="list-text">CentOS 8.</block>
+  <block id="73611f9a837b7a25dad3a9c5d1a98658" category="list-text">Ubuntu 20.04</block>
+  <block id="3067d2347cdf6ba6d767baaa01d8ce06" category="list-text">Astra Data Store預覽已通過下列Kubernetes發佈版本的驗證：</block>
+  <block id="08b0b3c250d07dbba69b8d2ccb1f6dcc" category="list-text">Red Hat OpenShift 4.7</block>
+  <block id="cbf3ba8909d0a2dbc7f272ae7df1dbe5" category="list-text">Google Anthos 1.7</block>
+  <block id="02325bcf14c74708f4a955f606b3d820" category="list-text">Kubernetes 1.21</block>
+  <block id="98ed355c6ed8cd291489f349a175fbff" category="list-text">Kubernetes 1.20</block>
+  <block id="b85d9f68ffe4a47f7986776cdde8c3f1" category="inline-link-macro">Astra Trident安裝說明</block>
+  <block id="34d22151cd691db2bcf1548b6583bf00" category="admonition">Astra Data Store預覽需要Astra Trident版本210.1才能進行儲存資源配置和協調。請參閱 <block ref="2c4b7676e17cc4ce9ceda58b02f08122" category="inline-link-macro-rx"></block>。</block>
+  <block id="9251700e586dc1a410f2e755a8643751" category="section-title">網路需求</block>
+  <block id="9a0cede22f131832111b1025d9613134" category="paragraph">Astra Data Store預覽每個叢集需要一個IP位址才能用於MVIP。它必須是未使用或未設定的IP位址、與MIP位於同一子網路中。Astra Data Store預覽管理介面應與Kubernetes節點的管理介面相同。</block>
+  <block id="843b957e2c243e60410a67851fb2a3bc" category="paragraph">此外、每個節點也可依照下表所述進行設定：</block>
+  <block id="f63342c9d79c680b33aaf87240993cbf" category="admonition">下表使用下列縮寫：MIP：管理IP位址CIP：叢集IP位址MVIP：管理虛擬IP位址</block>
+  <block id="254f642527b45bc260048e30704edb39" category="cell">組態</block>
+  <block id="340e3eeeee2cb6f029e877359cf7fabb" category="cell">所需的IP位址</block>
+  <block id="c3c52e9f2e11ae59e56c2e2cefbb37b8" category="cell">每個節點一個網路介面</block>
+  <block id="a7d621303329faa794a2debe597c9a34" category="list-text">每個節點兩（2）個：</block>
+  <block id="768f68274823d5a7efa1bf105abe5495" category="list-text">MI/CIP：每個節點的管理介面上有一（1）個預先設定的IP位址</block>
+  <block id="d4238ff24fc1cf5a2b88b0a7b8287577" category="list-text">資料IP：每個節點的一（1）個未使用或未設定的IP位址、與MIP位於同一子網路中</block>
+  <block id="e5a31bf236fa351c0c8d4d6deee7a459" category="cell">每個節點有兩個網路介面</block>
+  <block id="6b0ae81b52260da2b11f6557738bfbf4" category="list-text">每個節點三個：</block>
+  <block id="2a7a869fc706abd781fd566e1ada8f71" category="list-text">MIP：每個節點的管理介面上有一（1）個預先設定的IP位址</block>
+  <block id="f42ce73bfdc2096b23cfed33403cdc62" category="list-text">CIP：每個節點的資料介面上有一（1）個預先設定的IP位址、與MIP位於不同的子網路中</block>
+  <block id="a33be05f8cf7234feb5f33257c901f01" category="list-text">資料IP：在CIP所在的同一子網路中、每個節點有一（1）個未使用或未設定的IP位址</block>
+  <block id="6960e0648bb96ae26e178a20a5b245eb" category="admonition">對於這兩種組態、您應該省略叢集自訂資源（CR）檔案中的資料網路閘道欄位、即「astradscluster．yaml」。每個節點上現有的路由組態可容納所有位址。</block>
+  <block id="c6614b840aed1f56769d06419ac7f1fa" category="admonition">這些組態不使用VLAN標記。</block>
+  <block id="086e6c16e3fe8e13c336612ef636aa02" category="section-title">Astra Trident</block>
+  <block id="5b39c767e05e7aa4e621836f3b785b9f" category="inline-link-macro">儲存後端</block>
+  <block id="e606f5db902f554cc95c70ea6a7bc203" category="paragraph">Astra Data Store預覽需要應用程式Kubernetes叢集執行Astra Trident 210.1。Astra Data Store預覽可設定為 <block ref="318182cdb74d3be9931dae83174d547a" category="inline-link-macro-rx"></block> 使用Astra Trident來配置持續磁碟區。</block>
+  <block id="a5d3b123919ae2c9260d2939457fc07b" category="section-title">CNI組態</block>
+  <block id="a425a235822edd430a58eacccd757806" category="paragraph">Astra Data Store預覽已通過下列CNI驗證：</block>
+  <block id="66f992fd154333db12979224b40bb01d" category="list-text">Calico和Weave Net CNI適用於香草Kubernetes叢集</block>
+  <block id="1c6ba40a804a7b27053cbc1e9b881a53" category="list-text">適用於Red Hat OpenShift Container Platform（OCP）的OpenShift SDN</block>
+  <block id="5d12f25a06af3175aac5ead4076ccaa5" category="list-text">Google Anthos的Cilium</block>
+  <block id="8830b15b981296d5edf3d00560d26ed2" category="paragraph">這些CNI需要停用主機防火牆（firewalLD）。</block>
+  <block id="950dab43d2896e395e031a5adfdb2982" category="section-title">持續磁碟區共用需求</block>
+  <block id="d3d7772cf5833ab8ee28fbbe73cec01b" category="paragraph">每個Astra Data Store預覽叢集都支援使用持續磁碟區來滿足安裝在該叢集上的任何應用程式的儲存需求。Kubernetes應用程式會使用透過NFSv4.1共用的持續磁碟區來存取檔案、這需要AUTH_SYS驗證方法。</block>
+  <block id="0b9c6eef4e3d3a222eb04e910d252339" category="section-title">授權</block>
+  <block id="99fe05ab680c40d38239fb7349931f94" category="paragraph">Astra Data Store預覽需要Astra Data Store預覽授權才能提供完整功能。<block ref="757d0023964aa1a63172c6b6c4a3c459" category="inline-link-rx"></block> 取得Astra Data Store預覽授權。下載授權的指示將會在您註冊後寄送給您。</block>
+  <block id="0dab9f614d7de2d86a6e3ab5423bb50e" category="section-title">組態AutoSupport</block>
+  <block id="8e15885329078651f14e154e8002de30" category="paragraph">Astra Data Store預覽需要AutoSupport 啟用功能才能連線AutoSupport 至該功能的後端。這可能是透過直接的網際網路存取或Proxy組態。</block>
+  <block id="89dbe396da9bd6ab3205e241874bebca" category="inline-link-macro">用於傳送強制遙測AutoSupport 功能套件的定期設定</block>
+  <block id="6fe9b5b6d729ff69562cf18c46d7a020" category="paragraph">。 <block ref="3ff252deb2705468c8bcd50f62610a2a" category="inline-link-macro-rx"></block> 不應變更。如果您停用傳送週期AutoSupport 性的更新套件、叢集將會鎖定、而且在重新啟用週期性設定之前、無法建立新的磁碟區。</block>
+  <block id="0a20c90d5270bed19fcaf851778c663b" category="section-title">下一步</block>
+  <block id="159b2efa467f3d1f53e7c16668353bf5" category="inline-link-macro">快速入門</block>
+  <block id="77a7c94739d3e3b6a3c106162739bbcd" category="paragraph">檢視 <block ref="4a78f9b7a1530228ea4c970be46c5b94" category="inline-link-macro-rx"></block> 總覽：</block>
+  <block id="c066e77c0fe2c99e8fbbb9a70c883a5f" category="inline-link-macro">Astra Data Store預覽限制</block>
+  <block id="e15c2a80de21c8f7a5baec91689e624f" category="paragraph"><block ref="e15c2a80de21c8f7a5baec91689e624f" category="inline-link-macro-rx"></block></block>
+  <block id="7f5cabaf7d28d34dc4ab3be67d9c8237" category="summary">若要在解決某些環境先決條件之後安裝Astra Data Store、您必須下載套裝軟組、並依照步驟安裝。如何在OpenShift上安裝Astra Data Store</block>
+  <block id="f54f0a86dc809f7ec97575af6fbc8b84" category="paragraph">若要安裝Astra Data Store預覽、請從下載安裝套件<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並完成本程序中所述的安裝步驟。</block>
+  <block id="b3f07915b49e4ea1df947a086346e6cc" category="inline-link-macro">開始安裝之前、請先準備好環境以進行Astra Data Store預覽部署</block>
+  <block id="38e54550c131045d7072709ab7bdb0c9" category="list-text"><block ref="e8ea8205c2ef5ca696bb2e550839cf2e" category="inline-link-macro-rx"></block>。</block>
+  <block id="0ba7583639a274c434bbe6ef797115a4" category="inline-link">註冊</block>
+  <block id="74bc6e591c8afde1756c60343fc6adb7" category="list-text">存取<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block>。<block ref="a14d2f1983300ed8731dcf11dfa18e8a" category="inline-link-rx"></block> 如果您尚未擁有完整存取權限的NetApp支援網站帳戶、請預覽。</block>
+  <block id="dfcac5e258bdfa0f1d552f9e95472f56" category="inline-link-macro">NetApp授權檔案（NLF）</block>
+  <block id="ad3b46ea44ef643f0aa6cf10b5cddef7" category="inline-link">註冊</block>
+  <block id="3f18a8915118a57279458e475c19506d" category="list-text">答 <block ref="01e924afc9d6eb5b6b87b95944c8b962" category="inline-link-macro-rx"></block> 適用於Astra Data Store預覽。下載授權的指示將會在您完成後寄送給您<block ref="ef54037861aa5e9e926253483ef1a002" category="inline-link-rx"></block>。</block>
+  <block id="7f7646bb0a5fb6cf0454a38c4d1f06d6" category="list-text">具有作用中內容叢集管理權限的作用中Kbeconfig。</block>
+  <block id="bef0c0a82c5520f237b380213d0b07d6" category="inline-link-macro">角色與權限</block>
+  <block id="806b5637c063705c8d625e758efc64b6" category="list-text">瞭解 <block ref="dee7c80cda852bd179a0b8a64dc2d187" category="inline-link-macro-rx"></block> 由Astra Data Store預覽使用。</block>
+  <block id="1e822a9286ce82521a4c839250498223" category="list-text">網際網路連線：Astra Data Store預覽不支援無線環境。需要網際網路連線、才能直接或透過Proxy連線至support.netapp.com。</block>
+  <block id="0aa47503f31feab060eaf884a45cd2d6" category="paragraph">Astra Data Store預覽安裝程序會引導您完成下列高層級步驟。</block>
+  <block id="a556f5398142ae7011d0de50dc8b6c5b" category="list-text"><block ref="8d9993295d6b271ce4d01f645185155b" category="inline-xref-macro-rx"></block></block>
+  <block id="6d0f824f6a186eea3583d29e3aed365a" category="list-text"><block ref="28f9f989c873aca847e12e3f56387e81" category="inline-xref-macro-rx"></block></block>
+  <block id="85ae37cc7f15413a66f075500ab9bb21" category="list-text"><block ref="c971d40cbaa6eb788778a2dba59a7d25" category="inline-xref-macro-rx"></block></block>
+  <block id="b70c468b8ef55be96953554233f196f8" category="list-text"><block ref="038e87b146a54831da5266e118724b0a" category="inline-xref-macro-rx"></block></block>
+  <block id="fafef40eb86a5fcb390728637ec82ad8" category="list-text"><block ref="08b9a934358b06f23bec23e40881a274" category="inline-xref-macro-rx"></block></block>
+  <block id="3f93c6b91779c776c73fe8ddbdde26b2" category="list-text"><block ref="c74831dec7277b920b9074aa393a140d" category="inline-xref-macro-rx"></block></block>
+  <block id="f52b1c1daf5c796d010750e360734182" category="list-text"><block ref="eef74539c11538f892571f8a012ef5ae" category="inline-xref-macro-rx"></block></block>
+  <block id="c8834ddc1c87f17c8d417b37fcbd87f0" category="list-text"><block ref="59d3a9e0f85930d559866ff811a1da02" category="inline-xref-macro-rx"></block></block>
+  <block id="d81ec671d645986632c1dff9a52a8d03" category="list-text"><block ref="9fcc40a9325fa4fdd116019afa5bfea2" category="inline-xref-macro-rx"></block></block>
+  <block id="1892645d2782c9bf9dc34851d08c3fc0" category="inline-link">此KB</block>
+  <block id="9d360497e26014d0f465e4f870bdeadc" category="paragraph">如果您想要啟用Astra Data Store預覽、以便使用含有機密的影像登錄、請參閱<block ref="31862b8c922a22dfae2a0bc44d5fcca7" category="inline-link-rx"></block>。</block>
+  <block id="38a46257d48221851cd4c911eb65d23a" category="section-title">下載Astra Data Store預覽套裝組合並擷取影像</block>
+  <block id="d53320adbca5e8d343a11ce083d101a7" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並下載Astra Data Store預覽套裝組合（「2021.12.01_ads.tar」）。</block>
+  <block id="7ccab09493cf97c9665c6c2126741ee5" category="list-text">（可選）使用以下命令驗證套件的簽名：</block>
+  <block id="ae32a002cf3df8354380980ceb442a90" category="list-text">擷取影像：</block>
+  <block id="a179389f208c9573ee510e5e4bcceeba" category="section-title">複製二進位檔並將映像推送至本機登錄</block>
+  <block id="1acaca46449fb5c00dc1a685d015c6e5" category="list-text">從您用來擷取映像的目錄複製kbecl-astra二進位檔到安裝k8s kkbecl二進位檔的標準路徑、例如：「usr/bin/」。Kustbecl-astrads是自訂的Kvecll擴充功能、可安裝及管理Astra Data Store預覽叢集。</block>
+  <block id="4f4091e1c75967c191a148ba3b601115" category="list-text">將Astra Data Store預覽影像目錄中的檔案新增至本機登錄。</block>
+  <block id="9f852ed13251aa5ddae669983b4139d7" category="admonition">請參閱以下自動載入影像的範例指令碼。</block>
+  <block id="e8c44728c041065d90e7029dec2e142c" category="list-text">登入您的登錄：</block>
+  <block id="13188191a9ba4fa03655f2853f19ca94" category="list-text">將環境變數設為您要推送Astra Data Store預覽映像的登錄路徑、例如「po.company.com`」。</block>
+  <block id="1251312a6e29c077a92406c8347c9cbc" category="list-text">執行指令碼、將影像載入Docker、標記影像、然後[Subforte_image_local_register_pip]將影像推送到本機登錄：</block>
+  <block id="2747c0766e2771ab043a0800e63b80a7" category="section-title">OpenShift程序</block>
+  <block id="9f6ec430b518fa5326fa28dc6b4aa003" category="paragraph">下列程序僅適用於Red Hat OpenShift Container Platform（OCP）上的部署。在非OCP Kubernetes叢集上部署時、可略過此程序。</block>
+  <block id="3ec365dd533ddb7ef3d1c111186ce872" category="example-title">詳細資料</block>
+  <block id="1d05061aec39922b91b02b045d31d674" category="paragraph">建立名稱空間「astrads系統」、以便安裝所有Astra Data Store預覽元件。</block>
+  <block id="9d596ac4d3d28a6c2a6f2d976a322372" category="paragraph">只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。</block>
+  <block id="7baf7b8d385cfa43e2ebd4decbe383e8" category="list-text">建立命名空間：</block>
+  <block id="9484da3843b6d29183c961f5805374c0" category="paragraph">範例：ads_names.yaml</block>
+  <block id="9279e1a9a6dc21e00ad8bfe646d12d80" category="paragraph">OpenShift使用安全內容限制（SCC）來控制Pod可以執行的動作。根據預設、任何容器的執行都會被授予受限的SCC、而且只會授予該SCC所定義的功能。</block>
+  <block id="d84d14dd008a483ff803734de04a9be6" category="paragraph">受限的SCC不提供Astra Data Store預覽叢集Pod所需的權限。使用此程序提供Astra Data Store預覽所需的權限（列於範例中）。</block>
+  <block id="2593c56a647b16e5b609f03e09ff7e38" category="paragraph">將自訂SCC指派給Astra Data Store預覽命名空間的預設服務帳戶。</block>
+  <block id="a404b42248dc15fc7c9f96beb39ce0bf" category="list-text">建立自訂SCC：</block>
+  <block id="675d6759427bcd3ef0478a3576c113b4" category="paragraph">範例：ads_特權_scc.yaml</block>
+  <block id="44988a3cdc9c8d194b4f0791b2fd559e" category="list-text">使用「occ Get SCC」命令顯示新增的SCC：</block>
+  <block id="fc67753b692b97bd691fc9ce7e3373f7" category="paragraph">建立Astra Data Store預覽預設服務帳戶所需的角色和角色繫結。</block>
+  <block id="217623d6cc04d74a7e1c0c99da77531c" category="paragraph">下列yaml定義會指派「astrads.netapp.io` API」群組中Astra Data Store預覽資源所需的各種角色（透過角色繫結）。</block>
+  <block id="c8679407d1ef279caad76d123b67c3cf" category="list-text">建立定義的角色和角色繫結：</block>
+  <block id="241dbe54decdb2543808cb04b50976c5" category="paragraph">範例：oc_roue_binings。yaml</block>
+  <block id="f5051f42d63dce7a9189a8b8754221f4" category="section-title">安裝Astra Data Store預覽作業者</block>
+  <block id="d650aa517255d50ce12c3c1dc0fa6cd1" category="list-text">列出Astra Data Store預覽清單：</block>
+  <block id="2bf2749ac3d1bb0b33e707bf3fab3f63" category="list-text">使用KECBECLL套用部署營運者：</block>
+  <block id="f15043967dbb0640e4d4c31a6e7a6ac0" category="admonition">命名空間回應可能會因執行標準安裝或OCP安裝而有所不同。</block>
+  <block id="da89009070a281ea41fbaf69a4a75bd5" category="list-text">確認Astra Data Store營運者Pod已啟動且正在執行：</block>
+  <block id="a474d63bfa2ddaeb697e978c796209e1" category="section-title">部署Astra Data Store預覽版本Yaml</block>
+  <block id="df42b724421bbda5256280183fe89e21" category="list-text">使用KECBECVL套用部署：</block>
+  <block id="aed417ffe5dc63aa67936840a0654828" category="list-text">確認Pod正在執行：</block>
+  <block id="768473ff6c238ddbd570531f58f36857" category="section-title">套用Astra Data Store預覽授權</block>
+  <block id="2168e2850f39640b087ab9ec40e09ea4" category="inline-xref">即將部署</block>
+  <block id="f3c66c687ab66bae9a385e5166892e7f" category="list-text">請套用您在註冊預覽時取得的NetApp授權檔案（NLF）。執行命令之前、請輸入您所在的叢集名稱（「&lt;Astra Data-Store-cluster名稱&gt;」） <block ref="544b5866c36aeaaf1e92905a0eca962d" category="inline-xref-macro-rx"></block> 或已部署及授權檔案路徑（「&lt;file_path/file.txt&gt;`）：</block>
+  <block id="a43a46b3d0bdea57bd228232adb9bf0c" category="list-text">確認已新增授權：</block>
+  <block id="4d85b327d56be8f708cd85949f327a4b" category="section-title">安裝Astra Data Store預覽叢集</block>
+  <block id="0fd0a9ef6ce0637f3746e6066a53fe13" category="list-text">開啟Yaml檔案：</block>
+  <block id="6bfe0a99899b6870d084eedf67275849" category="list-text">在Yaml檔案中編輯下列值。</block>
+  <block id="1e00053e55e180092ef69fbe8b9ab83c" category="admonition">以下步驟為Yaml檔案的簡化範例。</block>
+  <block id="46befd76c4ec19a9001f1b49517fe11e" category="inline-xref">套用授權</block>
+  <block id="6a89528574fff5e08faba86e8e3d65e8" category="list-text">（必填）*中繼資料*：在「metadata」中、將「name」字串變更為叢集名稱。這必須與您在使用時使用的叢集名稱相同 <block ref="a806c3cf0e02664ef4049bd63a8af194" category="inline-xref-macro-rx"></block>。</block>
+  <block id="51c12a83abe23c7ff9e9037e230ae6ff" category="list-text">（必填）*規格*：在「show」中變更下列必要值：</block>
+  <block id="868e18bdd7bc8799f8c1e1f00b94d58c" category="list-text">將「mVIP」字串變更為可從叢集中任何工作節點路由傳送之浮動管理IP的IP位址。</block>
+  <block id="cc80da2ca49204147d1a136f50492c90" category="list-text">在「adsDataNetworks」中、新增一個以逗號分隔的浮動IP位址清單（「Addresses」）、這些位址可從您要掛載NetApp Volume的任何主機路由傳送。每個節點使用一個浮動IP位址。資料網路IP位址應至少與Astra Data Store預覽節點一樣多。對於Astra Data Store預覽、這表示至少4個位址、或5個（如果您打算稍後將叢集擴充至5個節點）。</block>
+  <block id="29b31f9baad8004ca9125758588d82c3" category="list-text">在「adsDataNetworks」中、指定資料網路使用的網路遮罩。</block>
+  <block id="858c3e811ac734bb143694fc06b49de1" category="list-text">在「adsNetworks介面」中、將「&lt;mgmt_interface_name&gt;'」和「&lt;cluster與_storage介面名稱&gt;'值取代為您要用於管理、叢集與儲存的網路介面名稱。如果未指定名稱、則節點的主要介面將用於管理、叢集和儲存網路。</block>
+  <block id="575504814fb95c79b3ed9e5f1035436b" category="admonition">叢集和儲存網路必須位於相同的介面上。Astra Data Store預覽管理介面應與Kubernetes節點的管理介面相同。</block>
+  <block id="8da4a001932be2ff606e6df10493966a" category="inline-xref">監控營運者</block>
+  <block id="644ad178aa7628cc443a92bf64c7cfca" category="list-text">（選用）*監控組態*：如果您要設定 <block ref="0f1aa9f35704db6c7d3dfbe726efcbc1" category="inline-xref-macro-rx"></block> （若您未使用Astra Control Center進行監控、則為選用）、從區段移除註解、新增套用代理程式CR（監控操作員資源）的命名空間（預設為「NetApp-Monitoring」（NetApp監控）、並新增您在先前步驟中使用的登錄（「您的登錄路徑」）的repo路徑。</block>
+  <block id="6645e0ebb53d4b6e68be7936af3a8039" category="inline-link-macro">AutoSupport</block>
+  <block id="b20888d3010009c6ea174a1a0c0f5ef3" category="list-text">（可選）* autosupSupportConfig*：保留 <block ref="7cdd2204a3bafe4583e65edf34a51ee8" category="inline-link-macro-rx"></block> 除非您需要設定Proxy、否則預設值為：</block>
+  <block id="912dac57b66d9e216d74c0e9eb1d077a" category="list-text">對於「proxyURL」、請使用連接埠來設定Proxy的URL、以便AutoSupport 進行套裝組合傳輸。</block>
+  <block id="f3fba3fb3102862b1aad8b63c0aaf749" category="admonition">大部分的意見已從下列Yaml範例中移除。</block>
+  <block id="4a212b2ee1c3b204f74bc2dcc71b7cda" category="list-text">使用「kubecll apply」部署叢集：</block>
+  <block id="0b7d1f8b8805a1c587689821bca47324" category="list-text">（僅適用於OCP）如果已啟用SELinux、請在Astra Data Store預覽叢集中的節點上、重新標示下列目錄的「Linux」內容。</block>
+  <block id="f22b8fb6dcc9aa31e0b2d9e9e84205c7" category="admonition">這是因為「Linux」可防止這些目錄可寫入、導致支援Pod進入「CrashLooper（CrashLooper）」狀態、所以需要執行此步驟。此步驟需要在Astra Data Store預覽叢集中的所有節點上執行。</block>
+  <block id="14e134a7ed0f49d1ca8cf22782ce2d36" category="list-text">等待幾分鐘、讓叢集建立作業完成、然後確認Pod正在執行：</block>
+  <block id="e820d2459278040b58fab1dcc9b93d13" category="list-text">驗證叢集部署進度：</block>
+  <block id="37fc959dfa0d9cc2e3d0d38b2be66c5d" category="section-title">瞭解與部署相關的事件</block>
+  <block id="7822a7d6e729e9615380ec0aadb6990b" category="paragraph">在叢集部署期間、作業狀態應從「空白」變更為「進行中」、改為「已建立」。叢集部署將持續約8至10分鐘。若要在部署期間監控叢集事件、您可以執行下列任一命令：</block>
+  <block id="bd7c3f1dac7f5cf319de422fa4a32691" category="paragraph">以下是部署期間的重要事件：</block>
+  <block id="77e9b0cdc3fdcabe72374f66c02d8e31" category="cell">事件訊息</block>
+  <block id="7277de5f2ed6f17c61f1f25594591a82" category="cell">意義</block>
+  <block id="c3ee1dbc78e2d761efcaca2d0c21d2dc" category="cell">成功選取4個控制面板節點以加入ADS叢集</block>
+  <block id="e94fd6602ce1ed04ac1725ae3531fad4" category="cell">Astra Data Store預覽操作員識別出足夠的節點、包括CPU、記憶體、儲存設備和網路、以建立Astra Data Store預覽叢集。</block>
+  <block id="3bf8d74892939c244e4f2ee0af58a0f0" category="cell">正在建立ADS叢集</block>
+  <block id="b0fa14a74437c78bbc1e99fd182aeb71" category="cell">Astra Data Store預覽叢集控制器已啟動叢集建立作業。</block>
+  <block id="c33b4384dd5fcfe18b76baf9e293eeba" category="cell">已建立ADS叢集</block>
+  <block id="84a006d56f84917bd14e7225a2a02c31" category="cell">已成功建立叢集。</block>
+  <block id="52e440135a5420f088a23a09ab819506" category="paragraph">如果叢集的狀態並未變更為「進行中」、請查看操作員記錄、以取得節點選擇的詳細資料：</block>
+  <block id="19281350da56d254a23943fe3af63ba6" category="paragraph">如果叢集的狀態卡在「In Progress（進行中）」、請檢查叢集控制器的記錄：</block>
+  <block id="ae415e54f22dc20b15664df617236001" category="section-title">設定Astra Data Store預覽監控</block>
+  <block id="25d3b233b0ff51f660dcb6bc0ba14159" category="paragraph">您可以設定Astra Data Store預覽以進行Astra Control Center監控或由其他遙測服務進行監控。</block>
+  <block id="479726e541dcc4c2f078e4d5569bdfaf" category="section-title">設定Astra Control Center預覽的監控功能</block>
+  <block id="6203a701a3e7de109a3a27e477c119db" category="paragraph">只有在Astra資料儲存區預覽在Astra Control Center中以後端管理之後、才執行下列步驟。</block>
+  <block id="268d42130d32b678b5315bca020d068f" category="list-text">設定Astra Data Store預覽、以供Astra Control Center監控：</block>
+  <block id="9de66ad79d82936e94f0c6094e0171fb" category="section-title">安裝監控操作員</block>
+  <block id="8b3692dee4534020feae3ae8064407c3" category="paragraph">（選用）如果Astra Data Store預覽無法匯入Astra Control Center、建議使用監控操作員。如果您的Astra Data Store預覽執行個體是獨立部署、使用Cloud Insights 支援功能來監控遙測、或是將記錄串流至第三方端點（例如Elastic）、您可以安裝監控操作員。</block>
+  <block id="75d6f2032046c897df7535bbcf1f2a76" category="list-text">執行此安裝命令：</block>
+  <block id="322b884d1c713ebd73ac803c20762937" category="list-text">設定Astra Data Store預覽以監控：</block>
+  <block id="510a796972d54f6936dbae0081373fc0" category="inline-link-macro">設定工作</block>
+  <block id="ba75da3e22141799ae4615278996fda2" category="paragraph">執行以完成部署 <block ref="7324e433dd54231f6ab1c33e7f1852c1" category="inline-link-macro-rx"></block>。</block>
+  <block id="f8e5d5352b626bd2d029c4bd8ea9d47a" category="summary">安裝Astra Data Store並解決一些環境先決條件之後、您將安裝或更新Astra Trident、設定K8s快照功能、設定儲存後端、以及建立預設儲存類別。</block>
+  <block id="19631c9457203d96b87631ebe7414561" category="doc">設定Astra Data Store預覽元件</block>
+  <block id="d123277e1fd8558573c3d0919aa684f3" category="paragraph">安裝Astra Data Store預覽並解決一些環境先決條件之後、您將安裝Astra Trident、設定Kubernetes快照功能、設定儲存後端、以及建立預設儲存類別：</block>
+  <block id="b242850ad01d99f75ddfd4f74dfebad7" category="list-text"><block ref="e182f16fc549d59ca5882ebcc8d36a3d" category="inline-xref-macro-rx"></block></block>
+  <block id="38dbb49a55339dc2dbba9028c6176375" category="list-text"><block ref="a0e69e669f52a5cafaeb2bea82f6649c" category="inline-xref-macro-rx"></block></block>
+  <block id="01b9d33e8be610298a88d84e6d7abbfe" category="list-text"><block ref="dcd2e63384cc1964e08e6b39f6f60b05" category="inline-xref-macro-rx"></block></block>
+  <block id="f2ae91b089e1704747091d82092a79f5" category="list-text"><block ref="c8c521299e392e79ac34059fc36dd14d" category="inline-xref-macro-rx"></block></block>
+  <block id="f1fe71442cd08e74d342114df7ee1551" category="section-title">安裝Astra Trident</block>
+  <block id="5dd74befe3d85da2f57fd86a34d8fac2" category="paragraph">若要進行Astra Data Store預覽、您需要安裝Astra Trident 21.10.1。您可以使用下列其中一個選項來安裝Astra Trident：</block>
+  <block id="e7447899210826e544345ba93e133255" category="inline-link">使用tridentctl安裝Astra Trident</block>
+  <block id="979a6aa592c9858f17cfdaa4e128d948" category="list-text"><block ref="dc8ebe7b95cc3b1176276c1b38485f4d" category="inline-link-rx"></block>。</block>
+  <block id="c9dee809ea22b77ba4c31523844ca736" category="inline-link">使用Trident操作員安裝Astra Trident</block>
+  <block id="9cbe472556d86bca1de7978af69e74d5" category="list-text"><block ref="802e7b84d831ea6d56a6d132aa8a7db4" category="inline-link-rx"></block>。</block>
+  <block id="c2c5c71258d8e55bd320745371789d00" category="admonition">您可以手動或使用Helm來部署Trident運算子。</block>
+  <block id="d79ccdfe6809f469235ccec6dcc85362" category="section-title">安裝Kubernetes Snapshot客戶需求日和控制器</block>
+  <block id="5ab1da70b106ac4cac7486f910a193f7" category="paragraph">需要Kubernetes快照CRD和控制器才能建立持續磁碟區宣告（PVR）快照。如果您的環境尚未安裝CRD和控制器、請執行下列命令來安裝。</block>
+  <block id="f6a6928c71289ccfc6e517aa2e23c8dd" category="admonition">以下命令範例假設為目錄「/trident」、但您使用的目錄可以是任何您用來下載Yaml檔案的目錄。</block>
+  <block id="d4d4a15663d8f6b4a3ab637d777ff538" category="inline-link-macro">Kubernetes快照控制器Yaml檔案</block>
+  <block id="bb77e148c413e9e6fe81c660d1b64bcb" category="list-text">下載 <block ref="07b1214d7f04b151683fccdcb3396163" category="inline-link-macro-rx"></block>：</block>
+  <block id="aef7cd1b81043d55ad8648455fb6ed1b" category="list-text">設定快照控制器.yaml</block>
+  <block id="29e5e3a354a8524010423699de73f776" category="list-text">RBAC快照控制器.yaml</block>
+  <block id="e04160d92f8ef05d4ce3314e8cc91137" category="inline-link-macro">Y反 洗錢客戶需求日</block>
+  <block id="6087aa1a980e9fb03c3d42ed429d3090" category="list-text">下載 <block ref="424f4872df67a1a5528184cc2ca8dc8c" category="inline-link-macro-rx"></block>：</block>
+  <block id="88e291668f9a86bd88b88b9b98a6aee8" category="list-text">Snapshot.storage。k8s.io_volumesnapshotclasses.yaml</block>
+  <block id="5bcf00e7f0cf36a49beb0a818ec6cbef" category="list-text">Snapshot.storage。k8s.io_volumesnapshotcontents。yaml</block>
+  <block id="cc5824f53c7ffbd99cb349e87efde1f4" category="list-text">Snapshot.storage：k8s.io_volumesnapshots.yaml</block>
+  <block id="5dd799b58f0a48e81b9090706c21ffc1" category="list-text">套用snapshot.storage。k8s.io_volumesnapshotclasses.yaml：</block>
+  <block id="1b2b0d3c628e11a19e1e37d392fc808b" category="list-text">套用snapshot.storage。k8s.io_volumesnapshotcontents。yaml：</block>
+  <block id="b30fb0bbee1d9ca780b2e525df30f42d" category="list-text">套用snapshot.storage。k8s.io_volumesnapshots.yaml：</block>
+  <block id="4ad805069afc4d9f62366cebed53439e" category="list-text">套用setup-snapshot控制器.yaml：</block>
+  <block id="1871cbca326d3f3a5fb66f60c754c26f" category="list-text">套用RBAC快照控制器.yaml：</block>
+  <block id="9352a98e83e5674124c81320233e2033" category="list-text">確認已套用CRD Y反 洗錢檔案：</block>
+  <block id="c5827f9636201f8d30ce9cb0189c833d" category="list-text">確認已套用快照控制器檔案：</block>
+  <block id="84ff6443c010c054303c3cacf8168ec8" category="section-title">將Astra Data Store設定為儲存後端</block>
+  <block id="48b4e22b3043a4f7b84801549651a221" category="paragraph">在ads_backend.json檔案中設定儲存後端參數、然後建立Astra Data Store儲存後端。</block>
+  <block id="7135d7688e86eac3c57f2de72b8018d5" category="list-text">使用安全終端建立「ads_backend.json」：</block>
+  <block id="7be934ce8b58f4891a1f5bec99cfea5f" category="list-text">設定Json檔案：</block>
+  <block id="260e28a432c0ab70e8635e32a0869a37" category="list-text">將「叢集」值變更為Astra Data Store叢集的叢集名稱。</block>
+  <block id="02122a736bce8e681ad437ec22ed0e39" category="list-text">將「命名空間」值變更為您要用於建立磁碟區的命名空間。</block>
+  <block id="f47e741eac4d14c2bfe218ed3e360ab7" category="list-text">除非您針對此後端設定匯出原則CR,否則請將「AutoExpportPolicy」值變更為「true」。</block>
+  <block id="5be18ccddef777624ac5fdc8a276d6e9" category="list-text">將您要授予存取權的IP位址填入「AutoExportCIDR」清單。使用「0.00.0.0/0」允許所有人。</block>
+  <block id="a124b50c086047caaf79854f3e502e65" category="list-text">如需「kubeconfig」值、請執行下列動作：</block>
+  <block id="55fa2080356ace346f9938ef27eeeda2" category="list-text">將.kube /組態Yaml檔案轉換為Json格式、並將其最小化、不含空格：</block>
+  <block id="52ba8594eda2bfe84ddd95e4ab3876f6" category="paragraph">轉換範例：</block>
+  <block id="8760732111b0a693f9646bbe82410c8d" category="list-text">將編碼為基64、並使用基64輸出作為「kubeconfig」值：</block>
+  <block id="bfa0adf4d3cdd7138899e834388c02a3" category="paragraph">編碼範例：</block>
+  <block id="3fd265fc18b2cccf42e00f564f3cc354" category="list-text">切換到您下載Trident安裝程式的目錄：</block>
+  <block id="966ad0e717b4a7b04e344eca212f3893" category="list-text">建立儲存後端：</block>
+  <block id="d6b32a57b28d1a90833a60d9d8a653fc" category="section-title">建立預設的Astra Data Store儲存類別</block>
+  <block id="aa80c9eb37faf3509ae07c01f5fcb711" category="paragraph">建立Astra Trident預設儲存類別、並將其套用至儲存後端。</block>
+  <block id="a6c0b25130e366f4926811fccc2d9175" category="list-text">建立Trident - csi儲存類別：</block>
+  <block id="293acccfcaa84144747d7d17dbd3128e" category="list-text">建立ads_sc_example.yaml：</block>
+  <block id="cd0b441465398fa0d75eba9947c66599" category="list-text">建立Trident - csi：</block>
+  <block id="8213c33dc9ac92d509af698f9a2e597f" category="list-text">確認已新增儲存類別：</block>
+  <block id="22d9b315b29e2e8600a67e65475c18de" category="list-text">確認Astra Trident後端已使用預設的儲存類別參數更新：</block>
+  <block id="dfc6ae638b43c600bcdbe8a67cf9709c" category="paragraph">Astra Data Store是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。</block>
+  <block id="9242577a835539354b36df9d5785b04f" category="paragraph">Astra Data Store預覽版本具有下列資源限制。</block>
+  <block id="5e9a72bd35b8b657825b42e178cc667d" category="cell">Astra Data Store預覽叢集中的節點數</block>
+  <block id="a87ff679a2f3e71d9181a67b7542122c" category="cell">4.</block>
+  <block id="e4da3b7fbbce2345d7772b0674a318d5" category="cell">5.</block>
+  <block id="196f991af758339a4e307e49fdc25445" category="cell">每個節點的持續磁碟區數目</block>
+  <block id="a01ecc0a6ff9ccb59344e8646621b1ab" category="cell">每個節點的持續磁碟區已配置總容量</block>
+  <block id="8913df8372330703defae14976d6f14e" category="cell">1TiB</block>
+  <block id="6bb41960470a19d97556b9240ac0b3ff" category="cell">Volume大小</block>
+  <block id="726d383bc3256804ce4d5e4c45cf853b" category="cell">20億</block>
+  <block id="7f9d2c4d982547805f59957ea8962556" category="cell">每個Volume的快照</block>
+  <block id="cfcd208495d565ef66e7dff9f98764da" category="cell">0</block>
+  <block id="f718499c1c8cef6730f9fd03c8125cab" category="cell">256</block>
+  <block id="9053ddee628502aa59ecc06ca8054392" category="cell">每個Volume的複本</block>
+  <block id="45c48cce2e2d7fbdea1afc51c7c6ad26" category="cell">9.</block>
+  <block id="71ace59df32db700cac820349c67dd2a" category="admonition">Astra Data Store預覽不支援VM工作負載。VMware vVol工作負載支援將於未來的版本中提供。</block>
+  <block id="fb3d937ada0889a18943f9e221637388" category="admonition">Astra Data Store預覽的效能受到限制、不應用於效能特性分析。</block>
+  <block id="b1151aae9531d2f5e85d085e8878cea6" category="summary">如果您只是想要快速回答問題、這個常見問題集就能幫上忙。</block>
+  <block id="0fc384ade3fa0a49e6200f91385d65a9" category="doc">Astra Data Store預覽的常見問題集</block>
+  <block id="6014dc7d785a91f39eda065d13d62e52" category="paragraph">尋找有關Astra Data Store預覽安裝、設定、升級及疑難排解的常見問題解答。</block>
+  <block id="96ab491ef73d5db0cd15f55e1552cc22" category="section-title">一般問題</block>
+  <block id="63f037cc937fa1e56c508887d619f746" category="paragraph">*我可以使用Astra Data Store預覽正式作業嗎？*不可以雖然Astra Data Store是專為提供企業級恢復能力而設計與開發、但由於Astra Data Store預覽版本並不適用於正式作業工作負載。</block>
+  <block id="adb8e906da60ee75c25264b57f7ea87b" category="inline-link-macro">Astra資料儲存區需求</block>
+  <block id="869d7dcd29e389a568aae5c68a333164" category="paragraph">*我可以使用Astra Data Store預覽虛擬機器工作負載嗎？* Astra Data Store預覽版本僅限於Kubernetes上執行的應用程式、無論是在裸機或虛擬機器上。未來的版本將支援Kubernetes和ESXi虛擬機器上的應用程式。請參閱 <block ref="f6e7a5de97c28034a15c0e13f6029354" category="inline-link-macro-rx"></block>。</block>
+  <block id="6ff698755e67cc429908f62f936f7553" category="paragraph">* Astra Data Store預覽是否因其運作而與其他NetApp產品有任何相依關係？*</block>
+  <block id="8642164a1b18da0845855cbe9e2ab13d" category="paragraph">是的。Astra Data Store預覽需要在工作負載Kubernetes叢集上部署NetApp SCSI驅動程式Astra Trident版本210.1及更新版本。深入瞭解 <block ref="f6e7a5de97c28034a15c0e13f6029354" category="inline-link-macro-rx"></block>。</block>
+  <block id="9c634046a90a62883b122e76b9afcef2" category="inline-link">Astra控制中心</block>
+  <block id="10c5e9eb3bf9722cbd8c0c4706a35f40" category="paragraph">將Astra Data Store預覽叢集當作儲存後端的應用程式可以使用<block ref="73c15736d78e1e14f234b40f7cdc3048" category="inline-link-rx"></block> 版本21.12可運用應用程式感知的資料管理功能、包括資料保護、災難恢復及Kubernetes工作負載移轉。</block>
+  <block id="456f2b6f01dea1c766407717c9f25ae0" category="paragraph">*如何管理Astra Data Store預覽叢集？*您可以使用kubectl命令及Kubernetes API擴充功能來管理Astra Data Store預覽資產。</block>
+  <block id="8769fb0b311c9d4eb4ae12703797ec2d" category="paragraph">*我該如何監控Astra Data Store預覽叢集指標？*您可以使用Cloud Insights 支援功能來監控Astra Data Store預覽指標。請參閱 <block ref="5f4e23cb821c4c14144c1c2b8f6c948e" category="inline-link-macro-rx"></block>。</block>
+  <block id="a3732b03ca4422ce6b70efcd6e224c8f" category="paragraph">您也可以監控記錄。請參閱 <block ref="3d73dda56e07b3410aee41dd59d50b4f" category="inline-link-macro-rx"></block>。</block>
+  <block id="46bc7872a1eb6d52309892745fb5728f" category="paragraph">*我可以在ONTAP Kubernetes叢集中使用Astra Data Store預覽功能、以及其他的儲存供應商嗎？*可以。Astra Data Store預覽可與應用程式叢集中的其他儲存供應商一起使用。</block>
+  <block id="cff1b9b86e8ec14449228e18e322acb1" category="paragraph">*如果我從Astra Data Store預覽中移除Kubernetes叢集、是否會解除安裝Astra Trident？*如果您解除安裝Astra Data Store預覽、則不會從叢集中解除安裝Astra Trident。如果您需要解除安裝Astra Trident、則必須個別執行。</block>
+  <block id="189fe01d6ea340c87bd7dfc08e5dc6fd" category="paragraph">* Astra Data Store預覽是否需要授權？*是、Astra Data Store預覽需要NetApp授權檔案（NLF）。</block>
+  <block id="9c985db49df4957b3e91e45779dc1676" category="paragraph">請參閱 <block ref="f6e7a5de97c28034a15c0e13f6029354" category="inline-link-macro-rx"></block>。</block>
+  <block id="a4fc10faeeae8519fdd802da4359cae7" category="paragraph">* Astra Data Store預覽授權的有效時間有多長？* Astra Data Store預覽授權的預設期限為下載日期起算的90天。</block>
+  <block id="8b6311633b65017461fb3e38c2c6de22" category="section-title">在Kubernetes叢集上安裝及使用Astra Data Store預覽</block>
+  <block id="e026877debbc2f84d1f1afe45633ccff" category="paragraph">*我可以在裸機或虛擬機器上執行的Kubernetes叢集上安裝Astra Data Store預覽嗎？*是。Astra Data Store預覽可安裝在執行裸機或ESXi VM的Kubernetes叢集上。請參閱 <block ref="a69191794982bdd23bf166d7d80bad2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="973dcf444baeb55a13c72f75f3c82abc" category="paragraph">* Astra Data Store預覽支援的Kubernetes版本有哪些？*</block>
+  <block id="5131c05a8ea4585b7b25cf09ef94bea6" category="paragraph">Astra Data Store預覽可搭配與v1.20及更新版本相容的Kubernetes發佈產品使用。不過、目前並未針對所有Kubernetes配送進行驗證。深入瞭解 <block ref="a69191794982bdd23bf166d7d80bad2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="372ed5ea638253490746dee9139ea358" category="paragraph">*我的Kubernetes叢集大於5個工作節點。我可以在其中安裝Astra Data Store預覽嗎？*是。Astra Data Store預覽叢集可部署在Kubernetes叢集中的4個工作節點上。部署之後、您可以將叢集擴充至5個工作節點。</block>
+  <block id="2f4d5933ff58ee63b72cffb00159b0f4" category="paragraph">* Astra Data Store預覽是否支援從私有登錄進行離線安裝？*是。Astra Data Store預覽可從本機登錄離線安裝。請參閱 <block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block>。不過、Astra Data Store預覽需要連線（直接或透過Proxy）至NetApp AutoSupport 支援區（support.netapp.com）才能繼續營運。</block>
+  <block id="db9fb1d9d672621d4c3ce0a9c34579b7" category="paragraph">*我需要網際網路連線才能使用Astra Data Store預覽嗎？* Astra Data Store預覽需要連線至NetApp AutoSupport 支援後端、才能定期傳送必要的遙測AutoSupport 功能套件。這種連線方式可以是直接連線、也可以透過Proxy連線。如果缺少此連線功能或AutoSupport 停用了此功能、叢集將會鎖定、新的Volume建立功能將會停用、直到定期重新上傳套件為止。</block>
+  <block id="bba57f874c98e85c47cc41e62b11c2f9" category="paragraph">* Astra Data Store預覽使用哪些角色和權限？*您必須是KUbe管理員、才能部署Astra Data Store預覽操作員。</block>
+  <block id="7e262eb0471b79362fb1d998ef7816ad" category="paragraph">Astra Data Store預覽含有一組名為「astrads-ds-nodeinfo-astradsversion」的特殊權限取消程式集、可用來探索用於選取節點的節點資源。</block>
+  <block id="24e04714db6e86f8b770da300196abe4" category="paragraph">此外、營運者將使用特殊權限Kubernetes工作、在所選的工作節點上安裝儲存叢集的容器、以建置Astra Data Store預覽儲存叢集。</block>
+  <block id="4c0ef7c9699c23c05811fdaa8dd6d7fc" category="paragraph">*我需要更新哪些資訊清單檔案才能安裝Astra Data Store預覽？*請從下載的Astra Data Store預覽套裝組合下載<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block>、您將獲得下列資訊清單：</block>
+  <block id="d870af338cdfa7ad024a4babd5d5c020" category="list-text">astradscluster．yaml</block>
+  <block id="de40745cae6783730dd65bb03555d562" category="list-text">astradsoper.yaml</block>
+  <block id="d2730d5e8f46678286a382b660c902d6" category="list-text">astradsversion.yaml</block>
+  <block id="3a9c59c477bac1075df22f66ac28ffc3" category="list-text">監控_opuler.yaml</block>
+  <block id="155295fb4d0e2d0e7c5967bbc8bd3ed3" category="paragraph">您需要使用部署專屬的組態來更新「astradscluster．yaml」資訊清單。請參閱 <block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block>。</block>
+  <block id="92d1656d06303733c5e1398fb273a17e" category="section-title">疑難排解與支援</block>
+  <block id="f6ef14054d61951d57b5e044756b16ef" category="paragraph">透過Astra Data Store預覽、您可以使用NetApp Container Slack通路來存取社群支援。此通路由NetApp支援與我們的技術行銷工程師監控。</block>
+  <block id="61615f0fb929e3dc8c5ed73825a9a333" category="inline-link">NetApp Container Slack通路</block>
+  <block id="1e16f2b8556745da1de7a0b75522a635" category="paragraph"><block ref="1e16f2b8556745da1de7a0b75522a635" category="inline-link-rx"></block></block>
+  <block id="98d4a15143a74da57ac042934633419c" category="paragraph">預覽版本要求您的系統必須連線至雲端、並整合至NetApp Active IQ VMware解決方案及AutoSupport VMware工具。</block>
+  <block id="0596e50aba44f7e1a22cfd6eba221eb1" category="inline-link-macro">Astra Data Store支援營運</block>
+  <block id="b84bc82d6b1290562ebf05231992936a" category="paragraph">請參閱 <block ref="8d8c8ec655e8397711a9f4c0b3d58c93" category="inline-link-macro-rx"></block>。</block>
+  <block id="76cb5d2fd9023680b23ef2e16304eb1d" category="paragraph">*我要如何提出支援案例、或是詢問有關快速問題的說明？*提出支援案例、或是取得快速問題的說明、並在上回報您的問題或問題<block ref="58c7b0218bcdd8930a7bd42e42b82022" category="inline-link-rx"></block>。NetApp支援部門將與您密切合作、以盡力提供協助。</block>
+  <block id="e55eed1f8e319d189f948d8925157ae5" category="paragraph">*如何提出新功能的申請？*如果您對支援的組態或功能有任何疑問、請聯絡astra.feedback@netapp.com。</block>
+  <block id="d8d50c12bd11a2109a7a384f43b0930a" category="inline-link-macro">產生支援服務組合</block>
+  <block id="1165a0185db86745710cb672405b42d6" category="paragraph">*如何產生支援記錄套裝組合？*請參閱 <block ref="fabd9c024e7cacda497223e92e4a9bcb" category="inline-link-macro-rx"></block> 如需有關設定及下載Astra Data Store預覽支援記錄套裝組合的說明、請參閱。</block>
+  <block id="36a38d337710d18d8d4579ea32c02c53" category="paragraph">* Astra Data Store預覽找不到我的Kubernetes節點。如何修正此問題？*請參閱 <block ref="250292b4d71cfe0f32f1811f78ce979c" category="inline-link-macro-rx"></block>。</block>
+  <block id="b4f1a748c4275cde876e19417947f3df" category="paragraph">* IPv6位址是否可用於管理、資料和叢集網路？*否、Astra Data Store預覽僅支援IPV4位址。未來Astra Data Store預覽版本將新增IPv6支援。</block>
+  <block id="91f1ab6c785beb94a57d22cb6b25c708" category="paragraph">*在Astra Data Store預覽上配置磁碟區時、會使用什麼NFS版本？*根據預設、Astra Data Store預覽支援NFS v4.1、適用於所有為Kubernetes應用程式配置的磁碟區。</block>
+  <block id="6c6c281439786bd3afca1ee0f6d336f2" category="paragraph">*為什麼即使我已設定Astra Data Store預覽搭配大容量磁碟機、我仍無法取得更大的持續磁碟區？* Astra Data Store預覽會將節點上所有磁碟區的最大容量限制為1 TiB、以及Astra Data中所有節點的最多5 TiB 儲存預覽叢集。</block>
+  <block id="eb178327aa7fefe80b381533b11cc4e6" category="paragraph">請參閱 <block ref="a69191794982bdd23bf166d7d80bad2a" category="inline-link-macro-rx"></block> 和 <block ref="e15c2a80de21c8f7a5baec91689e624f" category="inline-link-macro-rx"></block>。</block>
+  <block id="14cd0e4b418e0b771908183fb5ecc24e" category="section-title">升級Astra Data Store預覽</block>
+  <block id="9b5fa79969e9a6e522104cdbe7e5b5d3" category="paragraph">*我可以從Astra Data Store預覽版本升級嗎？*否Astra Data Store預覽不適用於正式作業工作負載、而Astra Data Store預覽軟體的新版本需要全新安裝。</block>
+  <block id="6e9e51fbbff14f80e8168a1cfe154faf" category="summary">Astra Control有REST API、可讓您使用程式語言或程式（例如Curl）直接存取Astra Control功能。</block>
+  <block id="d755391e5d933eadfa1864b13155afeb" category="doc">使用Astra Control REST API實現自動化</block>
+  <block id="ce8c3cae4f2c01197a36e6ffb040472a" category="paragraph">Astra Control有REST API、可讓您使用程式語言或程式（例如Curl）直接存取Astra Control功能。您也可以使用Ansible和其他自動化技術來管理Astra Control部署。</block>
+  <block id="25a597384655d8562854aa2ef853e0d2" category="paragraph">若要設定及管理Kubernetes應用程式、您可以使用Astra Control UI或Astra Control API。</block>
+  <block id="4cb6c41d46d2f006d629608f64213d6f" category="inline-link">Astra Control自動化文件</block>
+  <block id="bd0d75f3c5e39de86dcfaa2135656772" category="paragraph">若要深入瞭解、請前往<block ref="a3a0846fef2d3938044e5c73697831f2" category="inline-link-rx"></block>。</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">法律聲明提供版權聲明、商標、專利等存取權限。</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律聲明</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版權</block>
+  <block id="09e95b77ffe81fe465a83ba99efad5c8" category="paragraph"><block ref="09e95b77ffe81fe465a83ba99efad5c8" category="inline-link-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商標</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp 標誌及 NetApp 商標頁面上列出的標章均為 NetApp 、 Inc. 的商標。其他公司與產品名稱可能為其各自所有者的商標。</block>
+  <block id="7aa531e9acfe2b98e34d2c92fe9846ff" category="paragraph"><block ref="7aa531e9acfe2b98e34d2c92fe9846ff" category="inline-link-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">專利</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">如需最新的 NetApp 擁有專利清單、請參閱：</block>
+  <block id="d7f1fbcf9ce4e42f705add574d262b2c" category="paragraph"><block ref="d7f1fbcf9ce4e42f705add574d262b2c" category="inline-link-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隱私權政策</block>
+  <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">開放原始碼</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知檔案提供有關 NetApp 軟體所使用之協力廠商版權與授權的資訊。</block>
+  <block id="bd9a92025f272fdbcf82dbe7c6751b8e" category="inline-link-macro">Astra Data Store 21.12版本注意事項</block>
+  <block id="1f6cc7061c99b2f46c25473fe9b7ea3a" category="paragraph"><block ref="1f6cc7061c99b2f46c25473fe9b7ea3a" category="inline-link-macro-rx"></block></block>
+  <block id="b3103953d0eb8d92f14a4edc6e2fe28a" category="summary">使用KECBECVL命令搭配Astra Data Store來取代磁碟機。</block>
+  <block id="fe7c99ee714339295ef1464eff2444c5" category="paragraph">以下概述更換叢集中故障磁碟機所需的步驟。</block>
+  <block id="6abc782590a9e4461a3103ce82904d1a" category="list-text">在節點上執行SSH</block>
+  <block id="586c3d689add9e8ff9e8264c2552c925" category="list-text">取得使用中磁碟機的清單。</block>
+  <block id="ed11c0c26d855c72f3b6547a036cb5a8" category="list-text">取得連結至節點的所有磁碟機清單。</block>
+  <block id="63e6369a6b7286c516a9cab733fe6c19" category="list-text">識別可用的磁碟機。</block>
+  <block id="311e84b375634f29273ecd1e56331924" category="list-text">取得磁碟機自訂資源（CR）故障通知。</block>
+  <block id="eb060d511b605e93f2a2a260b6dbc752" category="list-text">更換磁碟機。</block>
+  <block id="17e4f1d2261b575388ad40a2b50c86bb" category="list-text">驗證叢集CR中的磁碟機是否已成功更換及啟用。</block>
+  <block id="688a9f01064d517d6da081a5ac8353d0" category="list-text">取得叢集詳細資料：</block>
+  <block id="7b06a5238c5e244fde425c0502ff9d3a" category="list-text">SSH至節點：</block>
+  <block id="bc7abe9efdcfac99c4454b9d769a43c5" category="list-text">列出該節點上的所有作用中磁碟機：</block>
+  <block id="78047a701b859d83c0a00c4143555a87" category="list-text">列出該節點上的所有磁碟機：</block>
+  <block id="1cc9c9a0c87e673adf2c5e47e941fc0e" category="list-text">建立故障磁碟機CR:</block>
+  <block id="feccfba3029817911cc680409d111a15" category="list-text">取得故障磁碟機詳細資料：</block>
+  <block id="539962a87680a6acac5f72ff73171888" category="list-text">編輯故障磁碟機CR、並以可用磁碟機取代。</block>
+  <block id="bfa727649cf39a210039fea03d2b045b" category="list-text">確認磁碟機在叢集CR和節點中處於作用中狀態。</block>
+  <block id="2c4bb7389deaecb2c2ce1a2a3017a90e" category="summary">使用KECBECVL命令搭配Astra Data Store來取代節點。</block>
+  <block id="d78735cfb1e1011678392c0293bd3a10" category="paragraph">將KECBECVL命令搭配Astra Data Store使用、以取代叢集中故障的節點。</block>
+  <block id="ba6892cf573144bb73e7929641b57d17" category="list-text">在「astrads系統」命名空間中列出Pod（我們的範例使用1x5組態、叢集中有4個節點）：</block>
+  <block id="61941ab5e153651276d8ff166c98fa79" category="list-text">驗證故障節點上的節點HA是否標記為「假」：</block>
+  <block id="2e0a0e5f63a3e34661e5cebf3e1bfc05" category="list-text">修改叢集CR以移除故障節點。節點數減至3：</block>
+  <block id="c7e8e8a7f1a6fb5362aeff0689ff1a73" category="admonition">節點必須是Astra Data Store叢集的一部分。</block>
+  <block id="6a070a29c656f8942eb8d0ed53f9f79e" category="paragraph">當節點處於維護模式時、您無法新增節點。</block>
+  <block id="8574c080b5c15d6898aac8d0b601c5d8" category="list-text">顯示節點詳細資料。</block>
+  <block id="d290550b0009c972401d893478976353" category="list-text">取得磁碟區詳細資料：</block>
+  <block id="41fc664a86b897717b81a010b7cf950e" category="list-text">啟用維護模式：</block>
+  <block id="a50914cbb8e47a537a25014f5b12edc5" category="paragraph">「維護中」模式會啟動為「假」、並變更為「真」、而「維護」狀態則會從「準備維護」變更為「準備維護」。</block>
+  <block id="809ce4b8d42d2f4a54279fffa78b7e08" category="inline-link-macro">使用KECBECVL命令管理Astra Data Store資產</block>
+  <block id="55f3d07228facede0763d324535936dd" category="paragraph">另請參閱此資訊。* <block ref="71dd6be9bbc5ad66a4c62fe63d832feb" category="inline-link-macro-rx"></block>。</block>
+  <block id="65b6668e2c69e75ca45fd504ca3bf939" category="summary">Astra Data Store可部署在獨立的Kubernetes叢集上、為Kubernetes應用程式提供持續的磁碟區、這些應用程式可在獨立的叢集內執行、Kubernetes叢集也可在同一個節點集區上裝載其他應用程式、或是在Kubernetes叢集上裝載應用程式。</block>
+  <block id="06ae80c1558e7ebb2d814d7146df1dd4" category="doc">Astra Data Store預覽部署模式</block>
+  <block id="41719d45eedf548911f2b5c2a6084cc7" category="paragraph">Astra Data Store預覽會使用與Kubernetes部署及協調的應用程式、直接在主機上管理儲存磁碟機。</block>
+  <block id="8ef212afa8777e08dfaa18bd2c5e39ae" category="paragraph">您可以使用下列其中一個選項、在裸機或虛擬伺服器上安裝Astra Data Store預覽：</block>
+  <block id="d807a55a4eafc3079b6b45a80be55981" category="list-text">部署在獨立的Kubernetes專屬叢集上、為Kubernetes應用程式提供持續磁碟區服務、並在獨立的叢集（獨立叢集）中執行。</block>
+  <block id="a5389bea5b0ed77642e3dc5f2d2e70f0" category="list-text">在Kubernetes叢集上部署、也會在同一個節點集區（融合式叢集）上裝載其他工作負載應用程式。</block>
+  <block id="277369c2a44bdbde70d4978491333cf6" category="list-text">在Kubernetes叢集上部署、也會在不同的節點集區（分離式叢集）上裝載其他工作負載應用程式。</block>
+  <block id="c6f1a352df2f86c5762377fac42728cd" category="inline-link-macro">深入瞭解Astra Data Store硬體需求</block>
+  <block id="fe0f8f78d78d43e48f544072457864fd" category="paragraph"><block ref="063de6d98610c6cc606db5d3a91db761" category="inline-link-macro-rx"></block>。</block>
+  <block id="b718411e8c696b20e6e0a5763131ff50" category="paragraph">Astra Data Store預覽是Astra產品系列的一部分。若要深入瞭解整個Astra系列、請參閱<block ref="b55c504067205ad1413673d6a733ac94" category="inline-link-rx"></block>。</block>
+  <block id="70944dd74ab42c58bf0bbebb73b3d92e" category="section-title">Astra Data Store預覽生態系統</block>
+  <block id="c77d4df020e2f228b335bf2fb55c7074" category="paragraph">Astra Data Store預覽可搭配下列功能使用：</block>
+  <block id="50db2d5d2d0d6701257927c365a04231" category="list-text">* Astra Control Center*：使用Astra Control Center軟體、在內部部署環境中、對Kubernetes叢集進行應用程式感知資料管理。輕鬆備份Kubernetes應用程式、將資料移轉至不同的叢集、並即時建立可運作的應用程式複本。</block>
+  <block id="72537d8b8241103e05529786a992c93b" category="paragraph">Astra Control Center支援OpenShift Kubernetes叢集、搭配Astra Trident儲存後端ONTAP 、搭配使用支援的功能包括：NetApp或Astra Data Store預覽儲存後端。</block>
+  <block id="8bce794738fc750d8f56c5653ce122c8" category="list-text">* Astra Trident *：Astra Trident *是完全受支援的開放原始碼儲存資源配置程式、由NetApp維護、可讓您為Docker和Kubernetes所管理的容器化應用程式建立儲存磁碟區。</block>
+  <block id="3fb127141fe64886ad5479043baf8792" category="paragraph">您可以使用Astra Trident在Astra Data Store預覽上建立磁碟區。</block>
+  <block id="9d106b821e7a6c048ee7d651cb427fe8" category="list-text">*《NetApp雲端基礎架構監控工具》《支援》、可讓您監控由Astra Control管理的Kubernetes叢集的效能與使用率。Cloud Insights Cloud Insights可將儲存使用量與工作負載建立關聯。Cloud Insights</block>
+  <block id="7614f60c48f7bfbd460529648c031f07" category="paragraph">當您在Cloud Insights Astra Control中啟用「支援」功能時、遙測資訊會顯示在Astra Control UI頁面中。顯示Astra Data Store預覽中所管理資源的相關資訊。Cloud Insights</block>
+  <block id="34a795c2035a86d18808381c47d8586b" category="section-title">Astra Data Store預覽介面</block>
+  <block id="d015aca78df45458ee1d6533c5246919" category="paragraph">您可以使用不同的介面來完成工作：</block>
+  <block id="3ce33c83106a597de03ab2e053ba936d" category="list-text">*網路使用者介面（UI）*：Astra Control Service和Astra Control Center使用相同的網路型UI、您可以在其中管理、移轉及保護應用程式。此UI也會顯示Astra Data Store預覽Volume的相關資訊。</block>
+  <block id="5dd2a4cc9e98a3b9886bcc604cfd6996" category="list-text">* API*：Astra Control Service和Astra Control Center使用相同的Astra Control API。使用API、您可以執行與使用UI相同的工作。您也可以使用Astra Control API擷取Astra Data Store預覽的相關資訊。</block>
+  <block id="4265f71c8e49f4a6e5349ee2484a5ddb" category="list-text">* kubectl命令*：若要使用Astra Data Store預覽、您可以直接使用kubecl命令。</block>
+  <block id="0277c6cbc171c0c7131585e332028573" category="list-text">* Kubernetes副檔名*：此外、您也可以使用Astra Data Store預覽Kubernetes API副檔名。</block>
+  <block id="61a6bfa30a3c2204517c3ff952d4c118" category="paragraph">自訂資源定義（CRD）是Kubernetes REST API的延伸、是在部署Astra Data Store預覽運算子時所建立的API。外部實體透過呼叫Kubernetes API伺服器來與客戶需求日互動。Astra Data Store會預覽特定客戶需求日的更新、然後呼叫內部REST API。</block>
+  <block id="ef22ff17624b3faeed227ce5c717eb5f" category="inline-link">Astra Control Service文件</block>
+  <block id="6762180adf48075df77efbf264e982ec" category="list-text"><block ref="6762180adf48075df77efbf264e982ec" category="inline-link-rx"></block></block>
+  <block id="14d9b10c6196045941347a9e85704b50" category="inline-link">Astra Trident文件</block>
+  <block id="4a2ab62188738135163aaaaeab1d6cfe" category="list-text"><block ref="4a2ab62188738135163aaaaeab1d6cfe" category="inline-link-rx"></block></block>
+  <block id="d418042930eb178009f4c27360b349f6" category="inline-link">使用Astra Control API</block>
+  <block id="35e127abdc4e59a01dd3fd4f63603bf1" category="list-text"><block ref="35e127abdc4e59a01dd3fd4f63603bf1" category="inline-link-rx"></block></block>
+  <block id="5858ee4031acd7b896faa2d3d2c1a299" category="inline-link">本文檔 Cloud Insights</block>
+  <block id="2b93b48daf034e4100d00b85950e109d" category="list-text"><block ref="2b93b48daf034e4100d00b85950e109d" category="inline-link-rx"></block></block>
+  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link">本文檔 ONTAP</block>
+  <block id="8217522f2b9eea86f1099a2aba54aebd" category="list-text"><block ref="8217522f2b9eea86f1099a2aba54aebd" category="inline-link-rx"></block></block>
+  <block id="6929f0cedcea1d6e056ea216f0388b3a" category="summary">您可以擴充Astra Data Store叢集。</block>
+  <block id="85c9296df6a3c9630ed684b4af8847a8" category="doc">叢集擴充</block>
+  <block id="a8272dc0dc5732e847bfe578c20695d8" category="paragraph">Astra Data Store預覽可支援叢集中不同類型和功能的節點。如果您要擴充叢集、Astra Data Store預覽可支援新增具有任何效能功能的節點、只要它們不低於叢集中效能最低的節點即可。新節點的儲存容量必須與現有節點相同。所有節點、包括擴充期間的新節點、都必須至少符合中的最低需求 <block ref="a69191794982bdd23bf166d7d80bad2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="30f4d9ba43475ff8056fa1d73ffc972c" category="inline-link">使用Astra API</block>
+  <block id="3d8f201e2aea311db7d1d35c86d726da" category="list-text"><block ref="3d8f201e2aea311db7d1d35c86d726da" category="inline-link-rx"></block></block>
+  <block id="d4b92f4945c7eafc00261f4339999749" category="summary">Astra Data Store使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。</block>
+  <block id="aaad6395404f293dfe1fcbb100ed7fdf" category="doc">Astra Data Store預覽的安全性</block>
+  <block id="6c50ae0fd489e39bb803cec46c926c40" category="paragraph">Astra Data Store預覽使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。</block>
+  <block id="09339b9f65d7451119bd973b67b2cf37" category="paragraph">Astra Data Store預覽使用下列安全方法：</block>
+  <block id="aadd8dd46108d4c406fbdaf57d8cd0e4" category="list-text">使用相互傳輸層安全性（MTLS）進行通訊加密</block>
+  <block id="85f04e298b2fa787e636338a4499f93f" category="list-text">角色型存取控制、可控制功能的存取</block>
+  <block id="493310ef851cbd6318af4494b52c12e6" category="list-text">部署安全性</block>
+  <block id="d7472107bd93164aab58e7bdee6b4ee2" category="list-text">憑證管理</block>
+  <block id="4c8339b442784e09f376234ea3dc70e1" category="list-text">閒置的軟體加密、包括內部金鑰管理</block>
+  <block id="ca4530da8cd63a3852e628753021934a" category="summary">Astra Data Store採用精簡配置、零區塊消除、壓縮及重複資料刪除等儲存效率技術。</block>
+  <block id="59b52b662628e0a0664716e98856b5d3" category="doc">Astra Data Store預覽的儲存效率</block>
+  <block id="c593500c8f6f300bb8cbf4acdb85b4ae" category="paragraph">Astra Data Store預覽採用以NetApp ONTAP 技術為基礎的儲存效率技術、SolidFire 包括：</block>
+  <block id="49fd2375999e454962f2a76dea2d99b5" category="list-text">*精簡配置*：精簡配置的磁碟區是指未預先保留儲存設備的磁碟區。而是根據需要動態分配儲存設備。刪除磁碟區或LUN中的資料時、可用空間會釋出回儲存系統。</block>
+  <block id="ac0967915cfa21217ac0958fa4f2a6da" category="list-text">*零區塊偵測與消除*：ONTAP 採用精簡配置的支援功能、可偵測已清零磁碟區的區域、以便回收該空間並在其他地方使用。</block>
+  <block id="bd4fa668e07ff5169fc38a1df5dd7fe2" category="list-text">*壓縮*：壓縮可將資料區塊合併到壓縮群組中、以減少磁碟區所需的實體儲存容量、每個區塊都儲存為單一區塊。壓縮資料的讀取速度比傳統的壓縮方法快、因為ONTAP 只有包含所要求資料的壓縮群組才能解壓縮、而非整個檔案。</block>
+  <block id="a0f1d24dc3084ea8b257373ed48416c3" category="list-text">*重複資料刪除*：重複資料刪除技術AFF 會捨棄重複區塊、並以單一共用區塊的參考資料來取代、藉此減少磁碟區（或是整個集合體中的所有磁碟區）所需的儲存容量。讀取已刪除重複資料通常不會收取效能費用。除了在過載節點上、寫入作業所產生的費用可忽略不計。</block>
+  <block id="23d07990648d5e599c2f21bd6408d3c7" category="paragraph">所有這些功能預設都會啟用。</block>
+  <block id="8bb7278f8687d62c283b01b22bd11883" category="inline-link">儲存效率詳細資料</block>
+  <block id="17e8381dc8f4cb6d73926f1e7a8de1e1" category="paragraph">請參閱<block ref="64bad5f12122d75c9f4258c5070a56b3" category="inline-link-rx"></block>。</block>
+  <block id="822b9a387b65a35c2ef192f62db1ed0f" category="summary">Astra Data Store是Kubernetes原生共享檔案服務、適用於容器和VM工作負載、可提供企業資料管理功能。</block>
+  <block id="7a99a9db224c8af4d42ebcb83f72eb95" category="doc">Astra Data Store預覽簡介</block>
+  <block id="4f41b6ecbc684298440aa61fd902e22e" category="paragraph">Astra Data Store預覽是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。Astra Data Store為Container和VM工作負載提供原生共享檔案服務、並提供NetApp企業資料管理功能。</block>
+  <block id="1ab55fa5b9c4c19372d7d6871e2ad91a" category="paragraph">有了Astra Data Store預覽、您可以執行下列動作：</block>
+  <block id="13423660d468d089ecff44a943262590" category="list-text">*支援Kubernetes容器化工作負載*：搭配您常用的企業資料管理服務與工具。</block>
+  <block id="658b90d4dc3b6a2eac6d3fe324c8cfcc" category="list-text">*使用Kubernetes的「應用程式即服務」平台進行DevOps *：建立彈性、軟體定義的自助式平台、提供自動化、可重複執行的服務、免除開發人員的複雜性</block>
+  <block id="bb453665f57f6823950856f7a9bad0c3" category="section-title">Astra產品系列</block>
+  <block id="dd490b59f0194051f9d41deec8b0aefa" category="paragraph">Astra系列產品提供Kubernetes應用程式資料生命週期管理功能、可簡化狀態應用程式的作業。輕鬆保護、備份及移轉Kubernetes工作負載、並立即建立可運作的應用程式複本。</block>
+  <block id="b71fa69e65a9178741af35068df8a392" category="paragraph">Astra產品包括：</block>
+  <block id="9cdf0ccc35fe6d9fdc72efbcca1bacad" category="list-text">* Astra Control *：使用應用程式感知的資料管理工具、在公有雲和內部部署環境中管理、保護及移動Kubernetes工作負載</block>
+  <block id="227ef150dba3452cf99d8eb20c88f292" category="list-text">* Astra Control Service*：使用NetApp管理的服務來管理公有雲中的Kubernetes工作負載。</block>
+  <block id="5fcaa4cc6e27b1f2dcee1db0dcee999a" category="list-text">* Astra Control Center*：使用自我管理的軟體來管理內部部署Kubernetes工作負載的資料。</block>
+  <block id="f6f25afb547b52fa6ec991a8716cbb38" category="list-text">* Astra Data Store preview *：使用Kubernetes原生的共享檔案服務來處理容器和VM工作負載、以進行企業資料管理。</block>
+  <block id="383cdefecd7eda4a982198ecdbbce7da" category="list-text">* Astra Trident *：使用容器儲存介面（Container Storage Interface、簡稱csi）相容的儲存設備資源配置與管理功能、來處理Kubernetes工作負載、並與NetApp儲存供應商合作。</block>
+  <block id="9c4409443c2952d1634823228bc8d335" category="paragraph">請參閱<block ref="b55c504067205ad1413673d6a733ac94" category="inline-link-rx"></block>。</block>
+  <block id="17d3506812ac5cd550afaae120fc3072" category="paragraph"><block ref="17d3506812ac5cd550afaae120fc3072" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="de08a04337cd312be055df354ff4a143" category="section-title">Astra Data Store預覽功能</block>
+  <block id="7f9c8c1ebd63ac3eee6304557c3beb28" category="paragraph">Astra Data Store預覽提供端點對端點Kubernetes原生儲存與資料管理功能、適用於雲端原生應用程式。這些功能包括：</block>
+  <block id="f9ab1651208c253699bc488c26a8427e" category="list-text">* Kubernetes原生共享檔案服務*：提供Kubernetes原生的共享檔案服務、使用標準NFS用戶端做為容器和VM的統一化資料儲存區</block>
+  <block id="f9ee9cb48be574a530a87bdbd8a3fb4b" category="list-text">*雲端擴充*：在相同資源池上提供Kubernetes原生的多重平行檔案系統、以達到類似雲端的擴充與使用率、免除管理儲存設備與叢集的需求。</block>
+  <block id="7012ec096e5b7ac0c86f0d874bca22cd" category="list-text">* API第一方法*：以程式碼形式提供基礎架構、以供自動化叢集與工作負載管理之用。</block>
+  <block id="9aabb09d3a7120141b0d753a80fe4217" category="list-text">*企業級資料管理*：提供自動化的應用程式感知資料保護與災難恢復：</block>
+  <block id="782e83202e5dc2f388e8355633eda320" category="list-text">* NetApp技術*：運用NetApp資料管理技術進行快照、備份、複寫及複製、讓使用者能夠在Kubernetes中建置及部署企業應用程式。 ​</block>
+  <block id="8931fb12998c2c6ad5f4c5bc8829f8ef" category="list-text">*恢復能力*：為Kubernetes原生工作負載使用複寫與銷毀編碼技術、以提升恢復能力。</block>
+  <block id="1504325f5e4b13a89b554f4d86ce7224" category="list-text">*資料效率*：透過即時重複資料刪除與壓縮功能、在擴充時控制成本。</block>
+  <block id="02636655504a22c3e2973e5b212990c4" category="list-text">*適合您現有的環境*：支援以微服務為基礎的傳統工作負載、提供Kubernetes主要發佈產品、提供檔案儲存功能、並可在您選擇的硬體上執行。</block>
+  <block id="15266d664d91aafb32a297b47d315e6e" category="list-text">*整合NetApp Cloud Insights Setc*：提供觀察、分析及監控功能、以持續最佳化。 ​</block>
+  <block id="8868678235b1972f674ec06ef7e3b57f" category="section-title">Astra Data Store預覽入門</block>
+  <block id="fdc214a356831f18e50d44483816cd46" category="inline-link-macro">深入瞭解Astra Data Store需求</block>
+  <block id="ff5aa600c6539c7e081d620eb47efc0b" category="paragraph">首先、 <block ref="ffd8cafe4a2e3797a817f620ac67ea91" category="inline-link-macro-rx"></block>。</block>
+  <block id="fb75bcadcf4356e44d514f54d356ab25" category="paragraph">然後、 <block ref="f7da4cdd4ceddcef675db38062e9c2f7" category="inline-link-macro-rx"></block>。</block>
+  <block id="5b386366b4ab49808562bc6fd84e29ca" category="summary">已解決此版本中可能導致您無法成功使用產品的問題。</block>
+  <block id="8e33d0035ce9088a5bcc4cff0c38cf36" category="doc">已解決的問題</block>
+  <block id="479ffb12d996aec220f356434b84d0b6" category="paragraph">本產品版本已修正下列問題。</block>
+  <block id="611ef1043a7be23a79c733584b983303" category="section-title">Astra Data Store預覽無法辨識採用VXLAN組態和Calico CNI的網路介面名稱</block>
+  <block id="3378074c8eeb58b3185929269c8770d7" category="paragraph">此錯誤導致Pod當機。</block>
+  <block id="4530f8c7839b1f969ceb5c2a31b6c4ec" category="paragraph">此版本的Astra Data Store預覽支援採用Calico CNI的VXLAN組態。</block>
+  <block id="1eba71d64e6c5e410e558530711e835b" category="summary">已知限制指出本產品版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。</block>
+  <block id="482723983a4f2af954e36ff41e567451" category="doc">已知限制</block>
+  <block id="e42bc9d321b4abe3662a7990b5c7c37f" category="paragraph">已知限制指出產品預覽版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。</block>
+  <block id="93c6ecb767e400f580fe2b79b925ed35" category="section-title">不支援移除一或多個節點的功能</block>
+  <block id="02ae7b81eed73967ba19efba8b18a845" category="paragraph">Astra Data Store預覽支援更換故障節點、但不支援節點移除功能。</block>
+  <block id="4a92e856a033d3527db5b721839de67c" category="section-title">不支援新增或移除磁碟機的功能</block>
+  <block id="b283330938a2efd574971709e0eb1a96" category="paragraph">Astra Data Store預覽支援更換故障磁碟機、但不支援新增或移除現有叢集的磁碟機。</block>
+  <block id="1c27587bda352fa09c49c0026f2f1347" category="section-title">Astra Data Store預覽功能未在啟用防火牆的情況下驗證</block>
+  <block id="8dfd25c9737e74df2610fe1998679141" category="paragraph">Astra Data Store預覽需要停用主機firewald。尚未驗證使用Calico HostEndpoint等CNI工具啟用防火牆。</block>
+  <block id="a2b9bc64ef0e19631f5f577e78217a8c" category="section-title">升級或修補程式需要全新安裝</block>
+  <block id="6227dd6927c26840de69af22a82ed17f" category="paragraph">Astra Data Store預覽不適用於正式作業工作負載。</block>
+  <block id="91103fd1bd4fa8531dc6f4bac0120409" category="section-title">基於Ubuntu的裸機或VM直通部署需要NVMe TLC SSD</block>
+  <block id="d9873749f0f8e850c1b913dbe83b4686" category="paragraph">此限制不適用於RHEL、RCOOS或CentOS型部署。</block>
+  <block id="95dc0391ce7b396d7dd5622284e8fc3e" category="inline-link-macro">已知問題</block>
+  <block id="0956972ccb3f1ffed4c31a057c597e7d" category="list-text"><block ref="0956972ccb3f1ffed4c31a057c597e7d" category="inline-link-macro-rx"></block></block>
+  <block id="3c60bfdc14ab00c255a4234e22b93fce" category="summary">NetApp會定期更新Astra Data Store、為您帶來新功能、增強功能和錯誤修復。</block>
+  <block id="39b72bf4e7fc80a70a26d746cbef58ad" category="doc">本版Astra Data Store的新功能</block>
+  <block id="3eb82e828f1c951f4b92741841e7ffc0" category="paragraph">我們很高興宣布推出Astra Data Store預覽版本的20212.12修補程式。</block>
+  <block id="aa1ac4b92c201cc0069ddd9b8f5ef562" category="section-title">2022年2月8日（2021.12.1）</block>
+  <block id="bd8f00179fbca4385570ecda2bce2b26" category="paragraph">Astra Data Store預覽（21：12）的修補程式版本（2021：12）。</block>
+  <block id="1a7c93d5ddfb9e849dc78f3e532c9c39" category="list-text">Astra Data Store預覽現在支援啟用Calico WireGuard的網路組態。</block>
+  <block id="03c2a88196227c124e45e61db29b2a19" category="list-text">更新的《適用網路介面》一節包含改良的說明性註解。</block>
+  <block id="172a28b95bfacecd355a263df8cfb2dd" category="list-text">全新的Astra Data Store解除安裝指令碼、現在已成為KECBECKLET命令解除安裝程序的更簡單替代方法。</block>
+  <block id="543a7bce413677fa93bd0df794199bfc" category="section-title">2021年12月21日（21日12）</block>
+  <block id="ede1b5b057383164bf158f52b20ac5f4" category="paragraph">Astra Data Store預覽的初始版本。</block>
+  <block id="b90b098f5e10f362e0311f845f8db412" category="inline-link-macro">它是什麼</block>
+  <block id="0366914bfcaaf0f822d79c3c7babc483" category="list-text"><block ref="0366914bfcaaf0f822d79c3c7babc483" category="inline-link-macro-rx"></block></block>
+  <block id="6251e202756531d0b1e4a8c3e94d6bc4" category="inline-link-macro">部署模式與元件</block>
+  <block id="37732ccd7c5f71d8c53932d31af19327" category="list-text"><block ref="37732ccd7c5f71d8c53932d31af19327" category="inline-link-macro-rx"></block></block>
+  <block id="c9a21e3a3141bc9001bc0958ff7af4e0" category="inline-link-macro">開始使用所需的一切</block>
+  <block id="0523965ded2c88ae66e7e4d44ca41a94" category="list-text"><block ref="0523965ded2c88ae66e7e4d44ca41a94" category="inline-link-macro-rx"></block></block>
+  <block id="349838fb1d851d3e2014b9fe39203275" category="inline-link-macro">安裝</block>
+  <block id="a0f848942ce863cf53c0fa6cc684007d" category="inline-link-macro">設定</block>
+  <block id="b6112d00a521fccefa4489b14d465a3b" category="list-text"><block ref="533d2f97327ab5644c4038f91999940c" category="inline-link-macro-rx"></block> 和 <block ref="becc72e9ee6a9f1ae4fca00b065a0abf" category="inline-link-macro-rx"></block></block>
+  <block id="34e34c43ec6b943c10a3cc1a1a16fb11" category="inline-link-macro">管理</block>
+  <block id="08b5411f848a2581a41672a759c87380" category="inline-link-macro">監控</block>
+  <block id="11a0f50cf879fb4394290003fce457c2" category="list-text"><block ref="4719fa0d709aee96e74ffefaf1b635dd" category="inline-link-macro-rx"></block> 和 <block ref="dcbf791659dffc59853a2f268ee6d8d2" category="inline-link-macro-rx"></block> 效能</block>
+  <block id="28c965a9c3773d02a3f2f37460517913" category="inline-link-macro">利用功能進行監控Cloud Insights</block>
+  <block id="c76917f270d30a203529be3a9e423159" category="list-text"><block ref="c76917f270d30a203529be3a9e423159" category="inline-link-macro-rx"></block></block>
+  <block id="3d947721e690a3b1a861a1ed8113ded8" category="inline-link-macro">使用自動支援監控</block>
+  <block id="a2349035bf4872c12c78cb2d856a9336" category="list-text"><block ref="be0f477de0f57aea94404872654dcee8" category="inline-link-macro-rx"></block> 和 <block ref="60f068e3a346c283b9ad7095bc3a22bf" category="inline-link-macro-rx"></block></block>
+  <block id="58ddb149ad752e78b7ddd185699b6c95" category="list-text"><block ref="58ddb149ad752e78b7ddd185699b6c95" category="inline-link-macro-rx"></block></block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="doc">版本資訊</block>
+  <block id="a75f3479bc8ee07b1c30e1dc43a5f950" category="paragraph">我們很高興宣布推出Astra Data Store預覽版本的21.12。</block>
+  <block id="e563ac1a793c6c7311b2c41e978bf313" category="inline-link-macro">本版Astra Data Store預覽的新功能</block>
+  <block id="0a8304d2d371d90a957d4e1ce36197c4" category="list-text"><block ref="0a8304d2d371d90a957d4e1ce36197c4" category="inline-link-macro-rx"></block></block>
+  <block id="3f4fc4220755866f399810fee47c7884" category="inline-link-macro">GitHub貢獻者</block>
+  <block id="65ed3c4720fad34d453db54755338725" category="paragraph">歡迎前往Twitter @NetAppDoc追蹤我們的動態。請透過成為來傳送有關文件的意見反應 <block ref="78cabac26f0b6e0ce9a3e24d1b749910" category="inline-link-macro-rx"></block> 或傳送電子郵件至doccomments@netapp.com。</block>
+  <block id="34515f1d88b10d0db0a78eba6c533394" category="summary">已知問題可識別可能導致您無法成功使用本產品版本的問題。</block>
+  <block id="cbf07725210d7794bc72ba637e814463" category="paragraph">已知問題可識別可能導致您無法成功使用此產品預覽版本的問題。</block>
+  <block id="7c88f5c8e51811bf930b3f587b58d58a" category="section-title">使用預設的活動力探針值進行MongoDB部署時、Pod會在當機迴圈中失敗</block>
+  <block id="c4a3b0f34e2b8b73bccefd6f730679b0" category="paragraph">因應措施是在MongoDB部署規格中將LIF探針初始延遲時間設為600秒。</block>
+  <block id="605c1163c92b6665e6e3a6e4d3e2b5ab" category="section-title">Astra Data Store預覽解除安裝程序可能會導致Pod處於終止狀態</block>
+  <block id="a030a13efde84131d965c146d7bf8f3a" category="inline-link-macro">無需指令碼、即可手動解除安裝Astra Data Store預覽</block>
+  <block id="a1d719a64af2e2fa944c702e48d96096" category="inline-link-macro">使用指令碼自動解除安裝Astra Data Store預覽</block>
+  <block id="0742cb091f55684dbf38e47d41776cc5" category="paragraph">請參閱 <block ref="b866e48fdeb7aae2eabda2e75fe60c7f" category="inline-link-macro-rx"></block> 或<block ref="7d1c65f7beae1b21b3f162365b72d51c" category="inline-link-macro-rx"></block>。</block>
+  <block id="f16f3c945705b1ec1c2fa1f5d55b34f4" category="sidebar">Astra Data Store文件</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
+  <block id="950ef96ff58f56393ed7430627e7ea24" category="sidebar">深入瞭解Astra Data Store</block>
+  <block id="c57f988e5835170a0aaff4d1dfeaf944" category="sidebar">Astra Data Store預覽內容</block>
+  <block id="62bdbe048d174b559cb770f9ebaf0895" category="sidebar">歡迎試用</block>
+  <block id="899cadfe18270498e36749fd8c70b6ea" category="sidebar">設定Astra Data Store預覽</block>
+  <block id="7ea0911f99c3d96666fd9f883b4db9ca" category="sidebar">使用Astra Data Store預覽</block>
+  <block id="e961f7303467d87af5c48cca8c4d09a5" category="sidebar">使用kubectl命令進行管理</block>
+  <block id="b4c6e3a3c2028ba3c6664bbbda8d1964" category="sidebar">監控事件記錄</block>
+  <block id="720dfdf92d4c340e9f5b8b2b368df3c9" category="sidebar">Astra Control Center整合</block>
+  <block id="81a123ccab93cd947289b672b0e50348" category="sidebar">示範教學課程</block>
+  <block id="51d4cdad7d0fdc980b53468d54533be7" category="sidebar">Kubernetes的未來</block>
+  <block id="e00a8c065b7da39a499cd9685782e767" category="sidebar">Astra Data Store預覽示範</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">部落格社群</block>
+  <block id="6394eceb2639574114b02e6e817eb19a" category="sidebar">Astra部落格</block>
+  <block id="0ea49e56b14b87fa0b49648176f9fc81" category="sidebar">可寬延的「容器」通道</block>
+  <block id="874d8a5301794a9ca2aba132ac2460f3" category="sidebar">Kubernetes Hub</block>
+  <block id="213686afc3803be7caa09348765467fe" category="sidebar">取得協助的地方</block>
+  <block id="0adc03eac86772ad2c75c8f140be417e" category="sidebar">知識與支援</block>
+  <block id="042ad0dc0362e73320e5850115e17224" category="sidebar">使用Astra資料儲存區</block>
+  <block id="a8ecbfa098cb2532d1bd8fdb1e9c8a10" category="sidebar">管理Astra Data Store資產</block>
+  <block id="1fe917b01f9a3f87fa2d7d3b7643fac1" category="sidebar">常見問題集</block>
+  <block id="1d79052461351a56ef4f9bf9f5837f4a" category="sidebar">使用REST API自動化</block>
+  <block id="0b79795d3efc95b9976c7c5b933afce2" category="sidebar">簡介</block>
+  <block id="0460583622f03a52d7693094d6fa2452" category="sidebar">概念</block>
+  <block id="9f828d6c562cc0df256e51d5d235c7bb" category="sidebar">Astra Data Store簡介</block>
+  <block id="6762973af9b127d271f0d2b2aea0bc96" category="sidebar">部署模式</block>
+  <block id="fd18465573ec21a6218982055981f6b1" category="sidebar">儲存效率</block>
+  <block id="2fae32629d4ef4fc6341f1751b405e45" category="sidebar">安全性</block>
+  <block id="1b828e66f98e1084d2ec48e088373a14" category="sidebar">本版Astra Data Store的新功能</block>
+</blocks>

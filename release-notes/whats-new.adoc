@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: release-notes/whats-new.html 
+keywords: 'what"s new, bugs, bug fixes, new features, enhancements' 
+summary: NetApp會定期更新Astra Data Store、為您帶來新功能、增強功能和錯誤修復。 
+---
+= 本版Astra Data Store的新功能
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+我們很高興宣布推出Astra Data Store預覽版本的20212.12修補程式。
+
+
+
+== 2022年2月8日（2021.12.1）
+
+Astra Data Store預覽（21：12）的修補程式版本（2021：12）。
+
+* 此版本的Astra Data Store預覽支援採用Calico CNI的VXLAN組態。
+* Astra Data Store預覽現在支援啟用Calico WireGuard的網路組態。
+* 更新的《適用網路介面》一節包含改良的說明性註解。
+* 全新的Astra Data Store解除安裝指令碼、現在已成為KECBECKLET命令解除安裝程序的更簡單替代方法。
+
+
+
+
+== 2021年12月21日（21日12）
+
+Astra Data Store預覽的初始版本。
+
+* link:../concepts/intro.html["它是什麼"]
+* link:../concepts/architecture.html["部署模式與元件"]
+* link:../get-started/requirements.html["開始使用所需的一切"]
+* link:../get-started/install-ads.html["安裝"] 和 link:../get-started/setup-ads.html["設定"]
+* link:../use/kubectl-commands-ads.html["管理"] 和 link:../use/monitor-with-cloud-insights.html["監控"] 效能
+* link:../use/monitor-with-cloud-insights.html["利用功能進行監控Cloud Insights"]
+* link:../support/get-help-ads.html["取得協助"] 和 link:../support/autosupport.html["使用自動支援監控"]
+
+
+
+
+== 如需詳細資訊、請參閱
+
+* link:../release-notes/known-issues.html["已知問題"]
+* link:../release-notes/known-limitations.html["已知限制"]
+* https://kb.netapp.com/Special:Search?qid=&fpid=230&fpth=&query=netapp+data+store&type=wiki["NetApp知識庫文章"^]
+

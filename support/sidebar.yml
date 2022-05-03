@@ -1,0 +1,10 @@
+---
+section: support
+title: 知識與支援
+entries:
+- title: 疑難排解
+  url: "/support/troubleshooting-ads.html"
+- title: 取得協助
+  url: "/support/get-help-ads.html"
+- title: 自動支援監控
+  url: "/support/autosupport.html"

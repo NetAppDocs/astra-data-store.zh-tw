@@ -1,0 +1,61 @@
+---
+settings:
+  name: Astra Data Store
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: Astra Data Store文件
+    url: "/index.html"
+  - section: release-notes
+  - section: concepts
+  - section: get-started
+  - section: use
+  - section: support
+  - title: 法律聲明
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: 開始使用
+    links:
+    - title: 深入瞭解Astra Data Store
+      url: "/concepts/intro.html"
+    - title: Astra Data Store預覽內容
+      url: "/release-notes/whats-new.html"
+    - title: 歡迎試用
+      url: "/get-started/install-ads.html#edit-and-apply-the-astra-data-store-license"
+    - title: 安裝Astra Data Store預覽
+      url: "/get-started/install-ads.html"
+    - title: 設定Astra Data Store預覽
+      url: "/get-started/setup-ads.html"
+  - title: 使用Astra Data Store預覽
+    links:
+    - title: 使用kubectl命令進行管理
+      url: "/use/kubectl-commands-ads.html"
+    - title: 利用功能表監控指標Cloud Insights
+      url: "/use/monitor-with-cloud-insights.html"
+    - title: 監控事件記錄
+      url: "/use/configure-endpoints.html"
+    - title: Astra Control Center整合
+      url: "/use/ads-acc-ui.html"
+  - title: 示範教學課程
+    links:
+    - title: Kubernetes的未來
+      url: https://cloud.netapp.com/astra-data-store
+    - title: Astra Data Store預覽示範
+      url: https://netapp.hubs.vidyard.com/watch/aDmgkBbJhUTZAGmH5XKimA?
+  - title: 部落格社群
+    links:
+    - title: Astra部落格
+      url: https://cloud.netapp.com/blog/topic/astra
+    - title: 可寬延的「容器」通道
+      url: https://netapp.io/slack
+    - title: Kubernetes Hub
+      url: https://cloud.netapp.com/kubernetes-hub
+    - title: 取得協助的地方
+      url: "/support/get-help.html"
+product-family: {}

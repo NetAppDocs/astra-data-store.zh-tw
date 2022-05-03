@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-limitations.html 
+keywords: astra, control center, limitations, known limitations, interoperability 
+summary: 已知限制指出本產品版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。 
+---
+= 已知限制
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+已知限制指出產品預覽版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。
+
+
+
+== 不支援移除一或多個節點的功能
+
+Astra Data Store預覽支援更換故障節點、但不支援節點移除功能。
+
+
+
+== 不支援新增或移除磁碟機的功能
+
+Astra Data Store預覽支援更換故障磁碟機、但不支援新增或移除現有叢集的磁碟機。
+
+
+
+== Astra Data Store預覽功能未在啟用防火牆的情況下驗證
+
+Astra Data Store預覽需要停用主機firewald。尚未驗證使用Calico HostEndpoint等CNI工具啟用防火牆。
+
+
+
+== 升級或修補程式需要全新安裝
+
+Astra Data Store預覽不適用於正式作業工作負載。
+
+
+
+== 基於Ubuntu的裸機或VM直通部署需要NVMe TLC SSD
+
+此限制不適用於RHEL、RCOOS或CentOS型部署。
+
+
+
+== 如需詳細資訊、請參閱
+
+* link:../release-notes/known-issues.html["已知問題"]
+
