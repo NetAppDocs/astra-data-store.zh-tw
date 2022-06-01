@@ -13,23 +13,22 @@ summary: 例如、您可以搭配Astra Data Store使用kubecl命令來設定端�
 
 若要監控事件管理系統（EMS）記錄、您可以執行下列高層級工作：
 
-* <<Configure monitoring in the Astra Data Store preview cluster custom resource (CR)>>
+* <<Configure monitoring in the Astra Data Store cluster custom resource (CR)>>
 * <<Set up Cloud Insights>>
 * <<Stream event logs to Elastic>>。
 
 
 
 
-== 在Astra Data Store預覽叢集自訂資源（CR）中設定監控
+== 在Astra Data Store叢集自訂資源（CR）中設定監控
 
-如果尚未在Astra Data Store預覽叢集CR上設定監控選項、您可以使用「astrads」擴充功能來設定。
+如果尚未在Astra Data Store叢集CR上設定監控選項、您可以使用「astrads」擴充功能來設定。
 
 輸入：
 
 [listing]
 ----
-~% kubectl astrads monitoring setup -n <NAMESPACE OF AGENT INSTALLED>
-   -r <DOCKER REPO TO FIND FLUENT/TELEGRAF ETC IMAGES>
+kubectl astrads monitoring setup -n <NAMESPACE OF AGENT INSTALLED> -r <DOCKER REPO TO FIND FLUENT/TELEGRAF ETC IMAGES>
 ----
 其中：
 
@@ -41,7 +40,7 @@ summary: 例如、您可以搭配Astra Data Store使用kubecl命令來設定端�
 
 == 設定Cloud Insights 功能
 
-若要檢視記錄、Cloud Insights 可選用設定功能不需使用；不過、使用Cloud Insights 畫面來檢視資料是很有幫助的。請參閱 link:../use/monitor-with-cloud-insights.html["如何設定NetApp Cloud Insights 解決方案"] 用於Astra Data Store預覽。
+若要檢視記錄、Cloud Insights 可選用設定功能不需使用；不過、使用Cloud Insights 畫面來檢視資料是很有幫助的。請參閱 link:../use/monitor-with-cloud-insights.html["如何設定NetApp Cloud Insights 解決方案"] 適用於Astra Data Store。
 
 
 
@@ -53,7 +52,7 @@ summary: 例如、您可以搭配Astra Data Store使用kubecl命令來設定端�
 
 [listing]
 ----
-~% kubectl astrads monitoring --host <ELASTIC HOST NAME> --port <ELASTIC HOST PORT> es
+kubectl astrads monitoring --host <ELASTIC HOST NAME> --port <ELASTIC HOST PORT> es
 ----
 
 NOTE: 彈性主機名稱可以是IP位址。

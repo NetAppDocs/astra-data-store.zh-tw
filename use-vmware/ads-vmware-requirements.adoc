@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: use-vmware/ads-vmware-requirements.html 
+keywords: astra, astra data store, requirements, vmware, vcenter, esxi 
+summary: 您應確認環境符合搭配VMware元件使用Astra Data Store的最低需求。 
+---
+= Astra Data Store搭配VMware需求
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+驗證環境是否符合一般需求之後 link:../get-started/requirements.html["Astra資料儲存區需求"]、您應該確認您的環境也符合VMware元件的最低需求、例如VMware VASA供應商和NetApp Astra Plugin for VMware vSphere。
+
+
+
+== VMware vSphere需求
+
+Astra Data Store使用VMware VASA Provider作為API介面、與儲存設備進行通訊。確保您的環境符合基本需求 https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-BB4207DB-2DED-4E08-BC6D-DEF6D7357C63.html?hWord=N4IghgNiBcIG5gM5hAXyA["VASA供應商要求"^] 以及下列額外需求：
+
+* VMware vSphere 7.0（支援Update 1到Update 3）
+* 一個未指派的入口流量IP位址
+
+
+[NOTE]
+====
+* 適用於VMware vSphere的NetApp Astra外掛程式不支援vSphere 7.0 Update 3c；請改用vSphere 7.0 Update 3D。
+* 適用於VMware vSphere的NetApp Astra外掛程式不支援連結模式vCenter伺服器。
+
+
+====
+
+
+== 適用於VMware vSphere的NetApp Astra外掛程式需求
+
+適用於VMware vSphere的NetApp Astra外掛程式具有下列需求：
+
+* 在Kubernetes叢集上執行Astra Control Center執行個體
+* 在Kubernetes叢集上執行的授權Astra Data Store執行個體
+* 在Astra Data Store叢集上啟用NFSv3
+
+
+
+
+=== 支援的網頁瀏覽器
+
+適用於VMware vSphere的NetApp Astra外掛程式支援下列最新版本的網頁瀏覽器：
+
+* Mozilla Firefox
+* Microsoft Edge（基於鉻）
+* Google Chrome
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+* link:../get-started/requirements.html["Astra資料儲存區需求"]
+

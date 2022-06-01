@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: use-vmware/monitor-ads-vmware.html 
+keywords: astra, astra data store, vmware, vcenter, esxi 
+summary: 您可以使用vCenter外掛程式來監控Astra Data Store效能。 
+---
+= 監控VMware安裝的元件
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+您可以使用適用於VMware vSphere的NetApp Astra外掛程式來監控Astra Data Store安裝的元件。您可以監控系統的健全狀況、包括儲存後端、VASA供應商、VM和vVols。您也可以檢視容量和vCenter資訊。
+
+
+
+== 使用適用於VMware vSphere儀表板的Astra外掛程式來監控系統健全狀況
+
+使用VMware環境管理Astra Data Store、需要監控儲存後端與VASA供應商的整體健全狀況。
+
+使用適用於VMware vSphere儀表板的NetApp Astra外掛程式、您可以查看下列資訊：
+
+* 此vCenter中所有儲存後端的實體已用及可用容量。您可以將游標暫留在資訊上、以查看更多詳細資料。
+* 健全且不良的儲存後端與VASA供應商
+* 前10大VM的延遲、IOPS、處理量和容量使用率。
+
+
+您可以從儀表板執行多項額外工作：
+
+* 監控容量
+* 使用現有的儲存後端。請參閱 link:../use-vmware/setup-ads-vmware.html["設定儲存後端"]。
+* 存取產品文件
+
+
+.檢閱儀表板的步驟
+. 存取適用於VMware vSphere的Astra外掛程式。
+. 請從「總覽」頁面檢閱下列各節：
++
+.. *儲存後端*區段：您可以按一下儲存後端與VASA供應商的狀態、以查看其狀態的詳細資料。您也可以按一下以檢視所有儲存後端。
+.. *儲存後端容量*區段：檢閱所選vCenter中儲存後端的實體使用量和可用容量總計。若要變更vCenter伺服器、請按一下右上角的vCenter Server選項。
+.. *虛擬機器*區段：檢視使用前10大容量的虛擬機器。
+
+
+
+
+
+TIP: 您可以按一下表格標題、顯示所需的資料、例如前10大延遲虛擬機器。
+
+.在其他檢視中監控Astra Data Store的步驟
+. 存取下列檢視以監控Astra Data Store元件：
++
+** *虛擬機器*索引標籤：列出所有由Astra Data Store管理的虛擬機器、以及僅列出前10大虛擬機器的儀表板。
+** * Storage *向下切入：顯示與儲存系統相關聯的主機、虛擬機器和資料存放區。
+** * VM Storage*檢視：提供VASA供應商所建立vVols的詳細資料。
+
+
+
+
+
+
+== 檢閱儲存後端臨界值設定
+
+儲存後端容量臨界值設定會在儲存後端的所有資料存放區上顯示警示通知時加以控制。
+
+當您使用適用於VMware vSphere的Astra外掛程式來部署或新增儲存後端時、會設定下列預設臨界值：
+
+* 90%已滿會產生紅色警示
+* 80%已滿會產生黃色警示
+
+
+您可以檢視系統在VMware中產生警示的層級。
+
+
+NOTE: 對於Astra Data Store Early Access方案、如果在多個資料中心使用相同的儲存容器、您可能會看到資料存放區的警示不正確。
+
+.步驟
+. 存取適用於VMware vSphere的NetApp Astra外掛程式。
+. 從左側導覽中選取*設定*。
+. 檢閱設定臨界值。
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+

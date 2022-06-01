@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: support/autosupport.html 
 keywords: how to use autosupport, autosupport, asup, logs, asup bundle, support ticket, support bundle 
-summary: NetApp以多種方式支援Astra Data Store預覽。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store預覽帳戶可透過網路票務取得遠端技術支援。 
+summary: NetApp以多種方式支援Astra Data Store。我們全年無休提供豐富的免費自助支援選項、例如知識庫（KB）文章和Slack通路。您的Astra Data Store帳戶透過網路票證提供遠端技術支援。 
 ---
 = 自動支援監控
 :hardbreaks:
@@ -11,13 +11,13 @@ summary: NetApp以多種方式支援Astra Data Store預覽。我們全年無休�
 :imagesdir: ../media/support/
 
 
-此功能可監控Astra Data Store預覽系統的執行時間和資訊、並將訊息傳送給NetApp支援部門。AutoSupport視您的組態而定、您可以監控這些系統元件：
+此功能可監控Astra Data Store系統的執行時間和資訊、並將訊息傳送給NetApp支援部門。AutoSupport視您的組態而定、您可以監控這些系統元件：
 
 * 控制面
 * 儲存設備
 
 
-在期間預設啟用支援AutoSupport link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"] 或者AutoSupport 在叢集套用了某個來源自訂資源（CR）之後。啟用後AutoSupport 、即可自動將S還原（ASUP）套裝組合上傳至 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 或可供手動下載。
+在期間預設啟用支援AutoSupport link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store叢集安裝"] 或者AutoSupport 在叢集套用了某個來源自訂資源（CR）之後。啟用後AutoSupport 、即可自動將S還原（ASUP）套裝組合上傳至 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 或可供手動下載。
 
 .選項
 * <<AutoSupport triggers and scenarios>>
@@ -43,7 +43,7 @@ summary: NetApp以多種方式支援Astra Data Store預覽。我們全年無休�
 
 這些觸發案例產生下列AutoSupport 其中一種功能類型：
 
-* * ControlPlane AutoSupport Section*：Astra Data Store預覽控制平面記錄和CRS的集合。
+* * ControlPlane AutoSupport Section*：Astra Data Store控制平面記錄與CRS的集合。
 * *儲存AutoSupport 功能*：儲存報告與效能資料的集合。
 * *核心傾印AutoSupport 功能*：系統核心傾印的集合。
 
@@ -52,7 +52,7 @@ summary: NetApp以多種方式支援Astra Data Store預覽。我們全年無休�
 
 == 設定自訂控制面板AutoSupport 的資料收集
 
-您可以建立可AutoSupport 報告控制面板事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
+您可以建立可AutoSupport 報告控制面板事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
 
 .步驟
 . 自訂下列命令以建立控制面板集合CR：
@@ -92,7 +92,7 @@ kubectl astrasds asup collect -c controlplane custom-asup-name -e debug --namesp
 
 == 設定自訂儲存AutoSupport 功能的收藏
 
-您可以建立AutoSupport 可報告儲存元件事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store預覽叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
+您可以建立AutoSupport 可報告儲存元件事件的自訂資料收集組態。大多數安裝在預設情況下、都會在期間啟用定期事件報告 link:../get-started/install-ads.html#install-the-astra-data-store-cluster["Astra Data Store叢集安裝"]。本程序說明如何根據AutoSupport 您所選的參數來設定報告的功能：
 
 .步驟
 . 自訂下列命令以建立儲存集合CR：
@@ -179,7 +179,7 @@ astrads-system  storage-callhome.reboot.unknown-...  3               callhome.re
 
 == 上傳核心檔案
 
-如果服務當機、AutoSupport 系統會在當機時建立一個包含相關記憶體內容的資訊（ASUP）訊息（稱為核心檔案）。Astra Data Store Preview會自動將ASUP訊息上傳至NetApp Support、但您需要手動上傳核心檔案、使其與ASUP訊息相關聯。
+如果服務當機、AutoSupport 系統會在當機時建立一個包含相關記憶體內容的資訊（ASUP）訊息（稱為核心檔案）。Astra Data Store會自動將ASUP訊息上傳給NetApp Support、但您需要手動上傳核心檔案、使其與ASUP訊息相關聯。
 
 .步驟
 . 使用下列「kubecll」命令來檢視ASUP訊息：

@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: use-vmware/manage-ads-vmware.html 
+keywords: astra data store, vm, vcenter, datastore, manage 
+summary: 您可以使用VMware應用程式來管理Astra Data Store。 
+---
+= 管理VMware安裝的Astra Data Store元件
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+您可以在vSphere環境和Astra Control Center中管理下列Astra Data Store元件：
+
+* <<Work with managed vCenters>>
+* <<Manage VMs from vSphere>>
+* <<Manage the storage backend>>
+* <<Manage datastores>>
+
+
+
+
+== 與託管vCenter合作
+
+您可以透過下列方式使用託管vCenter：
+
+* <<View vCenter details in Astra Control Center>>
+* <<View vCenter details in Astra Control Center>>
+* <<Unmanage a vCenter in Astra Control Center>>
+
+
+
+
+=== 在Astra Control Center中檢視vCenter詳細資料
+
+您可以決定與叢集相關的所有vCenter。
+
+.步驟
+. 從Astra Control Center左側導覽中、選取* Clusters*。
+. 檢視vCenter清單。
+. 選擇*保存*。
+
+
+
+
+=== 在Astra Control Center中檢視vCenter詳細資料
+
+您可能想要檢視系統和叢集的健全狀況。您可以查看Astra控制中心儀表板、判斷管理的叢集數量。
+
+.步驟
+. 從Astra Control Center左側導覽中、選取* Clusters*。
+. 選取vCenter。
+. 檢視資訊。
+
+
+
+
+=== 在Astra Control Center中取消管理vCenter
+
+如果您不再想讓Astra Control Center管理vCenter、可以取消管理。這會從Astra控制中心移除和取消登錄vCenter。
+
+
+NOTE: 必須先從適用於VMware vSphere的Astra外掛程式中移除與此vCenter相關聯的叢集、儲存後端和VM。
+
+.步驟
+. 從Astra Control Center左側導覽中、選取* Clusters*。
+. 從「叢集」頁面選取vCenter。
++
+
+TIP: 或者、選取多個vCenter、然後選取*「全部取消管理」*。
+
+. 右鍵單擊* Actions（操作）*菜單並選擇* UnManage（取消管理）*。
+. 在「UnManage vCenter（取消管理vCenter）」頁面中、輸入「unManage（取消管理）」。
+. 選取*是、取消管理vCenter*。
+
+
+
+
+== 從vSphere管理VM
+
+您可以使用原生vSphere作業來管理與Astra Data Store相關的VM。
+
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-358BF9C1-333E-4AB4-A1CB-62BEA1C94878.html?hWord=N4IghgNiBcICYFMIIC4IAQDcC2IC+QA["刪除VM"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-76E73C62-A973-4839-BB67-AC1817908E6D.html["重新命名VM"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-E1D541D1-DF96-467A-89B7-E84F83B2563D.html?hWord=N4IghgNiBcIMYAswDsDmBTABAZwJYC8sA3AWxAF8g["調整VM大小"^]
+
+
+
+NOTE: 在此版本中、您一次只能調整一個VM磁碟的大小。嘗試調整多個磁碟的大小將會失敗。
+
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-450AF515-09D4-44B6-85B2-EE848B371E58.html?hWord=N4IghgNiBcIAoHsDuBTATgAgMoBcw5QGcMEAzDMDANQEs0cBXSDAWTAGMALGgOxQ14YcnflRZIwafgAkEhHBgDCEGih44QAXyA["開啟或關閉VM"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-879FA851-2B24-49E6-B58F-F25D0E923D17.html?hWord=N4IghgNiBcIM4Fc4AcCmA7AJgAgGoFkQBfIA["暫停VM"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-450AF515-09D4-44B6-85B2-EE848B371E58.html?hWord=N4IghgNiBcIAoHsDuBTATgAgMoBcw5QGcMEAzDMDANQEs0cBXSDAWTAGMALGgOxQ14YcnflRZIwafgAkEhHBgDCEGih44QAXyA["重設VM"^]
+
+
+下列快照工作流程可用於使用原生vCenter作業的Astra Data Store：
+
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-9720B104-9875-4C2C-A878-F1C351A4F3D8.html["快照Astra Data Store"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-3E1BB630-9223-45E8-A64B-DCB90D450673.html["還原快照"^]
+* https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-542CF191-B8DE-42F1-9CCC-D9030491AE25.html["刪除快照"^]
+
+
+
+NOTE: Snapshot作業偶爾可能會失敗、並顯示vVol執行時間錯誤。如果發生這種情況、請重試此作業。
+
+
+
+== 管理儲存後端
+
+您可以移除儲存後端。移除儲存後端並不會破壞它、也不會刪除Astra Data Store產品本身；它只會從VMware取消註冊VASA供應商、並取消連結該vCenter的儲存後端。
+
+
+NOTE: 如果VASA供應商已啟用並部署在vCenter外部、您只能移除Astra Data Store。如果將儲存後端當成資源配置資料存放區程序的一部分使用、您將無法移除儲存後端。
+
+如果Astra Data Store未與多個vCenter連結、則移除後、VASA供應商將會取消註冊並解除安裝。
+
+.步驟
+. 存取適用於VMware vSphere的Astra外掛程式。 
+. 從左側導覽中選取*儲存後端*。 
+. 在Storage後端頁面上、按一下儲存後端動作功能表、然後選取*移除*。
+. 輸入VASA供應商的使用者名稱和密碼。 
+. 選擇*移除*。
+
+
+
+
+== 管理資料存放區
+
+您可以使用原生vCenter作業來管理vSphere環境中的Astra Data Store、並使用Astra外掛程式擴充功能來管理資料存放區：
+
+* link:../use-vmware/setup-ads-vmware.html["建立資料存放區"] 
+* <<Mount a datastore>>
+* <<Delete a datastore>>
+
+
+
+
+=== 掛載資料存放區
+
+使用適用於VMware vSphere的Astra外掛程式、您可以將資料存放區掛載到一或多個其他主機上。
+
+.步驟
+. 從vCenter的資料中心庫存中選取Astra Data Store的資料存放區。
+. 在資料存放區上按一下滑鼠右鍵、然後選取* Astra Plugin for VMware vSpher*>* Mount Datastori*。
+. 從「Mount datastore on hosts」（在主機上掛載資料存放區）頁面中、選取要掛載資料存放區的主機。
++
+
+TIP: 如果您要在所有主機上掛載資料存放區、請勾選*所有主機上的掛載*。
+
+. 選取*掛載*。
+
+
+啟動作業之後、您可以在vSphere Client的「近期工作」面板中追蹤進度。
+
+
+NOTE: 如果您遇到與失敗掃描或一般系統錯誤有關的錯誤、 https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-E8EA857E-268C-41AE-BBD9-08092B9A905D.html["重新掃描/同步vCenter上的儲存供應商"] 然後再次嘗試建立資料存放區。
+
+
+
+=== 刪除資料存放區
+
+使用適用於VMware vSphere的Astra外掛程式、您可以刪除資料存放區。
+
+
+TIP: 若要刪除資料存放區、必須先移除資料存放區上的所有VM。
+
+.步驟
+. 從vCenter的資料中心庫存中選取資料存放區。
+. 在資料存放區上按一下滑鼠右鍵、然後選取* Astra Plugin*>* Delete Datastor*。
+. 在「刪除資料存放區」頁面中、確認資訊、或採取其他建議動作、以便刪除資料存放區。
+. 選擇*刪除*。
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+

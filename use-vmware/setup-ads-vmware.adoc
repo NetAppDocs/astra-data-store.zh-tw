@@ -1,0 +1,365 @@
+---
+sidebar: sidebar 
+permalink: use-vmware/setup-ads-vmware.html 
+keywords: astra, vmware, vcenter, astra data store 
+summary: 您可以使用Astra vCenter外掛程式和VMware vSphere原生功能來部署及管理Astra Data Store。 
+---
+= 使用VMware設定Astra Data Store
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use-vmware/
+
+
+您可以將Astra Data Store設定為儲存後端、並使用適用於VMware vSphere的NetApp Astra外掛程式加以管理。
+
+使用VMware設定Astra Data Store需要執行下列工作：
+
+* <<Activate VMware vSphere services using Astra Control Center>>。
+* <<Add a vCenter using Astra Control Center>>。
+* <<Create a custom SCC (if using OpenShift)>>
+* <<Use an existing storage backend in the Astra Plugin for VMware vSphere>>。
+* <<Create a datastore using the Astra Plugin for VMware vSphere>>。
+* <<Generate VM storage policies>>。
+
+
+在您使用VMware設定Astra Data Store之前、您必須確保下列事項：
+
+* Astra控制中心是 https://docs.netapp.com/us-en/astra-control-center/get-started/install_overview.html["已安裝"] 並設定。
+* Astra Data Store已獲得授權並已部署。請參閱 link:../get-started/install-ads.html["安裝Astra Data Store"]。
+
+
+
+NOTE: 對於Astra Data Store Early Access Program（EAP）版本、Astra Control Center和Astra Data Store必須部署於兩個不同的Kubernetes叢集。
+
+* 用於部署Astra Control Center和Astra Data Store的Kubernetes叢集必須已由Astra Control Center管理。
+* NFSv3已啟用。
+* 您在新增vCenter之前、已上傳Astra Control Center和VASA供應商套件。 https://docs.netapp.com/us-en/astra-control-center/use/manage-packages-acc.html["請參閱管理軟體套件"^]。
+
+
+
+
+== 使用Astra Control Center啟動VMware vSphere服務
+
+啟動Astra Control Center上的vSphere服務、開始使用VMware設定Astra Data Store。
+
+
+NOTE: Astra Control Center中的VMware vSphere服務預設不會啟用。
+
+. 登入Astra Control Center。
+. 從左側導覽中選取*叢集*。
++
+橫幅會顯示尚未啟用VMware vSphere服務的訊息。
+
+. 選取*啟用VMware vSphere服務*。
++
+此動作可能需要一段時間。服務啟用後、*新增vCenter*按鈕即會啟用。
+
+
+
+
+
+== 使用Astra Control Center新增vCenter
+
+新增第一個vCenter、註冊適用於VMware vSphere的Astra外掛程式。
+
+您必須具有管理權限、才能將vCenter新增至Astra Control Center。
+
+
+TIP: 在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。
+
+. 登入Astra Control Center。
+. 從左側導覽中選取*叢集*。
+. 選取*新增vCenter*。
+. 輸入vCenter伺服器詳細資料、vCenter連接埠、以及管理使用者名稱和密碼、以提供給Astra Control Center。
++
+
+TIP: 如此可在VMware vSphere用戶端中部署此vCenter的Astra外掛程式。
+
+. 選取*「Add*」。
++
+vCenter會顯示在「叢集」頁面上、而Astra控制儀表板上的託管vCenter總數會更新。這也會啟動適用於VMware vSphere部署的Astra外掛程式。
+
+
+
+
+
+=== 驗證vCenter新增項目
+
+新增的vCenter會顯示在「叢集」頁面和儀表板上。
+
+
+TIP: vCenter和Kubernetes叢集都會顯示在Astra控制中心儀表板上。
+
+. 存取Astra控制中心。
+. 從左側導覽中選取*叢集*。
+. 確認「叢集」頁面上出現新管理的vCenter。
+. 從左側導覽中選取*儀表板*。
+. 從Astra控制中心儀表板中、記下新的託管vCenter叢集、做為*託管*數的一部分。
++
+
+TIP: 受管理的叢集數包括vCenter和Kubernetes叢集。
+
+. 若要檢視叢集詳細資料、請按一下*「託管」*計數。
++
+此時會出現「叢集」頁面。
+
+
+
+
+
+== 建立自訂SCC（如果使用OpenShift）
+
+如果您使用OpenShift、您可以選擇指派安全內容限制（SCC）來控制Pod可以執行的動作、並控制Pod可以存取的內容。
+
+根據預設、任何容器的執行都會被授予受限的SCC、而且只會授予該SCC所定義的功能。受限的SCC不會提供VASA供應商Pod所需的權限。使用此程序可為VASA供應商部署所使用的服務帳戶提供所需的較高權限（列於範例中）。
+
+將自訂SCC指派給Astra Data Store「NTV-system」命名空間的各種預設服務帳戶、此命名空間是特殊權限與節點輸出程式SCC的混合體。
+
+只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。
+
+. 建立名為「VP_backend_特權_scc.yaml」的自訂SCC：
++
+[listing]
+----
+kubectl create -f vp_backend_privileged_scc.yaml
+----
++
+範例：VP_backend_特權_SCC.yaml
+
++
+[listing]
+----
+allowHostDirVolumePlugin: true
+allowHostIPC: false
+allowHostNetwork: true
+allowHostPID: false
+allowHostPorts: true
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+  - '*'
+allowedUnsafeSysctls:
+  - '*'
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups: []
+kind: SecurityContextConstraints
+metadata:
+  name: vpbackend-privileged
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+seccompProfiles:
+  - '*'
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:ntv-system:default
+  - system:serviceaccount:ntv-system:ntv-auth-svc
+  - system:serviceaccount:ntv-system:ntv-autosupport
+  - system:serviceaccount:ntv-system:ntv-compliance-svc
+  - system:serviceaccount:ntv-system:ntv-datastore-svc
+  - system:serviceaccount:ntv-system:ntv-metallb-controller
+  - system:serviceaccount:ntv-system:ntv-metallb-speaker
+  - system:serviceaccount:ntv-system:ntv-mongodb
+  - system:serviceaccount:ntv-system:ntv-nfs-svc
+  - system:serviceaccount:ntv-system:ntv-rabbitmq-svc
+  - system:serviceaccount:ntv-system:ntv-storage-svc
+  - system:serviceaccount:ntv-system:ntv-vault
+  - system:serviceaccount:ntv-system:ntv-vault-admin
+  - system:serviceaccount:ntv-system:ntv-vault-agent-injector
+  - system:serviceaccount:ntv-system:ntv-vault-controller
+  - system:serviceaccount:ntv-system:ntv-vault-initializer
+  - system:serviceaccount:ntv-system:ntv-vcenter-svc
+  - system:serviceaccount:ntv-system:ntv-vm-management-svc
+  - system:serviceaccount:ntv-system:ntv-watcher-svc
+  - system:serviceaccount:ntv-system:ntv-vault-sa-vault-tls
+  - system:serviceaccount:ntv-system:ntv-gateway-svc
+  - system:serviceaccount:ntv-system:ntv-jobmanager-svc
+  - system:serviceaccount:ntv-system:ntv-vasa-svc
+volumes:
+  - '*'
+----
+. 使用「occ Get SCC」命令顯示新增的SCC：
++
+[listing]
+----
+oc get scc vpbackend-privileged
+----
++
+回應：
+
++
+[listing]
+----
+NAME                 PRIV  CAPS  SELINUX  RUNASUSER FSGROUP  SUPGROUP PRIORITY   READONLYROOTFS VOLUMES
+vpbackend-privileged true ["*"]  RunAsAny RunAsAny  RunAsAny RunAsAny <no value> false          ["*"]
+----
+
+
+
+
+== 在適用於VMware vSphere的Astra外掛程式中使用現有的儲存後端
+
+使用Astra Control Center UI新增vCenter之後、請使用適用於VMware vSphere的Astra外掛程式新增Astra Data Store儲存後端。
+
+此程序完成下列動作：
+
+* 將現有的儲存後端新增至選取的vCenter。
+* 向選取的vCenter登錄VASA供應商。VASA供應商提供VMware與Astra Data Store之間的通訊。
+* 將VASA供應商自我簽署的憑證新增至儲存後端。
+
+
+
+NOTE: 您新增的vCenter有時可能需要10分鐘才會出現在儲存後端精靈中。
+
+
+NOTE: Astra資料儲存區不應與多個vCenter共用。
+
+.步驟
+. 存取適用於VMware vSphere的NetApp Astra外掛程式。
+. 從左側導覽中選取* Astra Plugin for VMware vSpher*、或從「捷徑」頁面選取* Astra Plugin for VMware vSpher*圖示。
+. 從「Astra Plugin for VMware vSphere Overview」（Astra外掛程式for VMware vSphere概述）頁面、選取* Use existing storage backend*（使用現有的儲存後端或者、從左側導覽中選取*儲存後端*>*新增*、然後選取*使用現有的儲存後端*。
+. 選取現有的Astra Data Store作為儲存後端、然後選取* Next*。
+. 在VASA供應商頁面上、輸入VASA供應商名稱、IP位址（如果使用負載平衡器）、使用者名稱和密碼。
++
+
+TIP: 對於使用者名稱、您可以使用英數字元和底線。請勿輸入任何特殊字元。使用者名稱的第一個字母必須以字母字元開頭。
+
+. 指出您是否要部署負載平衡器、然後輸入用於存取VASA提供者的IP位址。IP必須是與節點IP分開的額外可路由的可用IP。啟用負載平衡器時、Metallb會部署在Astra Data Store Kubernetes叢集中、並設定為分配可用的IP。
++
+
+NOTE: 如果您使用Google Anthos叢集進行部署、請選擇不部署負載平衡器、因為Anthos已經以負載平衡器的形式執行了冶金。VASA供應商的CR（v1beta1_vasaprovider.yaml）應將「mrarfin deploy」（mretb部署）旗標設為「假」。
+
++
+如果您選擇不部署負載平衡器、則會假設負載平衡器已經部署並設定為為*負載平衡器*類型的Kubernetes服務分配IP。
+
++
+
+TIP: 此時部署中尚未部署VASA供應商。
+
+. 選擇*下一步*。
+. 在「憑證」頁面上、檢閱自我簽署憑證的憑證資訊。
+. 選擇*下一步*。
+. 檢閱摘要資訊。
+. 選取*「Add*」。
++
+這會部署VASA供應商。
+
+
+
+
+
+=== 驗證Astra Plugin for VMware vSphere中的儲存後端
+
+註冊Astra Data Store儲存後端後端之後、即會出現在Astra Plugin for VMware vSphere儲存後端清單中。
+
+您可以決定儲存後端狀態和VASA供應商狀態。您也可以查看每個儲存後端的已用容量。
+
+選取儲存後端之後、您也可以檢視已使用和可用的容量、資料減量比率、以及內部網路管理IP位址。
+
+.步驟
+. 在適用於VMware vSphere的NetApp Astra外掛程式中、從左側導覽中選取*儲存後端*。
+. 選取Astra Data Store儲存後端以查看「摘要」索引標籤。
+. 檢閱VASA供應商的已用及可用容量、資料減量比率及狀態。
+. 選取其他索引標籤以查看VM、資料存放區、主機和儲存節點的相關資訊。
+
+
+
+
+== 使用適用於VMware vSphere的Astra外掛程式建立資料存放區
+
+新增儲存後端並註冊適用於VMware vSphere的Astra外掛程式之後、即可在VMware中建立資料存放區。
+
+您可以將資料存放區新增至資料中心、運算或主機叢集。
+
+
+NOTE: 您無法使用相同的儲存後端、在同一個資料中心下建立多個資料存放區。
+
+您可以使用NFS傳輸協定新增vVol資料存放區類型。
+
+.步驟
+. 存取適用於VMware vSphere的Astra外掛程式。
+. 從外掛程式功能表中、選取* Create Datastor*。
+. 輸入新的資料存放區名稱、類型（vVol）和傳輸協定（NFS）。
+. 選擇*下一步*。
+. 從「Storage（儲存設備）」頁面、選取您剛建立的Astra Data Store儲存後端。
++
+
+TIP: 您無法使用具有現有資料存放區的儲存後端。
+
+. 選擇*下一步*。
+. 從「摘要」頁面檢閱資訊。
+. 選擇* Create *（建立*）。
++
+
+NOTE: 如果您遇到與失敗掃描或一般系統錯誤有關的錯誤、 https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-E8EA857E-268C-41AE-BBD9-08092B9A905D.html["重新掃描/同步vCenter上的儲存供應商"] 然後再次嘗試建立資料存放區。
+
+
+
+
+
+== 產生VM儲存原則
+
+建立資料存放區之後、在建立VM之前、您應該使用REST API UI中的「/virtualization /API/v1/vCenter/VM儲存原則」來產生預先設計的VM儲存原則。
+
+.步驟
+. 請前往「https://<ads_gateway_ip>:8443`」存取REST API UI頁面。
+. 前往API「POST /virtualization /api/auth /登入」、並提供使用者名稱、密碼和vCenter主機名稱。
++
+回應：
+
++
+[listing]
+----
+{
+  "vmware-api-session-id": "212f4d6447b05586ab1509a76c6e7da56d29cc5b",
+  "vcenter-guid": "8e475060-b3c8-4267-bf0f-9d472d592d39"
+}
+----
+. 前往API「Get /virtualization /api/aut/validate-session」、完成下列步驟：
++
+.. 使用上面產生的「VMware-API- session-id」和「vCenter-guid」作為標頭。
+.. 選擇*立即試用*。
++
+回應：（驗證被截短於下方）：
+
++
+[listing]
+----
+authorization: eyJhbGciOiJSUzI1NiIsInR...9h15DYYvClT3oA  connection: keep-alive  content-type: application/json  date: Wed,18 May 2022 13:31:18 GMT  server: nginx  transfer-encoding: chunked
+----
+
+
+. 前往API「/virtualization /API/v1/vCenter/VM儲存原則」、並將先前回應中產生的承載權杖新增為「授權」。
++
+系統會顯示「200」回應、並產生三個VM儲存原則。
+
+. 確認vCenter儲存原則頁面上的新VM儲存原則（名為Bronze、Silver和Gold）。
+. 繼續建立VM。
+
+
+
+
+== 下一步
+
+接下來、您可能會想要執行下列工作：
+
+* 建立VM。
+* 掛載資料存放區。請參閱 link:../use-vmware/manage-ads-vmware.html#mount-a-datastore["掛載資料存放區"]。
+
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+

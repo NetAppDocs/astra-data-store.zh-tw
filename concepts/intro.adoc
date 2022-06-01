@@ -4,48 +4,28 @@ permalink: concepts/intro.html
 keywords: introduction, how astra works, how Astra works, what Astra is, astra data store, datastore, kubernetes 
 summary: Astra Data Store是Kubernetes原生共享檔案服務、適用於容器和VM工作負載、可提供企業資料管理功能。 
 ---
-= Astra Data Store預覽簡介
+= 深入瞭解Astra Data Store
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/concepts/
 
 
-Astra Data Store預覽是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。Astra Data Store為Container和VM工作負載提供原生共享檔案服務、並提供NetApp企業資料管理功能。
+Astra Data Store是Kubernetes原生的共享檔案軟體定義儲存設備（SDS）解決方案、適用於內部部署資料中心、可協助客戶管理其雲端原生應用程式。Astra Data Store為Container和VM工作負載提供原生共享檔案服務、並提供NetApp企業資料管理功能。
 
-有了Astra Data Store預覽、您可以執行下列動作：
+有了Astra Data Store、您可以執行下列作業：
 
 * *支援Kubernetes容器化工作負載*：搭配您常用的企業資料管理服務與工具。
 * *使用Kubernetes的「應用程式即服務」平台進行DevOps *：建立彈性、軟體定義的自助式平台、提供自動化、可重複執行的服務、免除開發人員的複雜性
 
 
-
-
-== Astra產品系列
-
-Astra系列產品提供Kubernetes應用程式資料生命週期管理功能、可簡化狀態應用程式的作業。輕鬆保護、備份及移轉Kubernetes工作負載、並立即建立可運作的應用程式複本。
-
-Astra產品包括：
-
-* * Astra Control *：使用應用程式感知的資料管理工具、在公有雲和內部部署環境中管理、保護及移動Kubernetes工作負載
-+
-** * Astra Control Service*：使用NetApp管理的服務來管理公有雲中的Kubernetes工作負載。
-** * Astra Control Center*：使用自我管理的軟體來管理內部部署Kubernetes工作負載的資料。
-
-
-* * Astra Data Store preview *：使用Kubernetes原生的共享檔案服務來處理容器和VM工作負載、以進行企業資料管理。
-* * Astra Trident *：使用容器儲存介面（Container Storage Interface、簡稱csi）相容的儲存設備資源配置與管理功能、來處理Kubernetes工作負載、並與NetApp儲存供應商合作。
-
-
-請參閱 https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]。
-
-image:astra-product-family.png["Astra產品系列"]
+Astra Data Store是Astra產品系列的一部分。深入瞭解 https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列"^]。
 
 
 
-== Astra Data Store預覽功能
+== Astra Data Store功能
 
-Astra Data Store預覽提供端點對端點Kubernetes原生儲存與資料管理功能、適用於雲端原生應用程式。這些功能包括：
+Astra Data Store提供端點對端點Kubernetes原生儲存設備與資料管理功能、適用於雲端原生應用程式。這些功能包括：
 
 * * Kubernetes原生共享檔案服務*：提供Kubernetes原生的共享檔案服務、使用標準NFS用戶端做為容器和VM的統一化資料儲存區
 * *雲端擴充*：在相同資源池上提供Kubernetes原生的多重平行檔案系統、以達到類似雲端的擴充與使用率、免除管理儲存設備與叢集的需求。
@@ -63,7 +43,7 @@ Astra Data Store預覽提供端點對端點Kubernetes原生儲存與資料管理
 
 
 
-== Astra Data Store預覽入門
+== Astra Data Store入門
 
 首先、 link:../get-started/requirements.html["深入瞭解Astra Data Store需求"]。
 

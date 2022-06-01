@@ -11,7 +11,13 @@ summary: 您可以使用Cloud Insights 不實的數據資料來監控Astra Data 
 :imagesdir: ../media/use/
 
 
-您可以使用Cloud Insights 支援功能來監控Astra Data Store預覽指標。
+您可以使用Cloud Insights 支援功能來監控Astra Data Store指標。
+
+以下是一些展示Cloud Insights 在《支援》中的Astra Data Store指標範例：image:ci_ui_metrics.png["顯示Astra Data Store指標Cloud Insights"]
+
+您也可以使用、顯示Astra Data Store中產生的度量清單 <<Open Metrics API help>>。
+
+您可以完成下列工作：
 
 * <<Complete Cloud Insights connection prerequisite tasks>>
 * <<Acquisition Unit storage>>
@@ -20,18 +26,14 @@ summary: 您可以使用Cloud Insights 不實的數據資料來監控Astra Data 
 * <<Disconnect from Cloud Insights>>
 
 
-以下是顯示在畫面上的Astra Data Store預覽指標範例Cloud Insights ：image:ci_ui_metrics.png["顯示Astra Data Store指標Cloud Insights"]
-
-您也可以使用、顯示Astra Data Store預覽中產生的度量清單 <<Open Metrics API help>>。
-
 
 
 == 完成Cloud Insights 連線先決條件工作
 
 在將Astra Data Store與Cloud Insights 支援功能整線之前、您必須先完成下列工作：
 
-* link:../get-started/install-ads.html#install-the-monitoring-operator["安裝Astra Data Store監控操作員"] 這是Astra Data Store預覽安裝說明的一部分。
-* link:../get-started/install-ads.html["安裝kubecl-astrads二進位檔"] 這是Astra Data Store預覽安裝說明的一部分。
+* link:../get-started/install-ads.html#install-the-monitoring-operator["安裝Astra Data Store監控操作員"] 這是Astra Data Store安裝說明的一部分。
+* link:../get-started/install-ads.html["安裝kubecl-astrads二進位檔"] 這是Astra Data Store安裝說明的一部分。
 * https://docs.netapp.com/us-en/cloudinsights/task_cloud_insights_onboarding_1.html["建立Cloud Insights 一個不一樣的帳戶"^]。
 * 請確認下列命令可用：「awk、curl、grep」和「jq」
 
@@ -39,7 +41,7 @@ summary: 您可以使用Cloud Insights 不實的數據資料來監控Astra Data 
 收集下列資訊：
 
 * * Cloud Insights 具備類別讀寫權限的API存取權杖*：擷取單元、資料收集、資料擷取和記錄擷取。這將用於讀取/寫入作業、設定擷取單位、以及設定資料擷取程序。
-* * Kubernetes API伺服器IP位址和連接埠*。這是用來監控Astra Data Store預覽叢集。
+* * Kubernetes API伺服器IP位址和連接埠*。這是用來監控Astra Data Store叢集。
 * * Kubernetes API權杖*。這是用來呼叫Kubernetes API。
 * *持續磁碟區組態*。有關如何配置持續磁碟區的資訊。
 
@@ -56,13 +58,13 @@ summary: 您可以使用Cloud Insights 不實的數據資料來監控Astra Data 
 
 == 下載並執行安裝指令碼
 
-提供Bash指令碼、可透過監控操作員啟用Astra Data Store預覽監控功能。Cloud Insights安裝指令碼會安裝擷取單元、其中含有Astra Data Store Collector、Telegraf代理程式及Fluent位元代理程式。
+提供Bash指令碼、可透過監控操作員啟用Astra Data Store監控功能。Cloud Insights安裝指令碼會安裝擷取單元、其中含有Astra Data Store收集器和一個Fluent位元代理程式。
 
 下載時、將會在安裝程式指令碼中內嵌選定的「更新網域名稱」和「選定的更新API存取權杖」Cloud Insights Cloud Insights 。
 
 然後、會以下列方式傳送指標：
 
-* Telegraf會將指標傳送到Cloud Insights 這個數據湖。
+* 這個部門將會將指標傳送到這個數據湖。Cloud Insights Cloud Insights
 * Fluent位元會將記錄傳送至記錄擷取服務。
 
 
@@ -134,7 +136,6 @@ Configuring Cloud Insights monitoring for Astra Data Store . . .
 Configuring monitoring namespace
 ...
 Configuring output sink and Fluent Bit plugins
-Configuring Telegraf plugins
 Configuring Acquisition Unit
 ...
 Acquisition Unit has been installed successfully.
@@ -189,23 +190,6 @@ Configuration done!
     domain-name: bzl9ngz.gst-adsdemo.ci-dev.netapp.com
     name: CI
   serviceAccount: sa-netapp-monitoring
-  telegraf:
-  - name: ads-open-metric
-    outputs:
-    - sink: CI
-    run-mode:
-    - ReplicaSet
-    substitutions:
-    - key: URLS
-      values:
-      - http://astrads-metrics-service.astrads-system.svc.cluster.local:9341
-    - key: METRIC_TYPE
-      value: ads-metric
-    - key: ADS_CATEGORY
-      value: netapp_ads
-    - key: ADS_CLUSTER_NAME
-      value: meg-ads-21-22-28-29-30
-  - name: agent
 status:
   au-pod-status: UP
   au-uuid: eddeccc6-3aa3-4dd2-a98c-220085fae6a9
@@ -260,17 +244,17 @@ kubectl --namespace netapp-monitoring edit agent agent-monitoring-netapp
 . 儲存並結束編輯器視窗。
 
 
-監控營運者將更新Telegraf和Fluent位元、以使用新Cloud Insights 的版的更新版的BIOS API存取權杖。
+監控操作員會更新Fluent位元、以使用新Cloud Insights 的更新版的解決方案API存取權杖。
 
 
 
 == 中斷Cloud Insights 與該功能的連線
 
-若要中斷Cloud Insights 與功能表的連線、您必須Cloud Insights 先從功能表上刪除Astra Data Store收集器。完成後、您可以從監控操作員移除擷取單元、Telegraf和Fluent位元組態。
+若要中斷Cloud Insights 與功能表的連線、您必須Cloud Insights 先從功能表上刪除Astra Data Store收集器。完成後、您可以從監控操作員移除擷取單元、Telegraf（若已設定）和Fluent位元組態。
 
 
 
-=== 移除Astra Data Store預覽收集器
+=== 移除Astra Data Store收集器
 
 . 登入Cloud Insights 到
 . 選取*管理*>*資料收集器*以存取「資料收集器」頁面。
@@ -281,7 +265,7 @@ kubectl --namespace netapp-monitoring edit agent agent-monitoring-netapp
 
 
 
-=== 移除擷取單元、Telegraf和Fluent位元
+=== 移除擷取單元、Telegraf（若已設定）和Fluent位元
 
 . 編輯Agent CR:
 +
@@ -291,11 +275,11 @@ kubectl --namespace netapp-monitoring edit agent agent-monitoring-netapp
 ----
 . 找到「au」區段、並將「isEnabled」設為「假」
 . 找到「Fluent位元」區段、然後移除名為「ads tail-CI」的外掛程式。如果沒有其他外掛程式、您可以移除「Fluent位元」區段。
-. 找到「Telewraf」區段、移除名為「ads開放式指標」的外掛程式。如果沒有其他外掛程式、您可以移除「Telewraf」區段。
+. 如果已設定Telegraf、請找出「Telegraf」區段、然後移除名為「ads開放式指標」的外掛程式。如果沒有其他外掛程式、您可以移除「Telewraf」區段。
 . 找到「output-sink（輸出接收器）」區段、然後移除名為「CI」的接收器。
 . 儲存並結束編輯器視窗。
 +
-監控操作員將更新Telegraf和Fluent位元組態、並刪除擷取單元Pod。
+監控操作員會更新Telegraf（若已設定）和Fluent位元組態、並刪除擷取單元Pod。
 
 . 如果您將本機目錄用於擷取單元PV、而非儲存資源配置程式、請刪除PV：
 +
@@ -316,13 +300,13 @@ kubectl delete pv au-lib au-log au-pv
 
 
 
-監控操作員會更新Telegraf和Fluent位元組態、並移除擷取單元。
+監控操作員會更新Telegraf（若已設定）和Fluent位元組態、並移除擷取單元。
 
 
 
 == Open Metrics API說明
 
-以下是可用來從Astra Data Store預覽收集度量的API清單。
+以下是可用來從Astra Data Store收集度量的API清單。
 
 * 「說明」行說明指標。
 * 「類型」行指出度量是量表還是計數器。

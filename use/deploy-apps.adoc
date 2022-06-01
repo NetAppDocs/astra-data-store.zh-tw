@@ -11,12 +11,12 @@ summary: 以下是部署可搭配Astra Data Store使用的測試應用程式的�
 :imagesdir: ../media/use/
 
 
-以下是部署可搭配Astra Data Store預覽使用的測試應用程式的步驟。
+以下是部署可搭配Astra Data Store使用的測試應用程式的步驟。
 
 在此範例中、我們使用Helm儲存庫部署Bitnami的MongoDB圖表。
 
 .您需要的是 #8217 ；需要的是什麼
-* Astra Data Store預覽叢集已部署及設定
+* Astra Data Store叢集已部署及設定
 * Trident安裝完成
 
 

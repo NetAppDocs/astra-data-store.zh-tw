@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: ads-earlier-versions.html 
+keywords: astra data store, version, ads, astra 
+summary: Astra Data Store提供舊版文件。 
+---
+= 舊版Astra Data Store
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+您可以取得先前版本的文件。
+
+* https://docs.netapp.com/us-en/astra-data-store-2112/index.html["Astra Data Store 212.12文件"^]
+

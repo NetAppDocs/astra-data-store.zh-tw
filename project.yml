@@ -15,7 +15,10 @@ sidebar:
   - section: concepts
   - section: get-started
   - section: use
+  - section: use-vmware
   - section: support
+  - title: 舊版
+    url: "/ads-earlier-versions.html"
   - title: 法律聲明
     url: "/legal-notices.html"
 homepage:
@@ -24,29 +27,27 @@ homepage:
     links:
     - title: 深入瞭解Astra Data Store
       url: "/concepts/intro.html"
-    - title: Astra Data Store預覽內容
+    - title: Astra資料儲存區的內容
       url: "/release-notes/whats-new.html"
     - title: 歡迎試用
       url: "/get-started/install-ads.html#edit-and-apply-the-astra-data-store-license"
-    - title: 安裝Astra Data Store預覽
+    - title: 安裝Astra Data Store
       url: "/get-started/install-ads.html"
-    - title: 設定Astra Data Store預覽
+    - title: 設定Astra資料儲存區
       url: "/get-started/setup-ads.html"
-  - title: 使用Astra Data Store預覽
+  - title: 使用Astra資料儲存區
     links:
-    - title: 使用kubectl命令進行管理
+    - title: 管理Astra Data Store資源
       url: "/use/kubectl-commands-ads.html"
     - title: 利用功能表監控指標Cloud Insights
       url: "/use/monitor-with-cloud-insights.html"
     - title: 監控事件記錄
       url: "/use/configure-endpoints.html"
-    - title: Astra Control Center整合
-      url: "/use/ads-acc-ui.html"
   - title: 示範教學課程
     links:
     - title: Kubernetes的未來
       url: https://cloud.netapp.com/astra-data-store
-    - title: Astra Data Store預覽示範
+    - title: Astra Data Store示範
       url: https://netapp.hubs.vidyard.com/watch/aDmgkBbJhUTZAGmH5XKimA?
   - title: 部落格社群
     links:

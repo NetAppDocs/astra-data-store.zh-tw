@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: use-vmware/use-ads-vmware-overview.html 
+keywords: astra, astra data store, astra vcenter plug-in, vmware, vcenter, esxi 
+summary: 您可以使用Astra vCenter外掛程式使用者介面來執行Astra Data Store工作。 
+---
+= 瞭解Astra Data Store與VMware的相關資訊
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+Astra Data Store同時支援容器化和虛擬化的工作負載。整合vVols與儲存原則型管理、讓vSphere管理員能夠套用儲存品質的服務。適用於VMware vSphere的NetApp Astra外掛程式可提供您熟悉的管理與監控體驗、免除繁瑣的儲存工作。
+
+適用於VMware vSphere的Astra外掛程式具有下列優點：
+
+* VM精細的儲存資源配置、具備完整vVols與VASA整合功能
+* 儲存原則型管理整合
+* vCenter外掛程式適用於vSphere原生管理
+
+
+下圖顯示Astra系列與VMware的生態系統。image:astra-ads-architecture-diagram-v4-vmware.png["Astra架構圖表與元件"]
+
+
+
+== 以取得更多資訊
+
+* https://docs.netapp.com/us-en/astra-control-center/["Astra Control Center文件"^]
+* https://docs.netapp.com/us-en/astra-family/intro-family.html["Astra系列簡介"^]
+

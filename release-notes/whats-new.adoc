@@ -11,7 +11,24 @@ summary: NetApp會定期更新Astra Data Store、為您帶來新功能、增強�
 :imagesdir: ../media/release-notes/
 
 
-我們很高興宣布推出Astra Data Store預覽版本的20212.12修補程式。
+我們很高興宣布推出2022.05年Astra Data Store早期存取方案（EAP）版本。
+
+
+
+== 2022年5月31日（2022.05年市場評估版本）
+
+Astra Data Store 2022.05版本包含下列功能：
+
+* VMware環境整合：
++
+** NFS vVol資料存放區工作流程和儲存原則型管理儲存資源配置。
+** 適用於VMware vSphere的Astra外掛程式、可從vCenter進行原生儲存管理與監控。
+
+
+* 增強的叢集管理功能、包括 link:../get-started/install-ads.html#install-astra-data-store-using-astra-control-center["Astra Control Center的GUI型叢集部署"]。
+* 支援 link:../get-started/requirements.html#kubernetes-worker-node-resource-requirements["更大規模的叢集擴充"] （節點數量較多、CPU和容量增加）。
+* 安全性增強功能（金鑰與憑證、以及支援外部金鑰管理（KMIP））。
+
 
 
 
@@ -31,13 +48,13 @@ Astra Data Store預覽（21：12）的修補程式版本（2021：12）。
 
 Astra Data Store預覽的初始版本。
 
-* link:../concepts/intro.html["它是什麼"]
-* link:../concepts/architecture.html["部署模式與元件"]
-* link:../get-started/requirements.html["開始使用所需的一切"]
-* link:../get-started/install-ads.html["安裝"] 和 link:../get-started/setup-ads.html["設定"]
-* link:../use/kubectl-commands-ads.html["管理"] 和 link:../use/monitor-with-cloud-insights.html["監控"] 效能
-* link:../use/monitor-with-cloud-insights.html["利用功能進行監控Cloud Insights"]
-* link:../support/get-help-ads.html["取得協助"] 和 link:../support/autosupport.html["使用自動支援監控"]
+* https://docs.netapp.com/us-en/astra-data-store-2112/concepts/intro.html["它是什麼"^]
+* https://docs.netapp.com/us-en/astra-data-store-2112/concepts/architecture.html["部署模式與元件"^]
+* https://docs.netapp.com/us-en/astra-data-store-2112/get-started/requirements.html["開始使用所需的一切"^]
+* https://docs.netapp.com/us-en/astra-data-store-2112/get-started/install-ads.html["安裝"^] 和 https://docs.netapp.com/us-en/astra-data-store-2112/get-started/setup-ads.html["設定"^]
+* https://docs.netapp.com/us-en/astra-data-store-2112/use/kubectl-commands-ads.html["管理"^] 和 https://docs.netapp.com/us-en/astra-data-store-2112/use/monitor-with-cloud-insights.html["監控"^] 效能
+* https://docs.netapp.com/us-en/astra-data-store-2112/use/monitor-with-cloud-insights.html["利用功能進行監控Cloud Insights"^]
+* https://docs.netapp.com/us-en/astra-data-store-2112/support/get-help-ads.html["取得協助"^] 和 https://docs.netapp.com/us-en/astra-data-store-2112/support/autosupport.html["使用自動支援監控"^]
 
 
 

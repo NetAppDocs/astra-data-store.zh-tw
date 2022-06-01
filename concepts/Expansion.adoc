@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: concepts/expansion.html 
-keywords: how astra works, how Astra expansion works, what Astra is, astra data store, kubernetes 
+keywords: how astra works, how astra expansion works, what Astra is, astra data store, kubernetes 
 summary: 您可以擴充Astra Data Store叢集。 
 ---
 = 叢集擴充
@@ -11,7 +11,7 @@ summary: 您可以擴充Astra Data Store叢集。
 :imagesdir: ../media/concepts/
 
 
-Astra Data Store預覽可支援叢集中不同類型和功能的節點。如果您要擴充叢集、Astra Data Store預覽可支援新增具有任何效能功能的節點、只要它們不低於叢集中效能最低的節點即可。新節點的儲存容量必須與現有節點相同。所有節點、包括擴充期間的新節點、都必須至少符合中的最低需求 link:../get-started/requirements.html["Astra Data Store預覽需求"]。
+Astra Data Store支援叢集中不同類型和功能的節點。如果您要擴充叢集、Astra Data Store可支援新增具有任何效能功能的節點、只要這些節點不低於叢集中效能最低的節點即可。新節點的儲存容量必須與現有節點相同。所有節點、包括擴充期間的新節點、都必須至少符合中的最低需求 link:../get-started/requirements.html["Astra資料儲存區需求"]。
 
 
 

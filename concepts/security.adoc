@@ -1,25 +1,25 @@
 ---
 sidebar: sidebar 
 permalink: concepts/security.html 
-keywords: how astra works, how Astra security works, what Astra is, astra data store, kubernetes 
+keywords: how astra works, how astra security works, what Astra is, astra data store, kubernetes 
 summary: Astra Data Store使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。 
 ---
-= Astra Data Store預覽的安全性
+= Astra資料儲存區的安全性
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/concepts/
 
 
-Astra Data Store預覽使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。
+Astra Data Store使用多種方法來保護用戶端和系統管理員對儲存設備的存取、保護通訊和資料、以及防範病毒。
 
-Astra Data Store預覽使用下列安全方法：
+Astra Data Store採用下列安全方法：
 
 * 使用相互傳輸層安全性（MTLS）進行通訊加密
 * 角色型存取控制、可控制功能的存取
 * 部署安全性
 * 憑證管理
-* 閒置的軟體加密、包括內部金鑰管理
+* 閒置的軟體加密、包括內部和外部金鑰管理
 
 
 

@@ -11,21 +11,41 @@ summary: 已知問題可識別可能導致您無法成功使用本產品版本�
 :imagesdir: ../media/release-notes/
 
 
-已知問題可識別可能導致您無法成功使用此產品預覽版本的問題。
+已知問題可識別可能導致您無法成功使用本產品版本的問題。
 
 
 
-== 使用預設的活動力探針值進行MongoDB部署時、Pod會在當機迴圈中失敗
+== Astra Data Store 2202.05早期存取方案（EAP）版本
 
-因應措施是在MongoDB部署規格中將LIF探針初始延遲時間設為600秒。
+此版本包含這些已知問題。請仔細檢閱這些已知問題。
 
 
 
-== Astra Data Store預覽解除安裝程序可能會導致Pod處於終止狀態
+=== vSphere中未顯示的儲存後端工作
 
-Kubernetes v1.20中的Astra Data Store預覽解除安裝程序、偶爾會導致Pod處於終止狀態。
+提交使用現有儲存後端或移除儲存後端的動作時、該工作不會出現在vSphere用戶端的「近期工作」面板中。
 
-請參閱 link:../use/uninstall-ads-manual.html["無需指令碼、即可手動解除安裝Astra Data Store預覽"] 或link:../use/uninstall-ads.html["使用指令碼自動解除安裝Astra Data Store預覽"]。
+
+
+=== 建立VM時會建立額外的資料夾
+
+在vSphere中建立VM時、有時會建立額外的資料夾、而非在資料存放區下的每個VM建立單一資料夾。
+
+
+
+=== 適用於VMware vSphere的Astra外掛程式中的篩選檢視會間歇性地不顯示資料
+
+虛擬機器的表格欄篩選器偶爾會省略篩選過的資料。篩選後的檢視會改為顯示載入圖示。若要解決此問題、您可以前往其他檢視並重設篩選條件、以再次顯示資料。
+
+
+
+=== Kubernetes工作節點的IP位址限制
+
+Astra Data Store叢集建立在下列案例中失敗：
+
+. Kubernetes工作節點的IP位址裝載在未指派給Astra Data Store的介面上。
+. IP位址與指派給Astra Data Store叢集的叢集/資料IP位址位於相同的子網路中。
+
 
 
 

@@ -11,10 +11,10 @@ summary: NetApp以多種方式支援Astra Data Store。全年無休提供免費�
 :imagesdir: ../media/support/
 
 
-NetApp以多種方式支援Astra Data Store預覽。全年無休提供免費的自助服務支援選項、例如知識庫（KB）文章和Slack通路。
+NetApp以多種方式支援Astra Data Store。全年無休提供免費的自助服務支援選項、例如知識庫（KB）文章和Slack通路。
 
 
-IMPORTANT: 您可以取得Astra Data Store預覽的社群技術支援。使用建立案例 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 無法用於預覽版本。您可以透過意見反應選項與支援部門聯絡、或使用Slack通路進行自助服務。
+IMPORTANT: 您可以取得Astra Data Store的社群技術支援。使用建立案例 https://mysupport.netapp.com/site/["NetApp支援網站（NSS）"^] 不適用於此版本。您可以透過意見反應選項與支援部門聯絡、或使用Slack通路進行自助服務。
 
 
 
@@ -24,7 +24,7 @@ IMPORTANT: 您可以取得Astra Data Store預覽的社群技術支援。使用�
 
 * https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra["知識庫（需要登入）"^]
 +
-搜尋與Astra Data Store預覽相關的文章、常見問題集或中斷修復資訊。
+搜尋與Astra Data Store相關的文章、常見問題集或中斷修復資訊。
 
 * 文件
 +

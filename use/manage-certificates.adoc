@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: use/manage-certificates.html 
+keywords: astra, astra data store, kubectl, certs, cert, certificate, certificates, revoke, security, secure, expired, compromised, regenerate, generate 
+summary: 您可以在Astra Data Store手動撤銷已遭入侵或過期的憑證。 
+---
+= 管理安全性憑證
+:allow-uri-read: 
+
+
+Astra Data Store在叢集的軟體元件之間使用相互傳輸層安全性（MTLS）加密。每個Astra Data Store叢集都有自我簽署的根CA憑證（「astrads-cert-root」）和中介CA憑證（「astrads-cert」（「叢集名稱」）。這些憑證由Astra Data Store營運者管理；營運者會在每個憑證到期日前7天自動續訂。您也可以手動撤銷憑證。
+
+
+
+== 撤銷憑證
+
+如果Astra Data Store控制器、節點或CA憑證遭入侵、您可以刪除其MTLS機密來撤銷它。當您這麼做時、Astra Data Store營運者會自動發出新的憑證。您可以隨時撤銷Astra Data Store憑證。
+
+
+NOTE: 如果您撤銷CA憑證、這會撤銷該CA所簽署的任何憑證。
+
+.步驟
+. 登入Astra Data Store叢集中的控制器節點。
+. 列出系統上現有的憑證。例如：
++
+[listing]
+----
+kubectl get secrets -n astrads-system | grep astrads-cert
+----
++
+輸出應類似於下列內容：
+
++
+[listing]
+----
+astrads-cert-astrads-cluster-controller                   kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-cluster-f23d158                      kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-ds-dms-astrads-cluster-f23d158       kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-ds-support-astrads-cluster-f23d158   kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-support-astrads-cluster-f23d158      kubernetes.io/tls     4      6d6h
+astrads-cert-root                                         kubernetes.io/tls     4      6d6h
+astrads-cert-sti-net-com                                  kubernetes.io/tls     5      6d6h
+----
+. 在輸出中、記下您需要撤銷的憑證名稱。
+. 使用「kubecll」公用程式來撤銷憑證、並以憑證名稱取代「Certificate _name」（憑證名稱）。例如：
++
+[listing]
+----
+kubectl delete secret CERTIFICATE_NAME -n astrads-system
+----
+
+
+現有的憑證會被撤銷、並自動產生新的憑證。

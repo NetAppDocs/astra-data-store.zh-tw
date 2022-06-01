@@ -4,23 +4,24 @@ permalink: use/maintain-cluster.html
 keywords: astra, astra data store, kubectl 
 summary: 您可以使用搭配Astra Data Store的kubecl命令來維護叢集。 
 ---
-= 管理叢集
+= 管理Astra Data Store叢集
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/use/
 
 
-您可以透過Astra Data Store預覽使用kubecl命令來管理叢集。
+您可以使用搭配Astra Data Store的kubecl命令來管理叢集。
 
 * <<Add a node>>
+* <<Remove a node>>
 * <<Place a node in maintenance mode>>
-* <<Replace a node>>
+* <<Add drives to a node>>
 * <<Replace a drive>>
 
 
 .您需要的是 #8217 ；需要的是什麼
-* 安裝了kubectl和kubecl-astrads外掛程式的系統。請參閱 link:../get-started/install-ads.html["安裝Astra Data Store預覽"]。
+* 安裝了kubectl和kubecl-astrads外掛程式的系統。請參閱 link:../get-started/install-ads.html["安裝Astra Data Store"]。
 
 
 
@@ -29,14 +30,17 @@ summary: 您可以使用搭配Astra Data Store的kubecl命令來維護叢集。
 
 您要新增的節點應該是Kubernetes叢集的一部分、而且其組態應該類似於叢集中的其他節點。
 
+
+NOTE: 若要使用Astra Control Center新增節點、請參閱 https://docs.netapp.com/us-en/astra-control-center/use/manage-backend.html["將節點新增至儲存後端叢集"^]。
+
 .步驟
-. 如果新節點的dataIP尚未納入ADSCluster CR、請執行下列步驟：
+. 如果新節點的dataIP尚未納入Astra Data Store叢集CR、請執行下列步驟：
 +
-.. 編輯astradscluster CR、並在「ads Data Networks Addresses（廣告資料網路位址）」欄位中新增額外的dataIP：
+.. 編輯叢集CR、並在「adsDataNetworks」*「Addresses」（位址）*欄位中新增額外的dataIP。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl edit astradscluster <cluster-name> -n astrads-system
+kubectl edit astradscluster CLUSTER_NAME -n astrads-system
 ----
 +
 回應：
@@ -45,30 +49,107 @@ summary: 您可以使用搭配Astra Data Store的kubecl命令來維護叢集。
 [listing]
 ----
 adsDataNetworks:
-    -addresses:  dataIP1,dataIP2,dataIP3,dataIP4,*newdataIP*
+    -addresses:  dataIP1,dataIP2,dataIP3,dataIP4,NEW_DATA_IP
 ----
 .. 儲存CR。
-.. 將節點新增至Astra Data Store預覽叢集：
+.. 將節點新增至Astra Data Store叢集。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads nodes add --cluster <cluster-name>
+kubectl astrads nodes add --cluster CLUSTER_NAME
 ----
 
 
-. 否則、只要新增節點即可：
+. 否則、只要新增節點即可。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads nodes add --cluster <cluster-name>
+kubectl astrads nodes add --cluster CLUSTER_NAME
 ----
 . 確認已新增節點：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads nodes list
+kubectl astrads nodes list
 ----
 
+
+
+
+== 移除節點
+
+搭配Astra Data Store使用kubectl命令來移除叢集中的節點。
+
+.步驟
+. 列出所有節點：
++
+[source, kubectl]
+----
+kubectl astrads nodes list
+----
++
+回應：
+
++
+[listing]
+----
+NODE NAME           NODE STATUS    CLUSTER NAME
+sti-rx2540-534d...  Added       cluster-multinodes-21209
+sti-rx2540-535d...  Added       cluster-multinodes-21209
+...
+----
+. 標記要移除的節點。以適合您環境的適當值取代以大寫字母顯示的資訊：
++
+[source, kubectl]
+----
+kubectl astrads nodes remove NODE_NAME
+----
++
+回應：
+
++
+[listing]
+----
+Removal label set on node sti-rx2540-534d.lab.org
+Successfully updated ADS cluster cluster-multinodes-21209 desired node count from 4 to 3
+----
++
+標記要移除的節點後、節點狀態應從「active」（作用中）變更為「present」（目前）。
+
+. 驗證移除節點的「Present（目前）」狀態：
++
+[source, kubectl]
+----
+kubectl get nodes --show-labels
+----
++
+回應：
+
++
+[listing]
+----
+NAME                                            STATUS   ROLES                  AGE     VERSION   LABELS
+sti-astramaster-050.lab.org   Ready    control-plane,master   3h39m   v1.20.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=sti-astramaster-050.lab.org,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node-role.kubernetes.io/master=
+sti-rx2540-556a.lab.org       Ready    worker                 3h38m   v1.20.0   astrads.netapp.io/cluster=astrads-cluster-890c32c,astrads.netapp.io/storage-cluster-status=active,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=sti-rx2540-556a.lab.org,kubernetes.io/os=linux,node-role.kubernetes.io/worker=true
+sti-rx2540-556b.lab.org       Ready    worker                 3h38m   v1.20.0   astrads.netapp.io/cluster=astrads-cluster-890c32c,astrads.netapp.io/storage-cluster-status=active,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=sti-rx2540-556b.lab.org,kubernetes.io/os=linux,node-role.kubernetes.io/worker=true
+sti-rx2540-534d.lab.org       Ready    worker                 3h38m   v1.20.0   astrads.netapp.io/storage-cluster-status=present,astrads.netapp.io/storage-node-removal=,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=sti-rx2540-557a.lab.org,kubernetes.io/os=linux,node-role.kubernetes.io/worker=true
+sti-rx2540-557b.lab.org       Ready    worker                 3h38m   v1.20.0   astrads.netapp.io/cluster=astrads-cluster-890c32c,astrads.netapp.io/storage-cluster-status=active,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=sti-rx2540-557b.lab.org,kubernetes.io/os=linux,node-role.kubernetes.io/worker=true
+----
+. 從節點解除安裝Astra Data Store。以適合您環境的適當值取代以大寫字母顯示的資訊：
++
+[source, kubectl]
+----
+kubectl astrads nodes uninstall NODE_NAME
+----
+. 驗證節點是否已從叢集移除：
++
+[source, kubectl]
+----
+kubectl astrads nodes list
+----
+
+
+節點會從Astra資料儲存區移除。
 
 
 
@@ -77,16 +158,16 @@ adsDataNetworks:
 當您需要執行主機維護或套件升級時、應將節點置於維護模式。
 
 
-NOTE: 節點必須已是Astra Data Store預覽叢集的一部分。
+NOTE: 節點必須已是Astra Data Store叢集的一部分。
 
 當節點處於維護模式時、您無法將節點新增至叢集。在此範例中、我們會將節點「nhcitj1525」置於維護模式。
 
 .步驟
 . 顯示節點詳細資料：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl get nodes
+kubectl get nodes
 ----
 +
 回應：
@@ -103,9 +184,9 @@ NOTE: 節點必須已是Astra Data Store預覽叢集的一部分。
 ----
 . 確保節點尚未處於維護模式：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads maintenance list
+kubectl astrads maintenance list
 ----
 +
 回應（維護模式中沒有節點）：
@@ -115,26 +196,33 @@ NOTE: 節點必須已是Astra Data Store預覽叢集的一部分。
 ----
 NAME    NODE NAME  IN MAINTENANCE  MAINTENANCE STATE       MAINTENANCE VARIANT
 ----
-. 啟用維護模式。
+. 啟用維護模式。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads maintenance create <cr-name> --node-name=<<node-name>> --variant=Node
+kubectl astrads maintenance create CR_NAME --node-name=NODE_NAME --variant=Node
 ----
 +
-範例：
+例如：
+
++
+[source, kubectl]
+----
+kubectl astrads maintenance create maint1 --node-name="nhcitjj1525" --variant=Node
+----
++
+回應：
 
 +
 [listing]
 ----
-~% kubectl astrads maintenance create maint1 --node-name="nhcitjj1525" --variant=Node
 Maintenance mode astrads-system/maint1 created
 ----
-. 列出節點。
+. 列出節點：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads nodes list
+kubectl astrads nodes list
 ----
 +
 回應：
@@ -148,9 +236,9 @@ nhcitjj1525     Added           ftap-astra-012
 ----
 . 檢查維護模式的狀態：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads maintenance list
+kubectl astrads maintenance list
 ----
 +
 回應：
@@ -166,311 +254,45 @@ node4   nhcitjj1525     true            ReadyForMaintenance     Node
 
 . 節點維護完成後、請停用維護模式：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads maintenance update maint1 --node-name="nhcitjj1525" --variant=None
+kubectl astrads maintenance update maint1 --node-name="nhcitjj1525" --variant=None
 ----
 . 確保節點不再處於維護模式：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads maintenance list
+kubectl astrads maintenance list
 ----
 
 
 
 
-== 更換節點
+== 新增磁碟機至節點
 
-使用KECBECVL命令搭配Astra Data Store預覽、以取代叢集中故障的節點。
+搭配Astra Data Store使用kubectl命令、將實體或虛擬磁碟機新增至Astra Data Store叢集中的節點。
+
+.您需要的是 #8217 ；需要的是什麼
+* 符合下列條件的一或多個磁碟機：
++
+** 已安裝在節點（實體磁碟機）或新增至節點VM（虛擬磁碟機）
+** 磁碟機上沒有分割區
+** 叢集目前未使用磁碟機
+** 磁碟機原始容量不超過叢集中的授權原始容量（例如、授權每個CPU核心提供2TB的儲存容量、10個節點的叢集最大原始磁碟機容量為20TB）
+** 磁碟機至少為節點中其他作用中磁碟機的大小
+
+
+
+
+
+NOTE: Astra Data Store每個節點不需要超過16個磁碟機。如果您嘗試新增第17個磁碟機、磁碟機新增要求將遭拒。
 
 .步驟
-. 列出所有節點：
-+
-[listing]
-----
-~% kubectl astrads nodes list
-----
-+
-回應：
-
-+
-[listing]
-----
-NODE NAME           NODE STATUS    CLUSTER NAME
-sti-rx2540-534d..   Added       cluster-multinodes-21209
-sti-rx2540-535d...  Added       cluster-multinodes-21209
-...
-----
 . 描述叢集：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads clusters list
-----
-+
-回應：
-
-+
-[listing]
-----
-CLUSTER NAME               CLUSTER STATUS  NODE COUNT
-cluster-multinodes-21209   created         4
-----
-. 驗證故障節點上的「Node HA（節點HA）」是否標記為「假」：
-+
-[listing]
-----
-~% kubectl describe astradscluster -n astrads-system
-----
-+
-回應：
-
-+
-[listing]
-----
-Name:         cluster-multinodes-21209
-Namespace:    astrads-system
-Labels:       <none>
-Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                {"apiVersion":"astrads.netapp.io/v1alpha1","kind":"AstraDSCluster","metadata":{"annotations":{},"name":"cluster-multinodes-21209","namespa...
-API Version:  astrads.netapp.io/v1alpha1
-Kind:         AstraDSCluster
-
-State:               Disabled
-Variant:             None
-Node HA:             false
-Node ID:             4
-Node Is Reachable:   false
-Node Management IP:  172.21.192.192
-Node Name:           sti-rx2540-532d.ctl.gdl.englab.netapp.com
-Node Role:           Storage
-Node UUID:           6f6b88f3-8411-56e5-b1f0-a8e8d0c946db
-Node Version:        12.75.0.6167444
-Status:              Added
-----
-. 修改astradscluster cr,將「AdsNode Count」的值減至3、以移除故障節點：
-+
-[listing]
-----
-cat manifests/astradscluster.yaml
-----
-+
-回應：
-
-+
-[listing]
-----
-apiVersion: astrads.netapp.io/v1alpha1
-kind: AstraDSCluster
-metadata:
-  name: cluster-multinodes-21209
-  namespace: astrads-system
-spec:
-  # ADS Node Configuration per node settings
-  adsNodeConfig:
-    # Specify CPU limit for ADS components
-    # Supported value: 9
-    cpu: 9
-    # Specify Memory Limit in GiB for ADS Components.
-    # Your kubernetes worker nodes need to have at least this much RAM free
-    # for ADS to function correctly
-    # Supported value: 34
-    memory: 34
-    # [Optional] Specify raw storage consumption limit. The operator will only select drives for a node up to this limit
-    capacity: 600
-    # [Optional] Set a cache device if you do not want auto detection e.g. /dev/sdb
-    # cacheDevice: ""
-    # Set this regex filter to select drives for ADS cluster
-    # drivesFilter: ".*"
-
-  # [Optional] Specify node selector labels to select the nodes for creating ADS cluster
-  # adsNodeSelector:
-  #   matchLabels:
-  #     customLabelKey: customLabelValue
-
-  # Specify the number of nodes that should be used for creating ADS cluster
-  adsNodeCount: 3
-
-  # Specify the IP address of a floating management IP routable from any worker node in the cluster
-  mvip: "172..."
-
-  # Comma separated list of floating IP addresses routable from any host where you intend to mount a NetApp Volume
-  # at least one per node must be specified
-  # addresses: 10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5
-  # netmask: 255.255.255.0
-  adsDataNetworks:
-    - addresses: "172..."
-      netmask: 255.255.252.0
-
-
-  # [Optional] Provide a k8s label key that defines which protection domain a node belongs to
-  # adsProtectionDomainKey: ""
-
-  # [Optional] Provide a monitoring config to be used to setup/configure a monitoring agent.
-  monitoringConfig:
-   namespace: "netapp-monitoring"
-   repo: "docker.repo.eng.netapp.com/global/astra"
-
-  autoSupportConfig:
-    # AutoUpload defines the flag to enable or disable AutoSupport upload in the cluster (true/false)
-    autoUpload: true
-    # Enabled defines the flag to enable or disable automatic AutoSupport collection.
-    # When set to false, periodic and event driven AutoSupport collection would be disabled.
-    # It is still possible to trigger an AutoSupport manually while AutoSupport is disabled
-    # enabled: true
-    # CoredumpUpload defines the flag to enable or disable the upload of coredumps for this ADS Cluster
-    # coredumpUpload: false
-    # HistoryRetentionCount defines the number of local (not uploaded) AutoSupport Custom Resources to retain in the cluster before deletion
-    historyRetentionCount: 25
-    # DestinationURL defines the endpoint to transfer the AutoSupport bundle collection
-    destinationURL: "https://testbed.netapp.com/put/AsupPut"
-    # ProxyURL defines the URL of the proxy with port to be used for AutoSupport bundle transfer
-    # proxyURL:
-    # Periodic defines the config for periodic/scheduled AutoSupport objects
-    periodic:
-      # Schedule defines the Kubernetes Cronjob schedule
-      - schedule: "0 0 * * *"
-        # PeriodicConfig defines the fields needed to create the Periodic AutoSupports
-        periodicconfig:
-        - component:
-            name: storage
-            event: dailyMonitoring
-          userMessage: Daily Monitoring Storage AutoSupport bundle
-          nodes: all
-        - component:
-            name: controlplane
-            event: daily
-          userMessage: Daily Control Plane AutoSupport bundle
-----
-. 驗證節點是否已從叢集移除：
-+
-[listing]
-----
-~% kubectl get nodes --show-labels
-
-----
-+
-回應：
-
-+
-[listing]
-----
-
-NAME                  STATUS   ROLES               AGE   VERSION   LABELS
-sti-astramaster-237   Ready control-plane,master   24h   v1.20.0
-sti-rx2540-532d       Ready  <none>                24h   v1.20.0
-sti-rx2540-533d       Ready  <none>                24h
-----
-+
-[listing]
-----
-~% kubectl astrads nodes list
-----
-+
-回應：
-
-+
-[listing]
-----
-NODE NAME         NODE STATUS     CLUSTER NAME
-sti-rx2540-534d   Added           cluster-multinodes-21209
-sti-rx2540-535d   Added           cluster-multinodes-21209
-sti-rx2540-536d   Added           cluster-multinodes-21209
-----
-+
-[listing]
-----
-~% kubectl get nodes --show-labels
-----
-+
-回應：
-
-+
-[listing]
-----
-NAME                STATUS   ROLES                  AGE   VERSION   LABELS
-sti-astramaster-237 Ready    control-plane,master   24h   v1.20.0   beta.kubernetes.io/arch=amd64,
-sti-rx2540-532d     Ready    <none>                 24h   v1.20.0   astrads.netapp.io/node-removal
-----
-+
-[listing]
-----
-~% kubectl describe astradscluster -n astrads-system
-----
-+
-回應：
-
-+
-[listing]
-----
-Name:         cluster-multinodes-21209
-Namespace:    astrads-system
-Labels:       <none>
-Kind:         AstraDSCluster
-Metadata:
-...
-----
-. 修改叢集CR、將節點新增至叢集以進行更換。節點數會遞增至4。確認已挑選新節點進行新增。
-+
-[listing]
-----
-rvi manifests/astradscluster.yaml
-cat manifests/astradscluster.yaml
-apiVersion: astrads.netapp.io/v1alpha1
-kind: AstraDSCluster
-metadata:
-  name: cluster-multinodes-21209
-  namespace: astrads-system
-----
-+
-[listing]
-----
-~% kubectl apply -f manifests/astradscluster.yaml
-----
-+
-回應：
-
-+
-[listing]
-----
-astradscluster.astrads.netapp.io/cluster-multinodes-21209 configured
-----
-+
-[listing]
-----
-~% kubectl get pods -n astrads-system
-----
-+
-回應：
-
-+
-[listing]
-----
-NAME                                READY   STATUS    RESTARTS   AGE
-astrads-cluster-controller...       1/1     Running   1          24h
-astrads-deployment-support...       3/3     Running   0          24h
-astrads-ds-cluster-multinodes-21209 1/1     Running
-----
-+
-[listing]
-----
-~% kubectl astrads nodes list
-----
-+
-回應：
-
-+
-[listing]
-----
-NODE NAME                NODE STATUS     CLUSTER NAME
-sti-rx2540-534d...       Added           cluster-multinodes-21209
-sti-rx2540-535d...       Added           cluster-multinodes-21209
-----
-+
-[listing]
-----
-~% kubectl astrads clusters list
+kubectl astrads clusters list
 ----
 +
 回應：
@@ -481,10 +303,12 @@ sti-rx2540-535d...       Added           cluster-multinodes-21209
 CLUSTER NAME                    CLUSTER STATUS  NODE COUNT
 cluster-multinodes-21209        created         4
 ----
+. 記下叢集名稱。
+. 顯示可新增至叢集中所有節點的磁碟機。以叢集名稱取代叢集名稱：
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads drives list
+kubectl astrads drives adddrive show-available --cluster=CLUSTER_NAME
 ----
 +
 回應：
@@ -492,21 +316,60 @@ cluster-multinodes-21209        created         4
 +
 [listing]
 ----
-DRIVE NAME    DRIVE ID    DRIVE STATUS   NODE NAME     CLUSTER NAME
-scsi-36000..  c3e197f2... Active         sti-rx2540... cluster-multinodes-21209
+Node: node1.name
+Add drive maximum size: 100.0 GiB
+Add drive minimum size: 100.0 GiB
+NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
+sdg /dev/disk/by-id/scsi-3c290e16d52479a9af5eac c290e16d52479a9af5eac 0 100 GiB false
+sdh /dev/disk/by-id/scsi-3c2935798df68355dee0be c2935798df68355dee0be 0 100 GiB false
+
+Node: node2.name
+Add drive maximum size: 66.7 GiB
+Add drive minimum size: 100.0 GiB
+No suitable drives to add exist.
+
+Node: node3.name
+Add drive maximum size: 100.0 GiB
+Add drive minimum size: 100.0 GiB
+NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
+sdg /dev/disk/by-id/scsi-3c29ee82992ed7a36fc942 c29ee82992ed7a36fc942 0 100 GiB false
+sdh /dev/disk/by-id/scsi-3c29312aa362469fb3da9c c29312aa362469fb3da9c 0 100 GiB false
+
+Node: node4.name
+Add drive maximum size: 66.7 GiB
+Add drive minimum size: 100.0 GiB
+No suitable drives to add exist.
+----
+. 執行下列其中一項：
++
+** 如果所有可用磁碟機的名稱都相同、您可以將其同時新增至各自的節點。以適合您環境的適當值取代以大寫字母顯示的資訊：
++
+[source, kubectl]
+----
+kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname all=DRIVE_NAME
+----
+** 如果磁碟機的命名方式不同、您可以一次新增一個磁碟機至各自的節點（您需要針對每個需要新增的磁碟機重複此步驟）。以適合您環境的適當值取代以大寫字母顯示的資訊：
++
+[source, kubectl]
+----
+kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname NODE_NAME=DRIVE_NAME
 ----
 
+
+
+
+Astra Data Store會建立新增磁碟機的要求、並顯示訊息、顯示要求的結果。
 
 
 
 == 更換磁碟機
 
-當叢集中的磁碟機故障時、必須儘快更換磁碟機、以確保資料完整性。當磁碟機故障時、您會在叢集CR節點狀態、叢集健全狀況資訊和度量端點中看到故障磁碟機資訊。
+當叢集中的磁碟機故障時、必須儘快更換磁碟機、以確保資料完整性。如果磁碟機故障、您可以在叢集CR節點狀態、叢集健全狀況資訊和度量端點中查看故障磁碟機的相關資訊。您可以使用下列命令範例來查看故障磁碟機資訊。
 
 .顯示nodeStatuses.driveStatuses中故障磁碟機的叢集範例
-[listing]
+[source, kubectl]
 ----
-$ kubectl get adscl -A -o yaml
+kubectl get adscl -A -o yaml
 ----
 回應：
 
@@ -531,9 +394,9 @@ nodeStatuses:
 ----
 故障磁碟機CR會在叢集中自動建立、名稱對應於故障磁碟機的UUID。
 
-[listing]
+[source, kubectl]
 ----
-$ kubectl get adsfd -A -o yaml
+kubectl get adsfd -A -o yaml
 ----
 回應：
 
@@ -557,12 +420,12 @@ spec:
      path: /dev/disk/by-id/scsi-36000c290ace209465271ed6b8589b494
      present: true
      serial: 6000c290ace209465271ed6b8589b494
-     node: sti-rx2540-300b.ctl.gdl.englab.netapp.com
+     node: sti-rx2540-300b.lab.org
    state: ReadyToReplace
 ----
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads faileddrive list --cluster arda-6e4b4af
+kubectl astrads faileddrive list --cluster arda-6e4b4af
 ----
 回應：
 
@@ -572,14 +435,14 @@ NAME       NODE                             CLUSTER        STATE                
 6000c290   sti-rx2540-300b.lab.netapp.com   ard-6e4b4af    ReadyToReplace       13m
 ----
 .步驟
-. 使用「kubectl astrads show-replacement」命令列出可能的更換磁碟機、該命令可篩選符合更換限制的磁碟機（未在叢集內使用、未掛載、無分割區、等於或大於故障磁碟機）。
+. 使用「kubectl astrads filleddrive show-replacees」命令列出可能的更換磁碟機、該命令可篩選符合更換限制的磁碟機（未在叢集中使用、未掛載、無分割區、等於或大於故障磁碟機）。
 +
 若要列出所有磁碟機而不篩選可能的更換磁碟機、請在「show -replacement」命令中新增「-all」。
 
 +
-[listing]
+[source, kubectl]
 ----
-~%  kubectl astrads faileddrive show-replacements --cluster ard-6e4b4af --name 6000c290
+kubectl astrads faileddrive show-replacements --cluster ard-6e4b4af --name 6000c290
 ----
 +
 回應：
@@ -592,9 +455,9 @@ sdh   /scsi-36000c29417  45000c  0                false     100GB
 ----
 . 使用「放置」命令、以通過的序號取代磁碟機。命令會完成替換、如果經過「-wait」時間、則會失敗。
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads faileddrive replace --cluster arda-6e4b4af --name 6000c290 --replaceWith 45000c --wait
+kubectl astrads faileddrive replace --cluster arda-6e4b4af --name 6000c290 --replaceWith 45000c --wait
 Drive replacement completed successfully
 ----
 +
@@ -602,9 +465,9 @@ Drive replacement completed successfully
 NOTE: 如果使用不適當的「-replaceWith」序號來執行「kubectl astrads故障磁碟機更換」、則會出現類似以下的錯誤：
 
 +
-[listing]
+[source, kubectl]
 ----
-~% kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith BAD_SERIAL_NUMBER
+kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith BAD_SERIAL_NUMBER
 Drive 6000c2927 replacement started
 Failed drive 6000c2927 has been set to use BAD_SERIAL_NUMBER as a replacement
 ...
@@ -613,9 +476,9 @@ Current status: {FailedDriveInfo:{InUse:false Present:true Name:scsi-36000c2 Fir
 ----
 . 若要重新執行磁碟機更換、請使用之前的命令「-force」：
 +
-[listing]
+[source, kubectl]
 ----
-~%  kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force
+kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force
 ----
 
 
@@ -623,5 +486,5 @@ Current status: {FailedDriveInfo:{InUse:false Present:true Name:scsi-36000c2 Fir
 
 == 以取得更多資訊
 
-* link:../use/kubectl-commands-ads.html["使用kvecll命令管理Astra Data Store預覽資產"]
+* link:../use/kubectl-commands-ads.html["使用kvecll命令管理Astra Data Store資源"]
 

@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: use/upgrade-ads.html 
+keywords: astra, astra data store, kubectl, upgrade 
+summary: 您可以將Astra Data Store升級至最新版本。 
+---
+= 升級Astra Data Store
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+您可以升級Astra Data Store、以善用最新的功能與修正程式。您可以使用Astra Data Store「kubecll」擴充功能來升級Astra Data Store。
+
+
+
+== 使用KECBECVL升級Astra資料儲存區
+
+您可以使用Astra Data Store「kubecll」擴充功能來升級Astra Data Store。
+
+
+
+=== 下載Astra Data Store產品組合並擷取映像
+
+.步驟
+. 登入 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^] 並下載Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）。
+. （可選）使用以下命令驗證套件的簽名：
++
+[listing]
+----
+openssl dgst -sha256 -verify Astra_Data_Store_2022.05.pub -signature Astra_Data_Store_2022.05.sig 2022.12.01_ads.tar
+----
+. 建立目錄：
++
+[listing]
+----
+mkdir Astra_Data_Store_2022.05
+cd Astra_Data_Store_2022.05
+----
+. 擷取影像：
++
+[listing]
+----
+tar -vxzf <path to tar file>/Astra_Data_Store_2022.05.tar
+----
++
+
+NOTE: 影像將擷取至工作目錄中建立的「astrads/images/」目錄。
+
+
+
+
+
+=== 複製二進位檔並將映像推送至本機登錄
+
+.步驟
+. 從您用來擷取映像的目錄、將Kubertl-astrads二進位檔複製到安裝Kubernetes Kubecl二進位檔的標準路徑（以下範例將使用「usr/bin/」作為路徑）。Kustbecl-astrads是自訂的Kvecll擴充功能、可安裝及管理Astra Data Store叢集。
++
+
+TIP: 使用「which kubecll」命令尋找安裝kubecl二進位檔的路徑。
+
++
+[listing]
+----
+cp -p .astrads/bin/kubectl-astrads /usr/bin/.
+----
+. 將Astra Data Store映像目錄中的檔案新增至本機登錄。
++
+
+NOTE: 請參閱以下自動載入影像的範例指令碼。
+
++
+.. 登入您的登錄：
++
+[listing]
+----
+docker login [your_registry_path]
+----
+.. 將環境變數設為您要推送Astra Data Store映像的登錄路徑、例如「REpo.company.com`」。
++
+[listing]
+----
+export REGISTRY=repo.company.com/astrads
+----
+.. 執行下列指令碼、將影像載入Docker、標記影像、然後將影像推送到本機登錄：
++
+[listing]
+----
+for astraImageFile in $(ls astrads/images/*.tar) ; do
+   astraImage=$(docker load --input ${astraImageFile} | sed 's~Loaded image(s): ~~')
+   astraImageShort=`echo $astraImage | sed 's~.*/~~'`
+   docker tag ${astraImage} ${REGISTRY}/${astraImageShort}
+   docker push ${REGISTRY}/${astraImageShort}
+done
+sed -i 's~\[YOUR REGISTRY\]~'${REGISTRY}'~' ./astrads/manifests/*.yaml
+----
+
+
+
+
+
+
+=== 執行升級
+
+.步驟
+. 將「astradsoper.yaml」檔案複製到本機目錄：
++
+[source, sh]
+----
+cp /PATH/TO/FILE/astradsoperator.yaml ./
+----
+. 升級營運者。以適合您環境的適當資訊取代大寫字母中的引數：
++
+[source, kubectl]
+----
+kubectl-astrads upgrade ads-operator --repository-url REPOSITORY_URL --operator-yaml astradsoperator.yaml
+----
+. 開始Astra Data Store升級。以適合您環境的適當資訊取代大寫字母中的引數：
++
+[source, kubectl]
+----
+kubectl-astrads upgrade ads-version --repository-url REPOSITORY_URL --ads-version-yaml ./astrads/manifests/astradsversion.yaml
+----
++
+此時會出現一則訊息、通知您升級已開始、並需要幾分鐘時間才能完成。
+
+

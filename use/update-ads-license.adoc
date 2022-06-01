@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: use/update-ads-license.html 
+keywords: astra, astra data store, kubectl 
+summary: 您可以使用命令列來更新Astra Data Store安裝的授權。 
+---
+= 更新Astra Data Store授權
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/use/
+
+
+您可以更新Astra Data Store安裝的評估授權、以延長評估期間。您可以使用下列三種方法之一來更新授權：
+
+* 若要使用Astra Control Center更新Astra Data Store授權、請參閱 https://docs.netapp.com/us-en/astra-control-center/use/manage-backend.html#update-a-storage-backend-license["更新儲存後端授權"]。
+* 若要使用Astra VMware外掛程式更新Astra Data Store授權、請參閱 link:../use-vmware/manage-ads-vmware.html["使用VMware管理Astra資料儲存區"]。
+* 若要使用命令列更新Astra Data Store授權、請參閱 <<Update the Astra Data Store license using the command line>>。
+
+
+
+
+== 使用命令列更新Astra Data Store授權
+
+您可以使用「kubecll」公用程式來更新Astra Data Store授權。
+
+.步驟
+. 請套用您從NetApp取得的替換NetApp授權檔案（NLF）。在執行命令之前、請輸入叢集名稱（「<Astra Data-Store-cluster名稱>」）和授權檔案路徑（「<file_path/file.txt>'）：
++
+[listing]
+----
+kubectl astrads license add --license-file-path <file_path/file.txt> --ads-cluster-name <Astra-Data-Store-cluster-name> -n astrads-system
+----
+. 確認已新增授權：
++
+[listing]
+----
+kubectl astrads license list
+----
++
+您應該會看到類似下列的回應：
+
++
+[listing]
+----
+NAME        ADSCLUSTER                 VALID   PRODUCT             EVALUATION  ENDDATE     VALIDATED
+p100000006  astrads-example-cluster    true    Astra Data Store    true        2023-01-23  2022-04-04T14:38:54Z
+----
+

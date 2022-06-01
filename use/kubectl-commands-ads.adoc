@@ -4,40 +4,34 @@ permalink: use/kubectl-commands-ads.html
 keywords: astra, astra data store, astra datastore, kubectl 
 summary: 您可以直接使用kubectl命令與Astra Data Store搭配使用。 
 ---
-= 使用kvecll命令管理Astra Data Store預覽資產
+= 使用kvecll命令管理Astra Data Store資源
 :hardbreaks:
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/get-started/
 
 
-您可以使用kubectl命令和Kubernetes API擴充功能來管理Astra Data Store預覽資產。
+您可以使用kubectl命令及Kubernetes API擴充、來管理Astra Data Store資源。
 
 若要瞭解如何部署範例應用程式、請參閱 link:../use/deploy-apps.html["部署測試應用程式"]。
 
-如需下列叢集維護資訊、請參閱 link:../use/maintain-cluster.html["管理叢集"]：
-
-* 將節點置於維護模式
-* 更換磁碟機
-* 新增節點
-* 更換節點
-
+如需叢集維護資訊、請參閱 link:../use/maintain-cluster.html["管理叢集"]。
 
 .您需要的是 #8217 ；需要的是什麼
-* 您安裝的Astra Data Store預覽KECBECVL外掛程式 link:../get-started/install-ads.html["安裝Astra Data Store預覽"]
+* 您安裝的Astra Data Store KECVECL外掛程式 link:../get-started/install-ads.html["安裝Astra Data Store"]
 
 
 
 
-== 列出用於Astra Data Store預覽的Kubernetes自訂API資源
+== 列出Astra Data Store的Kubernetes自訂API資源
 
-您可以使用Kubernetes內部的kubectl命令、與Astra Data Store預覽叢集互動並觀察其狀態。
+您可以使用Kubernetes內部的kubectl命令、與Astra Data Store叢集互動並觀察其狀態。
 
-「API-resources'」命令中列出的每個項目都代表Kubernetes自訂資源定義（CRD）、Astra Data Store預覽可在內部用於管理叢集。
+「API-resources'」命令中列出的每個項目都代表Kubernetes自訂資源定義（CRD）、Astra Data Store會在內部用來管理叢集。
 
-此清單特別有助於取得每個Astra Data Store預覽物件的快取名稱、以減少您的輸入、如稍後所示。
+此清單特別有助於取得每個Astra Data Store物件的簡短名稱、以減少您的輸入、如稍後所示。
 
-. 顯示用於Astra Data Store預覽的Kubernetes自訂API資源清單：
+. 顯示Astra Data Store的Kubernetes自訂API資源清單：
 +
 [listing]
 ----
@@ -49,21 +43,23 @@ kubectl api-resources --api-group astrads.netapp.io
 +
 [listing]
 ----
-NAME                   SHORTNAMES  APIGROUP           NAMESPACED  KIND
-astradsversions         adsve      astrads.netapp.io  true        AstraDSVersion
-astradsclusters         adscl      astrads.netapp.io  true        AstraDSCluster
-astradslicenses         adsli      astrads.netapp.io  true        AstraDSLicense
-astradsnodeinfoes       adsni      astrads.netapp.io  true        AstraDSNodeInfo
-astradsvolumes          adsvo      astrads.netapp.io  true        AstraDSVolume
-astradsqospolicies      adsqp      astrads.netapp.io  true        AstraDSQosPolicy
-astradsexportpolicies   adsep      astrads.netapp.io  true        AstraDSExportPolicy
-astradsvolumesnapshots  adsvs      astrads.netapp.io  true        AstraDSVolumeSnapshot
-astradsvolumefiles      adsvf      astrads.netapp.io  true        AstraDSVolumeFiles
-astradsautosupports     adsas      astrads.netapp.io  true        AstraDSAutoSupport
-astradsfaileddrives     adsfd      astrads.netapp.io  true        AstraDSFailedDrive
-astradsnodemanagements  adsnm      astrads.netapp.io  true        AstraDSNodeManagement
+NAME                   SHORTNAMES  APIGROUP            NAMESPACED  KIND
+astradsautosupports    adsas   astrads.netapp.io/v1alpha1 true   AstraDSAutoSupport
+astradscloudsnapshots  adscs   astrads.netapp.io/v1alpha1 true   AstraDSCloudSnapshot
+astradsclusters        adscl   astrads.netapp.io/v1alpha1 true   AstraDSCluster
+astradsexportpolicies  adsep   astrads.netapp.io/v1alpha1 true   AstraDSExportPolicy
+astradsfaileddrives    adsfd   astrads.netapp.io/v1alpha1 true   AstraDSFailedDrive
+astradslicenses        adsli   astrads.netapp.io/v1alpha1 true   AstraDSLicense
+astradsnfsoptions      adsnf   astrads.netapp.io/v1alpha1 true   AstraDSNfsOption
+astradsnodeinfoes      adsni   astrads.netapp.io/v1alpha1 true   AstraDSNodeInfo
+astradsnodemanagements adsnm   astrads.netapp.io/v1alpha1 true   AstraDSNodeManagement
+astradsqospolicies     adsqp   astrads.netapp.io/v1alpha1 true   AstraDSQosPolicy
+astradsversions        adsve   astrads.netapp.io/v1alpha1 true   AstraDSVersion
+astradsvolumefiles     adsvf   astrads.netapp.io/v1alpha1 true   AstraDSVolumeFiles
+astradsvolumes         adsvo   astrads.netapp.io/v1alpha1 true   AstraDSVolume
+astradsvolumesnapshots adsvs   astrads.netapp.io/v1alpha1 true   AstraDSVolumeSnapshot
 ----
-. 若要在Kubernetes叢集中取得所有目前的Astra Data Store預覽物件、請使用「kubectl Get ads -As」命令：
+. 若要在Kubernetes叢集中取得所有目前的Astra資料儲存區物件、請使用「kubectl Get ads -A」命令：
 +
 [listing]
 ----
@@ -134,7 +130,7 @@ astrads-system   test2345   21Gi   172.25.138.111   astrads-cluster-9f1c99f   tr
 
 「kubectl astrads」命令包含一個「-h」交換器、可提供使用方法和標記文件、方便您使用。
 
-. 顯示Astra Data Store preview kubecll副檔名中所有命令的說明：
+. 針對Astra Data Store KECVECtl副檔名中的所有命令顯示說明：
 +
 [listing]
 ----
