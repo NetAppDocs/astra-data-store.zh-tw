@@ -33,7 +33,6 @@ summary: 您可以使用Astra vCenter外掛程式和VMware vSphere原生功能�
 NOTE: 對於Astra Data Store Early Access Program（EAP）版本、Astra Control Center和Astra Data Store必須部署於兩個不同的Kubernetes叢集。
 
 * 用於部署Astra Control Center和Astra Data Store的Kubernetes叢集必須已由Astra Control Center管理。
-* NFSv3已啟用。
 * 您在新增vCenter之前、已上傳Astra Control Center和VASA供應商套件。 https://docs.netapp.com/us-en/astra-control-center/use/manage-packages-acc.html["請參閱管理軟體套件"^]。
 
 

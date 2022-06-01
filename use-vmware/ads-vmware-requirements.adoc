@@ -38,7 +38,6 @@ Astra Data Store使用VMware VASA Provider作為API介面、與儲存設備進�
 
 * 在Kubernetes叢集上執行Astra Control Center執行個體
 * 在Kubernetes叢集上執行的授權Astra Data Store執行個體
-* 在Astra Data Store叢集上啟用NFSv3
 
 
 
