@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head class="at-element-marker">
-  <title>Astra Data Store快速入門</title>
+  <title>瞭解Astra Data Store與VMware的相關資訊</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Astra Data Store快速入門" />
+  <meta property="og:title" content="瞭解Astra Data Store與VMware的相關資訊" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" />
-	<meta property="og:description" content="只要幾個步驟、就能開始使用Astra Data Store。" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html" />
+	<meta property="og:description" content="您可以使用Astra vCenter外掛程式使用者介面來執行Astra Data Store工作。" />
   <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="只要幾個步驟、就能開始使用Astra Data Store。">
-  <meta name="keywords" content=" get started, quick start, astra, astra data store, deploy, deployment, kubernetes"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以使用Astra vCenter外掛程式使用者介面來執行Astra Data Store工作。">
+  <meta name="keywords" content=" astra, astra data store, astra vcenter plug-in, vmware, vcenter, esxi"><!-- Icons -->
   <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[Astra Data Store快速入門](https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/get-started/quick-start.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[瞭解Astra Data Store與VMware的相關資訊](https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/use-vmware/use-ads-vmware-overview.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/use-vmware/use-ads-vmware-overview.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/use-vmware/use-ads-vmware-overview.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/use-vmware/use-ads-vmware-overview.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/use-vmware/use-ads-vmware-overview.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -446,15 +446,6 @@
           
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/get-started/quick-start.pdf" >
-    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -587,6 +578,15 @@
             使用Astra Data Store搭配VMware
           </a>
           
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/use-vmware/use-ads-vmware-overview.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -709,7 +709,7 @@
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
         Astra資料儲存區需求
-      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
         Astra Data Store快速入門
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
         安裝Astra Data Store
@@ -753,7 +753,7 @@
       </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 使用Astra Data Store搭配VMware</div>
       </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html">
+      <ul><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html">
         瞭解Astra Data Store與VMware的相關資訊
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/ads-vmware-requirements.html">
         Astra Data Store搭配VMware需求
@@ -836,7 +836,7 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Astra Data Store快速入門</h1>
+  <h1 class="n-doc__component-detail-heading">瞭解Astra Data Store與VMware的相關資訊</h1>
 </div>
 
 
@@ -850,90 +850,46 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>本頁提供Astra Data Store入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。</p>
+<p>Astra Data Store同時支援容器化和虛擬化的工作負載。整合vVols與儲存原則型管理、讓vSphere管理員能夠套用儲存品質的服務。適用於VMware vSphere的NetApp Astra外掛程式可提供您熟悉的管理與監控體驗、免除繁瑣的儲存工作。</p>
 </div>
 <div class="paragraph">
-<p>歡迎試用！如果您想要試用Astra Data Store、可以使用90天試用版授權。 <a href="https://www.netapp.com/cloud-services/astra/data-store-form/" target="_blank" rel="noopener">"請在此註冊"</a> 取得Astra Data Store授權。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"</a> alt="1"&gt;&lt;/span&gt;檢閱Kubernetes叢集需求</div>
-<ul>
-<li>
-<p>叢集必須以正常狀態執行、且至少有四個或更多個工作節點。</p>
-</li>
-<li>
-<p>Astra Data Store部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store叢集的相同磁碟機數量。</p>
-</li>
-<li>
-<p>每個SSD都應有一個唯一的序號。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/requirements.html">"Astra資料儲存區需求"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"</a> Alt="2"&gt;&lt;/span&gt;下載並安裝Astra Data Store</div>
-<ul>
-<li>
-<p>從下載Astra Data Store <a href="https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab" target="_blank" rel="noopener">"NetApp 支援網站"</a>。</p>
-</li>
-<li>
-<p>在您的本機環境中安裝Astra Data Store。</p>
-</li>
-<li>
-<p>套用Astra Data Store授權。</p>
-</li>
-<li>
-<p>安裝Astra Data Store叢集。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"</a> alt="there"&gt;&lt;/span&gt;完成一些初始設定工作</div>
-<ul>
-<li>
-<p>安裝Astra Trident。</p>
-</li>
-<li>
-<p>安裝Kubernetes快照自訂資源定義（CRD）和控制器。</p>
-</li>
-<li>
-<p>將Astra Data Store設定為儲存後端。</p>
-</li>
-<li>
-<p>建立預設的Astra Data Store儲存類別。</p>
-</li>
-<li>
-<p>設定Astra資料儲存區以使用遙測服務。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/setup-ads.html">"初始設定程序"</a>。</p>
-</div>
-<div class="paragraph quick-margin-para">
-<p>完成Astra Data Store設定之後、接下來您可以：</p>
+<p>適用於VMware vSphere的Astra外掛程式具有下列優點：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 <a href="../use/kubectl-commands-ads.html">"如何搭配Astra Data Store使用kubectl命令"</a>。</p>
+<p>VM精細的儲存資源配置、具備完整vVols與VASA整合功能</p>
 </li>
 <li>
-<p>設定監控端點。深入瞭解 <a href="../use/configure-endpoints.html">"設定監控端點"</a>。</p>
+<p>儲存原則型管理整合</p>
 </li>
 <li>
-<p><a href="../use-vmware/use-ads-vmware-overview.html">"使用Astra Data Store搭配VMware"</a>。</p>
+<p>vCenter外掛程式適用於vSphere原生管理</p>
 </li>
 </ul>
 </div>
-<div class="paragraph quick-margin-para">
-<p><a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
+<div class="paragraph">
+<p>下圖顯示Astra系列與VMware的生態系統。<span class="image"><img src="../media/use/astra-ads-architecture-diagram-v4-vmware.png" alt="Astra架構圖表與元件"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="以取得更多資訊">以取得更多資訊</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-control-center/" target="_blank" rel="noopener">"Astra Control Center文件"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-family/intro-family.html" target="_blank" rel="noopener">"Astra系列簡介"</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 
     </article>

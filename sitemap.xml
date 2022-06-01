@@ -15,14 +15,14 @@
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/concepts/expansion.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/ads-acc-ui.html</loc>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/ads-earlier-versions.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
@@ -48,6 +48,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/ads-vmware-requirements.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/rest-api/api-intro.html</loc>
       
       <lastmod>2022-05-03T15:17:19+00:00</lastmod>
@@ -57,175 +64,203 @@
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/concepts/architecture.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/support/autosupport.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/capabilities.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/configure-endpoints.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/deploy-apps.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/faq-ads.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/support/get-help-ads.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/install-ads.html</loc>
       
-      <lastmod>2022-05-03T23:13:36+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/concepts/intro.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/release-notes/known-issues.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/release-notes/known-limitations.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/kubectl-commands-ads.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/legal-notices.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/maintain-cluster.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/manage-ads-vmware.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/manage-certificates.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/manage-keys.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/monitor-with-cloud-insights.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/monitor-with-prometheus-grafana.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/requirements.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/zh-tw/astra-data-store/release-notes/resolved-issues.html</loc>
-      
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/release-notes/rn_overview.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store//search.html</loc>
       
-      <lastmod>2022-05-16T07:59:01+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:25+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/concepts/security.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/get-started/setup-ads.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/concepts/storage-efficiency.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
@@ -237,23 +272,44 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/uninstall-ads-manual.html</loc>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/uninstall-ads-vmware.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/uninstall-ads.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/update-ads-license.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use/upgrade-ads.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html</loc>
+      
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/zh-tw/astra-data-store/release-notes/whats-new.html</loc>
       
-      <lastmod>2022-05-03T15:17:19+00:00</lastmod>
+      <lastmod>2022-06-01T01:12:10+00:00</lastmod>
       
     </url>
   

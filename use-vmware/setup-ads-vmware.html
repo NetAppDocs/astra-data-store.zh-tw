@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head class="at-element-marker">
-  <title>Astra Data Store快速入門</title>
+  <title>使用VMware設定Astra Data Store</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Astra Data Store快速入門" />
+  <meta property="og:title" content="使用VMware設定Astra Data Store" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" />
-	<meta property="og:description" content="只要幾個步驟、就能開始使用Astra Data Store。" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html" />
+	<meta property="og:description" content="您可以使用Astra vCenter外掛程式和VMware vSphere原生功能來部署及管理Astra Data Store。" />
   <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="只要幾個步驟、就能開始使用Astra Data Store。">
-  <meta name="keywords" content=" get started, quick start, astra, astra data store, deploy, deployment, kubernetes"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以使用Astra vCenter外掛程式和VMware vSphere原生功能來部署及管理Astra Data Store。">
+  <meta name="keywords" content=" astra, vmware, vcenter, astra data store"><!-- Icons -->
   <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[Astra Data Store快速入門](https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/get-started/quick-start.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[使用VMware設定Astra Data Store](https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/use-vmware/setup-ads-vmware.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/use-vmware/setup-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/use-vmware/setup-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/use-vmware/setup-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/use-vmware/setup-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -446,15 +446,6 @@
           
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/get-started/quick-start.pdf" >
-    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -591,6 +582,15 @@
 
 
 
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/use-vmware/setup-ads-vmware.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -709,7 +709,7 @@
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
         Astra資料儲存區需求
-      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
         Astra Data Store快速入門
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
         安裝Astra Data Store
@@ -757,7 +757,7 @@
         瞭解Astra Data Store與VMware的相關資訊
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/ads-vmware-requirements.html">
         Astra Data Store搭配VMware需求
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html">
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html">
         使用VMware設定Astra Data Store
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html">
         監控VMware安裝的元件
@@ -836,7 +836,7 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Astra Data Store快速入門</h1>
+  <h1 class="n-doc__component-detail-heading">使用VMware設定Astra Data Store</h1>
 </div>
 
 
@@ -850,90 +850,667 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>本頁提供Astra Data Store入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。</p>
+<p>您可以將Astra Data Store設定為儲存後端、並使用適用於VMware vSphere的NetApp Astra外掛程式加以管理。</p>
 </div>
 <div class="paragraph">
-<p>歡迎試用！如果您想要試用Astra Data Store、可以使用90天試用版授權。 <a href="https://www.netapp.com/cloud-services/astra/data-store-form/" target="_blank" rel="noopener">"請在此註冊"</a> 取得Astra Data Store授權。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"</a> alt="1"&gt;&lt;/span&gt;檢閱Kubernetes叢集需求</div>
-<ul>
-<li>
-<p>叢集必須以正常狀態執行、且至少有四個或更多個工作節點。</p>
-</li>
-<li>
-<p>Astra Data Store部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store叢集的相同磁碟機數量。</p>
-</li>
-<li>
-<p>每個SSD都應有一個唯一的序號。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/requirements.html">"Astra資料儲存區需求"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"</a> Alt="2"&gt;&lt;/span&gt;下載並安裝Astra Data Store</div>
-<ul>
-<li>
-<p>從下載Astra Data Store <a href="https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab" target="_blank" rel="noopener">"NetApp 支援網站"</a>。</p>
-</li>
-<li>
-<p>在您的本機環境中安裝Astra Data Store。</p>
-</li>
-<li>
-<p>套用Astra Data Store授權。</p>
-</li>
-<li>
-<p>安裝Astra Data Store叢集。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"</a> alt="there"&gt;&lt;/span&gt;完成一些初始設定工作</div>
-<ul>
-<li>
-<p>安裝Astra Trident。</p>
-</li>
-<li>
-<p>安裝Kubernetes快照自訂資源定義（CRD）和控制器。</p>
-</li>
-<li>
-<p>將Astra Data Store設定為儲存後端。</p>
-</li>
-<li>
-<p>建立預設的Astra Data Store儲存類別。</p>
-</li>
-<li>
-<p>設定Astra資料儲存區以使用遙測服務。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/setup-ads.html">"初始設定程序"</a>。</p>
-</div>
-<div class="paragraph quick-margin-para">
-<p>完成Astra Data Store設定之後、接下來您可以：</p>
+<p>使用VMware設定Astra Data Store需要執行下列工作：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 <a href="../use/kubectl-commands-ads.html">"如何搭配Astra Data Store使用kubectl命令"</a>。</p>
+<p><a href="#Activate VMware vSphere services using Astra Control Center">[Activate VMware vSphere services using Astra Control Center]</a>。</p>
 </li>
 <li>
-<p>設定監控端點。深入瞭解 <a href="../use/configure-endpoints.html">"設定監控端點"</a>。</p>
+<p><a href="#Add a vCenter using Astra Control Center">[Add a vCenter using Astra Control Center]</a>。</p>
 </li>
 <li>
-<p><a href="../use-vmware/use-ads-vmware-overview.html">"使用Astra Data Store搭配VMware"</a>。</p>
+<p><a href="#Create a custom SCC (if using OpenShift)">[Create a custom SCC (if using OpenShift)]</a></p>
+</li>
+<li>
+<p><a href="#Use an existing storage backend in the Astra Plugin for VMware vSphere">[Use an existing storage backend in the Astra Plugin for VMware vSphere]</a>。</p>
+</li>
+<li>
+<p><a href="#Create a datastore using the Astra Plugin for VMware vSphere">[Create a datastore using the Astra Plugin for VMware vSphere]</a>。</p>
+</li>
+<li>
+<p><a href="#Generate VM storage policies">[Generate VM storage policies]</a>。</p>
 </li>
 </ul>
 </div>
-<div class="paragraph quick-margin-para">
-<p><a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
+<div class="paragraph">
+<p>在您使用VMware設定Astra Data Store之前、您必須確保下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Astra控制中心是 <a href="https://docs.netapp.com/us-en/astra-control-center/get-started/install_overview.html">"已安裝"</a> 並設定。</p>
+</li>
+<li>
+<p>Astra Data Store已獲得授權並已部署。請參閱 <a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+對於Astra Data Store Early Access Program（EAP）版本、Astra Control Center和Astra Data Store必須部署於兩個不同的Kubernetes叢集。
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>用於部署Astra Control Center和Astra Data Store的Kubernetes叢集必須已由Astra Control Center管理。</p>
+</li>
+<li>
+<p>NFSv3已啟用。</p>
+</li>
+<li>
+<p>您在新增vCenter之前、已上傳Astra Control Center和VASA供應商套件。 <a href="https://docs.netapp.com/us-en/astra-control-center/use/manage-packages-acc.html" target="_blank" rel="noopener">"請參閱管理軟體套件"</a>。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用astra-control-center啟動vmware-vsphere服務">使用Astra Control Center啟動VMware vSphere服務</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>啟動Astra Control Center上的vSphere服務、開始使用VMware設定Astra Data Store。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+Astra Control Center中的VMware vSphere服務預設不會啟用。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>登入Astra Control Center。</p>
+</li>
+<li>
+<p>從左側導覽中選取*叢集*。</p>
+<div class="paragraph">
+<p>橫幅會顯示尚未啟用VMware vSphere服務的訊息。</p>
+</div>
+</li>
+<li>
+<p>選取*啟用VMware vSphere服務*。</p>
+<div class="paragraph">
+<p>此動作可能需要一段時間。服務啟用後、*新增vCenter*按鈕即會啟用。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用astra-control-center新增vcenter">使用Astra Control Center新增vCenter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>新增第一個vCenter、註冊適用於VMware vSphere的Astra外掛程式。</p>
+</div>
+<div class="paragraph">
+<p>您必須具有管理權限、才能將vCenter新增至Astra Control Center。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>登入Astra Control Center。</p>
+</li>
+<li>
+<p>從左側導覽中選取*叢集*。</p>
+</li>
+<li>
+<p>選取*新增vCenter*。</p>
+</li>
+<li>
+<p>輸入vCenter伺服器詳細資料、vCenter連接埠、以及管理使用者名稱和密碼、以提供給Astra Control Center。</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如此可在VMware vSphere用戶端中部署此vCenter的Astra外掛程式。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>選取*「Add*」。</p>
+<div class="paragraph">
+<p>vCenter會顯示在「叢集」頁面上、而Astra控制儀表板上的託管vCenter總數會更新。這也會啟動適用於VMware vSphere部署的Astra外掛程式。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="驗證vcenter新增項目">驗證vCenter新增項目</h3>
+<div class="paragraph">
+<p>新增的vCenter會顯示在「叢集」頁面和儀表板上。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+vCenter和Kubernetes叢集都會顯示在Astra控制中心儀表板上。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>存取Astra控制中心。</p>
+</li>
+<li>
+<p>從左側導覽中選取*叢集*。</p>
+</li>
+<li>
+<p>確認「叢集」頁面上出現新管理的vCenter。</p>
+</li>
+<li>
+<p>從左側導覽中選取*儀表板*。</p>
+</li>
+<li>
+<p>從Astra控制中心儀表板中、記下新的託管vCenter叢集、做為*託管*數的一部分。</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+受管理的叢集數包括vCenter和Kubernetes叢集。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>若要檢視叢集詳細資料、請按一下*「託管」*計數。</p>
+<div class="paragraph">
+<p>此時會出現「叢集」頁面。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="建立自訂scc如果使用openshift">建立自訂SCC（如果使用OpenShift）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您使用OpenShift、您可以選擇指派安全內容限制（SCC）來控制Pod可以執行的動作、並控制Pod可以存取的內容。</p>
+</div>
+<div class="paragraph">
+<p>根據預設、任何容器的執行都會被授予受限的SCC、而且只會授予該SCC所定義的功能。受限的SCC不會提供VASA供應商Pod所需的權限。使用此程序可為VASA供應商部署所使用的服務帳戶提供所需的較高權限（列於範例中）。</p>
+</div>
+<div class="paragraph">
+<p>將自訂SCC指派給Astra Data Store「NTV-system」命名空間的各種預設服務帳戶、此命名空間是特殊權限與節點輸出程式SCC的混合體。</p>
+</div>
+<div class="paragraph">
+<p>只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>建立名為「VP_backend_特權_scc.yaml」的自訂SCC：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl create -f vp_backend_privileged_scc.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>範例：VP_backend_特權_SCC.yaml</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>allowHostDirVolumePlugin: true
+allowHostIPC: false
+allowHostNetwork: true
+allowHostPID: false
+allowHostPorts: true
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+  - '*'
+allowedUnsafeSysctls:
+  - '*'
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups: []
+kind: SecurityContextConstraints
+metadata:
+  name: vpbackend-privileged
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+seccompProfiles:
+  - '*'
+supplementalGroups:
+  type: RunAsAny
+users:
+  - system:serviceaccount:ntv-system:default
+  - system:serviceaccount:ntv-system:ntv-auth-svc
+  - system:serviceaccount:ntv-system:ntv-autosupport
+  - system:serviceaccount:ntv-system:ntv-compliance-svc
+  - system:serviceaccount:ntv-system:ntv-datastore-svc
+  - system:serviceaccount:ntv-system:ntv-metallb-controller
+  - system:serviceaccount:ntv-system:ntv-metallb-speaker
+  - system:serviceaccount:ntv-system:ntv-mongodb
+  - system:serviceaccount:ntv-system:ntv-nfs-svc
+  - system:serviceaccount:ntv-system:ntv-rabbitmq-svc
+  - system:serviceaccount:ntv-system:ntv-storage-svc
+  - system:serviceaccount:ntv-system:ntv-vault
+  - system:serviceaccount:ntv-system:ntv-vault-admin
+  - system:serviceaccount:ntv-system:ntv-vault-agent-injector
+  - system:serviceaccount:ntv-system:ntv-vault-controller
+  - system:serviceaccount:ntv-system:ntv-vault-initializer
+  - system:serviceaccount:ntv-system:ntv-vcenter-svc
+  - system:serviceaccount:ntv-system:ntv-vm-management-svc
+  - system:serviceaccount:ntv-system:ntv-watcher-svc
+  - system:serviceaccount:ntv-system:ntv-vault-sa-vault-tls
+  - system:serviceaccount:ntv-system:ntv-gateway-svc
+  - system:serviceaccount:ntv-system:ntv-jobmanager-svc
+  - system:serviceaccount:ntv-system:ntv-vasa-svc
+volumes:
+  - '*'</pre>
+</div>
+</div>
+</li>
+<li>
+<p>使用「occ Get SCC」命令顯示新增的SCC：</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc get scc vpbackend-privileged</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回應：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                 PRIV  CAPS  SELINUX  RUNASUSER FSGROUP  SUPGROUP PRIORITY   READONLYROOTFS VOLUMES
+vpbackend-privileged true ["*"]  RunAsAny RunAsAny  RunAsAny RunAsAny &lt;no value&gt; false          ["*"]</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="在適用於vmware-vsphere的astra外掛程式中使用現有的儲存後端">在適用於VMware vSphere的Astra外掛程式中使用現有的儲存後端</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>使用Astra Control Center UI新增vCenter之後、請使用適用於VMware vSphere的Astra外掛程式新增Astra Data Store儲存後端。</p>
+</div>
+<div class="paragraph">
+<p>此程序完成下列動作：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>將現有的儲存後端新增至選取的vCenter。</p>
+</li>
+<li>
+<p>向選取的vCenter登錄VASA供應商。VASA供應商提供VMware與Astra Data Store之間的通訊。</p>
+</li>
+<li>
+<p>將VASA供應商自我簽署的憑證新增至儲存後端。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+您新增的vCenter有時可能需要10分鐘才會出現在儲存後端精靈中。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+Astra資料儲存區不應與多個vCenter共用。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>存取適用於VMware vSphere的NetApp Astra外掛程式。</p>
+</li>
+<li>
+<p>從左側導覽中選取* Astra Plugin for VMware vSpher*、或從「捷徑」頁面選取* Astra Plugin for VMware vSpher*圖示。</p>
+</li>
+<li>
+<p>從「Astra Plugin for VMware vSphere Overview」（Astra外掛程式for VMware vSphere概述）頁面、選取* Use existing storage backend*（使用現有的儲存後端或者、從左側導覽中選取*儲存後端*&gt;*新增*、然後選取*使用現有的儲存後端*。</p>
+</li>
+<li>
+<p>選取現有的Astra Data Store作為儲存後端、然後選取* Next*。</p>
+</li>
+<li>
+<p>在VASA供應商頁面上、輸入VASA供應商名稱、IP位址（如果使用負載平衡器）、使用者名稱和密碼。</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+對於使用者名稱、您可以使用英數字元和底線。請勿輸入任何特殊字元。使用者名稱的第一個字母必須以字母字元開頭。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>指出您是否要部署負載平衡器、然後輸入用於存取VASA提供者的IP位址。IP必須是與節點IP分開的額外可路由的可用IP。啟用負載平衡器時、Metallb會部署在Astra Data Store Kubernetes叢集中、並設定為分配可用的IP。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+如果您使用Google Anthos叢集進行部署、請選擇不部署負載平衡器、因為Anthos已經以負載平衡器的形式執行了冶金。VASA供應商的CR（v1beta1_vasaprovider.yaml）應將「mrarfin deploy」（mretb部署）旗標設為「假」。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>如果您選擇不部署負載平衡器、則會假設負載平衡器已經部署並設定為為*負載平衡器*類型的Kubernetes服務分配IP。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+此時部署中尚未部署VASA供應商。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>選擇*下一步*。</p>
+</li>
+<li>
+<p>在「憑證」頁面上、檢閱自我簽署憑證的憑證資訊。</p>
+</li>
+<li>
+<p>選擇*下一步*。</p>
+</li>
+<li>
+<p>檢閱摘要資訊。</p>
+</li>
+<li>
+<p>選取*「Add*」。</p>
+<div class="paragraph">
+<p>這會部署VASA供應商。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="驗證astra-plugin-for-vmware-vsphere中的儲存後端">驗證Astra Plugin for VMware vSphere中的儲存後端</h3>
+<div class="paragraph">
+<p>註冊Astra Data Store儲存後端後端之後、即會出現在Astra Plugin for VMware vSphere儲存後端清單中。</p>
+</div>
+<div class="paragraph">
+<p>您可以決定儲存後端狀態和VASA供應商狀態。您也可以查看每個儲存後端的已用容量。</p>
+</div>
+<div class="paragraph">
+<p>選取儲存後端之後、您也可以檢視已使用和可用的容量、資料減量比率、以及內部網路管理IP位址。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>在適用於VMware vSphere的NetApp Astra外掛程式中、從左側導覽中選取*儲存後端*。</p>
+</li>
+<li>
+<p>選取Astra Data Store儲存後端以查看「摘要」索引標籤。</p>
+</li>
+<li>
+<p>檢閱VASA供應商的已用及可用容量、資料減量比率及狀態。</p>
+</li>
+<li>
+<p>選取其他索引標籤以查看VM、資料存放區、主機和儲存節點的相關資訊。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用適用於vmware-vsphere的astra外掛程式建立資料存放區">使用適用於VMware vSphere的Astra外掛程式建立資料存放區</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>新增儲存後端並註冊適用於VMware vSphere的Astra外掛程式之後、即可在VMware中建立資料存放區。</p>
+</div>
+<div class="paragraph">
+<p>您可以將資料存放區新增至資料中心、運算或主機叢集。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+您無法使用相同的儲存後端、在同一個資料中心下建立多個資料存放區。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>您可以使用NFS傳輸協定新增vVol資料存放區類型。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>存取適用於VMware vSphere的Astra外掛程式。</p>
+</li>
+<li>
+<p>從外掛程式功能表中、選取* Create Datastor*。</p>
+</li>
+<li>
+<p>輸入新的資料存放區名稱、類型（vVol）和傳輸協定（NFS）。</p>
+</li>
+<li>
+<p>選擇*下一步*。</p>
+</li>
+<li>
+<p>從「Storage（儲存設備）」頁面、選取您剛建立的Astra Data Store儲存後端。</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+您無法使用具有現有資料存放區的儲存後端。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>選擇*下一步*。</p>
+</li>
+<li>
+<p>從「摘要」頁面檢閱資訊。</p>
+</li>
+<li>
+<p>選擇* Create <strong>（建立</strong>）。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+如果您遇到與失敗掃描或一般系統錯誤有關的錯誤、 <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-E8EA857E-268C-41AE-BBD9-08092B9A905D.html">"重新掃描/同步vCenter上的儲存供應商"</a> 然後再次嘗試建立資料存放區。
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="產生vm儲存原則">產生VM儲存原則</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>建立資料存放區之後、在建立VM之前、您應該使用REST API UI中的「/virtualization /API/v1/vCenter/VM儲存原則」來產生預先設計的VM儲存原則。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>請前往「https://&lt;ads_gateway_ip&gt;:8443`」存取REST API UI頁面。</p>
+</li>
+<li>
+<p>前往API「POST /virtualization /api/auth /登入」、並提供使用者名稱、密碼和vCenter主機名稱。</p>
+<div class="paragraph">
+<p>回應：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "vmware-api-session-id": "212f4d6447b05586ab1509a76c6e7da56d29cc5b",
+  "vcenter-guid": "8e475060-b3c8-4267-bf0f-9d472d592d39"
+}</pre>
+</div>
+</div>
+</li>
+<li>
+<p>前往API「Get /virtualization /api/aut/validate-session」、完成下列步驟：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>使用上面產生的「VMware-API- session-id」和「vCenter-guid」作為標頭。</p>
+</li>
+<li>
+<p>選擇*立即試用*。</p>
+<div class="paragraph">
+<p>回應：（驗證被截短於下方）：</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>authorization: eyJhbGciOiJSUzI1NiIsInR...9h15DYYvClT3oA  connection: keep-alive  content-type: application/json  date: Wed,18 May 2022 13:31:18 GMT  server: nginx  transfer-encoding: chunked</pre>
+</div>
+</div>
+</li>
+<li>
+<p>前往API「/virtualization /API/v1/vCenter/VM儲存原則」、並將先前回應中產生的承載權杖新增為「授權」。</p>
+<div class="paragraph">
+<p>系統會顯示「200」回應、並產生三個VM儲存原則。</p>
+</div>
+</li>
+<li>
+<p>確認vCenter儲存原則頁面上的新VM儲存原則（名為Bronze、Silver和Gold）。</p>
+</li>
+<li>
+<p>繼續建立VM。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="下一步">下一步</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>接下來、您可能會想要執行下列工作：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>建立VM。</p>
+</li>
+<li>
+<p>掛載資料存放區。請參閱 <a href="../use-vmware/manage-ads-vmware.html#mount-a-datastore">"掛載資料存放區"</a>。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="以取得更多資訊">以取得更多資訊</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-control-center/" target="_blank" rel="noopener">"Astra Control Center文件"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-family/intro-family.html" target="_blank" rel="noopener">"Astra系列簡介"</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 
     </article>

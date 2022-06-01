@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head class="at-element-marker">
-  <title>已解決的問題</title>
+  <title>管理外部金鑰</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="已解決的問題" />
+  <meta property="og:title" content="管理外部金鑰" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/release-notes/resolved-issues.html" />
-	<meta property="og:description" content="已解決此版本中可能導致您無法成功使用產品的問題。" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/use/manage-keys.html" />
+	<meta property="og:description" content="您可以使用一或多個外部金鑰管理伺服器來保護叢集用來存取加密資料的金鑰。" />
   <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="已解決此版本中可能導致您無法成功使用產品的問題。">
-  <meta name="keywords" content=" astra, data store, fixed bugs, fixes, resolved issues"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以使用一或多個外部金鑰管理伺服器來保護叢集用來存取加密資料的金鑰。">
+  <meta name="keywords" content=" astra, astra data store, kubectl, security, secure, expired, key, ekm, encryption, sear"><!-- Icons -->
   <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[已解決的問題](https://docs.netapp.com/zh-tw/astra-data-store/release-notes/resolved-issues.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/release-notes/resolved-issues.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[管理外部金鑰](https://docs.netapp.com/zh-tw/astra-data-store/use/manage-keys.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/use/manage-keys.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/release-notes/resolved-issues.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/use/manage-keys.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/release-notes/resolved-issues.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/use/manage-keys.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/release-notes/resolved-issues.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/use/manage-keys.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/release-notes/resolved-issues.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/use/manage-keys.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/release-notes/resolved-issues.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/use/manage-keys.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -358,7 +358,7 @@
         
         
         
-        <a target="_blank" href="/zh-tw/astra-data-store/pdfs/fullsite-sidebar/Astra_Data_Store預覽文件.pdf" >
+        <a target="_blank" href="/zh-tw/astra-data-store/pdfs/fullsite-sidebar/Astra_Data_Store文件.pdf" >
           <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
 
 
@@ -488,6 +488,106 @@
 
 
 
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/監控Astra資料儲存區.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            監控Astra資料儲存區
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/安全的Astra資料儲存區.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            安全的Astra資料儲存區
+          </a>
+          
+
+
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/use/manage-keys.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/astra-data-store/pdfs/sidebar/使用Astra_Data_Store搭配VMware.pdf" 
+            
+          >
+            <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+            使用Astra Data Store搭配VMware
+          </a>
+          
+
 
 
 
@@ -537,6 +637,8 @@
     
 
   
+
+
 
 
 
@@ -593,7 +695,7 @@
         <div class="na-navbar-padding"> 概念</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/intro.html">
-        Astra Data Store簡介
+        深入瞭解Astra Data Store
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/architecture.html">
         部署模式
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/concepts/expansion.html">
@@ -606,38 +708,63 @@
         <div class="na-navbar-padding"> 開始使用</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
-        Astra Data Store預覽需求
+        Astra資料儲存區需求
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
-        Astra Data Store預覽快速入門
+        Astra Data Store快速入門
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
-        安裝Astra Data Store預覽
+        安裝Astra Data Store
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/setup-ads.html">
-        設定Astra Data Store預覽元件
+        設定Astra Data Store元件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/capabilities.html">
-        Astra Data Store預覽限制
+        Astra資料儲存區的限制
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/faq-ads.html">
         常見問題集
       </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 使用Astra資料儲存區</div>
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/kubectl-commands-ads.html">
-        管理Astra Data Store資產
+        管理Astra Data Store資源
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/deploy-apps.html">
         部署測試應用程式
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/maintain-cluster.html">
         管理叢集
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-cloud-insights.html">
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 監控Astra資料儲存區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-cloud-insights.html">
         利用功能表監控指標Cloud Insights
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/monitor-with-prometheus-grafana.html">
         使用Prometheus和Grafana監控指標
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/configure-endpoints.html">
         設定及監控事件記錄
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/ads-acc-ui.html">
-        Astra Control Center整合
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 安全的Astra資料儲存區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/manage-certificates.html">
+        管理安全性憑證
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/manage-keys.html">
+        管理外部金鑰
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/update-ads-license.html">
+        更新Astra Data Store授權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/upgrade-ads.html">
+        升級Astra Data Store
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads.html">
-        使用指令碼自動解除安裝Astra Data Store預覽
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/uninstall-ads-manual.html">
-        無需指令碼、即可手動解除安裝Astra Data Store預覽
+        解除安裝Astra Data Store
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 使用Astra Data Store搭配VMware</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/use-ads-vmware-overview.html">
+        瞭解Astra Data Store與VMware的相關資訊
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/ads-vmware-requirements.html">
+        Astra Data Store搭配VMware需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html">
+        使用VMware設定Astra Data Store
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html">
+        監控VMware安裝的元件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/manage-ads-vmware.html">
+        管理VMware安裝的Astra Data Store元件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/uninstall-ads-vmware.html">
+        從VMware整合式環境中解除安裝Astra Data Store
       </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 知識與支援</div>
       </a>
@@ -647,7 +774,9 @@
         取得協助
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/support/autosupport.html">
         自動支援監控
-      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/legal-notices.html">
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/ads-earlier-versions.html">
+        舊版
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/legal-notices.html">
         法律聲明
       </a></li></ul>
 </div>
@@ -707,14 +836,14 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">已解決的問題</h1>
+  <h1 class="n-doc__component-detail-heading">管理外部金鑰</h1>
 </div>
 
 
 <p class="page-details">
   
     
-    <time datetime="2022-05-03 15:17:19 +0000">05/03/2022</time>
+    <time datetime="2022-06-01 01:12:10 +0000">06/01/2022</time>
     
   
 
@@ -724,18 +853,265 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>本產品版本已修正下列問題。</p>
+<p>您可以使用一或多個外部金鑰管理伺服器來保護叢集用來存取加密資料的金鑰。外部金鑰管理伺服器是儲存環境中的第三方系統、使用金鑰管理互通性傳輸協定（KMIP）為節點提供金鑰。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+Astra Data Store在建立Astra Data Store叢集時、預設會使用內部金鑰提供者啟用靜止軟體加密（sear）功能。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>管理金鑰包括下列自訂資源定義（客戶需求日）：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>適用DSKeyProvider</strong>：設定外部KMIP伺服器、此伺服器可以是伺服器叢集。</p>
+</li>
+<li>
+<p><strong>《DSSEARKeyRotate</strong>：從金鑰提供者取得新的金鑰加密金鑰、並提供給Astra Data Store。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>您可以執行下列與外部金鑰管理相關的工作：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#Set up external key management">[Set up external key management]</a></p>
+</li>
+<li>
+<p><a href="#Check the software encryption at rest status">[Check the software encryption at rest status]</a></p>
+</li>
+<li>
+<p><a href="#Change external to internal key management">[Change external to internal key management]</a></p>
+</li>
+<li>
+<p><a href="#Rotate keys for security">[Rotate keys for security]</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="astra-data-store預覽無法辨識採用vxlan組態和calico-cni的網路介面名稱">Astra Data Store預覽無法辨識採用VXLAN組態和Calico CNI的網路介面名稱</h2>
+<h2 id="設定外部金鑰管理">設定外部金鑰管理</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>此錯誤導致Pod當機。</p>
+<p>在Astra Data Store中設定外部金鑰管理時、會使用「kubectl astrads」命令。</p>
 </div>
 <div class="paragraph">
-<p>此版本的Astra Data Store預覽支援採用Calico CNI的VXLAN組態。</p>
+<p>您需要叢集或KMIP伺服器上的SSL憑證、才能設定外部金鑰、例如使用OpenSSL。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>準備金鑰提供者用戶端的憑證。包括用戶端憑證、用戶端私密金鑰及信任CA套裝組合。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+您將在叢集或KMIP伺服器上準備SSL憑證、以便設定外部金鑰、例如使用OpenSSL。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>登入Astra Data Store叢集中的其中一個節點。</p>
+</li>
+<li>
+<p>輸入下列kubecll副檔名命令、設定Astra Data Store叢集的金鑰提供者：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl-astrads key-provider certs --key key.pem
+--client-cert client_cert.pem --ca-cert server_ca.pem
+--hostnames=&lt;kmip_server_ip&gt; &lt;key_provider_cr_name&gt;
+--namespace astrads-system --cluster &lt;ads_cluster_name&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>下列範例會針對As叢集「astradse-Cluster-f23d158」設定名為「hashicorp」的外部金鑰提供者。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl-astrads key-provider certs --key key.pem
+--client-cert client_cert.pem --ca-cert server_ca.pem
+--hostnames=10.235.nnn.nnn hashicorp
+--namespace astrads-system --cluster astrads-cluster-f23d158</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>將Astra Data Store叢集設定為使用外部金鑰管理程式、透過適用的適用項（適用）。顯示說明。</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl-astrads clusters sears -h</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回應：</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Configure SEARS in AstraDS cluster
+
+Usage:
+  astrads clusters sears [flags]
+
+Flags:
+  -d, --duration string   Duration for key rotation (default "2160h")
+  -h, --help              help for sears
+
+
+Global Flags:
+      --ads-cluster-name string        Name of the ADS Cluster
+      --ads-cluster-namespace string   Namespace of the ADS Cluster
+      ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>下列命令可將Astra Data Store叢集設定為使用「適用的」「適用的DSKeyProvider hashicorp」做為sar的金鑰管理程式。命令也會使用按鍵旋轉時間、預設值為90天（2160小時）。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl-astrads clusters sears -d 500h hashicorp
+--ads-cluster-name=astrads-cluster-f23d158
+--ads-cluster-namespace=astrads-system</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="檢查軟體加密的靜止狀態">檢查軟體加密的靜止狀態</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以在閒置時檢查軟體加密的組態。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>檢查適用的電池。</p>
+<div class="listingblock">
+<div class="content">
+<pre>Name:         astrads-cluster-f23d158
+Namespace:    astrads-system
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  astrads.netapp.io/v1beta1
+Kind:         AstraDSCluster
+...
+Spec:
+...
+  Software Encryption At Rest:
+    Ads Key Provider:     hashicorp
+    Key Rotation Period:  500h0m0s
+...
+Status:
+...
+  Software Encryption At Rest Status:
+    Key Active Time:       2022-05-16T15:53:47Z
+    Key Provider Name:     hashicorp
+    Key Provider UUID:     ccfc2b0b-dd98-5ca4-b778-99debef83550
+    Key UUID:              nnnnnnnn-nnnn-nnnn-nnnn-nnnnnnnnnnnn</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="將外部變更為內部金鑰管理">將外部變更為內部金鑰管理</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您目前使用外部金鑰管理程式、可以將其變更為內部金鑰管理程式。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>移除SoftwareEncryptionAtRest組態、以變更適用的DSCluster CR。</p>
+</li>
+<li>
+<p>（選用）刪除先前的適用的適用選項。</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+不會自動移除先前的金鑰提供者和密碼。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="旋轉金鑰以確保安全性">旋轉金鑰以確保安全性</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>金鑰輪替可強化安全性。依預設、Astra Data Store每90天自動旋轉金鑰一次。您可以變更預設設定。此外、您也可以視需要隨時旋轉按鍵。</p>
+</div>
+<div class="olist arabic">
+<div class="title">設定自動金鑰旋轉</div>
+<ol class="arabic">
+<li>
+<p>更新CRD中的「適用」參數。 </p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl patch astradscluster astrads-cluster-f23d158
+-n astrads-system
+--type=merge -p '{"spec": {"softwareEncryptionAtRest": { "keyRotationPeriod": "3000h"}}}'</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">設定隨需金鑰旋轉</div>
+<ol class="arabic">
+<li>
+<p>建立可旋轉金鑰的適用的適用選項：「Request CR」（建立適用的適用選項）。</p>
+<div class="listingblock">
+<div class="content">
+<pre>cat &lt;&lt; EOF | kubectl apply -f  -
+apiVersion: astrads.netapp.io/v1beta1
+kind: AstraDSSEARKeyRotateRequest
+metadata:
+  name: manual
+  namespace: astrads-system
+spec:
+  cluster: astrads-cluster-f23d158
+EOF</pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head class="at-element-marker">
-  <title>Astra Data Store快速入門</title>
+  <title>管理安全性憑證</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Astra Data Store快速入門" />
+  <meta property="og:title" content="管理安全性憑證" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" />
-	<meta property="og:description" content="只要幾個步驟、就能開始使用Astra Data Store。" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/use/manage-certificates.html" />
+	<meta property="og:description" content="您可以在Astra Data Store手動撤銷已遭入侵或過期的憑證。" />
   <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="只要幾個步驟、就能開始使用Astra Data Store。">
-  <meta name="keywords" content=" get started, quick start, astra, astra data store, deploy, deployment, kubernetes"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以在Astra Data Store手動撤銷已遭入侵或過期的憑證。">
+  <meta name="keywords" content=" astra, astra data store, kubectl, certs, cert, certificate, certificates, revoke, security, secure, expired, compromised, regenerate, generate"><!-- Icons -->
   <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[Astra Data Store快速入門](https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/get-started/quick-start.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[管理安全性憑證](https://docs.netapp.com/zh-tw/astra-data-store/use/manage-certificates.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/use/manage-certificates.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/use/manage-certificates.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/use/manage-certificates.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/use/manage-certificates.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/use/manage-certificates.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/use/manage-certificates.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -446,15 +446,6 @@
           
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/get-started/quick-start.pdf" >
-    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -543,6 +534,15 @@
             安全的Astra資料儲存區
           </a>
           
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/use/manage-certificates.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -709,7 +709,7 @@
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
         Astra資料儲存區需求
-      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
         Astra Data Store快速入門
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
         安裝Astra Data Store
@@ -740,7 +740,7 @@
       </a></li></ul></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> 安全的Astra資料儲存區</div>
       </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/manage-certificates.html">
+      <ul><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/manage-certificates.html">
         管理安全性憑證
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use/manage-keys.html">
         管理外部金鑰
@@ -836,7 +836,7 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Astra Data Store快速入門</h1>
+  <h1 class="n-doc__component-detail-heading">管理安全性憑證</h1>
 </div>
 
 
@@ -850,90 +850,76 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>本頁提供Astra Data Store入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。</p>
+<p>Astra Data Store在叢集的軟體元件之間使用相互傳輸層安全性（MTLS）加密。每個Astra Data Store叢集都有自我簽署的根CA憑證（「astrads-cert-root」）和中介CA憑證（「astrads-cert」（「叢集名稱」）。這些憑證由Astra Data Store營運者管理；營運者會在每個憑證到期日前7天自動續訂。您也可以手動撤銷憑證。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="撤銷憑證">撤銷憑證</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果Astra Data Store控制器、節點或CA憑證遭入侵、您可以刪除其MTLS機密來撤銷它。當您這麼做時、Astra Data Store營運者會自動發出新的憑證。您可以隨時撤銷Astra Data Store憑證。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+如果您撤銷CA憑證、這會撤銷該CA所簽署的任何憑證。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>登入Astra Data Store叢集中的控制器節點。</p>
+</li>
+<li>
+<p>列出系統上現有的憑證。例如：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl get secrets -n astrads-system | grep astrads-cert</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>歡迎試用！如果您想要試用Astra Data Store、可以使用90天試用版授權。 <a href="https://www.netapp.com/cloud-services/astra/data-store-form/" target="_blank" rel="noopener">"請在此註冊"</a> 取得Astra Data Store授權。</p>
+<p>輸出應類似於下列內容：</p>
 </div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"</a> alt="1"&gt;&lt;/span&gt;檢閱Kubernetes叢集需求</div>
-<ul>
-<li>
-<p>叢集必須以正常狀態執行、且至少有四個或更多個工作節點。</p>
-</li>
-<li>
-<p>Astra Data Store部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store叢集的相同磁碟機數量。</p>
-</li>
-<li>
-<p>每個SSD都應有一個唯一的序號。</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre>astrads-cert-astrads-cluster-controller                   kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-cluster-f23d158                      kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-ds-dms-astrads-cluster-f23d158       kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-ds-support-astrads-cluster-f23d158   kubernetes.io/tls     4      6d6h
+astrads-cert-astrads-support-astrads-cluster-f23d158      kubernetes.io/tls     4      6d6h
+astrads-cert-root                                         kubernetes.io/tls     4      6d6h
+astrads-cert-sti-net-com                                  kubernetes.io/tls     5      6d6h</pre>
 </div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/requirements.html">"Astra資料儲存區需求"</a>。</p>
 </div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"</a> Alt="2"&gt;&lt;/span&gt;下載並安裝Astra Data Store</div>
-<ul>
-<li>
-<p>從下載Astra Data Store <a href="https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab" target="_blank" rel="noopener">"NetApp 支援網站"</a>。</p>
 </li>
 <li>
-<p>在您的本機環境中安裝Astra Data Store。</p>
+<p>在輸出中、記下您需要撤銷的憑證名稱。</p>
 </li>
 <li>
-<p>套用Astra Data Store授權。</p>
-</li>
-<li>
-<p>安裝Astra Data Store叢集。</p>
-</li>
-</ul>
+<p>使用「kubecll」公用程式來撤銷憑證、並以憑證名稱取代「Certificate _name」（憑證名稱）。例如：</p>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl delete secret CERTIFICATE_NAME -n astrads-system</pre>
 </div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
 </div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"</a> alt="there"&gt;&lt;/span&gt;完成一些初始設定工作</div>
-<ul>
-<li>
-<p>安裝Astra Trident。</p>
 </li>
-<li>
-<p>安裝Kubernetes快照自訂資源定義（CRD）和控制器。</p>
-</li>
-<li>
-<p>將Astra Data Store設定為儲存後端。</p>
-</li>
-<li>
-<p>建立預設的Astra Data Store儲存類別。</p>
-</li>
-<li>
-<p>設定Astra資料儲存區以使用遙測服務。</p>
-</li>
-</ul>
+</ol>
 </div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/setup-ads.html">"初始設定程序"</a>。</p>
+<div class="paragraph">
+<p>現有的憑證會被撤銷、並自動產生新的憑證。</p>
 </div>
-<div class="paragraph quick-margin-para">
-<p>完成Astra Data Store設定之後、接下來您可以：</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 <a href="../use/kubectl-commands-ads.html">"如何搭配Astra Data Store使用kubectl命令"</a>。</p>
-</li>
-<li>
-<p>設定監控端點。深入瞭解 <a href="../use/configure-endpoints.html">"設定監控端點"</a>。</p>
-</li>
-<li>
-<p><a href="../use-vmware/use-ads-vmware-overview.html">"使用Astra Data Store搭配VMware"</a>。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p><a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
 </div>
 
     </article>

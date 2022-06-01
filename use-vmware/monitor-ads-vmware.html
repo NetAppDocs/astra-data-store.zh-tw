@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head class="at-element-marker">
-  <title>Astra Data Store快速入門</title>
+  <title>監控VMware安裝的元件</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Astra Data Store快速入門" />
+  <meta property="og:title" content="監控VMware安裝的元件" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" />
-	<meta property="og:description" content="只要幾個步驟、就能開始使用Astra Data Store。" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html" />
+	<meta property="og:description" content="您可以使用vCenter外掛程式來監控Astra Data Store效能。" />
   <meta property="og:image" content="https://docs.netapp.com/zh-tw/astra-data-store/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="只要幾個步驟、就能開始使用Astra Data Store。">
-  <meta name="keywords" content=" get started, quick start, astra, astra data store, deploy, deployment, kubernetes"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以使用vCenter外掛程式來監控Astra Data Store效能。">
+  <meta name="keywords" content=" astra, astra data store, vmware, vcenter, esxi"><!-- Icons -->
   <link rel="icon" href="/zh-tw/astra-data-store/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -169,7 +169,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[Astra Data Store快速入門](https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/get-started/quick-start.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/issues/new?body=Page%3A%20[監控VMware安裝的元件](https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/astra-data-store/blob/main/use-vmware/monitor-ads-vmware.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/astra-data-store/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/astra-data-store/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">在此頁面上</div>
@@ -292,15 +292,15 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/astra-data-store/use-vmware/monitor-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/use-vmware/monitor-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/use-vmware/monitor-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/use-vmware/monitor-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/quick-start.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -446,15 +446,6 @@
           
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/get-started/quick-start.pdf" >
-    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -593,6 +584,15 @@
 
 
 
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/astra-data-store/pdfs/pages/use-vmware/monitor-ads-vmware.pdf" >
+    <img src="/zh-tw/astra-data-store/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -709,7 +709,7 @@
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/requirements.html">
         Astra資料儲存區需求
-      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/quick-start.html">
         Astra Data Store快速入門
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/get-started/install-ads.html">
         安裝Astra Data Store
@@ -759,7 +759,7 @@
         Astra Data Store搭配VMware需求
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/setup-ads-vmware.html">
         使用VMware設定Astra Data Store
-      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html">
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/monitor-ads-vmware.html">
         監控VMware安裝的元件
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/use-vmware/manage-ads-vmware.html">
         管理VMware安裝的Astra Data Store元件
@@ -836,7 +836,7 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Astra Data Store快速入門</h1>
+  <h1 class="n-doc__component-detail-heading">監控VMware安裝的元件</h1>
 </div>
 
 
@@ -850,90 +850,174 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>本頁提供Astra Data Store入門所需步驟的高階概觀。每個步驟中的連結都會帶您前往提供更多詳細資料的頁面。</p>
+<p>您可以使用適用於VMware vSphere的NetApp Astra外掛程式來監控Astra Data Store安裝的元件。您可以監控系統的健全狀況、包括儲存後端、VASA供應商、VM和vVols。您也可以檢視容量和vCenter資訊。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用適用於vmware-vsphere儀表板的astra外掛程式來監控系統健全狀況">使用適用於VMware vSphere儀表板的Astra外掛程式來監控系統健全狀況</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>使用VMware環境管理Astra Data Store、需要監控儲存後端與VASA供應商的整體健全狀況。</p>
 </div>
 <div class="paragraph">
-<p>歡迎試用！如果您想要試用Astra Data Store、可以使用90天試用版授權。 <a href="https://www.netapp.com/cloud-services/astra/data-store-form/" target="_blank" rel="noopener">"請在此註冊"</a> 取得Astra Data Store授權。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png"</a> alt="1"&gt;&lt;/span&gt;檢閱Kubernetes叢集需求</div>
-<ul>
-<li>
-<p>叢集必須以正常狀態執行、且至少有四個或更多個工作節點。</p>
-</li>
-<li>
-<p>Astra Data Store部署中的每個Kubernetes工作節點、都應該有相同介面類型（SATA、SAS或NVMe）的SSD、以及指派給Astra Data Store叢集的相同磁碟機數量。</p>
-</li>
-<li>
-<p>每個SSD都應有一個唯一的序號。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/requirements.html">"Astra資料儲存區需求"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png"</a> Alt="2"&gt;&lt;/span&gt;下載並安裝Astra Data Store</div>
-<ul>
-<li>
-<p>從下載Astra Data Store <a href="https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab" target="_blank" rel="noopener">"NetApp 支援網站"</a>。</p>
-</li>
-<li>
-<p>在您的本機環境中安裝Astra Data Store。</p>
-</li>
-<li>
-<p>套用Astra Data Store授權。</p>
-</li>
-<li>
-<p>安裝Astra Data Store叢集。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
-</div>
-<div class="ulist">
-<div class="title">span class="image"&gt;&lt;imgrc="<a href="https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"" class="bare">https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png"</a> alt="there"&gt;&lt;/span&gt;完成一些初始設定工作</div>
-<ul>
-<li>
-<p>安裝Astra Trident。</p>
-</li>
-<li>
-<p>安裝Kubernetes快照自訂資源定義（CRD）和控制器。</p>
-</li>
-<li>
-<p>將Astra Data Store設定為儲存後端。</p>
-</li>
-<li>
-<p>建立預設的Astra Data Store儲存類別。</p>
-</li>
-<li>
-<p>設定Astra資料儲存區以使用遙測服務。</p>
-</li>
-</ul>
-</div>
-<div class="paragraph quick-margin-para">
-<p>深入瞭解 <a href="../get-started/setup-ads.html">"初始設定程序"</a>。</p>
-</div>
-<div class="paragraph quick-margin-para">
-<p>完成Astra Data Store設定之後、接下來您可以：</p>
+<p>使用適用於VMware vSphere儀表板的NetApp Astra外掛程式、您可以查看下列資訊：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>使用kubectl命令和kubectl astrads擴充功能來管理叢集、包括將節點置於維護模式、更換磁碟機或更換節點等工作。深入瞭解 <a href="../use/kubectl-commands-ads.html">"如何搭配Astra Data Store使用kubectl命令"</a>。</p>
+<p>此vCenter中所有儲存後端的實體已用及可用容量。您可以將游標暫留在資訊上、以查看更多詳細資料。</p>
 </li>
 <li>
-<p>設定監控端點。深入瞭解 <a href="../use/configure-endpoints.html">"設定監控端點"</a>。</p>
+<p>健全且不良的儲存後端與VASA供應商</p>
 </li>
 <li>
-<p><a href="../use-vmware/use-ads-vmware-overview.html">"使用Astra Data Store搭配VMware"</a>。</p>
+<p>前10大VM的延遲、IOPS、處理量和容量使用率。</p>
 </li>
 </ul>
 </div>
-<div class="paragraph quick-margin-para">
-<p><a href="../get-started/install-ads.html">"安裝Astra Data Store"</a>。</p>
+<div class="paragraph">
+<p>您可以從儀表板執行多項額外工作：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>監控容量</p>
+</li>
+<li>
+<p>使用現有的儲存後端。請參閱 <a href="../use-vmware/setup-ads-vmware.html">"設定儲存後端"</a>。</p>
+</li>
+<li>
+<p>存取產品文件</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">檢閱儀表板的步驟</div>
+<ol class="arabic">
+<li>
+<p>存取適用於VMware vSphere的Astra外掛程式。</p>
+</li>
+<li>
+<p>請從「總覽」頁面檢閱下列各節：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>*儲存後端*區段：您可以按一下儲存後端與VASA供應商的狀態、以查看其狀態的詳細資料。您也可以按一下以檢視所有儲存後端。</p>
+</li>
+<li>
+<p>*儲存後端容量*區段：檢閱所選vCenter中儲存後端的實體使用量和可用容量總計。若要變更vCenter伺服器、請按一下右上角的vCenter Server選項。</p>
+</li>
+<li>
+<p>*虛擬機器*區段：檢視使用前10大容量的虛擬機器。</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+您可以按一下表格標題、顯示所需的資料、例如前10大延遲虛擬機器。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">在其他檢視中監控Astra Data Store的步驟</div>
+<ol class="arabic">
+<li>
+<p>存取下列檢視以監控Astra Data Store元件：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>*虛擬機器*索引標籤：列出所有由Astra Data Store管理的虛擬機器、以及僅列出前10大虛擬機器的儀表板。</p>
+</li>
+<li>
+<p>* Storage *向下切入：顯示與儲存系統相關聯的主機、虛擬機器和資料存放區。</p>
+</li>
+<li>
+<p>* VM Storage*檢視：提供VASA供應商所建立vVols的詳細資料。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="檢閱儲存後端臨界值設定">檢閱儲存後端臨界值設定</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>儲存後端容量臨界值設定會在儲存後端的所有資料存放區上顯示警示通知時加以控制。</p>
+</div>
+<div class="paragraph">
+<p>當您使用適用於VMware vSphere的Astra外掛程式來部署或新增儲存後端時、會設定下列預設臨界值：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>90%已滿會產生紅色警示</p>
+</li>
+<li>
+<p>80%已滿會產生黃色警示</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>您可以檢視系統在VMware中產生警示的層級。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-data-store/images/note.svg" alt="附註">
+</td>
+<td class="content">
+對於Astra Data Store Early Access方案、如果在多個資料中心使用相同的儲存容器、您可能會看到資料存放區的警示不正確。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>存取適用於VMware vSphere的NetApp Astra外掛程式。</p>
+</li>
+<li>
+<p>從左側導覽中選取*設定*。</p>
+</li>
+<li>
+<p>檢閱設定臨界值。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="以取得更多資訊">以取得更多資訊</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-control-center/" target="_blank" rel="noopener">"Astra Control Center文件"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/astra-family/intro-family.html" target="_blank" rel="noopener">"Astra系列簡介"</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 
     </article>
