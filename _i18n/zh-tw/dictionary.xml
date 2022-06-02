@@ -387,9 +387,7 @@
   <block id="44988a3cdc9c8d194b4f0791b2fd559e" category="list-text">使用「occ Get SCC」命令顯示新增的SCC：</block>
   <block id="c8679407d1ef279caad76d123b67c3cf" category="list-text">建立定義的角色和角色繫結：</block>
   <block id="241dbe54decdb2543808cb04b50976c5" category="paragraph">範例：oc_roue_binings。yaml</block>
-  <block id="2bf2749ac3d1bb0b33e707bf3fab3f63" category="list-text">使用KECBECLL套用部署營運者：</block>
   <block id="da89009070a281ea41fbaf69a4a75bd5" category="list-text">確認Astra Data Store營運者Pod已啟動且正在執行：</block>
-  <block id="df42b724421bbda5256280183fe89e21" category="list-text">使用KECBECVL套用部署：</block>
   <block id="aed417ffe5dc63aa67936840a0654828" category="list-text">確認Pod正在執行：</block>
   <block id="2168e2850f39640b087ab9ec40e09ea4" category="inline-xref">即將部署</block>
   <block id="a43a46b3d0bdea57bd228232adb9bf0c" category="list-text">確認已新增授權：</block>
@@ -711,7 +709,6 @@
   <block id="686d7bc90b9548c7c0a6062e44db97d0" category="paragraph">適用於VMware vSphere的NetApp Astra外掛程式具有下列需求：</block>
   <block id="883d3b177b9973ec4fd8d2358a012d15" category="list-text">在Kubernetes叢集上執行Astra Control Center執行個體</block>
   <block id="e6a3b2b20c2270575385071d22587cfd" category="list-text">在Kubernetes叢集上執行的授權Astra Data Store執行個體</block>
-  <block id="bec5378c385c03645e6850c27d1a7814" category="list-text">在Astra Data Store叢集上啟用NFSv3</block>
   <block id="f370975993dbb1e7c1e24af01ed7986c" category="section-title">支援的網頁瀏覽器</block>
   <block id="e24a5b17a49ad963a0af839588f75a64" category="paragraph">適用於VMware vSphere的NetApp Astra外掛程式支援下列最新版本的網頁瀏覽器：</block>
   <block id="c70af508e72e2dc32d72f3765abb21b9" category="list-text">Mozilla Firefox</block>
@@ -744,7 +741,6 @@
   <block id="be85c0739cb66db5730a127fc4eeca0b" category="list-text">Astra Data Store已獲得授權並已部署。請參閱 <block ref="14497a94943dc819ca2bc8999e1f8acf" category="inline-link-macro-rx"></block>。</block>
   <block id="bcbfdb4e0453703e1cacd04a44fcf331" category="admonition">對於Astra Data Store Early Access Program（EAP）版本、Astra Control Center和Astra Data Store必須部署於兩個不同的Kubernetes叢集。</block>
   <block id="0dfd76a1e74c0c1c369c6c72f51214c5" category="list-text">用於部署Astra Control Center和Astra Data Store的Kubernetes叢集必須已由Astra Control Center管理。</block>
-  <block id="325b34511a7952c49df33908123c33ed" category="list-text">NFSv3已啟用。</block>
   <block id="6ce81e904046a779dc90e25023f4c1fb" category="inline-link">請參閱管理軟體套件</block>
   <block id="943cdfda279a36415463cde698fbed02" category="list-text">您在新增vCenter之前、已上傳Astra Control Center和VASA供應商套件。<block ref="72710cc45af0accb224cb54ac4340dda" category="inline-link-rx"></block>。</block>
   <block id="60b6ee39f0ffdc1332e48f1b7c5dca01" category="section-title">使用Astra Control Center啟動VMware vSphere服務</block>
@@ -1252,8 +1248,6 @@
   <block id="d2039b183ea00562a0296f1123bd838d" category="list-text"><block ref="03d56476e54e78b99675438278bf8894" category="inline-xref-macro-rx"></block></block>
   <block id="1a7218c8b5f948a630b8048af2d64aae" category="admonition">若要搭配Google Anthos使用Astra Data Store、請完成這些安裝步驟、並將Astra Data Store叢集新增至您的Anthos環境。</block>
   <block id="fc6f365df1ddf55c51c14101da7b6772" category="admonition">若要在Rancher RKE環境中安裝Astra Data Store、請完成下列安裝步驟、並以Rancher命令取代KECBECtl命令。</block>
-  <block id="92c65c116d9665104a66f03d50d70237" category="inline-link-macro">該版本的文件</block>
-  <block id="dc1f71c58865ade339aa61d7f991a77b" category="admonition">如果您要尋找舊版套裝組合的說明、請參閱 <block ref="093483f8ea3086d70bf0b2af35c9e87c" category="inline-link-macro-rx"></block>。</block>
   <block id="31b67a7abe2f2ab1d05a6bebfeffba29" category="list-text">從您用來擷取映像的目錄、將Kkbecl-astra二進位檔複製到安裝k8s kkbecl二進位檔的標準路徑（以下範例中使用「usr/bin/」）。Kustbecl-astrads是自訂的Kvecll擴充功能、可安裝及管理Astra Data Store叢集。</block>
   <block id="c0d41786f0fa88a11227b92d49c29ef1" category="paragraph">下列程序僅適用於Red Hat OpenShift Container Platform（OCP）上的部署。在非OCP Kubernetes叢集上部署時、請跳過此程序。</block>
   <block id="2cd1adb16f78d6fb8a9fa78dd41bb368" category="paragraph">建立名稱空間「astrads系統」、以便安裝所有Astra Data Store元件。</block>
@@ -1262,16 +1256,12 @@
   <block id="e67a17dad399fa0a07eddd69dd286520" category="paragraph">建立Astra Data Store預設服務帳戶所需的角色和角色繫結。</block>
   <block id="7853e3516a0206a108704c229831e908" category="paragraph">下列yaml定義會指派「astrads.netapp.io` API」群組中Astra Data Store資源所需的各種角色（透過角色繫結）。</block>
   <block id="44b34073e6561c716162fca16cd80977" category="section-title">設定私有映像登錄</block>
-  <block id="72abec824cde143470dcc804a8b74192" category="paragraph">對於某些環境而言、您可以選擇性步驟變更組態、以便從使用機密的私有登錄中擷取映像。</block>
   <block id="d725546dba1135597ccc664de4cafcbb" category="list-text">除非您已在上一步中建立「astrads系統」命名空間：</block>
   <block id="33d04f3057fe0f5fb9d9b5a2cb93a813" category="list-text">建立秘密：</block>
   <block id="3089f1c1b152c451f3ffcc6d9ae5ad98" category="list-text">將機密組態資訊新增至服務帳戶：</block>
   <block id="fd9e2773619d52650be596704116c337" category="inline-xref">安裝Astra Data Store營運者</block>
-  <block id="0da208bbf12d8aa47dcbcc2c105a7e83" category="admonition">這些變更將會在您執行時套用 <block ref="49123d3a615079cac592b8e7a86dbd41" category="inline-xref-macro-rx"></block>。</block>
   <block id="936a9ffa271d112e29ff0262e70148a9" category="section-title">安裝Astra Data Store營運者</block>
   <block id="660d4b4fb01e58645968597eb7844a38" category="list-text">列出Astra資料儲存區清單：</block>
-  <block id="310fb044b7094e80b3e1e75026da435f" category="inline-link-macro">OCP安裝</block>
-  <block id="d786dbba15565c43527b3dc2ff8cfc18" category="admonition">命名空間回應可能會因執行標準安裝或而有所不同 <block ref="7fe493e44fdd6a4330d998a1c82c1ab6" category="inline-link-macro-rx"></block>。</block>
   <block id="59fc72fc547705423d953a9214495f17" category="section-title">部署Astra Data Store版本Yaml</block>
   <block id="d425048448f94202cffd8c952e4c2cc0" category="section-title">套用Astra Data Store授權</block>
   <block id="a54e2acb6c225e70b7ff2ee8a8f1f3fa" category="list-text">套用您從NetApp取得的NetApp授權檔案（NLF）。執行命令之前、請輸入您所在的叢集名稱（「&lt;Astra Data-Store-cluster名稱&gt;」） <block ref="7cecf3d009a669ed0b3cd6f3cf2616b5" category="inline-xref-macro-rx"></block> 或已部署及授權檔案路徑（「&lt;file_path/file.txt&gt;`）：</block>
@@ -1302,7 +1292,6 @@
   <block id="91d4272be8a65219b11ddcff6fb54903" category="inline-link">使用Astra Control Center部署Astra資料儲存區</block>
   <block id="62eb80765eab0cb506ea78c2312d8a62" category="list-text"><block ref="6628840107d7d693ea2d286d60b8e2cc" category="inline-link-rx"></block>。</block>
   <block id="31ea4f482c9b52a6cf20e1b2216a6a18" category="list-text">* Kubernetes原生部署與協力廠商發佈*：執行其他作業來完成Astra Data Store部署 <block ref="7324e433dd54231f6ab1c33e7f1852c1" category="inline-link-macro-rx"></block>。</block>
-  <block id="5a5500749d7f22d9a69c279a8e339d81" category="list-text">* Astra控制中心*：如果您已使用Astra控制中心來部署Astra資料儲存區、則不需要遵循這些步驟 <block ref="453b1912b089f4f5a9a483bab5626f2b" category="inline-link-macro-rx"></block> 除非您想設定任何其他監控選項。部署Astra Data Store之後、您可以使用Astra Control Center UI來完成下列工作：</block>
   <block id="f308da2fc73241ea8dc0fdf813c1a703" category="inline-link">監控Astra Data Store資產的健全狀況</block>
   <block id="5b33e46a7a8f17e0449ec31292f678e2" category="list-text"><block ref="3c48566d32d298e0a0af96a806a22cf9" category="inline-link-rx"></block>。</block>
   <block id="e49319a41447f35dc2b79da5973a0c5c" category="inline-link">管理Astra Data Store後端儲存設備</block>
@@ -1417,4 +1406,17 @@
   <block id="a3cf06a6d715e4eae8d193bb92bd5b9a" category="sidebar">監控Astra資料儲存區</block>
   <block id="abb6e08ce82e34f9b248ff2e367c067c" category="sidebar">安全的Astra資料儲存區</block>
   <block id="aa5a869b9f4a4043cfce22c58b5417d8" category="sidebar">解除安裝Astra Data Store</block>
+  <block id="2275c47ef395d1e78841f6e683f9a3a2" category="inline-link-macro">該版本的文件</block>
+  <block id="be07f5fb15d2187c4ac7e8af02b6c981" category="admonition">如果您要尋找舊版套裝組合的說明、請參閱 <block ref="dae14a34f4ef6643d65922de5ee6b272" category="inline-link-macro-rx"></block>。</block>
+  <block id="7df004864b07ae9167389b215a12d025" category="list-text">建立命名空間以部署Astra Data Store</block>
+  <block id="7a981942788d33c4001730188b89e6db" category="list-text">建立自訂的SCC</block>
+  <block id="93a9b79162a338b18aa305f67c83e22e" category="list-text">建立角色與角色繫結</block>
+  <block id="69a76d91a0f880ebb8ba88c4c0b59e26" category="paragraph">只有在Red Hat OpenShift Container Platform（OCP）上部署時才需要執行下列步驟。</block>
+  <block id="809db957a8e4301dc37f0b9302217409" category="paragraph">對於某些環境而言、您可以將組態變更為從使用機密的私有登錄中擷取映像、做為選用步驟。</block>
+  <block id="d948b0715649614d6afddfa4a7f57c0d" category="admonition">這些變更將會在您執行時套用 <block ref="49123d3a615079cac592b8e7a86dbd41" category="inline-xref-macro-rx"></block>。</block>
+  <block id="4ae67810f731579059b769b1598e3792" category="list-text">使用「kubecll apply」部署營運者：</block>
+  <block id="138336959a331fdfd57efc8b91a2a496" category="inline-link-macro">OpenShift Container Platform安裝</block>
+  <block id="b0e9cf9a3ccb14e8777b0e4e01a3be2b" category="admonition">命名空間回應可能會因執行標準安裝或而有所不同 <block ref="728e3e3ba272087f962f2836c5b78f78" category="inline-link-macro-rx"></block>。</block>
+  <block id="0b020ac775306a4f6b602f9e099d0f12" category="list-text">使用「kubecl apply」部署：</block>
+  <block id="23f6b8ddca772ff60ea1ebc8df6eb39d" category="list-text">* Astra控制中心*：如果您已使用Astra控制中心來部署Astra資料儲存區、則不需要遵循這些步驟 <block ref="453b1912b089f4f5a9a483bab5626f2b" category="inline-link-macro-rx"></block> 除非您想設定任何其他監控選項。部署Astra Data Store之後、您可以使用Astra Control Center UI來完成下列工作：</block>
 </blocks>

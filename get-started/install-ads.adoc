@@ -61,7 +61,7 @@ NOTE: 若要在Rancher RKE環境中安裝Astra Data Store、請完成下列安�
 . 登入 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^] 並下載Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）。
 +
 
-NOTE: 如果您要尋找舊版套裝組合的說明、請參閱 link:../acc-earlier-versions.html["該版本的文件"]。
+NOTE: 如果您要尋找舊版套裝組合的說明、請參閱 link:../ads-earlier-versions.html["該版本的文件"]。
 
 . （可選）使用以下命令驗證套件的簽名：
 +
@@ -142,11 +142,16 @@ sed -i 's~\[YOUR REGISTRY\]~'${REGISTRY}'~' ./astrads/manifests/*.yaml
 
 下列程序僅適用於Red Hat OpenShift Container Platform（OCP）上的部署。在非OCP Kubernetes叢集上部署時、請跳過此程序。
 
+* 建立命名空間以部署Astra Data Store
+* 建立自訂的SCC
+* 建立角色與角色繫結
+
+
 .詳細資料
 ====
 建立名稱空間「astrads系統」、以便安裝所有Astra Data Store元件。
 
-只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。
+只有在Red Hat OpenShift Container Platform（OCP）上部署時才需要執行下列步驟。
 
 . 建立命名空間：
 +
@@ -232,8 +237,8 @@ volumes:
 [listing]
 ----
 # oc get scc/ads-privileged
-NAME             PRIV   CAPS    SELINUX    RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
-ads-privileged   true   ["*"]   RunAsAny   RunAsAny    RunAsAny   RunAsAny   <no value>   false            ["*"]
+NAME           PRIV  CAPS  SELINUX  RUNASUSER FSGROUP   SUPGROUP  PRIORITY   READONLYROOTFS  VOLUMES
+ads-privileged true  ["*"] RunAsAny RunAsAny  RunAsAny  RunAsAny  <no value> false           ["*"]
 #
 ----
 
@@ -319,7 +324,7 @@ subjects:
 
 === 設定私有映像登錄
 
-對於某些環境而言、您可以選擇性步驟變更組態、以便從使用機密的私有登錄中擷取映像。
+對於某些環境而言、您可以將組態變更為從使用機密的私有登錄中擷取映像、做為選用步驟。
 
 . 除非您已在上一步中建立「astrads系統」命名空間：
 +
@@ -369,7 +374,7 @@ astrads/manifests/vasa_asup_certs.yaml
 astrads/manifests/manifest.yaml
 astrads/manifests/configuration.yaml
 ----
-. 使用KECBECLL套用部署營運者：
+. 使用「kubecll apply」部署營運者：
 +
 [listing]
 ----
@@ -380,7 +385,7 @@ kubectl apply -f ./astrads/manifests/astradsoperator.yaml
 
 +
 
-NOTE: 命名空間回應可能會因執行標準安裝或而有所不同 link:../get-started/install-ads.html#openshift-procedure["OCP安裝"]。
+NOTE: 命名空間回應可能會因執行標準安裝或而有所不同 link:../get-started/install-ads.html#openshift-procedure["OpenShift Container Platform安裝"]。
 
 +
 [listing]
@@ -478,7 +483,7 @@ astrads-operator-5ffb94fbf-7ln4h    1/1     Running   0          17m
 
 === 部署Astra Data Store版本Yaml
 
-. 使用KECBECVL套用部署：
+. 使用「kubecl apply」部署：
 +
 [listing]
 ----
@@ -529,8 +534,8 @@ kubectl astrads license list
 +
 [listing]
 ----
-NAME                     ADSCLUSTER                 VALID   PRODUCT             EVALUATION  ENDDATE     VALIDATED
-e100000006-ads-capacity  astrads-example-cluster    true    Astra Data Store    true        2023-01-23  2022-04-04T14:38:54Z
+NAME                    ADSCLUSTER               VALID PRODUCT          EVALUATION  ENDDATE     VALIDATED
+e100000006-ads-capacity astrads-example-cluster  true  Astra Data Store true        2023-01-23  2022-04-04T14:38:54Z
 ----
 
 
