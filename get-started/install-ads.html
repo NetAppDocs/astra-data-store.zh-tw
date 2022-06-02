@@ -843,7 +843,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-01 01:12:10 +0000">06/01/2022</time>
+    <time datetime="2022-06-02 16:28:51 +0000">06/02/2022</time>
     
   
 
@@ -967,7 +967,7 @@
 <img src="/us-en/astra-data-store/images/note.svg" alt="附註">
 </td>
 <td class="content">
-如果您要尋找舊版套裝組合的說明、請參閱 <a href="../acc-earlier-versions.html">"該版本的文件"</a>。
+如果您要尋找舊版套裝組合的說明、請參閱 <a href="../ads-earlier-versions.html">"該版本的文件"</a>。
 </td>
 </tr>
 </table>
@@ -1094,6 +1094,19 @@ sed -i 's~\[YOUR REGISTRY\]~'${REGISTRY}'~' ./astrads/manifests/*.yaml</pre>
 <div class="paragraph">
 <p>下列程序僅適用於Red Hat OpenShift Container Platform（OCP）上的部署。在非OCP Kubernetes叢集上部署時、請跳過此程序。</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>建立命名空間以部署Astra Data Store</p>
+</li>
+<li>
+<p>建立自訂的SCC</p>
+</li>
+<li>
+<p>建立角色與角色繫結</p>
+</li>
+</ul>
+</div>
 <div class="exampleblock">
 <div class="title">範例 1. 詳細資料</div>
 <div class="content">
@@ -1101,7 +1114,7 @@ sed -i 's~\[YOUR REGISTRY\]~'${REGISTRY}'~' ./astrads/manifests/*.yaml</pre>
 <p>建立名稱空間「astrads系統」、以便安裝所有Astra Data Store元件。</p>
 </div>
 <div class="paragraph">
-<p>只有在Red Hat OpenShift Container Platform（OCP）上部署時、才需要執行下列步驟。</p>
+<p>只有在Red Hat OpenShift Container Platform（OCP）上部署時才需要執行下列步驟。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1199,8 +1212,8 @@ volumes:
 <div class="listingblock">
 <div class="content">
 <pre># oc get scc/ads-privileged
-NAME             PRIV   CAPS    SELINUX    RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
-ads-privileged   true   ["*"]   RunAsAny   RunAsAny    RunAsAny   RunAsAny   &lt;no value&gt;   false            ["*"]
+NAME           PRIV  CAPS  SELINUX  RUNASUSER FSGROUP   SUPGROUP  PRIORITY   READONLYROOTFS  VOLUMES
+ads-privileged true  ["*"] RunAsAny RunAsAny  RunAsAny  RunAsAny  &lt;no value&gt; false           ["*"]
 #</pre>
 </div>
 </div>
@@ -1296,7 +1309,7 @@ subjects:
 <div class="sect2">
 <h3 id="設定私有映像登錄">設定私有映像登錄</h3>
 <div class="paragraph">
-<p>對於某些環境而言、您可以選擇性步驟變更組態、以便從使用機密的私有登錄中擷取映像。</p>
+<p>對於某些環境而言、您可以將組態變更為從使用機密的私有登錄中擷取映像、做為選用步驟。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1366,7 +1379,7 @@ astrads/manifests/configuration.yaml</pre>
 </div>
 </li>
 <li>
-<p>使用KECBECLL套用部署營運者：</p>
+<p>使用「kubecll apply」部署營運者：</p>
 <div class="listingblock">
 <div class="content">
 <pre>kubectl apply -f ./astrads/manifests/astradsoperator.yaml</pre>
@@ -1382,7 +1395,7 @@ astrads/manifests/configuration.yaml</pre>
 <img src="/us-en/astra-data-store/images/note.svg" alt="附註">
 </td>
 <td class="content">
-命名空間回應可能會因執行標準安裝或而有所不同 <a href="../get-started/install-ads.html#openshift-procedure">"OCP安裝"</a>。
+命名空間回應可能會因執行標準安裝或而有所不同 <a href="../get-started/install-ads.html#openshift-procedure">"OpenShift Container Platform安裝"</a>。
 </td>
 </tr>
 </table>
@@ -1488,7 +1501,7 @@ astrads-operator-5ffb94fbf-7ln4h    1/1     Running   0          17m</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>使用KECBECVL套用部署：</p>
+<p>使用「kubecl apply」部署：</p>
 <div class="listingblock">
 <div class="content">
 <pre>kubectl apply -f ./astrads/manifests/astradsversion.yaml</pre>
@@ -1545,8 +1558,8 @@ astrads-operator-5ffb94fbf-7ln4h              1/1     Running   0          2m10s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>NAME                     ADSCLUSTER                 VALID   PRODUCT             EVALUATION  ENDDATE     VALIDATED
-e100000006-ads-capacity  astrads-example-cluster    true    Astra Data Store    true        2023-01-23  2022-04-04T14:38:54Z</pre>
+<pre>NAME                    ADSCLUSTER               VALID PRODUCT          EVALUATION  ENDDATE     VALIDATED
+e100000006-ads-capacity astrads-example-cluster  true  Astra Data Store true        2023-01-23  2022-04-04T14:38:54Z</pre>
 </div>
 </div>
 </li>
