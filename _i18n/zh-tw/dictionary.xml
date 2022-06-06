@@ -1078,7 +1078,6 @@
   <block id="baf5104decf1df7c0d01680a0fac5d63" category="paragraph">此清單特別有助於取得每個Astra Data Store物件的簡短名稱、以減少您的輸入、如稍後所示。</block>
   <block id="8704b0033f94a1a48678372e5b1f4390" category="list-text">顯示Astra Data Store的Kubernetes自訂API資源清單：</block>
   <block id="fad556266e89b103a86dd39fca3ccd0a" category="list-text">若要在Kubernetes叢集中取得所有目前的Astra資料儲存區物件、請使用「kubectl Get ads -A」命令：</block>
-  <block id="cc8571449845ca795003fd08d9365e42" category="list-text">針對Astra Data Store KECVECtl副檔名中的所有命令顯示說明：</block>
   <block id="e8eecb3aa42b284e39abeefdde9013b7" category="list-text">Astra Data Store叢集已部署及設定</block>
   <block id="578ed768fff66a5aeb6875422b9eb215" category="doc">使用自動指令碼解除安裝Astra Data Store</block>
   <block id="c45239f2713b77020a62bc3b90b2b01a" category="paragraph">若要解除安裝Astra Data Store和控制面板、您必須移除工作負載、繫結、磁碟區、匯出原則、Astra Data Store叢集、授權、部署環境及Astra Data Store命名空間。</block>
@@ -1419,4 +1418,46 @@
   <block id="b0e9cf9a3ccb14e8777b0e4e01a3be2b" category="admonition">命名空間回應可能會因執行標準安裝或而有所不同 <block ref="728e3e3ba272087f962f2836c5b78f78" category="inline-link-macro-rx"></block>。</block>
   <block id="0b020ac775306a4f6b602f9e099d0f12" category="list-text">使用「kubecl apply」部署：</block>
   <block id="23f6b8ddca772ff60ea1ebc8df6eb39d" category="list-text">* Astra控制中心*：如果您已使用Astra控制中心來部署Astra資料儲存區、則不需要遵循這些步驟 <block ref="453b1912b089f4f5a9a483bab5626f2b" category="inline-link-macro-rx"></block> 除非您想設定任何其他監控選項。部署Astra Data Store之後、您可以使用Astra Control Center UI來完成下列工作：</block>
+  <block id="8eeabb510c88baa97726463f841b437b" category="paragraph">NetApp為「kubecll」命令提供「astrads」延伸、可讓您執行Astra Data Store叢集管理工作、例如新增授權、管理節點、疑難排解問題、以及擴充Astra Data Store叢集。「astrads」擴充功能包括「-h」選項、提供如何使用擴充功能及執行哪些工作的相關資訊。</block>
+  <block id="95486e2e7d202b4428ab4a3ec663b0ae" category="list-text">顯示Astra Data Store「kubecll」擴充中所有命令的說明：</block>
+  <block id="fed04d92462b9c6b365491814a84fb50" category="section-title">防火牆考量</block>
+  <block id="1a9f3bb325bdf0352e776d9b71f0dfd4" category="paragraph">在強制執行網路防火牆流量篩選的環境中、防火牆必須設定為允許傳入流量進入下表所列的連接埠和傳輸協定。「IP位址」欄使用下列縮寫：</block>
+  <block id="294f76b6bf4f817dcd73116a0f580b39" category="list-text">MIP：每個節點的管理介面上的主要IP位址</block>
+  <block id="93722d1030368aefcb8dcd03593da015" category="list-text">CIP：每個節點叢集介面上的主要IP位址</block>
+  <block id="90a4911af0c4049cc2e61d808b117a3e" category="list-text">Dip：在節點上設定一或多個資料IP位址</block>
+  <block id="60e2242d6a12fc9769a6f60369f92bb5" category="list-text">MVIP：在一個叢集節點上設定的管理虛擬IP位址</block>
+  <block id="d026a497f6bd5f087751e2712ca15345" category="cell">連接埠/傳輸協定</block>
+  <block id="75ba8d70e3692ba200f0e0df37b4d2ae" category="cell">IP 位址</block>
+  <block id="261addf78c7b2c961032b3dd08ba0b1f" category="cell">目的</block>
+  <block id="f4c6f851b00d5518bf888815de279aba" category="cell">附註</block>
+  <block id="f78f6ee75a7bafcf09aaff6b8a50f1d4" category="cell">111/TCP</block>
+  <block id="b941a28ed6d936315cc87c8a5e15b1d6" category="cell">突降</block>
+  <block id="1d1a594959ec615f56516f5d0f5e8ddb" category="cell">NFS</block>
+  <block id="f3ca4db1db26970553df3fb4659623d1" category="cell">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</block>
+  <block id="45326682468852b81797aafde5e0c15f" category="cell">442/TCP</block>
+  <block id="d4a7c7245dbe134b096894227b0ee16b" category="cell">MIP</block>
+  <block id="db974238714ca8de634a7ce1d083a14f" category="cell">API</block>
+  <block id="a0e5b258a8cc51d589e58a8bddfb909f" category="cell">635/TCP</block>
+  <block id="7b9e40a421a776f137cad026dd3ec0ba" category="cell">2010/udp</block>
+  <block id="1a7ef04e5047296ee156f22f43eadd25" category="cell">CIP</block>
+  <block id="69a600f1b66c98287db05ab33221bf2c" category="cell">叢集/節點探索</block>
+  <block id="84fd5f8a9091b3389e1846795d0ac5e0" category="cell">包括傳入和傳出udp連接埠2010的單點傳播和廣播流量、包括回覆。</block>
+  <block id="95f66cbf2ff4349bc67aaf685141a2fb" category="cell">2049/ TCP</block>
+  <block id="6b182985a49012b24c2972881cb0af4c" category="cell">2181-2183/TCP</block>
+  <block id="989046586e10c54bef27f01dd4804e95" category="cell">分散式通訊</block>
+  <block id="7c9173e8449f2344c92ef3b0a6f191fb" category="cell">2443/TCP</block>
+  <block id="7ded4ca42319833daf1e9577fc5c6ccc" category="cell">MVIP</block>
+  <block id="77797e04c846b44c8e89628502f9f7b9" category="cell">MVIP位址可由任何叢集節點代管、並在需要時於執行時間重新定位。</block>
+  <block id="22c7150cee646d323dbe927ffaa00ab3" category="cell">4000至4006/TCP</block>
+  <block id="861656d6c7c1c330a3956d8f7dc3d99b" category="cell">叢集內RPC</block>
+  <block id="bf96160875ef29f5b6571f5d98969271" category="cell">4045-4046/TCP</block>
+  <block id="e214dbeedf59c5ee63ae01b4a270466b" category="cell">7700/TCP</block>
+  <block id="e044dcdd6505dbf411b17455ec40fcbc" category="cell">工作階段管理程式</block>
+  <block id="3197b0b91edfeeebfc30698f93e1ee88" category="cell">9919/TCP</block>
+  <block id="8af9ff758f107c54a1addfc55790bccf" category="cell">DMS API</block>
+  <block id="56219f04d28f1844d316d5190f4321cc" category="cell">9920/TCP</block>
+  <block id="cfe156c1306338f2ddb769aa7803cdf0" category="cell">DMS REST伺服器</block>
+  <block id="7d6fe0dd606232f7155fdeae2ea620a9" category="cell">ICMP</block>
+  <block id="467653e20f06c3650935c1eb1ce36030" category="cell">CIP + DIP</block>
+  <block id="9715191847525c91e6fda56e2ee0a99e" category="cell">節點內通訊、健全狀況檢查</block>
 </blocks>

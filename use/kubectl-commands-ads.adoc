@@ -128,9 +128,9 @@ astrads-system   test2345   21Gi   172.25.138.111   astrads-cluster-9f1c99f   tr
 
 == 使用KECBECVL副檔名上的說明選項
 
-「kubectl astrads」命令包含一個「-h」交換器、可提供使用方法和標記文件、方便您使用。
+NetApp為「kubecll」命令提供「astrads」延伸、可讓您執行Astra Data Store叢集管理工作、例如新增授權、管理節點、疑難排解問題、以及擴充Astra Data Store叢集。「astrads」擴充功能包括「-h」選項、提供如何使用擴充功能及執行哪些工作的相關資訊。
 
-. 針對Astra Data Store KECVECtl副檔名中的所有命令顯示說明：
+. 顯示Astra Data Store「kubecll」擴充中所有命令的說明：
 +
 [listing]
 ----
