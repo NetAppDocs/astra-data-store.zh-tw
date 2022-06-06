@@ -277,35 +277,27 @@
     </div>
   </div>
   <div class="n-property-bar__toolbar">
-    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
-      <div id="ie-i18n-menu">
-      <span class="ie-i18n-lang">繁體中文</span>
-        <button class="ie-i18n-icon-container" type="button">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">繁體中文</span>
           <svg class="n-globe__icon" aria-labelledby="title">
             <title>globe</title>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/astra-data-store/common/svg/sprite.svg#globe"></use>
           </svg>
         </button>
       </div>
-      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
-        <div class="n-language-selector-menu">
-          <ul class="n-menu__list">
-            <li class="n-menu__list-column">
-              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/requirements.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
-                </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/requirements.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
-                </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/requirements.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
-                </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/requirements.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
-                </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/requirements.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
-                </li></ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/zh-tw/astra-data-store/get-started/requirements.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/astra-data-store/get-started/requirements.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/astra-data-store/get-started/requirements.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/astra-data-store/get-started/requirements.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/astra-data-store/get-started/requirements.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li></ul>
     </div><!-- End Language Selector -->
 
     <div class="n-property-bar__cta"></div>
@@ -679,7 +671,7 @@
     $("#toggleContainerPdf").toggle('display');
     $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
   });
-</script><div class="sidebar-nav-container">
+</script><div class="sidebar-nav-container" id="mysidebardiv">
   <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/astra-data-store/index.html">
         Astra Data Store文件
       </a></li><li class="subfolders "><a href="/zh-tw/astra-data-store/release-notes/rn_overview.html">
@@ -843,7 +835,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-01 01:12:10 +0000">06/01/2022</time>
+    <time datetime="2022-06-06 15:57:33 +0000">06/06/2022</time>
     
   
 
@@ -1216,6 +1208,130 @@ Astra Data Store需要Astra Trident來進行儲存資源配置和協調。支援
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="防火牆考量">防火牆考量</h3>
+<div class="paragraph">
+<p>在強制執行網路防火牆流量篩選的環境中、防火牆必須設定為允許傳入流量進入下表所列的連接埠和傳輸協定。「IP位址」欄使用下列縮寫：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MIP：每個節點的管理介面上的主要IP位址</p>
+</li>
+<li>
+<p>CIP：每個節點叢集介面上的主要IP位址</p>
+</li>
+<li>
+<p>Dip：在節點上設定一或多個資料IP位址</p>
+</li>
+<li>
+<p>MVIP：在一個叢集節點上設定的管理虛擬IP位址</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">連接埠/傳輸協定</th>
+<th class="tableblock halign-left valign-top">IP 位址</th>
+<th class="tableblock halign-left valign-top">目的</th>
+<th class="tableblock halign-left valign-top">附註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">111/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">突降</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">442/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">635/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">突降</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2010/udp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">叢集/節點探索</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">包括傳入和傳出udp連接埠2010的單點傳播和廣播流量、包括回覆。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2049/ TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">突降</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2181-2183/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">分散式通訊</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2443/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2443/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MVIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MVIP位址可由任何叢集節點代管、並在需要時於執行時間重新定位。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4000至4006/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">叢集內RPC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4045-4046/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">突降</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7700/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">工作階段管理程式</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9919/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DMS API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9920/TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">突降</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DMS REST伺服器</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ICMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIP + DIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">節點內通訊、健全狀況檢查</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資料IP會在執行時間在叢集節點之間移動。每個節點都應該允許所有資料IP（或整個子網路）的此流量。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1444,4 +1560,5 @@ Astra Data Store需要Astra Trident來進行儲存資源配置和協調。支援
     </script>
     <script src='/zh-tw/astra-data-store/js/www-ntap.js'></script>
     <script src='/zh-tw/astra-data-store/js/tabbed-blocks.js'></script>
+    <script src='/zh-tw/astra-data-store/js/sidebar.js'></script>
   </body></html>
