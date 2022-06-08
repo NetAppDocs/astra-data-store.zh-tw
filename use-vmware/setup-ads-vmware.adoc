@@ -26,6 +26,10 @@ summary: 您可以使用Astra vCenter外掛程式和VMware vSphere原生功能�
 在您使用VMware設定Astra Data Store之前、您必須確保下列事項：
 
 * Astra控制中心是 https://docs.netapp.com/us-en/astra-control-center/get-started/install_overview.html["已安裝"] 並設定。
++
+
+NOTE: 對於Astra Data Store Early Access Program（EAP）版本、如果您打算使用Astra Control Center來管理Astra Data Store並啟用VMware工作流程、請僅在「pCloud」命名空間上部署Astra Control Center。
+
 * Astra Data Store已獲得授權並已部署。請參閱 link:../get-started/install-ads.html["安裝Astra Data Store"]。
 
 
