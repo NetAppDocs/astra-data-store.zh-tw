@@ -754,7 +754,6 @@
   <block id="99320689299afd3e34c2f05893a58082" category="section-title">使用Astra Control Center新增vCenter</block>
   <block id="acdeb9262b02646a369977cf27e262c0" category="paragraph">新增第一個vCenter、註冊適用於VMware vSphere的Astra外掛程式。</block>
   <block id="ba7fc14966a7c37356c6bda604dad7ed" category="paragraph">您必須具有管理權限、才能將vCenter新增至Astra Control Center。</block>
-  <block id="aa0c899a11c221e5e7e9558dca793d69" category="admonition">在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。</block>
   <block id="0fad596c25ef36a260c47293acf33a48" category="list-text">選取*新增vCenter*。</block>
   <block id="a0a8b1aa27af5f2fc2bcfc0acdda85d5" category="list-text">輸入vCenter伺服器詳細資料、vCenter連接埠、以及管理使用者名稱和密碼、以提供給Astra Control Center。</block>
   <block id="947bcbd9c287211ea4b30b8fb1a45b2e" category="admonition">如此可在VMware vSphere用戶端中部署此vCenter的Astra外掛程式。</block>
@@ -1461,4 +1460,5 @@
   <block id="467653e20f06c3650935c1eb1ce36030" category="cell">CIP + DIP</block>
   <block id="9715191847525c91e6fda56e2ee0a99e" category="cell">節點內通訊、健全狀況檢查</block>
   <block id="9fb754c9c56f6f84f2fe43112a05f265" category="admonition">對於Astra Data Store Early Access Program（EAP）版本、如果您打算使用Astra Control Center來管理Astra Data Store並啟用VMware工作流程、請僅在「pCloud」命名空間上部署Astra Control Center。</block>
+  <block id="a013c4206bb1d6d5c2ec96679a9ea56d" category="admonition">在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。有時候、在您註冊適用於VMware vSphere的Astra外掛程式之後、外掛程式不會立即出現。在這種情況下、請稍候幾秒鐘、然後重新整理瀏覽器。</block>
 </blocks>

@@ -69,7 +69,7 @@ NOTE: Astra Control Center中的VMware vSphere服務預設不會啟用。
 您必須具有管理權限、才能將vCenter新增至Astra Control Center。
 
 
-TIP: 在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。
+TIP: 在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。有時候、在您註冊適用於VMware vSphere的Astra外掛程式之後、外掛程式不會立即出現。在這種情況下、請稍候幾秒鐘、然後重新整理瀏覽器。
 
 . 登入Astra Control Center。
 . 從左側導覽中選取*叢集*。
