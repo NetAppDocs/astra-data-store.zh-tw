@@ -1461,4 +1461,6 @@
   <block id="9715191847525c91e6fda56e2ee0a99e" category="cell">節點內通訊、健全狀況檢查</block>
   <block id="9fb754c9c56f6f84f2fe43112a05f265" category="admonition">對於Astra Data Store Early Access Program（EAP）版本、如果您打算使用Astra Control Center來管理Astra Data Store並啟用VMware工作流程、請僅在「pCloud」命名空間上部署Astra Control Center。</block>
   <block id="a013c4206bb1d6d5c2ec96679a9ea56d" category="admonition">在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。有時候、在您註冊適用於VMware vSphere的Astra外掛程式之後、外掛程式不會立即出現。在這種情況下、請稍候幾秒鐘、然後重新整理瀏覽器。</block>
+  <block id="7d8019149f75b25a53d2461a1eb477f2" category="inline-link">將節點新增至Astra Control Center的儲存後端叢集</block>
+  <block id="27a8ed330fb0e757a7fd3ce6f78a92d1" category="list-text"><block ref="27a8ed330fb0e757a7fd3ce6f78a92d1" category="inline-link-rx"></block></block>
 </blocks>

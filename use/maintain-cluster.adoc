@@ -487,4 +487,5 @@ kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 60
 == 以取得更多資訊
 
 * link:../use/kubectl-commands-ads.html["使用kvecll命令管理Astra Data Store資源"]
+* https://docs.netapp.com/us-en/astra-control-center/use/manage-backend.html#add-nodes-to-a-storage-backend-cluster["將節點新增至Astra Control Center的儲存後端叢集"^]
 
