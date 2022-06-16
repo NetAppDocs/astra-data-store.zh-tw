@@ -835,7 +835,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-15 17:28:16 +0000">06/15/2022</time>
+    <time datetime="2022-06-16 21:28:37 +0000">06/16/2022</time>
     
   
 
@@ -908,20 +908,7 @@
 <pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl edit astradscluster CLUSTER_NAME -n astrads-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>回應：</p>
-</div>
 </li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>adsDataNetworks:
-    -addresses:  dataIP1,dataIP2,dataIP3,dataIP4,NEW_DATA_IP</pre>
-</div>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
 <li>
 <p>儲存CR。</p>
 </li>
@@ -1085,11 +1072,11 @@ sti-rx2540-557b.lab.org       Ready    worker                 3h38m   v1.20.0   
 <div class="listingblock">
 <div class="content">
 <pre> NAME             STATUS   ROLES                  AGE     VERSION
- nhcitjj1525      Ready    &lt;none&gt;                 3d18h   v1.20.0
- nhcitjj1526      Ready    &lt;none&gt;                 3d18h   v1.20.0
- nhcitjj1527      Ready    &lt;none&gt;                 3d18h   v1.20.0
- nhcitjj1528      Ready    &lt;none&gt;                 3d18h   v1.20.0
- scs000039783-1   Ready    control-plane,master   3d18h   v1.20.0</pre>
+ nhcitjj1525      Ready    &lt;none&gt;                 3d18h   v1.23.5
+ nhcitjj1526      Ready    &lt;none&gt;                 3d18h   v1.23.5
+ nhcitjj1527      Ready    &lt;none&gt;                 3d18h   v1.23.5
+ nhcitjj1528      Ready    &lt;none&gt;                 3d18h   v1.23.5
+ scs000039783-1   Ready    control-plane,master   3d18h   v1.23.5</pre>
 </div>
 </div>
 </li>
@@ -1263,7 +1250,7 @@ cluster-multinodes-21209        created         4</pre>
 <p>顯示可新增至叢集中所有節點的磁碟機。以叢集名稱取代叢集名稱：</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads drives adddrive show-available --cluster=CLUSTER_NAME</code></pre>
+<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads adddrive show-available --cluster=CLUSTER_NAME</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1271,28 +1258,42 @@ cluster-multinodes-21209        created         4</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Node: node1.name
-Add drive maximum size: 100.0 GiB
-Add drive minimum size: 100.0 GiB
+<pre>Current cluster drive add status
+Licensed cluster capacity: 72.0 TiB
+Cluster capacity used: 2.3 TiB
+Maximum node size without stranding: 800.0 GiB
+
+Node: node1.name
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
 sdg /dev/disk/by-id/scsi-3c290e16d52479a9af5eac c290e16d52479a9af5eac 0 100 GiB false
 sdh /dev/disk/by-id/scsi-3c2935798df68355dee0be c2935798df68355dee0be 0 100 GiB false
 
 Node: node2.name
-Add drive maximum size: 66.7 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 No suitable drives to add exist.
 
+
 Node: node3.name
-Add drive maximum size: 100.0 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
 sdg /dev/disk/by-id/scsi-3c29ee82992ed7a36fc942 c29ee82992ed7a36fc942 0 100 GiB false
 sdh /dev/disk/by-id/scsi-3c29312aa362469fb3da9c c29312aa362469fb3da9c 0 100 GiB false
 
 Node: node4.name
-Add drive maximum size: 66.7 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 No suitable drives to add exist.</pre>
 </div>
 </div>
@@ -1305,7 +1306,7 @@ No suitable drives to add exist.</pre>
 <p>如果所有可用磁碟機的名稱都相同、您可以將其同時新增至各自的節點。以適合您環境的適當值取代以大寫字母顯示的資訊：</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname all=DRIVE_NAME</code></pre>
+<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname all=DRIVE_NAME</code></pre>
 </div>
 </div>
 </li>
@@ -1313,7 +1314,7 @@ No suitable drives to add exist.</pre>
 <p>如果磁碟機的命名方式不同、您可以一次新增一個磁碟機至各自的節點（您需要針對每個需要新增的磁碟機重複此步驟）。以適合您環境的適當值取代以大寫字母顯示的資訊：</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname NODE_NAME=DRIVE_NAME</code></pre>
+<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname NODE_NAME=DRIVE_NAME</code></pre>
 </div>
 </div>
 </li>
@@ -1438,8 +1439,15 @@ sdh   /scsi-36000c29417  45000c  0                false     100GB</pre>
 <p>使用「放置」命令、以通過的序號取代磁碟機。命令會完成替換、如果經過「-wait」時間、則會失敗。</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads faileddrive replace --cluster arda-6e4b4af --name 6000c290 --replaceWith 45000c --wait
-Drive replacement completed successfully</code></pre>
+<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads faileddrive replace --cluster arda-6e4b4af --name 6000c290 --replaceWith 45000c --wait</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回應：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Drive replacement completed successfully</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1469,7 +1477,7 @@ Current status: {FailedDriveInfo:{InUse:false Present:true Name:scsi-36000c2 Fir
 <p>若要重新執行磁碟機更換、請使用之前的命令「-force」：</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force</code></pre>
+<pre class="highlight"><code class="language-kubectl" data-lang="kubectl">kubectl astrads faileddrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force</code></pre>
 </div>
 </div>
 </li>
