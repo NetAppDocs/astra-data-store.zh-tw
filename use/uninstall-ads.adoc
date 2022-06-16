@@ -645,3 +645,33 @@ kubectl delete astradskeyprovider <key-provider-cr-name> -n astrads-system
 
 
 ====
+
+
+=== 無法從Astra Control Center網路UI解除安裝Astra Data Store
+
+如果您從Astra Control Center網路UI啟動Astra Data Store解除安裝程序、則偶爾會失敗。
+
+如果發生此問題、請採取下列步驟。
+
+.步驟
+. 登入 https://mysupport.netapp.com/site/products/all/details/astra-data-store/downloads-tab["NetApp 支援網站"^] 並將Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）下載到可存取Astra Data Store所在Kubernetes叢集的機器上。
+. 登入您下載Astra Data Store產品組合的機器。
+. 擷取套裝組合內容：
++
+[listing]
+----
+tar -xvf <path to tar file>/Astra_Data_Store_2022.05.tar
+----
+. 變更至儲存解除安裝指令碼的資訊清單目錄：
++
+[listing]
+----
+cd astrads/manifests/
+----
+. 手動移除Astra資料儲存區：
++
+[listing]
+----
+./uninstall all
+----
+

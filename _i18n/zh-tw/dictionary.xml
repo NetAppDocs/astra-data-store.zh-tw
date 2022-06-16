@@ -1463,4 +1463,12 @@
   <block id="a013c4206bb1d6d5c2ec96679a9ea56d" category="admonition">在VMware vSphere註冊外掛程式之後、「VMware捷徑」頁面會出現Astra Plugin for VMware vSphere圖示。有時候、在您註冊適用於VMware vSphere的Astra外掛程式之後、外掛程式不會立即出現。在這種情況下、請稍候幾秒鐘、然後重新整理瀏覽器。</block>
   <block id="7d8019149f75b25a53d2461a1eb477f2" category="inline-link">將節點新增至Astra Control Center的儲存後端叢集</block>
   <block id="27a8ed330fb0e757a7fd3ce6f78a92d1" category="list-text"><block ref="27a8ed330fb0e757a7fd3ce6f78a92d1" category="inline-link-rx"></block></block>
+  <block id="de93102ec4b436fc99e2d5c4f2461e28" category="section-title">無法從Astra Control Center網路UI解除安裝Astra Data Store</block>
+  <block id="b7865115c7c6bc24a8349abcbc4bb445" category="paragraph">如果您從Astra Control Center網路UI啟動Astra Data Store解除安裝程序、則偶爾會失敗。</block>
+  <block id="ce9e26154d02db4cb2b8782df2d32138" category="paragraph">如果發生此問題、請採取下列步驟。</block>
+  <block id="0562e69710e3b4fd2b95653650194299" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並將Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）下載到可存取Astra Data Store所在Kubernetes叢集的機器上。</block>
+  <block id="7dc32dcac8a46d2290bd5cd5f198681a" category="list-text">登入您下載Astra Data Store產品組合的機器。</block>
+  <block id="cd111719eb2a51044ba027133eadbca4" category="list-text">擷取套裝組合內容：</block>
+  <block id="59f54f26ac5b828c04c0feead1cda5dc" category="list-text">變更至儲存解除安裝指令碼的資訊清單目錄：</block>
+  <block id="9a73786dc4f684fddd37eafd0ce31132" category="list-text">手動移除Astra資料儲存區：</block>
 </blocks>
