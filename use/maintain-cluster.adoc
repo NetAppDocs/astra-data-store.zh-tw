@@ -42,15 +42,6 @@ NOTE: 若要使用Astra Control Center新增節點、請參閱 https://docs.neta
 ----
 kubectl edit astradscluster CLUSTER_NAME -n astrads-system
 ----
-+
-回應：
-
-+
-[listing]
-----
-adsDataNetworks:
-    -addresses:  dataIP1,dataIP2,dataIP3,dataIP4,NEW_DATA_IP
-----
 .. 儲存CR。
 .. 將節點新增至Astra Data Store叢集。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
@@ -176,11 +167,11 @@ kubectl get nodes
 [listing]
 ----
  NAME             STATUS   ROLES                  AGE     VERSION
- nhcitjj1525      Ready    <none>                 3d18h   v1.20.0
- nhcitjj1526      Ready    <none>                 3d18h   v1.20.0
- nhcitjj1527      Ready    <none>                 3d18h   v1.20.0
- nhcitjj1528      Ready    <none>                 3d18h   v1.20.0
- scs000039783-1   Ready    control-plane,master   3d18h   v1.20.0
+ nhcitjj1525      Ready    <none>                 3d18h   v1.23.5
+ nhcitjj1526      Ready    <none>                 3d18h   v1.23.5
+ nhcitjj1527      Ready    <none>                 3d18h   v1.23.5
+ nhcitjj1528      Ready    <none>                 3d18h   v1.23.5
+ scs000039783-1   Ready    control-plane,master   3d18h   v1.23.5
 ----
 . 確保節點尚未處於維護模式：
 +
@@ -308,7 +299,7 @@ cluster-multinodes-21209        created         4
 +
 [source, kubectl]
 ----
-kubectl astrads drives adddrive show-available --cluster=CLUSTER_NAME
+kubectl astrads adddrive show-available --cluster=CLUSTER_NAME
 ----
 +
 回應：
@@ -316,28 +307,42 @@ kubectl astrads drives adddrive show-available --cluster=CLUSTER_NAME
 +
 [listing]
 ----
+Current cluster drive add status
+Licensed cluster capacity: 72.0 TiB
+Cluster capacity used: 2.3 TiB
+Maximum node size without stranding: 800.0 GiB
+
 Node: node1.name
-Add drive maximum size: 100.0 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
 sdg /dev/disk/by-id/scsi-3c290e16d52479a9af5eac c290e16d52479a9af5eac 0 100 GiB false
 sdh /dev/disk/by-id/scsi-3c2935798df68355dee0be c2935798df68355dee0be 0 100 GiB false
 
 Node: node2.name
-Add drive maximum size: 66.7 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 No suitable drives to add exist.
 
+
 Node: node3.name
-Add drive maximum size: 100.0 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 NAME IDPATH SERIAL PARTITIONCOUNT SIZE ALREADYINCLUSTER
 sdg /dev/disk/by-id/scsi-3c29ee82992ed7a36fc942 c29ee82992ed7a36fc942 0 100 GiB false
 sdh /dev/disk/by-id/scsi-3c29312aa362469fb3da9c c29312aa362469fb3da9c 0 100 GiB false
 
 Node: node4.name
-Add drive maximum size: 66.7 GiB
-Add drive minimum size: 100.0 GiB
+Current node size: 600.0 GiB
+Maximum licensed node size: 18.0 TiB
+Total size that can be added to this node without stranding: 200.0 GiB
+Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 No suitable drives to add exist.
 ----
 . 執行下列其中一項：
@@ -346,13 +351,13 @@ No suitable drives to add exist.
 +
 [source, kubectl]
 ----
-kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname all=DRIVE_NAME
+kubectl astrads adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname all=DRIVE_NAME
 ----
 ** 如果磁碟機的命名方式不同、您可以一次新增一個磁碟機至各自的節點（您需要針對每個需要新增的磁碟機重複此步驟）。以適合您環境的適當值取代以大寫字母顯示的資訊：
 +
 [source, kubectl]
 ----
-kubectl astrads drives adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname NODE_NAME=DRIVE_NAME
+kubectl astrads adddrive create --cluster=CLUSTER_NAME --name REQUEST_NAME --drivesbyname NODE_NAME=DRIVE_NAME
 ----
 
 
@@ -458,6 +463,13 @@ sdh   /scsi-36000c29417  45000c  0                false     100GB
 [source, kubectl]
 ----
 kubectl astrads faileddrive replace --cluster arda-6e4b4af --name 6000c290 --replaceWith 45000c --wait
+----
++
+回應：
+
++
+[listing]
+----
 Drive replacement completed successfully
 ----
 +
@@ -478,7 +490,7 @@ Current status: {FailedDriveInfo:{InUse:false Present:true Name:scsi-36000c2 Fir
 +
 [source, kubectl]
 ----
-kubectl astrads replacedrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force
+kubectl astrads faileddrive replace --cluster astrads-cluster-f51b10a --name 6000c2927 --replaceWith VALID_SERIAL_NUMBER --force
 ----
 
 
