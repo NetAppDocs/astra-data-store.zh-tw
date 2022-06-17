@@ -328,7 +328,6 @@ Total size that can be added to this node without stranding: 200.0 GiB
 Add drive minimum/reccomended size: 100.0 GiB. Larger disks will be constrained to this size
 No suitable drives to add exist.
 
-
 Node: node3.name
 Current node size: 600.0 GiB
 Maximum licensed node size: 18.0 TiB
