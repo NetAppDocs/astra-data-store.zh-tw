@@ -11,7 +11,7 @@ summary: NetApp會定期更新Astra Data Store、為您帶來新功能、增強�
 :imagesdir: ../media/release-notes/
 
 
-我們很高興宣布推出2022.05年Astra Data Store早期存取方案（EAP）版本。
+我們很高興宣布推出2022.05.01早期存取方案（AP）版本的Astra Data Store。
 
 * link:../release-notes/whats-new.html["本版Astra Data Store的新功能"]
 * link:../release-notes/known-issues.html["已知問題"]

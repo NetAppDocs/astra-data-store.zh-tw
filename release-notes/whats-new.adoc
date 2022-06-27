@@ -11,7 +11,20 @@ summary: NetApp會定期更新Astra Data Store、為您帶來新功能、增強�
 :imagesdir: ../media/release-notes/
 
 
-我們很高興宣布推出2022.05年Astra Data Store早期存取方案（EAP）版本。
+我們很高興宣布推出2022.05.01早期存取方案（AP）版本的Astra Data Store。
+
+
+
+== 2022年6月28日（2022.05.01 EAP版本）
+
+此Astra Data Store EAP版本（22.05）的修補程式版本（2022.05.01）包含下列改善功能：
+
+* Astra Data Store和Astra Control Center現在可以在同一個叢集上執行。
+* 從vSphere刪除VVOL資料存放區工作流程現已可供使用。
+
+
+
+NOTE: 此版本需要隨KECVECtl-Astra外掛程式一起封裝的Astra Control Center更新版本。
 
 
 

@@ -645,7 +645,6 @@
   <block id="17d6fb8ac6af8dbaeeb6a6b132b87546" category="paragraph">您可以取得先前版本的文件。</block>
   <block id="a68d5fd5578b1ccf876faffbf7c2b6b2" category="inline-link">Astra Data Store 212.12文件</block>
   <block id="7ac58243fcf95610c6a5ad215c63ba59" category="list-text"><block ref="7ac58243fcf95610c6a5ad215c63ba59" category="inline-link-rx"></block></block>
-  <block id="62e72931f7852895f263c1d84a9880fe" category="paragraph">我們很高興宣布推出2022.05年Astra Data Store早期存取方案（EAP）版本。</block>
   <block id="ac4b2c717b7b0e251e30e60b6b737e01" category="section-title">2022年5月31日（2022.05年市場評估版本）</block>
   <block id="a6a56368455ad5b9eba90e9f90e038b0" category="paragraph">Astra Data Store 2022.05版本包含下列功能：</block>
   <block id="4d3b896dfa64696e99997f98fa331878" category="list-text">VMware環境整合：</block>
@@ -677,7 +676,6 @@
   <block id="ccfbdfd1b2af5208a055a71ed33cc478" category="list-text">IP位址與指派給Astra Data Store叢集的叢集/資料IP位址位於相同的子網路中。</block>
   <block id="b4906e06634c0db2a2ea89b7657231be" category="list-text"><block ref="b4906e06634c0db2a2ea89b7657231be" category="inline-link-macro-rx"></block></block>
   <block id="e06796f5edcbff9ec7a6b060c96e304a" category="paragraph">已知限制指出產品早期存取方案（AP）版本不支援的平台、裝置或功能、或是無法與產品正確互通的功能。</block>
-  <block id="4e6b30aaac636ff7e9473868abb3bd28" category="section-title">Astra Data Store 2022.05早期存取方案（AP）版本</block>
   <block id="1b5c6e7907cf9c46f5edaff42bd11410" category="paragraph">此版本包含這些已知限制。請仔細檢閱這些已知限制。</block>
   <block id="c2a27caa6052749bd9639e9099deaa24" category="section-title">VMware整合限制</block>
   <block id="b7b42132f8e93917eac40b208d22bece" category="paragraph">不支援下列功能：</block>
@@ -685,7 +683,6 @@
   <block id="87b56c556cb4ea3c4e3cb8ed83104abd" category="list-text">複製VM、包括從範本複製</block>
   <block id="6a776555e801e78b60b64313ae7f49ea" category="list-text">在移除VM磁碟之後附加該磁碟</block>
   <block id="7ae1684f637daf6b4d5eee857fd95c23" category="list-text">VVOL複寫</block>
-  <block id="778e60f63232bef57ef209fa59253415" category="list-text">刪除VVol資料存放區</block>
   <block id="24f1bc28ac1357d77fb82fad5469c402" category="list-text">一流磁碟（FCD）</block>
   <block id="d86030abdf90a0e463f815e6366bf38e" category="list-text">VMware VMotion</block>
   <block id="fc8417a1a9c240603c6ea7ed80dfce1f" category="list-text">連結模式vCenter伺服器</block>
@@ -739,7 +736,6 @@
   <block id="2f3aed0a9846bf51daa98694af299373" category="list-text">Astra控制中心是<block ref="1b027c268f1a7b02c2d20e35deb0e665" category="inline-link-rx"></block> 並設定。</block>
   <block id="cc41262b7d4f903b7e21bdf37c1621f9" category="inline-link-macro">安裝Astra Data Store</block>
   <block id="be85c0739cb66db5730a127fc4eeca0b" category="list-text">Astra Data Store已獲得授權並已部署。請參閱 <block ref="14497a94943dc819ca2bc8999e1f8acf" category="inline-link-macro-rx"></block>。</block>
-  <block id="bcbfdb4e0453703e1cacd04a44fcf331" category="admonition">對於Astra Data Store Early Access Program（EAP）版本、Astra Control Center和Astra Data Store必須部署於兩個不同的Kubernetes叢集。</block>
   <block id="0dfd76a1e74c0c1c369c6c72f51214c5" category="list-text">用於部署Astra Control Center和Astra Data Store的Kubernetes叢集必須已由Astra Control Center管理。</block>
   <block id="6ce81e904046a779dc90e25023f4c1fb" category="inline-link">請參閱管理軟體套件</block>
   <block id="943cdfda279a36415463cde698fbed02" category="list-text">您在新增vCenter之前、已上傳Astra Control Center和VASA供應商套件。<block ref="72710cc45af0accb224cb54ac4340dda" category="inline-link-rx"></block>。</block>
@@ -781,7 +777,6 @@
   <block id="16f74d858b39be1bcbf559502f3c45cb" category="list-text">將現有的儲存後端新增至選取的vCenter。</block>
   <block id="bf6158455b90408eeed049516045305c" category="list-text">向選取的vCenter登錄VASA供應商。VASA供應商提供VMware與Astra Data Store之間的通訊。</block>
   <block id="5f217a62c0901005d1459081ec1ec864" category="list-text">將VASA供應商自我簽署的憑證新增至儲存後端。</block>
-  <block id="2fcdf56e9820af40c4076985811b5041" category="admonition">您新增的vCenter有時可能需要10分鐘才會出現在儲存後端精靈中。</block>
   <block id="7765d8b6344ab1b3c9515185491be6b2" category="admonition">Astra資料儲存區不應與多個vCenter共用。</block>
   <block id="afb52bd4ad10674bfac7c825c61edd25" category="list-text">存取適用於VMware vSphere的NetApp Astra外掛程式。</block>
   <block id="f1383a5412284a8236d8b2ec9c6c3f68" category="list-text">從左側導覽中選取* Astra Plugin for VMware vSpher*、或從「捷徑」頁面選取* Astra Plugin for VMware vSpher*圖示。</block>
@@ -1051,7 +1046,6 @@
   <block id="795aa22c96e8d729c55ba7303fa7e009" category="section-title">使用KECBECVL升級Astra資料儲存區</block>
   <block id="d833fef079ebe2baa7496e1b45577aab" category="paragraph">您可以使用Astra Data Store「kubecll」擴充功能來升級Astra Data Store。</block>
   <block id="cff845c73924c3a40205fc396d36a2fe" category="section-title">下載Astra Data Store產品組合並擷取映像</block>
-  <block id="f35cbb5775f17e10040fc2b8cbf4f5b4" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並下載Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）。</block>
   <block id="8c93a35342633c66859b2546d31b54c3" category="list-text">建立目錄：</block>
   <block id="acf4107a11f6cc11e8352b3d6bbcb10d" category="admonition">影像將擷取至工作目錄中建立的「astrads/images/」目錄。</block>
   <block id="3864427ab96992f87c91866fcf100c4b" category="list-text">從您用來擷取映像的目錄、將Kubertl-astrads二進位檔複製到安裝Kubernetes Kubecl二進位檔的標準路徑（以下範例將使用「usr/bin/」作為路徑）。Kustbecl-astrads是自訂的Kvecll擴充功能、可安裝及管理Astra Data Store叢集。</block>
@@ -1466,9 +1460,18 @@
   <block id="de93102ec4b436fc99e2d5c4f2461e28" category="section-title">無法從Astra Control Center網路UI解除安裝Astra Data Store</block>
   <block id="b7865115c7c6bc24a8349abcbc4bb445" category="paragraph">如果您從Astra Control Center網路UI啟動Astra Data Store解除安裝程序、則偶爾會失敗。</block>
   <block id="ce9e26154d02db4cb2b8782df2d32138" category="paragraph">如果發生此問題、請採取下列步驟。</block>
-  <block id="0562e69710e3b4fd2b95653650194299" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並將Astra Data Store套裝組合（「Astra Data_Store_2022.05.tar」）下載到可存取Astra Data Store所在Kubernetes叢集的機器上。</block>
   <block id="7dc32dcac8a46d2290bd5cd5f198681a" category="list-text">登入您下載Astra Data Store產品組合的機器。</block>
   <block id="cd111719eb2a51044ba027133eadbca4" category="list-text">擷取套裝組合內容：</block>
   <block id="59f54f26ac5b828c04c0feead1cda5dc" category="list-text">變更至儲存解除安裝指令碼的資訊清單目錄：</block>
   <block id="9a73786dc4f684fddd37eafd0ce31132" category="list-text">手動移除Astra資料儲存區：</block>
+  <block id="c4775cb95f8ef138043d5ef5ce4eab9f" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並下載Astra Data Store套裝組合（「Astra Data_Store_2022.05.01.tar」）。</block>
+  <block id="7b452bb6f26fd06e969c64e0ae1fdbf8" category="admonition">您新增的儲存後端有時可能需要幾分鐘的時間才能顯示在儲存後端精靈中。</block>
+  <block id="869ded6326067da65c878a02cf007fc4" category="list-text">登入<block ref="597f520ad144b88897e1238f7cbf692c" category="inline-link-rx"></block> 並將Astra Data Store套裝組合（「Astra Data_Store_2022.05.01.tar」）下載到可存取Astra Data Store所在Kubernetes叢集的機器上。</block>
+  <block id="58d68db0455b52c09ddec6316fea59f7" category="paragraph">我們很高興宣布推出2022.05.01早期存取方案（AP）版本的Astra Data Store。</block>
+  <block id="12a92c198bbb8e43c122c18973cd12f6" category="section-title">2022年6月28日（2022.05.01 EAP版本）</block>
+  <block id="201beebdbd13dbefde4ec99e5d894779" category="paragraph">此Astra Data Store EAP版本（22.05）的修補程式版本（2022.05.01）包含下列改善功能：</block>
+  <block id="ae9feba372efc57607e3e9b624b617d3" category="list-text">Astra Data Store和Astra Control Center現在可以在同一個叢集上執行。</block>
+  <block id="c094c67915de70d3ed1cc9aa8856262b" category="list-text">從vSphere刪除VVOL資料存放區工作流程現已可供使用。</block>
+  <block id="d56c12b83d78eba04b61c91ad11d6682" category="admonition">此版本需要隨KECVECtl-Astra外掛程式一起封裝的Astra Control Center更新版本。</block>
+  <block id="7be882efe20b993fddd0b3da5938ae7f" category="section-title">Astra Data Store 2022.05.01早期存取方案（AP）版本</block>
 </blocks>
